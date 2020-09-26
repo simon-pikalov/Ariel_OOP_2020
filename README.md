@@ -13,7 +13,7 @@ good programmers and even better software designers.
 Code standards:
 Java:
 https://google.github.io/styleguide/javaguide.html#s2.1-file-name
-https://github.com/twitter-archive/commons/blob/master/src/java/com/twitter/common/styleguide.md
+https://github.com/twitter-archive/commons/blob/master/class1/java/com/twitter/common/styleguide.md
 
 Python:
 https://google.github.io/styleguide/pyguide.html
