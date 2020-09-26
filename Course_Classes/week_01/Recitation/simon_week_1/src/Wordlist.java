@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Wordlist {
 
     /**
-     * @param num           the number to be padd
+     * @param num   the number to be padd
      * @param desiredLength the length of the desired string to be retuned
      * @return a String with zeros to complete the length to the desired length
      */

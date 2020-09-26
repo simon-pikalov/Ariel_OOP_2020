@@ -1,5 +1,7 @@
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Simon Pikalov
@@ -26,14 +28,14 @@ public interface CarLot  {
 
     /**
      *
-     * @return Linked list containing all vehicles
+     * @return HashMap containing all vehicles
      */
-    LinkedList<MotorVehicle> getAllVehicle();
+    HashMap<String,MotorVehicle> getAllVehicle();
 
     /**
      *
      * @param comp Comparator
      * @return the sorted data-structure
      */
-    LinkedList<MotorVehicle> getAllVehicleSorted(Comparator<Car> comp);
+    List<MotorVehicle> getAllVehicleSorted(Comparator<Car> comp);
 }

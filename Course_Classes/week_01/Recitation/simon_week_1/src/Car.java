@@ -12,7 +12,7 @@ public class Car extends MotorVehicle implements Driveble {
     @Override
     public double drive(Point2D src, Point2D dst) {
         double distance = Point2D.distance(src.getX(), src.getY(), dst.getX(), dst.getY());
-        double timeToTravel = distance/averageSpeed;
+        double timeToTravel = distance/getAverageSpeed();
         return timeToTravel;
     }
 }

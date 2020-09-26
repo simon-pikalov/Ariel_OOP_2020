@@ -15,10 +15,10 @@ public abstract class MotorVehicle {
     private double fuelCapacity;
     private double fuelConsumption;
     private double fuelPercent ; //should be between 0-1
-    double minSpeed;
-    double maxSpeed;
-    double averageSpeed;
-    int seats;
+    private double minSpeed;
+    private double maxSpeed;
+    private double averageSpeed;
+    private int seats;
 
 
     public MotorVehicle(String manufacturer, String model, String registrationPlate, double weight, double fuelCapacity, double averageSpeed,int seats) {
