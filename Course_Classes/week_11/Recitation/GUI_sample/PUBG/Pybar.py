@@ -226,47 +226,67 @@ class Toolbar:
     Toobar object
     """
 
-    def __init__(self, game_disp: pygame.display):
-        self.game_disp = game_disp
-        self.image = pygame.Surface((self.game_disp.get_rect().width, kTB_HEIGHT))
-        self.image.fill(kGRAY_COLOR)
-        self.rect = self.image.get_rect()
-        self.rect.topleft = (0, 0)
-        self.btns = []
-        self.last_pos = kPADDING
+    class __Toolbar:
+        def __init__(self, game_disp: pygame.display):
+            self.game_disp = game_disp
+            self.image = pygame.Surface((self.game_disp.get_rect().width, kTB_HEIGHT))
+            self.image.fill(kGRAY_COLOR)
+            self.rect = self.image.get_rect()
+            self.rect.topleft = (0, 0)
+            self.btns = []
+            self.last_pos = kPADDING
 
-    def addOption(self, opt: TBObject) -> TBObject:
-        """
-        Adds a TBObject to the toolbar
-        :param opt: The new object
-        :return: The TBObject that was added
-        """
-        pos = self.last_pos
-        opt.setGameDisp(self.game_disp)
-        opt.setPos(pos)
-        self.btns.append(opt)
-        self.last_pos += opt.width
+        def addOption(self, opt: TBObject) -> TBObject:
+            """
+            Adds a TBObject to the toolbar
+            :param opt: The new object
+            :return: The TBObject that was added
+            """
+            pos = self.last_pos
+            opt.setGameDisp(self.game_disp)
+            opt.setPos(pos)
+            self.btns.append(opt)
+            self.last_pos += opt.width
 
-        return opt
+            return opt
 
-    def update(self) -> bool:
-        """
-        Updated the clickes/hovers on the toolbar
-        :return: True if the mouse hovered over the toolbar O.W. False
-        """
-        mouse_click = pygame.mouse.get_pressed()
-        for op in self.btns:
-            if op.hover():
-                if mouse_click[0] == 1:
-                    op.doAction()
-                return True
-        return False
+        def update(self) -> bool:
+            """
+            Updated the clickes/hovers on the toolbar
+            :return: True if the mouse hovered over the toolbar O.W. False
+            """
+            mouse_click = pygame.mouse.get_pressed()
+            for op in self.btns:
+                if op.hover():
+                    if mouse_click[0] == 1:
+                        op.doAction()
+                    return True
+            return False
 
-    def draw(self) -> None:
+        def draw(self) -> None:
+            """
+            Draws the Toolbar
+            :return:
+            """
+            self.game_disp.blit(self.image, self.rect)
+            for op in self.btns:
+                op.draw()
+
+    instance = None
+
+    def __init__(self, game_disp):
+        if not Toolbar.instance:
+            Toolbar.instance = Toolbar.__Toolbar(game_disp)
+        else:
+            Toolbar.instance.game_disp = game_disp
+            Toolbar.instance.image = pygame.Surface((self.game_disp.get_rect().width, kTB_HEIGHT))
+            Toolbar.instance.image.fill(kGRAY_COLOR)
+            Toolbar.instance.rect = self.image.get_rect()
+
+    def __getattr__(self, name):
         """
-        Draws the Toolbar
+        Refers to the singleton instance
+        :param name:
         :return:
         """
-        self.game_disp.blit(self.image, self.rect)
-        for op in self.btns:
-            op.draw()
+        return getattr(self.instance, name)
