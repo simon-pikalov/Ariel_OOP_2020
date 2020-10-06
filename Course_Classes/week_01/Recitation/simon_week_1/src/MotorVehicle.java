@@ -11,17 +11,20 @@ public abstract class MotorVehicle {
     private String manufacturer;
     private String model;
     private String registrationPlate;
-    private double weight; // in tons
-    private double fuelCapacity;
+    private double weight; // in kilograms
+    private int fuelCapacity;
     private double fuelConsumption;
     private double fuelPercent ; //should be between 0-1
-    private double minSpeed;
-    private double maxSpeed;
-    private double averageSpeed;
+    private int maxSpeed;
     private int seats;
 
 
-    public MotorVehicle(String manufacturer, String model, String registrationPlate, double weight, double fuelCapacity, double averageSpeed,int seats) {
+    public MotorVehicle(String manufacturer, String model, String registrationPlate, int weight,int maxSpeed, int fuelCapacity,int seats) {
+        if(seats< 0) throw new RuntimeException("seats must be positive number , you used  "+seats);
+        if(weight< 0) throw new RuntimeException("weight must be positive number , you used  "+weight);
+        if(fuelCapacity< 0) throw new RuntimeException("fuelCapacity must be positive number , you used  "+fuelCapacity);
+        if(maxSpeed< 0) throw new RuntimeException("maxSpeed must be positive number , you used  "+maxSpeed);
+        this.maxSpeed = maxSpeed;
         this.manufacturer = manufacturer;
         this.model = model;
         this.registrationPlate = registrationPlate;
@@ -29,7 +32,6 @@ public abstract class MotorVehicle {
         this.fuelCapacity = fuelCapacity;
         this.fuelConsumption = fuelConsumption;
         this.fuelPercent = 0;
-        this.averageSpeed = averageSpeed;
     }
 
 
@@ -69,7 +71,7 @@ public abstract class MotorVehicle {
         return fuelCapacity;
     }
 
-    public void setFuelCapacity(double fuelCapacity) {
+    public void setFuelCapacity(int fuelCapacity) {
         this.fuelCapacity = fuelCapacity;
     }
 
@@ -85,33 +87,18 @@ public abstract class MotorVehicle {
         return fuelPercent;
     }
 
-    public void setFuelPercent(double fuelPercent) {
+    public void setFuelPercent(int fuelPercent) {
         this.fuelPercent = fuelPercent;
     }
 
-    public double getMinSpeed() {
-        return minSpeed;
-    }
-
-    public void setMinSpeed(double minSpeed) {
-        this.minSpeed = minSpeed;
-    }
-
-    public double getMaxSpeed() {
+    public int getMaxSpeed() {
         return maxSpeed;
     }
 
-    public void setMaxSpeed(double maxSpeed) {
+    public void setMaxSpeed(int maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
 
-    public double getAverageSpeed() {
-        return averageSpeed;
-    }
-
-    public void setAverageSpeed(double averageSpeed) {
-        this.averageSpeed = averageSpeed;
-    }
 
     public int getSeats() {
         return seats;
@@ -131,9 +118,7 @@ public abstract class MotorVehicle {
                 ", fuelCapacity=" + fuelCapacity +
                 ", fuelConsumption=" + fuelConsumption +
                 ", fuelPercent=" + fuelPercent +
-                ", minSpeed=" + minSpeed +
                 ", maxSpeed=" + maxSpeed +
-                ", averageSpeed=" + averageSpeed +
                 ", seats=" + seats +
                 '}';
     }

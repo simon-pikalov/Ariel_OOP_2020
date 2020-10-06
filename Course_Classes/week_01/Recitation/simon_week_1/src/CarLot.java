@@ -1,13 +1,12 @@
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author Simon Pikalov
  * https://github.com/simon-pikalov
  */
 public interface CarLot  {
+
+
     /**
      *
      * @param vehicle to add to the data-structure
@@ -24,18 +23,19 @@ public interface CarLot  {
      *
      * @return most fuel economic Vehicle in the lot
      */
-    MotorVehicle getEconomyVehicle();
+    MotorVehicle getLightestVehicle();
 
     /**
      *
      * @return HashMap containing all vehicles
      */
-    HashMap<String,MotorVehicle> getAllVehicle();
+   Collection<MotorVehicle> getAllVehicle();
 
     /**
      *
      * @param comp Comparator
      * @return the sorted data-structure
      */
-    List<MotorVehicle> getAllVehicleSorted(Comparator<Car> comp);
+    Collection<MotorVehicle> getAllVehicleSorted(Comparator<MotorVehicle> comp);
+
 }
