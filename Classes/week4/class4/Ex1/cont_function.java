@@ -1,4 +1,4 @@
-package class5.Ex1;
+//package Ex1;
 
 /**
  * The interface represents a continuance function 

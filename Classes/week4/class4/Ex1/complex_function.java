@@ -1,4 +1,4 @@
-package class5.Ex1;
+//package class5.Ex1;
 /** This interface represents a complex function of type y=g(f1(x), f2(x)), where both f1, f2 are functions (or complex functions), 
  * y and x are real numbers and g is an operation: plus, mul, div, max, min, comp (f1(f2(x))).
 **/

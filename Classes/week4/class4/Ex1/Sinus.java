@@ -1,4 +1,4 @@
-package class5.Ex1;
+//package class5.Ex1;
 
 /**
  * This class represents a simple sin(x) function (actually sin(f(x))).

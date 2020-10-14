@@ -1,4 +1,4 @@
-package class5.Ex1;
+//package class5.Ex1;
 
 import java.util.Comparator;
 public class Monom_Comperator implements Comparator<Monom> {
