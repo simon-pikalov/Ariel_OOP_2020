@@ -1,4 +1,4 @@
-
+package ex0;
 /**
  * This interface represents the "regular" Graph Theory algorithms including:
  * 0. clone();
@@ -25,16 +25,6 @@ public interface graph_algorithms {
 	 * @return
 	 */
 	public graph copy();
-	/**
-	 * Init a graph from file
-	 * @param file_name
-	 */
-//	public void init(String file_name);
-	/** Saves the graph to a file.
-	 * 
-	 * @param file_name
-	 */
-	//public void save(String file_name);
 /**
  * Returns true if and only if (iff) there is a valid path from EVREY node to each
  * other node. NOTE: assume directional graph - a valid path (a-->b) does NOT imply a valid path (b-->a).

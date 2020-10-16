@@ -1,5 +1,6 @@
-
+package ex0;
 import java.util.Collection;
+
 /**
  * This interface represents an undirectional unweighted graph.
  * It should support a large number of nodes (over 10^6, with average degree of 10).
@@ -9,16 +10,6 @@ import java.util.Collection;
  */
 
 public interface graph {
-	/**
-	 * init this graph with a deep copy of g
-	 * @param g
-	 */
-	public void init(graph g);
-	/** constructs a deep copy of this graph
-	 * 
-	 * @return
-	 */
-	public graph copy(); 
 	/**
 	 * return the node_data by the node_id,
 	 * @param key - the node_id
@@ -32,7 +23,7 @@ public interface graph {
 	 * @param node2
 	 * @return
 	 */
-	public edge_data getEdge(int node1, int node2);
+	public boolean hasEdge(int node1, int node2);
 	/**
 	 * add a new node to the graph with the given node_data.
 	 * Note: this method should run in O(1) time.
@@ -53,13 +44,12 @@ public interface graph {
 	 */
 	public Collection<node_data> getV();
 	/**
-	 * This method return a pointer (shallow copy) for the
-	 * collection representing all the edges getting out of 
-	 * the given node (all the edges with the given node).
+	 * This method return a collection of  the
+	 * collection representing all the nodes connected to node_id
 	 * Note: this method should run in O(1) time.
-	 * @return Collection<edge_data>
+	 * @return Collection<node_data>
 	 */
-	public Collection<edge_data> getE(int node_id);
+	public Collection<node_data> getV(int node_id);
 	/**
 	 * Delete the node (with the given ID) from the graph -
 	 * and removes all edges which starts or ends at this node.
@@ -71,18 +61,18 @@ public interface graph {
 	/**
 	 * Delete the edge from the graph, 
 	 * Note: this method should run in O(1) time.
-	 * @param src
-	 * @param dest
+	 * @param node1
+	 * @param node2
 	 * @return the data of the removed edge (null if none).
 	 */
-	public edge_data removeEdge(int src, int dest);
+	public void removeEdge(int node1, int node2);
 	/** return the number of vertices (nodes) in the graph.
 	 * Note: this method should run in O(1) time. 
 	 * @return
 	 */
 	public int nodeSize();
 	/** 
-	 * return the number of edges (assume directional graph).
+	 * return the number of edges (undirectional graph).
 	 * Note: this method should run in O(1) time.
 	 * @return
 	 */

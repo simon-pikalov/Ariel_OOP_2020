@@ -1,3 +1,6 @@
+package ex0;
+
+import java.util.Collection;
 
 /**
  * This interface represents the set of operations applicable on a 
@@ -11,6 +14,25 @@ public interface node_data {
 	 * @return
 	 */
 	public int getKey();
+
+    /**
+	 * This method returns a collection with all the Neighbor nodes of this node_data */
+	public Collection<node_data> getNi();
+
+    /**
+     * return true iff this<==>key are adjacent</==>
+	 * @param key
+     * @return
+     */
+	public boolean hasNi(int key);
+	/** This method adds the node_data (t) to this node_data.*/
+	public void addNi(node_data t);
+
+    /**
+     * Removes the edge this-key
+	 * @param key
+	 */
+	public void removeNode(node_data node);
 	/**
 	 * return the remark (meta data) associated with this node.
 	 * @return
