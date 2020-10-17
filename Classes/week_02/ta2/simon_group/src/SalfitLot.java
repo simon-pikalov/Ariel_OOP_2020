@@ -13,9 +13,7 @@ public class SalfitLot implements CarLot {
     }
 
 
-    public void setLot(ArrayList<MotorVehicle> lot) {
-        this.lot = lot;
-    }
+
 
     /**
      * @param vehicle to add to the data-structure
@@ -25,15 +23,23 @@ public class SalfitLot implements CarLot {
         this.lot.add(vehicle);
     }
 
+    @Override
+    public void removeVehicle(MotorVehicle vehicle) {
+        lot.remove(vehicle);
+    }
+
     /**
      * @return the FastestVehicle
      */
     @Override
     public MotorVehicle getFastestVehicle() {
-        MotorVehicle fastest = new Car();
-        for (MotorVehicle m:this.lot) {
-            if (m.getMaxSpeed()> fastest.getMaxSpeed() ) fastest = m;
-        }
+        //        MotorVehicle fastest = new Car();
+//        for (MotorVehicle m:this.lot) {
+//            if (m.getMaxSpeed()> fastest.getMaxSpeed() ) fastest = m;
+//        }
+
+        MotorVehicleCompareMaxSpeed speedComp = new MotorVehicleCompareMaxSpeed();
+        MotorVehicle fastest =  Collections.max(lot,speedComp);
         return  fastest;
     }
 
@@ -64,10 +70,8 @@ public class SalfitLot implements CarLot {
      */
     @Override
     public Collection<MotorVehicle> getAllVehicleSorted(Comparator<MotorVehicle> comp){
-        ArrayList <MotorVehicle> old = new ArrayList<MotorVehicle>(lot); //copy the old
-        lot.sort(comp); // sort it using comperator
-        ArrayList<MotorVehicle> sorted = new ArrayList<>(lot); //generate a copy of sorted
-        lot = sorted; //get the old list
+        ArrayList <MotorVehicle> sorted = new ArrayList<MotorVehicle>(lot); //deep copy the list
+        sorted.sort(comp); // sort it
         return sorted;
     }
 }

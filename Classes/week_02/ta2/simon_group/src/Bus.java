@@ -6,20 +6,34 @@ public class Bus extends MotorVehicle implements Driveble , PublicTransfer  {
      * https://github.com/simon-pikalov
      */
     private static  final double busDelay = 0.3;
-    private static  final int minSeats = 20;
+    private static final int minSeats = 20;
     private int currPassengerCount;
+    private Point2D pos;
 
-    public Bus(String manufacturer, String model, String registrationPlate, int weight, int maxSpeed, int fuelCapacity, int seats) {
-        super(manufacturer, model, registrationPlate, weight, maxSpeed, fuelCapacity, seats);
+    public Bus(String manufacturer, String model, String registrationPlate, int weight, int maxSpeed, int seats) {
+        super(manufacturer, model, registrationPlate, weight, maxSpeed, seats);
         //if(seats< minSeats) throw new Exception("Bus must have at least 20"); hard coded not good
         if(seats< minSeats) throw new RuntimeException("Bus must have at least "+minSeats+" seats but , You used only "+seats);
         this.currPassengerCount =0;
     }
 
+    @Override
+    public void initPos(Point2D p) {
+        this.pos = p;
+    }
 
     @Override
-    public double drive(Point2D src, Point2D dst) {
-        double distance = Point2D.distance(src.getX(), src.getY(), dst.getX(), dst.getY());
+    public Point2D getPos() {
+        return pos;
+    }
+
+
+    @Override
+    public double drive( Point2D dst) {
+        if (pos ==null){
+            System.out.println("you must firs init the pos ! ");
+            throw new NullPointerException();}
+        double distance = Point2D.distance(pos.getX(), pos.getY(), dst.getX(), dst.getY());
         double timeToTravel = distance/(getMaxSpeed()*busDelay);
         return timeToTravel;
     }

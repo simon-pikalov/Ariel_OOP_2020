@@ -13,6 +13,15 @@ public interface CarLot  {
      */
     void addVehicle(MotorVehicle vehicle);
 
+
+
+    /**
+     * remove vehicle if present
+     * @param vehicle the vehicle to be removed if present
+     */
+    void removeVehicle(MotorVehicle vehicle);
+
+
     /**
      *
      * @return fastet Vehicle in the lot

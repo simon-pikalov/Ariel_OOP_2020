@@ -3,16 +3,27 @@ import java.awt.geom.Point2D;
 public interface Driveble {
 
 
+    /**
+     *
+     * @param p set the position of vehicle to p
+     */
+    public void initPos(Point2D p);
 
 
     /**
      *
-     * @param src 2d Source point
+     * @return return the position of the vehicle
+     */
+    public Point2D getPos();
+
+
+    /**
+     *
      * @param dst 2d destination point
      * @return the time for the trip
      * This function make the car drive from sec to dst with respect to it's fuel constipation and fuel capacity
      */
-    public double drive(Point2D src, Point2D dst);
+    public double drive( Point2D dst);
 
 
 }

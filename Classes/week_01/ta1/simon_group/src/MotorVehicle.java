@@ -7,31 +7,24 @@
  */
 public abstract class MotorVehicle {
 
-
     private String manufacturer;
     private String model;
     private String registrationPlate;
     private double weight; // in kilograms
-    private int fuelCapacity;
-    private double fuelConsumption;
-    private double fuelPercent ; //should be between 0-1
     private int maxSpeed;
     private int seats;
 
 
-    public MotorVehicle(String manufacturer, String model, String registrationPlate, int weight,int maxSpeed, int fuelCapacity,int seats) {
+    public MotorVehicle(String manufacturer, String model, String registrationPlate, int weight,int maxSpeed,int seats) {
         if(seats< 0) throw new RuntimeException("seats must be positive number , you used  "+seats);
         if(weight< 0) throw new RuntimeException("weight must be positive number , you used  "+weight);
-        if(fuelCapacity< 0) throw new RuntimeException("fuelCapacity must be positive number , you used  "+fuelCapacity);
         if(maxSpeed< 0) throw new RuntimeException("maxSpeed must be positive number , you used  "+maxSpeed);
         this.maxSpeed = maxSpeed;
         this.manufacturer = manufacturer;
         this.model = model;
         this.registrationPlate = registrationPlate;
         this.weight = weight;
-        this.fuelCapacity = fuelCapacity;
-        this.fuelConsumption = fuelConsumption;
-        this.fuelPercent = 0;
+
     }
 
 
@@ -67,29 +60,6 @@ public abstract class MotorVehicle {
         this.weight = weight;
     }
 
-    public double getFuelCapacity() {
-        return fuelCapacity;
-    }
-
-    public void setFuelCapacity(int fuelCapacity) {
-        this.fuelCapacity = fuelCapacity;
-    }
-
-    public double getFuelConsumption() {
-        return fuelConsumption;
-    }
-
-    public void setFuelConsumption(double fuelConsumption) {
-        this.fuelConsumption = fuelConsumption;
-    }
-
-    public double getFuelPercent() {
-        return fuelPercent;
-    }
-
-    public void setFuelPercent(int fuelPercent) {
-        this.fuelPercent = fuelPercent;
-    }
 
     public int getMaxSpeed() {
         return maxSpeed;
@@ -115,9 +85,6 @@ public abstract class MotorVehicle {
                 ", model='" + model + '\'' +
                 ", registrationPlate='" + registrationPlate + '\'' +
                 ", weight=" + weight +
-                ", fuelCapacity=" + fuelCapacity +
-                ", fuelConsumption=" + fuelConsumption +
-                ", fuelPercent=" + fuelPercent +
                 ", maxSpeed=" + maxSpeed +
                 ", seats=" + seats +
                 '}';

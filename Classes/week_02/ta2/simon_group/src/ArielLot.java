@@ -12,9 +12,6 @@ public class ArielLot implements CarLot {
         this.lot = lot;
     }
 
-    public void setLot(HashMap<String, MotorVehicle> lot) {
-        this.lot = lot;
-    }
 
     /**
      * @param vehicle to add to the data-structure
@@ -24,18 +21,27 @@ public class ArielLot implements CarLot {
     this.lot.put(vehicle.getRegistrationPlate(),vehicle);
     }
 
+    @Override
+    public void removeVehicle(MotorVehicle vehicle) {
+        lot.remove(vehicle.getRegistrationPlate());
+    }
+
     /**
      * @return the FastestVehicle
      */
     @Override
     public MotorVehicle getFastestVehicle() {
-    MotorVehicle fastest = new Car();
-    MotorVehicle curr = null;
-        for (String s:this.lot.keySet()) {
-            curr = this.lot.get(s);
-            if (curr.getMaxSpeed() > fastest.getMaxSpeed() ) fastest = curr;
-        }
-    return  fastest;
+//        MotorVehicle fastest = new Car();
+//    MotorVehicle curr = null;
+//        for (String s:this.lot.keySet()) {
+//            curr = this.lot.get(s);
+//            if (curr.getMaxSpeed() > fastest.getMaxSpeed() ) fastest = curr;
+//        }
+//    return  fastest;
+
+        MotorVehicleCompareMaxSpeed speedComp = new MotorVehicleCompareMaxSpeed();
+        MotorVehicle fastest =  Collections.max(lot.values(),speedComp);
+        return  fastest;
 
     }
 
@@ -69,9 +75,8 @@ public class ArielLot implements CarLot {
      */
     @Override
     public Collection<MotorVehicle> getAllVehicleSorted(Comparator<MotorVehicle> comp) {
-
-
-
-    return  null;
+        ArrayList <MotorVehicle> sorted = new ArrayList<MotorVehicle>(lot.values()); //deep copy the list
+        sorted.sort(comp); // sort it
+        return sorted;
     }
 }
