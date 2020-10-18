@@ -6,19 +6,19 @@ import java.util.Random;
  * of random numbers.
  *
  */
-public class MyRandom {
+public class MyRandom2 extends Random {
     private long _seed;
-    private Random _rand;
-    public MyRandom(long seed) {
+    public MyRandom2(long seed) {
+        super(seed);
         _seed = seed;
-        _rand = new Random(_seed);
+       // _rand = new Random(_seed);
     }
-    public MyRandom() {
+    public MyRandom2() {
         this(new Random().nextLong());
     }
     public double random() {
         double ans;
-        ans = this._rand.nextDouble();
+        ans = super.nextDouble();
         return ans;
     }
 
@@ -55,12 +55,12 @@ public class MyRandom {
         ans  = min + r;
         */
 
-          double r = random(min,max); // [min,max)
-            int ans = (int)r;
+        double r = random(min,max); // [min,max)
+        int ans = (int)r;
         return ans;
     }
     public double nextGaussian() {
-        double ans = this._rand.nextGaussian();
+        double ans = super.nextGaussian();
         return ans;
     }
 }

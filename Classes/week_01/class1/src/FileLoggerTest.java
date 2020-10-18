@@ -13,7 +13,7 @@ public class FileLoggerTest {
         MyRandom r = new MyRandom(123);
         FileLogger fl = new FileLogger(); // date based (now) file name
         System.out.println("***** class1.FileLogger - Tester: *****");
-        fl.log("this is a first line");
+        fl.log("this is a first line 123");
         fl.log("second line");
         for(int i=0;i<100;i++) {
             String a = ""+i+","+r.nextGaussian();
