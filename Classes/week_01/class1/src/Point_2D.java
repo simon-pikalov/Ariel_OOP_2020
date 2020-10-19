@@ -47,7 +47,7 @@ public class Point_2D implements shape{
     }
 
     @Override
-    public double premiter() {
+    public double perimeter() {
         return 0;
     }
 

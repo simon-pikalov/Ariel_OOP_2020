@@ -19,7 +19,7 @@ public class Circle_2D implements shape {
 
     @Override
     public void move(Point_2D vec) {
-
+        this._center.move(vec);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class Circle_2D implements shape {
     }
 
     @Override
-    public double premiter() {
+    public double perimeter() {
         return Math.PI*2*_radius;
     }
 
@@ -40,5 +40,8 @@ public class Circle_2D implements shape {
     @Override
     public boolean isInSide(Point_2D ot) {
         return _center.distance(ot)<=_radius;
+    }
+    public String toString() {
+        return "Circle center: "+_center+"  rad: "+_radius;
     }
 }
