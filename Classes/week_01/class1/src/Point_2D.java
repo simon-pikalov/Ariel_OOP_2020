@@ -42,7 +42,7 @@ public class Point_2D implements shape{
     }
 
     @Override
-    public double are() {
+    public double area() {
         return 0;
     }
 

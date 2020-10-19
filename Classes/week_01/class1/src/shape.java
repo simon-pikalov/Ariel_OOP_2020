@@ -13,7 +13,7 @@ public interface shape {
      * @param vec
      */
     public void move(Point_2D vec);
-    public double are();
-    public double premiter();
+    public double area();
+    public double perimeter();
     public boolean isInSide(Point_2D ot);
 }
