@@ -1,4 +1,8 @@
 package ex0;
+/**
+ * This is a very basic test class to test mainly the names of the classes & methods.
+ *
+ */
 
 import java.util.List;
 import java.util.Random;
