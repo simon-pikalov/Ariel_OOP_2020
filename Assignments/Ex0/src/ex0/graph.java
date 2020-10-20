@@ -31,9 +31,9 @@ public interface graph {
 	 */
 	public void addNode(node_data n);
 /**
- * Connect an edge with weight w between node src to node dest.
+ * Connect an edge between node1 and node2.
  * Note: this method should run in O(1) time.
- * Note2: if the edge node1-node2 already exists - the the method simply does nothing.
+ * Note2: if the edge node1-node2 already exists - the method simply does nothing.
  */
 	public void connect(int node1, int node2);
 	/**
