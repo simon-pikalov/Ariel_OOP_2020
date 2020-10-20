@@ -17,7 +17,7 @@ public interface graph {
 	 */
 	public node_data getNode(int key);
 	/**
-	 * return the data of the edge (src,dest), null if none.
+	 * return true iff (if and only if) there is an edge between node1 and node2
 	 * Note: this method should run in O(1) time.
 	 * @param node1
 	 * @param node2
@@ -63,7 +63,6 @@ public interface graph {
 	 * Note: this method should run in O(1) time.
 	 * @param node1
 	 * @param node2
-	 * @return the data of the removed edge (null if none).
 	 */
 	public void removeEdge(int node1, int node2);
 	/** return the number of vertices (nodes) in the graph.
