@@ -24,7 +24,7 @@ public class RandomTest {
         int[] arr = new int[7];
         double size = 1000;
         for(int i=0;i<size;i++) {
-            int dd=r.randomInt(1,7);
+            int dd=r.randomInt(1,7); //[1,7) == [1,6]
             arr[dd]++;
         }
         for(int i=1;i<=6;i++) {

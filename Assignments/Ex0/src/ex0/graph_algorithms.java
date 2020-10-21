@@ -1,12 +1,11 @@
 package ex0;
 /**
  * This interface represents the "regular" Graph Theory algorithms including:
- * 0. clone();
- * 1. init(String file_name);
- * 2. save(String file_name);
- * 3. isConnected();
- * 5. int shortestPathDist(int src, int dest);
- * 6. List<Node> shortestPath(int src, int dest);
+ * 0. clone(); (copy)
+ * 1. init(graph);
+ * 2. isConnected();
+ * 3. int shortestPathDist(int src, int dest);
+ * 4. List<Node> shortestPath(int src, int dest);
  *
  * @author boaz.benmoshe
  *
@@ -16,7 +15,7 @@ import java.util.List;
 
 public interface graph_algorithms {
 	/**
-	 * Init this set of algorithms on the parameter - graph.
+	 * Init the graph on which this set of algorithms operates on.
 	 * @param g
 	 */
 	public void init(graph g);
@@ -27,7 +26,7 @@ public interface graph_algorithms {
 	public graph copy();
 /**
  * Returns true if and only if (iff) there is a valid path from EVREY node to each
- * other node. NOTE: assume directional graph - a valid path (a-->b) does NOT imply a valid path (b-->a).
+ * other node. NOTE: assume ubdirectional graph.
  * @return
  */
 	public boolean isConnected();
