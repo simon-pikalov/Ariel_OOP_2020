@@ -7,8 +7,6 @@ public class javaTricks {
 
     public static void main(String[] args) {
 
-
-
         int num = 1;
         double trick = (num % 2 == 0) ? 0 : 1;
         System.out.println(trick);
