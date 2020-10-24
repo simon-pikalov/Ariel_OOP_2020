@@ -65,7 +65,8 @@ public class Graph_Ex0_Test2 {
         test("runtime test: ",t, true);
         System.out.println(_log);
         double g = 100.0*(_tests-_errors)/_tests;
-        System.out.println("number of Errors: "+_errors+" of "+_tests+" tests, grade: "+g+"  time: "+dt);
+        System.out.println("number of Errors: "+_errors+" of "+_tests+" tests, time: "+dt+" seconds");
+        System.out.println("grade: "+(int)g);
     }
 
     /**
