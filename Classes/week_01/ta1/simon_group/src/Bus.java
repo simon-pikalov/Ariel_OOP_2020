@@ -1,4 +1,5 @@
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 
 public class Bus extends MotorVehicle implements Driveble , PublicTransfer  {
     /**
@@ -74,6 +75,9 @@ public class Bus extends MotorVehicle implements Driveble , PublicTransfer  {
         System.out.println(volvo9900.getMaxSpeed());
         MotorVehicle m = volvo9900;
         System.out.println(m.getMaxSpeed());
+
+
+        ArrayList<String> a = new ArrayList<String>();
 
     }
 }
