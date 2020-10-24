@@ -4,8 +4,8 @@ package ex0;
  * Note: This is not a JUnit test - and should surely be, to be fixed in Ex1.
  *
  * output example (4 years ols slow computer):
- * Running tests for Ex0 - this may take up to 10 seconds!
  *
+ * Running tests for Ex0 - this may take up to 10 seconds!
  * 0) test0   pass: true
  * 1) test1   pass: true
  * 2) test2()   pass: true
