@@ -19,18 +19,23 @@ public class Sith implements ForceChar{
 
     @Override
     public String toString() {
-        return _name + "\n"
-                + "\tRank: " + _rank+"\n"
-                + "\tLightSaber Color:" + _ls_color;
+        return getName() + "\n"
+                + "\tRank: " + rankStr()+"\n"
+                + "\tLightSaber Color:" + getLightSaberColor();
     }
 
     @Override
     public String getName() {
-        return _name;
+        return "Sith " + _name;
     }
 
     @Override
     public LightSaberColor getLightSaberColor() {
         return _ls_color;
+    }
+
+    @Override
+    public String rankStr() {
+        return _rank.name();
     }
 }

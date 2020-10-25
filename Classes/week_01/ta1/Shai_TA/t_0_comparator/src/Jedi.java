@@ -39,4 +39,5 @@ public class Jedi implements ForceCharacters {
     public LightSaberColor get_LightSaberColor() {
         return _ls_color;
     }
+
 }
