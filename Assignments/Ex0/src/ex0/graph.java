@@ -44,8 +44,8 @@ public interface graph {
 	 */
 	public Collection<node_data> getV();
 	/**
-	 * This method return a collection of  the
-	 * collection representing all the nodes connected to node_id
+	 * This method returns a collection containing all the
+	 * nodes connected to node_id
 	 * Note: this method should run in O(1) time.
 	 * @return Collection<node_data>
 	 */

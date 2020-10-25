@@ -26,11 +26,13 @@ public interface node_data {
      * @return
      */
 	public boolean hasNi(int key);
-	/** This method adds the node_data (t) to this node_data.*/
+	/** This method adds the node_data (t) to this node_data.
+	 * This method is wrongly designed! and was used mainly for educational example - to be improved in Ex1
+	 * */
 	public void addNi(node_data t);
 
     /**
-     * Removes the edge this-key,
+     * Removes the edge this-node,
 	 * @param node
 	 */
 	public void removeNode(node_data node);

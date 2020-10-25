@@ -21,6 +21,8 @@ public class Graph_Ex0_Test {
         System.out.println(g0);
         test3();
         System.out.println(g0);
+        test4();
+        System.out.println(g0);
     }
     public static void test1() {
 
@@ -69,5 +71,11 @@ public class Graph_Ex0_Test {
         double dx = max-min;
         double ans = d*dx+min;
         return ans;
+    }
+    public static void test4() {
+        g0.removeNode(3);
+        ga = new Graph_Algo(g0);
+        boolean con = ga.isConnected();
+        System.out.println(con);
     }
 }
