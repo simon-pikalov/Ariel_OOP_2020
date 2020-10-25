@@ -17,13 +17,17 @@ public class CollectionTests {
         int size = 10;
         for(int i=0;i<size;i++) {
             String s = ""+Math.random();
-            s = s.substring(2,5);
+            int t = (int)(Math.random()*5);
+            s = s.substring(2,4+t);
             l1.add("s_"+s);
         }
         printList(l1);
+
+        Collections.sort(l1);
+        printList(l1);
         Collections.shuffle(l1);
         printList(l1);
-        Collections.sort(l1);
+        Collections.sort(l1, new StringLength_Comp());
         printList(l1);
      }
      public static void printList(List l) {
@@ -33,7 +37,6 @@ public class CollectionTests {
             System.out.print(itr.next()+",");
         }
      }
-
     /**
      * A simple example for using HashMap<K>,<V>
      */
