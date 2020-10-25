@@ -6,6 +6,7 @@ package ex0;
  * output example (4 years ols slow computer):
  *
  * Running tests for Ex0 - this may take up to 10 seconds!
+ *
  * 0) test0   pass: true
  * 1) test1   pass: true
  * 2) test2()   pass: true
@@ -19,12 +20,15 @@ package ex0;
  * 10) test_n(b)   pass: true
  * 11) test_n(a)   pass: true
  * 12) test_n(b)   pass: true
- * 13) test_connectivity0   pass: true
- * 14) test_connectivity1   pass: true
- * 15) test_connectivity2   pass: true
- * 16) test_path   pass: true
- * 17) runtime test:   pass: true
- * number of Errors: 0 of 18 tests, grade: 100.0  time: 3.857
+ * 13) test_n(a)   pass: true
+ * 14) test_n(b)   pass: true
+ * 15) test_connectivity0   pass: true
+ * 16) test_connectivity1   pass: true
+ * 17) test_connectivity2   pass: true
+ * 18) test_path   pass: true
+ * 19) runtime test:   pass: true
+ * number of Errors: 0 of 20 tests, time: 3.914 seconds
+ * grade: 100
  *
  * Process finished with exit code 0
  *
@@ -53,10 +57,11 @@ public class Graph_Ex0_Test2 {
         test2();
         test2a();
         test9();
-        test_n(100,250,1,21,1);
-        test_n(1000,3400,2,7,1);
+        test_n(10,9,1,1,1);
+        test_n(100,235,1,47,1);
+        test_n(1000,3400,2,19,1);
         int no = 1000*50, ed = 302650;
-        test_n(no, ed,3,7,1000);
+        test_n(no, ed,3,9,1000);
         test_connectivity(100,1);
         test_path(10,1);
         long end = new Date().getTime();
@@ -170,20 +175,20 @@ public class Graph_Ex0_Test2 {
      */
     public static void test_n(int size, int edge, int seed, int tt, int jump) {
         graph g = graph_creator(size, edge, seed);
-      //  System.out.println(g);
         graph_algorithms ga = new Graph_Algo();
         ga.init(g);
         node_data[] nodes = nodes(g);
         int i=0;
         boolean b = true;
-        while(i<=tt) {
+        while(i<tt) {
           b &= ga.isConnected();
           for(int x=0;x<jump;x++) {
               int s = g.nodeSize();
               int r = nextRnd(0, s);
-              g.removeNode(r);
+              int key = nodes[r].getKey(); // bug fix
+              g.removeNode(key);
           }
-     //     System.out.println(""+i+") "+g.nodeSize()+"  con: "+b);
+        //  System.out.println(""+i+") "+g.nodeSize()+"  con: "+b);
           i++;
         }
        test("test_n(a) ",b, true);
