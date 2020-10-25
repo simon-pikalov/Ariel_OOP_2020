@@ -3,9 +3,10 @@
 # Youtube chanel 
 https://www.youtube.com/playlist?list=PLI1YQ3QGdy-Y5KxXuxGUXuh6idMfJIIbB
 
-# Themes 
 
-![](\resources/themes.JPG)
+# Themes for this Recitation  
 
-![](\resources/interface.JPG)
+![](resources/themes.JPG)
+
+![](resources/interface.jpg)
 
