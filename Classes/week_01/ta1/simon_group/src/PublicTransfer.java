@@ -1,5 +1,6 @@
 public interface PublicTransfer {
 
+
     /**
      *
      * @return how many  passenger are currently in the public Transfer

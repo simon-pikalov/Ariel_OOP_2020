@@ -11,6 +11,7 @@ import java.util.Collection;
 public interface node_data {
 	/**
 	 * Return the key (id) associated with this node.
+	 * Note: each node_data should have a unique key.
 	 * @return
 	 */
 	public int getKey();
@@ -20,17 +21,19 @@ public interface node_data {
 	public Collection<node_data> getNi();
 
     /**
-     * return true iff this<==>key are adjacent</==>
+     * return true iff this<==>key are adjacent, as an edge between them.
 	 * @param key
      * @return
      */
 	public boolean hasNi(int key);
-	/** This method adds the node_data (t) to this node_data.*/
+	/** This method adds the node_data (t) to this node_data.
+	 * This method is wrongly designed! and was used mainly for educational example - to be improved in Ex1
+	 * */
 	public void addNi(node_data t);
 
     /**
-     * Removes the edge this-key
-	 * @param key
+     * Removes the edge this-node,
+	 * @param node
 	 */
 	public void removeNode(node_data node);
 	/**
