@@ -1,6 +1,6 @@
 package ex0;
 /**
- * This is a basic test class to test mainly the basic performance.
+ * This is a simple test class to test Ex0 functionality & performance.
  * Note: This is not a JUnit test - and should surely be, to be fixed in Ex1.
  *
  * output example (4 years ols slow computer):
@@ -46,7 +46,7 @@ public class Graph_Ex0_Test2 {
     private static String _log = "";
 
     /**
-     * Simple main, while runs all the tests.
+     * Simple main, run all the tests.
      * @param args
      */
     public static void main(String[] args) {
@@ -137,18 +137,23 @@ public class Graph_Ex0_Test2 {
         test("test2() ", b, false);
 
     }
+    /**
+     * graph with two nodes and a single edge - connected
+     */
     public static void test2a() {
         graph g0 = graph_creator(2, 1, 1);
-      //  System.out.println(g0);
         graph_algorithms ga0 = new Graph_Algo();
         ga0.init(g0);
         boolean b = ga0.isConnected();
         test("test2(a) ", b, true);
     }
 
+    /**
+     * small graph test (|V|=10, |E|=30), remove edges and a node:
+     * so the updates graph will have (|V|=9, |E|=21)
+     */
     public static void test9() {
         graph g10 = graph_creator(10,30,1);
-    //    System.out.println(g10);
         node_data[] nodes = nodes(g10);
         int a0 = nodes[0].getKey();
         int a1 = nodes[1].getKey();
@@ -162,7 +167,6 @@ public class Graph_Ex0_Test2 {
         test("test9(a) ", re, g10.nodeSize());
         re = 21;
         test("test9(b) ", re, g10.edgeSize());
-        //System.out.println(g10);
     }
 
     /**
