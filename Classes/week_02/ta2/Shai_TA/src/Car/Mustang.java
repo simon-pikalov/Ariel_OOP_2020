@@ -10,13 +10,7 @@ public class Mustang extends GenericCar {
 
     @Override
     public String toString() {
-        return "Mustang{" +
-                "_wheel_num=" + _wheel_num +
-                ", _door_num=" + _door_num +
-                ", _c_color=" + _c_color +
-                ", _pos=" + _pos +
-                ", _top_speed=" + _top_speed +
-                '}';
+        return "Mustang:\n\t" + super.toString();
     }
 
     @Override
