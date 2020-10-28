@@ -13,6 +13,10 @@ public class Bus extends MotorVehicle implements Driveble , PublicTransfer  {
     private int currPassengerCount;
     private Point2D pos;
 
+    public void onlyBusFunction(){
+        System.out.println("this is only bus function ! ");
+    }
+
     public Bus(String manufacturer, String model, String registrationPlate, int weight, int maxSpeed, int seats) {
         super(manufacturer, model, registrationPlate, weight, maxSpeed, seats);
         //if(seats< minSeats) throw new Exception("Vehicle.Bus must have at least 20"); hard coded not good
@@ -72,13 +76,7 @@ public class Bus extends MotorVehicle implements Driveble , PublicTransfer  {
 
     public static void main(String[] args) {
         Bus volvo9900 = new Bus("Volvo","9900","656-55-103",26500 ,120 ,52);
-        volvo9900.setMaxSpeed(200);
-        System.out.println(volvo9900.getMaxSpeed());
-        MotorVehicle m = volvo9900;
-        System.out.println(m.getMaxSpeed());
-        final int a =5;
-        final int[]b ={1,24,4};
-        int []c = {1,2,3};
-
+        System.out.println(volvo9900);
+        volvo9900.onlyBusFunction();
     }
 }
