@@ -1,5 +1,10 @@
-import java.awt.geom.Point2D;
+package Vehicle;
 
+import java.awt.geom.Point2D;
+/**
+ * @author Simon Pikalov
+ * https://github.com/simon-pikalov
+ */
 public interface Driveble {
 
 

@@ -1,3 +1,5 @@
+package Vehicle;
+
 import java.util.*;
 
 /**
@@ -5,7 +7,6 @@ import java.util.*;
  * https://github.com/simon-pikalov
  */
 public interface CarLot  {
-
 
     /**
      *

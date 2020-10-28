@@ -1,3 +1,5 @@
+package Vehicle;
+
 import java.util.*;
 
 public class SalfitLot implements CarLot {
@@ -33,8 +35,8 @@ public class SalfitLot implements CarLot {
      */
     @Override
     public MotorVehicle getFastestVehicle() {
-        //        MotorVehicle fastest = new Car();
-//        for (MotorVehicle m:this.lot) {
+        //        Vehicle.MotorVehicle fastest = new Vehicle.Car();
+//        for (Vehicle.MotorVehicle m:this.lot) {
 //            if (m.getMaxSpeed()> fastest.getMaxSpeed() ) fastest = m;
 //        }
 

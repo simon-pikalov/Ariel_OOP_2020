@@ -1,3 +1,5 @@
+package Vehicle;
+
 import java.util.Comparator;
 /**
  * @author Simon Pikalov

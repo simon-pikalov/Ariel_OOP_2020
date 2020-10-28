@@ -1,3 +1,5 @@
+package Vehicle;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,6 +9,7 @@ public class main {
 
 
     private static  HashMap<String ,MotorVehicle> generateLotMap(){
+
         Car kiaPicanto = new Car("Kia","Picanto","409-94-301",959,173,5);
         Car shevroletSpark = new Car("Chevrolet","Spark","479-08-801",1088,179,5);
         Car hundaI10 = new Car("Hyndai","i10","548-38-301",952,163,5);
@@ -19,8 +22,6 @@ public class main {
         studentLot.put(hundaI10.getRegistrationPlate(),hundaI10);
         studentLot.put(mitsubishSpaceStar.getRegistrationPlate(),mitsubishSpaceStar);
         studentLot.put(volvo9900.getRegistrationPlate(),volvo9900);
-        System.out.println(studentLot);
-
         return studentLot;
     }
     private static ArrayList<MotorVehicle> generateLotList (){
@@ -70,7 +71,6 @@ public class main {
         salfitLotList = generateLotList();
         SalfitLot salfitLot = new SalfitLot(salfitLotList);
         showLot(salfitLot);
-
 
         HashMap<String ,MotorVehicle> arielLotMap = generateLotMap();
         ArielLot arielLot = new ArielLot(arielLotMap);

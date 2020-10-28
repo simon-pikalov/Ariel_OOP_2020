@@ -1,3 +1,5 @@
+package Vehicle;
+
 /**@author simon pikalov
  * This class represents a motor vehicle
  A motor vehicle, also known as motorized vehicle or automotive vehicle,
@@ -80,7 +82,7 @@ public abstract class MotorVehicle {
 
     @Override
     public String toString() {
-        return "MotorVehicle{" +
+        return "Vehicle.MotorVehicle{" +
                 "manufacturer='" + manufacturer + '\'' +
                 ", model='" + model + '\'' +
                 ", registrationPlate='" + registrationPlate + '\'' +
