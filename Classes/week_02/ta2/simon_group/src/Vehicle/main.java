@@ -16,6 +16,8 @@ public class main {
         Car mitsubishSpaceStar = new Car("Misubushi","space-star","000-38-000",865,173,5);
         Bus volvo9900 = new Bus("Volvo","9900","656-55-103",26500 ,120 ,52);
 
+
+
         HashMap<String ,MotorVehicle> studentLot = new HashMap<String, MotorVehicle>();
         studentLot.put(kiaPicanto.getRegistrationPlate(),kiaPicanto);
         studentLot.put(shevroletSpark.getRegistrationPlate(),shevroletSpark);
@@ -30,6 +32,11 @@ public class main {
         Car hundaI10 = new Car("Hyndai","i10","548-38-301",952,163,5);
         Car mitsubishSpaceStar = new Car("Misubushi","space-star","000-38-000",865,173,5);
         Bus volvo9900 = new Bus("Volvo","9900","656-55-103",26500 ,120 ,52);
+
+        System.out.println(kiaPicanto.a);
+        kiaPicanto.a =0;
+        System.out.println(mitsubishSpaceStar.a);
+
 
 
         ArrayList <MotorVehicle> list = new ArrayList<MotorVehicle>();
@@ -75,7 +82,6 @@ public class main {
         HashMap<String ,MotorVehicle> arielLotMap = generateLotMap();
         ArielLot arielLot = new ArielLot(arielLotMap);
         showLot(arielLot);
-
 
     }
 

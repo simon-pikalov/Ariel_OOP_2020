@@ -35,7 +35,7 @@ public class SalfitLot implements CarLot {
      */
     @Override
     public MotorVehicle getFastestVehicle() {
-        //        Vehicle.MotorVehicle fastest = new Vehicle.Car();
+//        Vehicle.MotorVehicle fastest = new Vehicle.Car();
 //        for (Vehicle.MotorVehicle m:this.lot) {
 //            if (m.getMaxSpeed()> fastest.getMaxSpeed() ) fastest = m;
 //        }
@@ -46,7 +46,7 @@ public class SalfitLot implements CarLot {
     }
 
     /**
-     * @return the most Economy Vehicle
+     * @return the most Lightes Vehicle
      */
     @Override
     public MotorVehicle getLightestVehicle() {
@@ -73,7 +73,7 @@ public class SalfitLot implements CarLot {
     @Override
     public Collection<MotorVehicle> getAllVehicleSorted(Comparator<MotorVehicle> comp){
         ArrayList <MotorVehicle> sorted = new ArrayList<MotorVehicle>(lot); //deep copy the list
-        sorted.sort(comp); // sort it
+        sorted.sort(comp);
         return sorted;
     }
 }

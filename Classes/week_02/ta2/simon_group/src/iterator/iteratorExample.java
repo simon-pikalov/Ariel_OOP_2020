@@ -1,6 +1,7 @@
 package iterator;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 //with help of exampels from this site
@@ -10,6 +11,7 @@ import java.util.List;
 public class iteratorExample {
 
     static void printIterator(List<String> list ){
+
         System.out.println("\n*******Iterator*******\n");
         Iterator<String> iterator = list.iterator();
         while(iterator.hasNext()) {
@@ -25,7 +27,6 @@ public class iteratorExample {
             System.out.println( element.toString() );
         }
     }
-
 
 
 
