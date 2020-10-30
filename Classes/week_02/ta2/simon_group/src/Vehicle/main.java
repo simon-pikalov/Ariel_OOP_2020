@@ -33,11 +33,6 @@ public class main {
         Car mitsubishSpaceStar = new Car("Misubushi","space-star","000-38-000",865,173,5);
         Bus volvo9900 = new Bus("Volvo","9900","656-55-103",26500 ,120 ,52);
 
-        System.out.println(kiaPicanto.a);
-        kiaPicanto.a =0;
-        System.out.println(mitsubishSpaceStar.a);
-
-
 
         ArrayList <MotorVehicle> list = new ArrayList<MotorVehicle>();
         list.add(kiaPicanto);
@@ -82,6 +77,11 @@ public class main {
         HashMap<String ,MotorVehicle> arielLotMap = generateLotMap();
         ArielLot arielLot = new ArielLot(arielLotMap);
         showLot(arielLot);
+
+        System.out.println("my for : ");
+        for(MotorVehicle m : arielLot){
+            System.out.println(m);
+        }
 
     }
 

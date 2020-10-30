@@ -14,6 +14,7 @@ public class iteratorExample {
 
         System.out.println("\n*******Iterator*******\n");
         Iterator<String> iterator = list.iterator();
+        System.out.println(iterator);
         while(iterator.hasNext()) {
             String element = iterator.next();
             System.out.println( element );
@@ -39,14 +40,15 @@ public class iteratorExample {
     public static void main(String[] args) {
         List<String> list = new ArrayList <String>();
 
+
         list.add("first");
         list.add("second");
         list.add("third");
         list.add("last");
 
         printIterator(list);
-        printJavaFor(list);
-        printForEach(list);
+//        printJavaFor(list);
+//        printForEach(list);
 
     }
 

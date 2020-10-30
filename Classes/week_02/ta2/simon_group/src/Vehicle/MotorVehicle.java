@@ -91,4 +91,17 @@ public abstract class MotorVehicle {
                 ", seats=" + seats +
                 '}';
     }
+
+    public static void main(String[] args) {
+
+        try {
+            MotorVehicle kiaPicanto = new Car("Kia","Picanto","409-94-301",959,173,-100);
+            System.out.println("1223");
+        }
+        catch (RuntimeException r){
+           r.printStackTrace();
+        }
+        System.out.println("this is my code end");
+    }
+
 }
