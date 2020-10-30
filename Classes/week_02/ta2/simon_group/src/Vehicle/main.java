@@ -1,3 +1,5 @@
+package Vehicle;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,11 +9,14 @@ public class main {
 
 
     private static  HashMap<String ,MotorVehicle> generateLotMap(){
+
         Car kiaPicanto = new Car("Kia","Picanto","409-94-301",959,173,5);
         Car shevroletSpark = new Car("Chevrolet","Spark","479-08-801",1088,179,5);
         Car hundaI10 = new Car("Hyndai","i10","548-38-301",952,163,5);
         Car mitsubishSpaceStar = new Car("Misubushi","space-star","000-38-000",865,173,5);
         Bus volvo9900 = new Bus("Volvo","9900","656-55-103",26500 ,120 ,52);
+
+
 
         HashMap<String ,MotorVehicle> studentLot = new HashMap<String, MotorVehicle>();
         studentLot.put(kiaPicanto.getRegistrationPlate(),kiaPicanto);
@@ -19,8 +24,6 @@ public class main {
         studentLot.put(hundaI10.getRegistrationPlate(),hundaI10);
         studentLot.put(mitsubishSpaceStar.getRegistrationPlate(),mitsubishSpaceStar);
         studentLot.put(volvo9900.getRegistrationPlate(),volvo9900);
-        System.out.println(studentLot);
-
         return studentLot;
     }
     private static ArrayList<MotorVehicle> generateLotList (){
@@ -29,6 +32,11 @@ public class main {
         Car hundaI10 = new Car("Hyndai","i10","548-38-301",952,163,5);
         Car mitsubishSpaceStar = new Car("Misubushi","space-star","000-38-000",865,173,5);
         Bus volvo9900 = new Bus("Volvo","9900","656-55-103",26500 ,120 ,52);
+
+        System.out.println(kiaPicanto.a);
+        kiaPicanto.a =0;
+        System.out.println(mitsubishSpaceStar.a);
+
 
 
         ArrayList <MotorVehicle> list = new ArrayList<MotorVehicle>();
@@ -71,11 +79,9 @@ public class main {
         SalfitLot salfitLot = new SalfitLot(salfitLotList);
         showLot(salfitLot);
 
-
         HashMap<String ,MotorVehicle> arielLotMap = generateLotMap();
         ArielLot arielLot = new ArielLot(arielLotMap);
         showLot(arielLot);
-
 
     }
 

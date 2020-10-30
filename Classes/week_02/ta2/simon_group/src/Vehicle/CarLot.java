@@ -1,3 +1,5 @@
+package Vehicle;
+
 import java.util.*;
 
 /**
@@ -5,7 +7,6 @@ import java.util.*;
  * https://github.com/simon-pikalov
  */
 public interface CarLot  {
-
 
     /**
      *
@@ -30,13 +31,13 @@ public interface CarLot  {
 
     /**
      *
-     * @return most fuel economic Vehicle in the lot
+     * @return  Lightest Vehicle in the lot
      */
     MotorVehicle getLightestVehicle();
 
     /**
      *
-     * @return HashMap containing all vehicles
+     * @return Collection containing all vehicles
      */
    Collection<MotorVehicle> getAllVehicle();
 

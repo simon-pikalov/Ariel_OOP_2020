@@ -1,8 +1,18 @@
-import java.awt.geom.Point2D;
+package Vehicle;
 
+import java.awt.geom.Point2D;
+/**
+ * @author Simon Pikalov
+ * https://github.com/simon-pikalov
+ */
 public class Car extends MotorVehicle implements Driveble {
-    private static  final double busDelay = 0.5;
     private Point2D pos ;
+    public static int a = 5;
+
+
+    public void onlyCarFunction(){
+        System.out.println("this is only car function ! ");
+    }
 
     public  Car(){
         super("","", "",0, 0, 0);
@@ -36,7 +46,16 @@ public class Car extends MotorVehicle implements Driveble {
             throw new NullPointerException();}
 
         double distance = Point2D.distance(pos.getX(), pos.getY(), dst.getX(), dst.getY());
-        double timeToTravel = distance/(getMaxSpeed()*busDelay);
+        double timeToTravel = distance/(getMaxSpeed());
         return timeToTravel;
+
     }
+
+
+    public static void main(String[] args) {
+        Car kiaPicanto = new Car("Kia","Picanto","409-94-301",959,173,5);
+        System.out.println(kiaPicanto);
+        kiaPicanto.onlyCarFunction();
+    }
+
 }

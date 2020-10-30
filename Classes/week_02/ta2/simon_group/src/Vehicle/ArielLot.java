@@ -1,5 +1,10 @@
-import java.util.*;
+package Vehicle;
 
+import java.util.*;
+/**
+ * @author Simon Pikalov
+ * https://github.com/simon-pikalov
+ */
 public class ArielLot implements CarLot {
 
     private HashMap<String,MotorVehicle> lot;
@@ -31,12 +36,14 @@ public class ArielLot implements CarLot {
      */
     @Override
     public MotorVehicle getFastestVehicle() {
-//        MotorVehicle fastest = new Car();
-//    MotorVehicle curr = null;
+//        Vehicle.MotorVehicle fastest = new Vehicle.Car();
+//    Vehicle.MotorVehicle curr = null;
 //        for (String s:this.lot.keySet()) {
 //            curr = this.lot.get(s);
 //            if (curr.getMaxSpeed() > fastest.getMaxSpeed() ) fastest = curr;
 //        }
+//
+//
 //    return  fastest;
 
         MotorVehicleCompareMaxSpeed speedComp = new MotorVehicleCompareMaxSpeed();
@@ -51,7 +58,7 @@ public class ArielLot implements CarLot {
     @Override
     public MotorVehicle getLightestVehicle() {
         MotorVehicle lightest = new Car();
-        lightest.setWeight(Double.MAX_VALUE);
+        lightest.setWeight(Double.MAX_VALUE); //this uses max value of aa double
         MotorVehicle curr = null;
 
         for (String s:this.lot.keySet()) {
@@ -79,4 +86,6 @@ public class ArielLot implements CarLot {
         sorted.sort(comp); // sort it
         return sorted;
     }
+
+
 }
