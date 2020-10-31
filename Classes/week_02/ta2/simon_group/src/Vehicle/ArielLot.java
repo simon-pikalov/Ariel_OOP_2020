@@ -5,7 +5,7 @@ import java.util.*;
  * @author Simon Pikalov
  * https://github.com/simon-pikalov
  */
-public class ArielLot implements CarLot {
+public class ArielLot implements CarLot ,Iterable<MotorVehicle>{
 
     private HashMap<String,MotorVehicle> lot;
 
@@ -88,4 +88,8 @@ public class ArielLot implements CarLot {
     }
 
 
+    @Override
+    public Iterator<MotorVehicle> iterator() {
+        return  lot.values().iterator();
+    }
 }

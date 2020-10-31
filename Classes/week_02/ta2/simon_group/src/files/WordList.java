@@ -48,9 +48,27 @@ public class WordList {
             }
             bw.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
+
+        catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("IOException");
+        }
+
+
+        catch (RuntimeException r) {
+            r.printStackTrace();
+            System.out.println("RuntimeException");
+        }
+
+        catch (Exception e){
+
+
+        }
+
+
+
 
     }
 

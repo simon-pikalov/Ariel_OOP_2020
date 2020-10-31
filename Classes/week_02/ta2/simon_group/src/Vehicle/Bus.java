@@ -75,8 +75,9 @@ public class Bus extends MotorVehicle implements Driveble , PublicTransfer  {
 
 
     public static void main(String[] args) {
-        Bus volvo9900 = new Bus("Volvo","9900","656-55-103",26500 ,120 ,52);
+        MotorVehicle volvo9900 = new Bus("Volvo","9900","656-55-103",26500 ,120 ,52);
         System.out.println(volvo9900);
-        volvo9900.onlyBusFunction();
+        Bus b = (Bus) volvo9900;
+        b.onlyBusFunction();
     }
 }

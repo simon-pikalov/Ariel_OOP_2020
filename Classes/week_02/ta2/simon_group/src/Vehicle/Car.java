@@ -53,9 +53,15 @@ public class Car extends MotorVehicle implements Driveble {
 
 
     public static void main(String[] args) {
-        Car kiaPicanto = new Car("Kia","Picanto","409-94-301",959,173,5);
+        MotorVehicle kiaPicanto = new Car("Kia","Picanto","409-94-301",959,173,5);
+        MotorVehicle volvo9900 = new Bus("Volvo","9900","656-55-103",26500 ,120 ,52);
         System.out.println(kiaPicanto);
-        kiaPicanto.onlyCarFunction();
+        if(volvo9900 instanceof Car){
+            Car c = (Car) volvo9900;
+            c.onlyCarFunction();
+        }
+
+
     }
 
 }
