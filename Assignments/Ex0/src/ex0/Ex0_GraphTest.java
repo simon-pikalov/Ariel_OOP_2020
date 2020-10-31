@@ -1,14 +1,11 @@
 package ex0;
-
 import org.junit.Test;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
-
 /**
  * This class represents a very simple (naive) JUnit test case
  * for Graph (Ex0)
