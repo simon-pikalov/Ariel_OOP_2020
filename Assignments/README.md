@@ -9,5 +9,9 @@ Using Github.
 ## Badkan website
 http://bad-kan.com/
 
+## Badkan tutorial 
+https://www.youtube.com/watch?v=2dpa6r3zNxQ&list=PLI1YQ3QGdy-Y5KxXuxGUXuh6idMfJIIbB&index=3&ab_channel=SimonPikalov
+
+
 
 
