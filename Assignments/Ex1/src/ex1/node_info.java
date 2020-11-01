@@ -19,15 +19,15 @@ public interface node_info {
      */
     public void setInfo(String s);
     /**
-     * Temporal data (aka color: e,g, white, gray, black)
+     * Temporal data (aka distance, color, or state)
      * which can be used be algorithms
      * @return
      */
-    public int getTag();
+    public double getTag();
     /**
      * Allow setting the "tag" value for temporal marking an node - common
      * practice for marking by algorithms.
      * @param t - the new value of the tag
      */
-    public void setTag(int t);
+    public double setTag(int t);
 }
