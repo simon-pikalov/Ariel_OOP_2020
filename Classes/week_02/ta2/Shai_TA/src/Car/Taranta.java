@@ -8,12 +8,8 @@ public class Taranta extends GenericCar {
     }
 
     @Override
-    public void moveVec(float mag, float angle) {
-        try {
-            throw new CarDontMove();
-        } catch (CarDontMove carDontMove) {
-            carDontMove.printStackTrace();
-        }
+    public void moveVec(float mag, float angle) throws CarDontMove {
+        throw new CarDontMove();
     }
 
     @Override

@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CarDontMove {
         GenericCar gen_car = new GenericCar(3, 2, CarColor.RAINBOW) {
             @Override
             public String specialMove() {
-                return "Knows how to drive slowly";
+                return "Nothing really";
             }
         };
-        GenericCar mustang = new Mustang(CarColor.RAINBOW);
+        Mustang mustang = new Mustang(CarColor.RAINBOW);
         GenericCar taranta = new Taranta(3, 2, CarColor.ORANGE);
 
         ArrayList<GenericCar> car_arr = new ArrayList<>();
@@ -28,12 +28,14 @@ public class main {
 //            GenericCar gc = null;
 //            try {
 //                gc = car_arr.get(i);
-//                i = 1 / 0;
-//            } catch (ArithmeticException e) {
+//                i = i / 0;
+//            }
+//            catch (IndexOutOfBoundsException e) {
 //                System.err.println(e.getMessage());
-//            } catch (IndexOutOfBoundsException e) {
-//                System.out.println(e.getMessage());
 //                gc = car_arr.get(i % car_arr.size());
+//            }
+//            catch(Exception e){
+//                System.err.println("Exception");
 //            }
 //            System.out.println(gc.getType() + ":");
 //            System.out.println("\t" + gc.specialMove());
