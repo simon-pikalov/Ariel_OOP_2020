@@ -7,42 +7,40 @@ package ex0;
  *
  * Running tests for Ex0 - this may take up to 10 seconds!
  *
- * 0) test0   pass: true
- * 1) test1   pass: true
- * 2) test2()   pass: true
- * 3) test2()   pass: true
- * 4) test2(a)   pass: true
- * 5) test9(a)   pass: true
- * 6) test9(b)   pass: true
- * 7) test_n(a)   pass: true
- * 8) test_n(b)   pass: true
- * 9) test_n(a)   pass: true
- * 10) test_n(b)   pass: true
- * 11) test_n(a)   pass: true
- * 12) test_n(b)   pass: true
- * 13) test_n(a)   pass: true
- * 14) test_n(b)   pass: true
- * 15) test_connectivity0   pass: true
- * 16) test_connectivity1   pass: true
- * 17) test_connectivity2   pass: true
- * 18) test_path   pass: true
- * 19) runtime test:   pass: true
- * number of Errors: 0 of 20 tests, time: 3.914 seconds
- * grade: 100
- *
- * Process finished with exit code 0
- *
+ Running tests for Ex0 - this may take up to 10 seconds!
+
+ 0) test0   pass: true
+ 1) test1   pass: true
+ 2) test2()   pass: true
+ 3) test2()   pass: true
+ 4) test2(a)   pass: true
+ 5) test9(a)   pass: true
+ 6) test9(b)   pass: true
+ 7) test_n(a)   pass: true
+ 8) test_n(b)   pass: true
+ 9) test_n(a)   pass: true
+ 10) test_n(b)   pass: true
+ 11) test_n(a)   pass: true
+ 12) test_n(b)   pass: true
+ 13) test_n(a)   pass: true
+ 14) test_n(b)   pass: true
+ 15) test_connectivity0   pass: true
+ 16) test_connectivity1   pass: true
+ 17) test_connectivity2   pass: true
+ 18) test_path   pass: true
+ 19) runtime test:   pass: true
+ number of Errors: 0 of 20 tests, 0 exceptions, time: 3.841 seconds
+ grade: 100
+
+ Process finished with exit code 0
  *
  */
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Graph_Ex0_Test2 {
     private static Random _rnd = null;
-    private static int _errors = 0, _tests = 0;
+    private static int _errors = 0, _tests = 0,_number_of_exception=0;
     private static String _log = "";
 
     /**
@@ -52,25 +50,39 @@ public class Graph_Ex0_Test2 {
     public static void main(String[] args) {
         System.out.println("Running tests for Ex0 - this may take up to 10 seconds!");
         long start = new Date().getTime();
-        test0();
-        test1();
-        test2();
-        test2a();
-        test9();
-        test_n(10,9,1,1,1);
-        test_n(100,235,1,47,1);
-        test_n(1000,3400,2,19,1);
+        try{ test0(); }
+        catch (Exception e) {e.printStackTrace(); _number_of_exception++;}
+        try{test1();}
+        catch (Exception e) {e.printStackTrace(); _number_of_exception++;}
+        try{test2();}
+        catch (Exception e) {e.printStackTrace(); _number_of_exception++;}
+        try{test2a();}
+        catch (Exception e) {e.printStackTrace(); _number_of_exception++;}
+        try{test9();}
+        catch (Exception e) {e.printStackTrace(); _number_of_exception++;}
+        try{test_n(10,9,1,1,1);}
+        catch (Exception e) {e.printStackTrace(); _number_of_exception++;}
+        try{test_n(100,235,1,47,1);}
+        catch (Exception e) {e.printStackTrace(); _number_of_exception++;}
+        try{test_n(1000,3400,2,19,1);}
+        catch (Exception e) {e.printStackTrace(); _number_of_exception++;}
         int no = 1000*50, ed = 302650;
-        test_n(no, ed,3,9,1000);
-        test_connectivity(100,1);
-        test_path(10,1);
+        try{test_n(no, ed,3,9,1000);}
+        catch (Exception e) {e.printStackTrace(); _number_of_exception++;}
+        try{test_connectivity(100,1);}
+        catch (Exception e) {e.printStackTrace(); _number_of_exception++;}
+        try{test_path(10,1);}
+        catch (Exception e) {e.printStackTrace(); _number_of_exception++;}
         long end = new Date().getTime();
         double dt = (end-start)/1000.0;
         boolean t = dt<10;
         test("runtime test: ",t, true);
         System.out.println(_log);
         double g = 100.0*(_tests-_errors)/_tests;
-        System.out.println("number of Errors: "+_errors+" of "+_tests+" tests, time: "+dt+" seconds");
+        g = g - _number_of_exception*10;
+        g = Math.max(g,20);
+        System.out.println("number of Errors: "+_errors+" of "+_tests+" tests, "+_number_of_exception
+                +" exceptions, time: "+dt+" seconds");
         System.out.println("grade: "+(int)g);
     }
 
@@ -89,12 +101,12 @@ public class Graph_Ex0_Test2 {
             g.addNode(n);
         }
         // Iterator<node_data> itr = V.iterator(); // Iterator is a more elegant and generic way, but KIS is more important
-        node_data[] nodes = nodes(g);
+        int[] nodes = nodes(g);
         while(g.edgeSize() < e_size) {
             int a = nextRnd(0,v_size);
             int b = nextRnd(0,v_size);
-            int i = nodes[a].getKey();
-            int j = nodes[b].getKey();
+            int i = nodes[a];
+            int j = nodes[b];
             g.connect(i,j);
         }
         return g;
@@ -105,7 +117,7 @@ public class Graph_Ex0_Test2 {
      */
     public static void test0() {
         graph g0 = graph_creator(0, 0, 1);
-      //  System.out.println(g0);
+        //  System.out.println(g0);
         graph_algorithms ga0 = new Graph_Algo();
         ga0.init(g0);
         boolean b = ga0.isConnected();
@@ -117,7 +129,7 @@ public class Graph_Ex0_Test2 {
      */
     public static void test1() {
         graph g0 = graph_creator(1, 0, 1);
-    //    System.out.println(g0);
+        //    System.out.println(g0);
         graph_algorithms ga0 = new Graph_Algo();
         ga0.init(g0);
         boolean b = ga0.isConnected();
@@ -129,7 +141,7 @@ public class Graph_Ex0_Test2 {
      */
     public static void test2() {
         graph g0 = graph_creator(2, 0, 1);
-     //   System.out.println(g0);
+        //   System.out.println(g0);
         graph_algorithms ga0 = new Graph_Algo();
         ga0.init(g0);
         boolean b = ga0.isConnected();
@@ -154,15 +166,18 @@ public class Graph_Ex0_Test2 {
      */
     public static void test9() {
         graph g10 = graph_creator(10,30,1);
-        node_data[] nodes = nodes(g10);
-        int a0 = nodes[0].getKey();
-        int a1 = nodes[1].getKey();
-        int a2 = nodes[2].getKey();
+        //   System.out.println(g10);
+        int[] nodes = nodes(g10);
+        int a0 = nodes[0];
+        int a1 = nodes[1];
+        int a2 = nodes[2];
         g10.removeEdge(a0,a1);
         g10.removeEdge(a2,a0);
         g10.removeEdge(a2,a1);
         g10.removeNode(a2);
         g10.removeNode(a2);
+     //   System.out.println();
+        //    System.out.println(g10);
         int re = 9;
         test("test9(a) ", re, g10.nodeSize());
         re = 21;
@@ -181,22 +196,25 @@ public class Graph_Ex0_Test2 {
         graph g = graph_creator(size, edge, seed);
         graph_algorithms ga = new Graph_Algo();
         ga.init(g);
-        node_data[] nodes = nodes(g);
+        //   System.out.println(g);
+        int[] nodes = nodes(g);
         int i=0;
         boolean b = true;
         while(i<tt) {
-          b &= ga.isConnected();
-          for(int x=0;x<jump;x++) {
-              int s = g.nodeSize();
-              int r = nextRnd(0, s);
-              int key = nodes[r].getKey(); // bug fix
-              g.removeNode(key);
-          }
-        //  System.out.println(""+i+") "+g.nodeSize()+"  con: "+b);
-          i++;
+            b &= ga.isConnected();
+            for(int x=0;x<jump;x++) {
+                int s = g.nodeSize();
+                int r = nextRnd(0, s);
+                int key = nodes[r]; // bug fix
+                g.removeNode(key);
+            }
+            i++;
         }
-       test("test_n(a) ",b, true);
+
+        test("test_n(a) ",b, true);
         b = ga.isConnected();
+        //  System.out.println(g);
+        //System.out.println(""+i+") "+g.nodeSize()+"  con: "+b);
         test("test_n(b) ",b, false);
     }
 
@@ -209,22 +227,23 @@ public class Graph_Ex0_Test2 {
         graph g = graph_creator(size,0,seed);
         graph_algorithms ga = new Graph_Algo();
         ga.init(g);
-        node_data[] nodes = nodes(g);
+        int[] nodes = nodes(g);
         for(int i=2;i<size;i++) {
-            node_data n0 = nodes[i-2];
-            node_data n1 = nodes[i-1];
-            node_data n2 = nodes[i];
-            g.connect(n0.getKey(), n1.getKey());
-            g.connect(n0.getKey(), n2.getKey());
+            int n0 = nodes[i-2];
+            int n1 = nodes[i-1];
+            int n2 = nodes[i];
+            g.connect(n0, n1);
+            g.connect(n0, n2);
         }
-        int dist = ga.shortestPathDist(nodes[0].getKey(), nodes[size-1].getKey());
+        int dist = ga.shortestPathDist(nodes[0], nodes[size-1]);
         test("test_connectivity0 ",dist, size/2);
-        int ind = nodes[size/2].getKey();
+        int ind = nodes[size/2];
         g.removeNode(ind);
-        dist = ga.shortestPathDist(nodes[0].getKey(), nodes[size-1].getKey());
+        dist = ga.shortestPathDist(nodes[0], nodes[size-1]);
         test("test_connectivity1 ",dist, size/2);
-        g.removeNode(ind+1);
-        dist = ga.shortestPathDist(nodes[0].getKey(), nodes[size-1].getKey());
+        ind = nodes[1+size/2];
+        g.removeNode(ind); // Bug fixed - thanks Amit!
+        dist = ga.shortestPathDist(nodes[0], nodes[size-1]);
         test("test_connectivity2 ",dist, -1);
     }
 
@@ -237,15 +256,15 @@ public class Graph_Ex0_Test2 {
         graph g = graph_creator(size,0,seed);
         graph_algorithms ga = new Graph_Algo();
         ga.init(g);
-        node_data[] nodes = nodes(g);
+        int[] nodes = nodes(g);
         for(int i=2;i<size;i++) {
-            node_data n0 = nodes[i-2];
-            node_data n1 = nodes[i-1];
-            node_data n2 = nodes[i];
-            g.connect(n0.getKey(), n1.getKey());
-            g.connect(n0.getKey(), n2.getKey());
+            int n0 = nodes[i-2];
+            int n1 = nodes[i-1];
+            int n2 = nodes[i];
+            g.connect(n0, n1);
+            g.connect(n0, n2);
         }
-        List<node_data> path = ga.shortestPath(nodes[0].getKey(), nodes[size-1].getKey());
+        List<node_data> path = ga.shortestPath(nodes[0], nodes[size-1]);
         test("test_path ",path.size(), size/2+1);
     }
     ////////////////////// Private Functions /////////////////////
@@ -286,11 +305,14 @@ public class Graph_Ex0_Test2 {
      * @param g
      * @return
      */
-    private static node_data[] nodes(graph g) {
+    private static int[] nodes(graph g) {
         int size = g.nodeSize();
         Collection<node_data> V = g.getV();
         node_data[] nodes = new node_data[size];
         V.toArray(nodes); // O(n) operation
-        return nodes;
+        int[] ans = new int[size];
+        for(int i=0;i<size;i++) {ans[i] = nodes[i].getKey();}
+        Arrays.sort(ans);
+        return ans;
     }
 }

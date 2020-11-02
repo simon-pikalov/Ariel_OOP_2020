@@ -1,3 +1,5 @@
+package Vehicle;
+
 /**@author simon pikalov
  * This class represents a motor vehicle
  A motor vehicle, also known as motorized vehicle or automotive vehicle,
@@ -80,7 +82,7 @@ public abstract class MotorVehicle {
 
     @Override
     public String toString() {
-        return "MotorVehicle{" +
+        return "Vehicle.MotorVehicle{" +
                 "manufacturer='" + manufacturer + '\'' +
                 ", model='" + model + '\'' +
                 ", registrationPlate='" + registrationPlate + '\'' +
@@ -89,4 +91,17 @@ public abstract class MotorVehicle {
                 ", seats=" + seats +
                 '}';
     }
+
+    public static void main(String[] args) {
+
+        try {
+            MotorVehicle kiaPicanto = new Car("Kia","Picanto","409-94-301",959,173,-100);
+            System.out.println("1223");
+        }
+        catch (RuntimeException r){
+           r.printStackTrace();
+        }
+        System.out.println("this is my code end");
+    }
+
 }

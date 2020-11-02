@@ -3,10 +3,13 @@
  * for 2D including Point-Line test
  */
 
-// package geometry;
+ package class3;
 
 import java.io.Serializable;
 
+/**
+ * This class represents a 3D point in space..
+ */
 public class Point3D implements Serializable
 {
     /**
@@ -56,7 +59,6 @@ public class Point3D implements Serializable
     ///////////////////////////////////////////////////////////////////////////
     ////////////////////////////       methods        /////////////////////////
     ///////////////////////////////////////////////////////////////////////////
-
 
     public double x() {return _x;}
     public double y() {return _y;}

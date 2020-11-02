@@ -1,7 +1,9 @@
- /** https://introcs.cs.princeton.edu/java/15inout/FunctionGraph.java.html
+package class3; /** https://introcs.cs.princeton.edu/java/15inout/FunctionGraph.java.html
  * 	https://introcs.cs.princeton.edu/java/15inout/
  *  https://introcs.cs.princeton.edu/java/stdlib/StdDraw.java.html
  */
+
+ import class3.StdDraw;
 
  import java.awt.Color;
 import java.awt.Font;;

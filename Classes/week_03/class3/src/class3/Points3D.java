@@ -1,3 +1,5 @@
+package class3;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,7 +13,7 @@ import java.util.Iterator;
  * 3. save(String file_name)
  * 4. load(Stirng file_name)
  */
-public class Points3D extends ArrayList<Point3D> {
+public class Points3D extends ArrayList<Point3D> implements Serializable{
     public Points3D() {super();}
 
     /**
@@ -32,12 +34,8 @@ public class Points3D extends ArrayList<Point3D> {
             ans= true;
         }
         catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
+            e.printStackTrace(); }
+        catch (IOException e) {e.printStackTrace();}
         return ans;
     }
 
