@@ -16,9 +16,9 @@ public class NiceStringCollection {
      * @param n_str The new string to add.
      */
     public void add(String n_str) {
-        if (_top == _max) {
+        if (_top == _max) { // Checks if the array has reached its capacity
             _max += 10;
-            String[] tmp_str_arr = new String[_max + 10];
+            String[] tmp_str_arr = new String[_max];
             System.arraycopy(_string_arr, 0, tmp_str_arr, 0, _string_arr.length);
             _string_arr = tmp_str_arr;
         }
@@ -43,46 +43,46 @@ public class NiceStringCollection {
         return _string_arr[idx];
     }
 
-    /**
-     * Class iterator
-     * @return NiceStringCollection iterator
-     */
-    public NiceIterator iterator(){
-        return new NiceIterator();
-    }
-
-    public class NiceIterator implements Iterable<String> {
-
-        private String[] arrayList;
-        private int currentSize;
-
-        public NiceIterator() {
-            this.arrayList = _string_arr;
-            this.currentSize = _top;
-        }
-
-        @Override
-        public Iterator<String> iterator() {
-            Iterator<String> it = new Iterator<String>() {
-
-                private int currentIndex = 0;
-
-                @Override
-                public boolean hasNext() {
-                    return currentIndex < currentSize && arrayList[currentIndex] != null;
-                }
-
-                @Override
-                public String next() {
-                    return arrayList[currentIndex++];
-                }
-
-                @Override
-                public void remove() {
-                    throw new UnsupportedOperationException();
-                }
-            };
-            return it;
-        }
-    }
+//    /**
+//     * Class iterator
+//     * @return NiceStringCollection iterator
+//     */
+//    public NiceIterator iterator(){
+//        return new NiceIterator();
+//    }
+//
+//    public class NiceIterator implements Iterable<String> {
+//
+//        private String[] arrayList;
+//        private int currentSize;
+//
+//        public NiceIterator() {
+//            this.arrayList = _string_arr;
+//            this.currentSize = _top;
+//        }
+//
+//        @Override
+//        public Iterator<String> iterator() {
+//            Iterator<String> it = new Iterator<String>() {
+//
+//                private int currentIndex = 0;
+//
+//                @Override
+//                public boolean hasNext() {
+//                    return currentIndex < currentSize && arrayList[currentIndex] != null;
+//                }
+//
+//                @Override
+//                public String next() {
+//                    return arrayList[currentIndex++];
+//                }
+//
+//                @Override
+//                public void remove() {
+//                    throw new UnsupportedOperationException();
+//                }
+//            };
+//            return it;
+//        }
+//    }
 }
