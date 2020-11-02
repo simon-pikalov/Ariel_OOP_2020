@@ -11,6 +11,7 @@ public class Main {
 
     /**
      * Reads the file, and prints the amount of times 'jones' and 'indiana' where mentioned.
+     *
      * @param file_path The path to the file.
      */
     public static void readFile(String file_path) {
@@ -50,18 +51,18 @@ public class Main {
      */
     public static boolean createFile(String file_path, boolean append) {
         try {
-            File myObj = new File(file_path);
+            File file_obj = new File(file_path);
 
-            if (!(new File(myObj.getParent()).exists())) {
+            if (!(new File(file_obj.getParent()).exists())) {
                 System.out.println("Parent folders did not exist, creating them now..");
-                File dirs = new File(myObj.getParent());
+                File dirs = new File(file_obj.getParent());
                 if (!dirs.mkdirs()) {
                     System.err.println("Could not create parent folders.");
                     return false;
                 }
             }
-            if (myObj.createNewFile() || append) {
-                System.out.println("File created: " + myObj.getName());
+            if (file_obj.createNewFile() || append) {
+                System.out.println("File created: " + file_obj.getName());
                 return true;
             } else {
                 System.err.println("File already exists.");
@@ -76,8 +77,9 @@ public class Main {
 
     /**
      * Writes the input from the keyboard to a file.
+     *
      * @param file_path The path to the file.
-     * @param append Whether to append to a file or overwrite it.
+     * @param append    Whether to append to a file or overwrite it.
      */
     public static void write2File(String file_path, boolean append) {
         if (!(createFile(file_path, append))) {
@@ -93,6 +95,7 @@ public class Main {
                     break;
                 }
                 myWriter.write(inputString + '\n');
+                myWriter.flush();
             }
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
@@ -106,28 +109,29 @@ public class Main {
     public static void main(String[] args) {
 
         // Read/Write Files
-//        System.out.println("Reading a file");
-//        String file_path = "../output/my_script.txt";
-//        String indi_script_path = "../input/raiders_of_the_lost_ark.txt";
-//        readFile(indi_script_path);
-//        write2File(file_path,true);
+        System.out.println("Reading a file");
+        String file_path = "../output/my_script.txt";
+        String indi_script_path = "../input/raiders_of_the_lost_ark.txt";
+//        String indi_script_path = "../input/mr_jones.txt";
+        readFile(indi_script_path);
+//        write2File(file_path, false);
 //        readFile(file_path);
 
-        // Nested Class and Iterators
-        NiceStringCollection nsc = new NiceStringCollection();
-        nsc.add("Coffe is good");
-        nsc.add("Tea is so so");
-        nsc.add("Cola is poisson");
-
-        for (int i = 0; i < nsc.size(); ++i) {
-            System.out.println(nsc.get(i));
-        }
-
-        System.out.println("================");
-        NiceStringCollection.NiceIterator n_it = nsc.iterator();
-
-        for(String s: n_it){
-            System.out.println(s);
-        }
+//        // Nested Class and Iterators
+//        NiceStringCollection nsc = new NiceStringCollection();
+//        nsc.add("Coffe is good");
+//        nsc.add("Tea is so so");
+//        nsc.add("Cola is poisson");
+//
+//        for (int i = 0; i < nsc.size(); ++i) {
+//            System.out.println(nsc.get(i));
+//        }
+//
+//        System.out.println("================");
+//         Iterator<String> n_it = nsc.iterator();
+//
+//        for(String s: n_it){
+//            System.out.println(s);
+//        }
     }
 }
