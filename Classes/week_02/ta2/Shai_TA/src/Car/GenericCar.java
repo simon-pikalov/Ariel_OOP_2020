@@ -1,7 +1,6 @@
 package Car;
 
 public abstract class GenericCar {
-
     protected final int _wheel_num;
     protected final int _door_num;
     protected final CarColor _c_color;
@@ -45,22 +44,22 @@ public abstract class GenericCar {
         return _c_color;
     }
 
-    public void move(double x, double y){
+    public void move(double x, double y) throws CarDontMove {
         this.move((float) x, (float) y);
     }
 
-    public void move(float x, float y) {
+    public void move(float x, float y) throws CarDontMove {
         double mag = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
         double angle = Math.atan2(y, x);
-        moveVec(mag, angle);
+        this.moveVec(mag, angle);
     }
 
-    public void moveVec(double mag, double angle) {
+    public void moveVec(double mag, double angle)throws CarDontMove {
         mag = Math.min(mag, _top_speed);
         this.moveVec((float) mag, (float) angle);
     }
 
-    public void moveVec(float mag, float angle) {
+    public void moveVec(float mag, float angle)throws CarDontMove {
         double x = mag * Math.cos(angle);
         double y = mag * Math.sin(angle);
         _pos.x += x;

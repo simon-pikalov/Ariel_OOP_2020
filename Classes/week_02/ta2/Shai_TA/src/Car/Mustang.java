@@ -2,8 +2,8 @@ package Car;
 
 public class Mustang extends GenericCar {
 
-    public Mustang(CarColor c_color){
-        super(4,2,c_color);
+    public Mustang(CarColor c_color) {
+        super(4, 2, c_color);
         _top_speed = 20;
         _type = CarType.Sport;
     }
@@ -13,9 +13,12 @@ public class Mustang extends GenericCar {
         return "Mustang:\n\t" + super.toString();
     }
 
+    public String getTag(){
+        return "Ford(M)";
+    }
+
     @Override
     public String specialMove() {
         return "Going really fast and looking Good!";
     }
-
 }
