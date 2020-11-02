@@ -29,5 +29,5 @@ public interface node_info {
      * practice for marking by algorithms.
      * @param t - the new value of the tag
      */
-    public double setTag(int t);
+    public double setTag(double t);
 }
