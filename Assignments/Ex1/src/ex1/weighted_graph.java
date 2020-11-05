@@ -55,7 +55,7 @@ public interface weighted_graph {
     /**
      * This method returns a Collection containing all the
      * nodes connected to node_id
-     * Note: this method should run in O(1) time.
+     * Note: this method can run in O(k) time, k - being the degree of node_id.
      * @return Collection<node_data>
      */
     public Collection<node_info> getV(int node_id);
