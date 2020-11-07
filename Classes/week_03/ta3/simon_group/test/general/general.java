@@ -4,6 +4,8 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
@@ -45,29 +47,36 @@ public class general {
 
     @Test
     void assrtTrue() {
-        assertTrue(10 > -1);
+        int a = 10;
+        int b =1 ;
+
     }
 
 
     @Test
     void assrtTrueMessege() {
-        assertTrue(-10 > -1, "why this didnt work ? ");
+        assertTrue(-10 > -1, "-10 and -1 check "+String.valueOf("11"));
     }
 
     @Test
     void groupAssertions() {
         int[] numbers = {0, 1, 2, 3, 4};
-        assertAll("numbers",
-                () -> assertEquals(numbers[0], 1),
+        assertAll("this is my check group",
+                ()->{ },
+                () -> assertEquals(numbers[0], 1,"my Message"),
                 () -> assertEquals(numbers[3], 3),
                 () -> assertEquals(numbers[4], 1)
         );
     }
 
+
+
+
+
     @Test
     void groupAssertionsBad() {
         int[] numbers = {0, 1, 2, 3, 4};
-        assertEquals(7,numbers[0]);
+        assertEquals(7,numbers[0]); // will fail all test in this function
         assertEquals(1,numbers[1]);
         assertEquals(2,numbers[2]);
         assertEquals(3,numbers[3]);
@@ -95,6 +104,25 @@ public class general {
         });
 
     }
+
+
+    @Test
+    void notLambda(){
+
+        try {
+            String str = null;
+            Integer.valueOf(str);
+            fail();
+        }
+        catch (Exception e ){
+
+
+        }
+
+
+
+    }
+
 
     @ParameterizedTest
     @DisplayName("Should create shapes with different numbers of sides")

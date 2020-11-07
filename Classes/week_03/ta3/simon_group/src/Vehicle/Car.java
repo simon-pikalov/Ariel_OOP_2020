@@ -60,7 +60,7 @@ public class Car extends MotorVehicle implements Driveble {
     public static void main(String[] args) {
         MotorVehicle kiaPicanto = new Car("Kia","Picanto","409-94-301",959,173,5);
         MotorVehicle volvo9900 = new Bus("Volvo","9900","656-55-103",26500 ,120 ,52);
-        //Engine kiaEngine = new Engine(98000,"1.25 L Kappa","8574653"); private class no instances
+        //kiaPicanto.engine = kiaPicanto.new Engine(98000,"1.25 L Kappa","8574653"); if it were public
         kiaPicanto.setEngineKm(98000);
         kiaPicanto.setEngineName("1.25 L Kappa");
         kiaPicanto.setEngineId("8574653");

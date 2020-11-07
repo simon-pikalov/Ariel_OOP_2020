@@ -33,8 +33,11 @@ class MotorVehicleTest {
     }
 
 
+
+
     @org.junit.jupiter.api.Test
     void testWeight() {
+        fail("not yed implemented");
        assertThrows(RuntimeException.class,()->car.setWeight(-1)); //example of an error -> good thing for development
         car.setWeight(100);
         assertEquals(100,car.getWeight());
@@ -47,7 +50,6 @@ class MotorVehicleTest {
             fail();
         }
         catch (Exception e){
-
         }
 
     }

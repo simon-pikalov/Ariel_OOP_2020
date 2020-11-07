@@ -1,5 +1,8 @@
 package Vehicle;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  * @author simon pikalov
  * This class represents a motor vehicle
@@ -8,7 +11,8 @@ package Vehicle;
  * that does not operate on rails (such as trains or trams) and is used for the transportation of people or cargo.
  * https://en.wikipedia.org/wiki/Motor_vehicle
  */
-public abstract class MotorVehicle {
+
+    public abstract class MotorVehicle {
 
     private String manufacturer;
     private String model;
@@ -18,11 +22,94 @@ public abstract class MotorVehicle {
     private int seats;
     private Engine engine;
 
+    public MotorVehicle(MotorVehicle other) {
+        this.engine = new Engine();
+        this.manufacturer = other.manufacturer;
+        this.model = other.model;
+        this.registrationPlate = other.registrationPlate;
+        this.weight = other.weight;
+        this.maxSpeed = other.maxSpeed;
+        this.seats = other.seats;
+    }
+
+    public MotorVehicle(String manufacturer, String model, String registrationPlate, int weight, int maxSpeed, int seats) {
+        if (seats < 0) throw new RuntimeException("seats must be positive number , you used  " + seats);
+        if (weight < 0) throw new RuntimeException("weight must be positive number , you used  " + weight);
+        if (maxSpeed < 0) throw new RuntimeException("maxSpeed must be positive number , you used  " + maxSpeed);
+        this.engine = new Engine();
+        this.maxSpeed = maxSpeed;
+        this.manufacturer = manufacturer;
+        this.model = model;
+        this.registrationPlate = registrationPlate;
+        this.weight = weight;
+        
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MotorVehicle that = (MotorVehicle) o;
+
+        if (Double.compare(that.weight, weight) != 0) return false;
+        if (maxSpeed != that.maxSpeed) return false;
+        if (seats != that.seats) return false;
+        if (manufacturer != null ? !manufacturer.equals(that.manufacturer) : that.manufacturer != null) return false;
+        if (model != null ? !model.equals(that.model) : that.model != null) return false;
+        return registrationPlate != null ? registrationPlate.equals(that.registrationPlate) : that.registrationPlate == null;
+    }
+
+
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = manufacturer != null ? manufacturer.hashCode() : 0;
+        result = 31 * result + (model != null ? model.hashCode() : 0);
+        result = 31 * result + (registrationPlate != null ? registrationPlate.hashCode() : 0);
+        temp = Double.doubleToLongBits(weight);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + maxSpeed;
+        result = 31 * result + seats;
+        return result;
+    }
+
+
+
+
+    public int getEngineKm() {
+        return engine.km;
+    }
+
+    public void setEngineKm(int km) {
+        this.engine.km = km;
+
+    }
+
+    public String getEngineName() {
+        return engine.engineName;
+    }
+
+    public void setEngineName(String engineName) {
+        this.engine.engineName = engineName;
+    }
+
+    public String getId() {
+        return engine.id;
+    }
+
+    public void setEngineId(String id) {
+        this.engine.id = id;
+
+    }
+
 
     private class Engine {
         private int km;
         private String engineName;
         private String id;
+
 
         public Engine() {
             this.km = 0;
@@ -68,57 +155,6 @@ public abstract class MotorVehicle {
                     ", id='" + id + '\'' +
                     '}';
         }
-    }
-
-    public int getEngineKm() {
-        return engine.km;
-    }
-
-    public void setEngineKm(int km) {
-        this.engine.km = km;
-    }
-
-    public String getEngineName() {
-        return engine.engineName;
-    }
-
-    public void setEngineName(String engineName) {
-        this.engine.engineName = engineName;
-    }
-
-    public String getId() {
-        return engine.id;
-    }
-
-    public void setEngineId(String id) {
-        this.engine.id = id;
-    }
-
-
-    public MotorVehicle(MotorVehicle other) {
-        this.engine = new Engine();
-        this.manufacturer = other.manufacturer;
-        this.model = other.model;
-        this.registrationPlate = other.registrationPlate;
-        this.weight = other.weight;
-        this.maxSpeed = other.maxSpeed;
-        this.seats = other.seats;
-    }
-
-    public MotorVehicle(String manufacturer, String model, String registrationPlate, int weight, int maxSpeed, int seats) {
-        if (seats < 0) throw new RuntimeException("seats must be positive number , you used  " + seats);
-        if (weight < 0) throw new RuntimeException("weight must be positive number , you used  " + weight);
-        if (maxSpeed < 0) throw new RuntimeException("maxSpeed must be positive number , you used  " + maxSpeed);
-        this.engine = new Engine();
-        this.maxSpeed = maxSpeed;
-        this.manufacturer = manufacturer;
-        this.model = model;
-        this.registrationPlate = registrationPlate;
-        this.weight = weight;
-
-
-
-
     }
 
 
@@ -172,11 +208,12 @@ public abstract class MotorVehicle {
     public void setSeats(int seats) {
         if (seats < 0) throw new RuntimeException("seats must be positive number , you used  " + seats);
         this.seats = seats;
+
     }
 
 
     @Override
-    public String toString() {
+    public String toString()  {
         return "Vehicle.MotorVehicle{" +
                 "manufacturer='" + manufacturer + '\'' +
                 ", model='" + model + '\'' +
@@ -188,20 +225,7 @@ public abstract class MotorVehicle {
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        MotorVehicle that = (MotorVehicle) o;
-
-        if (Double.compare(that.weight, weight) != 0) return false;
-        if (maxSpeed != that.maxSpeed) return false;
-        if (seats != that.seats) return false;
-        if (manufacturer != null ? !manufacturer.equals(that.manufacturer) : that.manufacturer != null) return false;
-        if (model != null ? !model.equals(that.model) : that.model != null) return false;
-        return registrationPlate != null ? registrationPlate.equals(that.registrationPlate) : that.registrationPlate == null;
-    }
 
 
     public Engine getEngine() {
@@ -210,13 +234,8 @@ public abstract class MotorVehicle {
 
     public static void main(String[] args) {
 
-        try {
-            MotorVehicle kiaPicanto = new Car("Kia", "Picanto", "409-94-301", 959, 173, -100);
-            System.out.println("1223");
-        } catch (RuntimeException r) {
-            r.printStackTrace();
-        }
-        System.out.println("this is my code end");
-    }
+        MotorVehicle kiaPicanto = new Car("Kia", "Picanto", "409-94-301", 959, 173, 5);
+        kiaPicanto.getEngineName();
 
-}
+    }
+    }
