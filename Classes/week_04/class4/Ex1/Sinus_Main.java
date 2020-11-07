@@ -1,9 +1,11 @@
 
+import class3.StdDraw;
+
 import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * This class demonstrate a simple set of sin funxtions and draw them in a GUI window.
+ * This class demonstrate a simple set of sin functions and draw them in a GUI window.
  * A trivial example of inner class is also presented.
  */
 class Sinus_Main {

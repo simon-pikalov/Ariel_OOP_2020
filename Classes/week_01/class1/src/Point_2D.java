@@ -26,6 +26,8 @@ public class Point_2D implements shape{
         return ans;
     }
 
+
+
     /**
      * This method computes the distance from this
      * point to the (0,0).

@@ -5,6 +5,8 @@ import java.util.*;
 public class CollectionTests {
    // public static class1.MyRandom _rand = new class1.MyRandom();
     public static void main(String[] args) {
+        double [] arr = {1,4,-3.2,2};
+
         test1();
         test2();
     }
