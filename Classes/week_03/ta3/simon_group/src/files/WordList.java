@@ -13,8 +13,6 @@ import java.nio.file.Paths;
 public class WordList {
 
 
-
-
     /**
      * @param num   the number to be padd
      * @param desiredLength the length of the desired string to be retuned
@@ -45,9 +43,8 @@ public class WordList {
             FileWriter fw =  new FileWriter(fileName);
             BufferedWriter bw = new BufferedWriter(fw);
             for (int i = 0; i <= maxNumber; i++) {
-                curr = padding(i, length);
+                curr = padding(i,length);
                 bw.write(curr);
-
             }
             bw.close();
 
@@ -97,12 +94,12 @@ public class WordList {
         try {
             Files.createDirectory(path);
         } catch (IOException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
         }
         String passF = "./passwords/password.txt";
         String idF  = "./passwords/id.txt";
         generateList(passF,9999);
-        //generateList(idF,999999999);
+        generateList(idF,999999999);
         printFile(passF);
 
     }

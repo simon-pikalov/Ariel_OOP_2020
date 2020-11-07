@@ -22,7 +22,7 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("check eq of two cars")
+    @DisplayName("file.txt test &*&*&*")
     void checkEqOfTwoCars() {
         Car other =new Car(car);
         assertEquals(car,other,"not equal :(");
