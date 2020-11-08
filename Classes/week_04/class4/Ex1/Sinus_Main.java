@@ -20,7 +20,7 @@ class Sinus_Main {
 	public static ArrayList<function> init() {
 		ArrayList<function> ans = new ArrayList<function>();
 		Sinus s0 = new Sinus();
-		Monom m1 = new Monom("4x");
+		Monom m1 = new Monom("2.0x");
 		Monom m2 = new Monom("0.3x^3");
 		Sinus s1 = new Sinus(m1);
 		Sinus s2 = new Sinus(m2);
