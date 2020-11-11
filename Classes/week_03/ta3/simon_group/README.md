@@ -1,22 +1,22 @@
 # Welcome to Ariel OOP Simon group
 
 # Youtube chanel 
-https://youtu.be/U0TGJtDJ6eQ
+https://www.youtube.com/watch?v=OcqO82sk_Xk&list=PLI1YQ3QGdy-Y5KxXuxGUXuh6idMfJIIbB&ab_channel=SimonPikalov
 
 # Themes for this Recitation  
 
-## java collections
+## Java I/O
+![alt text](https://i2.wp.com/www.3ptechies.com/wp-content/uploads/folder-icon-512x512.png?fit=512%2C512&ssl=1)
 
-![alt text](https://static.javatpoint.com/images/java-collection-hierarchy.png)
+## Lambda expressions  .
+![alt text](https://miro.medium.com/max/638/1*njDLJyFKYN3nWgJvMGVH5g.jpeg)
+## Equals and Hash Code
 
-## Iterable and iterator 
-![alt text](https://www.java-success.com/wp-content/uploads/2015/07/foreach-iterable.jpg)
+![alt text](https://3.bp.blogspot.com/-oN4-2cbZRL0/XgGQcjKMzmI/AAAAAAAAK9w/C_9yIEtd8aMCyAulMyRcUcvKbDRxP2eZQCLcBGAsYHQ/s640/Equal_and_EqualEqual.jpg)
+## Junit 5.
 
+![alt text](https://cdn.lynda.com/course/718639/718639-637286247345395072-16x9.jpg)
+## Inner Classes
 
-## comparable and comparator 
-![alt text](https://pediaa.com/wp-content/uploads/2019/04/Difference-Between-Comparable-and-Comparator-in-Java-Comparison-Summary-e1555938670952.jpg)
-
-
-## Exception handling
-![alt text](https://toppertips.com/assets/images/try-catch-finally-block.png)
+![alt text](https://image.slidesharecdn.com/innerclassesinjava-171219100318/95/inner-classes-in-java-3-638.jpg?cb=1513677862)
 

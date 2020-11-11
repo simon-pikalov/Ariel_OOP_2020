@@ -1,13 +1,15 @@
 
+import class3.StdDraw;
+
 import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * This class demonstrate a simple set of sin funxtions and draw them in a GUI window.
+ * This class demonstrate a simple set of sin functions and draw them in a GUI window.
  * A trivial example of inner class is also presented.
  */
 class Sinus_Main {
-	public static Color[] Colors = {Color.blue, Color.cyan, Color.MAGENTA, Color.ORANGE, 
+	public static Color[] Colors = {Color.blue, Color.cyan, Color.ORANGE, Color.MAGENTA,
 			Color.red, Color.GREEN, Color.PINK};
 	public static void main(String[] args) {
 		ArrayList<function> ff = new ArrayList<function>();
@@ -18,7 +20,7 @@ class Sinus_Main {
 	public static ArrayList<function> init() {
 		ArrayList<function> ans = new ArrayList<function>();
 		Sinus s0 = new Sinus();
-		Monom m1 = new Monom("4x");
+		Monom m1 = new Monom("0.7x");
 		Monom m2 = new Monom("0.3x^3");
 		Sinus s1 = new Sinus(m1);
 		Sinus s2 = new Sinus(m2);
