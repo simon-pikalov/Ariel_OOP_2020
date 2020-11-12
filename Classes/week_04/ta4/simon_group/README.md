@@ -1,7 +1,8 @@
 # Welcome to Ariel OOP Simon group
 
 # Youtube chanel 
-https://youtu.be/U0TGJtDJ6eQ
+https://www.youtube.com/watch?v=OcqO82sk_Xk&list=PLI1YQ3QGdy-Y5KxXuxGUXuh6idMfJIIbB&ab_channel=SimonPikalov
+
 
 # Themes for this Recitation  
 
