@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
@@ -7,32 +8,55 @@ import java.util.Iterator;
  * @param <T>
  */
 public class BST<T> {
+    public static final int INORDER_SLOW=1, INORDER_FAST=2, PRETORDER_FAST=4, POSTTORDER_FAST=6;
+    private int _mc;
     private BN<T> _root;  // inner class
     private Comparator<T> _comp;
-    public static final Comparator
-            Natural_Order_By_ToString = new BN_Comp();
+    public static final  Comparator
+            Natural_Order_By_ToString = BN_Comp.toStringIterator();
     public BST(Comparator<T> c) {
         _root = null;
+        _mc = 0;
         _comp = c;
     }
     public BST() {this(Natural_Order_By_ToString);}
     public Comparator<T> getComparator() {return _comp;}
+    public void setComparator(Comparator<T> c) {_comp = c; addMC();}
     public void add(T t) {
-        if(isEmpty() ) {_root = new BN(t);}
-        else { _root.add(t,_comp);}
+        if (t != null) {
+            addMC();
+            if (isEmpty()) {
+                _root = new BN(t);
+            } else {
+                _root.add(t, _comp);
+            }
+        }
     }
+    private void addMC() {_mc++;}
+    public int getMC() {return _mc;}
     public Iterator<T> interator() {
-        return new BST.BST_IO_Iterator();
+        return interator(INORDER_FAST); }
+    private Iterator<T> interator(int type) {
+        ArrayList data = new ArrayList<T>();
+        if (_root!=null) {
+            if (type == INORDER_SLOW) {return new BST.SLOW_Inorder_Iterator();}
+            if (type == POSTTORDER_FAST) { _root.fill_post(data); }
+            if (type == PRETORDER_FAST) { _root.fill_pre(data); }
+            if (type == INORDER_FAST) { _root.fill_io(data); }
+        }
+        return data.iterator();
     }
     private boolean isEmpty() {
         return _root ==null;
     }
-
     public int size() {
         if(isEmpty() ) {return 0;}
         return _root.size();
     }
-
+    public int height() {
+        if(isEmpty() ) {return -1;}
+        return _root.height();
+    }
     /**
      * This method computes the i"th value as In-Order.
      * @param i
@@ -45,9 +69,9 @@ public class BST<T> {
         }
         return ans;
     }
-    private class BST_IO_Iterator implements Iterator<T> {
+    private class SLOW_Inorder_Iterator implements Iterator<T> {
         private int _ind=0;
-        public BST_IO_Iterator() {_ind = 0;}
+        public SLOW_Inorder_Iterator() {_ind = 0;}
         @Override
         public boolean hasNext() {
             return _ind < size();  // needs some thinking
@@ -59,7 +83,6 @@ public class BST<T> {
             return ans;
         }
     }
-
     /**
      * Inner (private) Binary Search Tree Node
      * @param <T>
@@ -85,17 +108,23 @@ public class BST<T> {
             if(this.getRight()!=null) {r = this.getRight().size();}
             return 1+l+r;
         }
+        private int height() {
+            int ans=0,l=-1,r=-1;
+            if(this.getLeft()!=null) {l = this.getLeft().height();}
+            if(this.getRight()!=null) {r = this.getRight().height();}
+            return ans + Math.max(l+1, r+1);
+        }
         private void add(T n, Comparator<T> comp) {
             int v = comp.compare( n,_data);
             if(v<=0) {
                 if(this.getLeft()==null) {
                     this.setLeft(new BN(n)); }
-                else { this.getLeft().add(n,comp);}
+                else { this.getLeft().add(n,_comp);}
             }
             else {
                 if(this.getRight()==null) {
                     this.setRight(new BN(n)); }
-                else { this.getRight().add(n,comp);}
+                else { this.getRight().add(n,_comp);}
             }
         }
         private T get(int i) {
@@ -117,17 +146,33 @@ public class BST<T> {
             return ans;
         }
 
+        private void fill_io(ArrayList<T> data) {
+            if(this.getLeft()!=null) {getLeft().fill_io(data);}
+            data.add(this.getData());
+            if(this.getRight()!=null) {getRight().fill_io(data);}
+        }
+        private void fill_pre(ArrayList<T> data) {
+            data.add(this.getData());
+            if(this.getLeft()!=null) {getLeft().fill_pre(data);}
+            if(this.getRight()!=null) {getRight().fill_pre(data);}
+        }
+        private void fill_post(ArrayList<T> data) {
+            if(this.getLeft()!=null) {getLeft().fill_post(data);}
+            if(this.getRight()!=null) {getLeft().fill_post(data);}
+            data.add(this.getData());
+        }
     }
 
     public static class BN_Comp<T> implements Comparator<T> {
-        private BN_Comp() {
-            ;
-        }
+        private BN_Comp() {;}
         @Override
         public int compare(T o1, T o2) {
             String s1 = o1.toString();
             String s2 = o2.toString();
             return s1.compareTo(s2);
+        }
+        public static Comparator toStringIterator() {
+            return new BN_Comp();
         }
     }
 }
