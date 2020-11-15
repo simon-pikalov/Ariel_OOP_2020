@@ -43,46 +43,46 @@ public class NiceStringCollection {
         return _string_arr[idx];
     }
 
-//    /**
-//     * Class iterator
-//     * @return NiceStringCollection iterator
-//     */
-//    public NiceIterator iterator(){
-//        return new NiceIterator();
-//    }
-//
-//    public class NiceIterator implements Iterable<String> {
-//
-//        private String[] arrayList;
-//        private int currentSize;
-//
-//        public NiceIterator() {
-//            this.arrayList = _string_arr;
-//            this.currentSize = _top;
-//        }
-//
-//        @Override
-//        public Iterator<String> iterator() {
-//            Iterator<String> it = new Iterator<String>() {
-//
-//                private int currentIndex = 0;
-//
-//                @Override
-//                public boolean hasNext() {
-//                    return currentIndex < currentSize && arrayList[currentIndex] != null;
-//                }
-//
-//                @Override
-//                public String next() {
-//                    return arrayList[currentIndex++];
-//                }
-//
-//                @Override
-//                public void remove() {
-//                    throw new UnsupportedOperationException();
-//                }
-//            };
-//            return it;
-//        }
-//    }
+    /**
+     * Class iterator
+     * @return NiceStringCollection iterator
+     */
+    public NiceIterator iterator(){
+        return new NiceIterator();
+    }
+
+    public class NiceIterator implements Iterable<String> {
+
+        private String[] arrayList;
+        private int currentSize;
+
+        public NiceIterator() {
+            this.arrayList = _string_arr;
+            this.currentSize = _top;
+        }
+
+        @Override
+        public Iterator<String> iterator() {
+            Iterator<String> it = new Iterator<String>() {
+
+                private int currentIndex = 0;
+
+                @Override
+                public boolean hasNext() {
+                    return currentIndex < currentSize && arrayList[currentIndex] != null;
+                }
+
+                @Override
+                public String next() {
+                    return arrayList[currentIndex++];
+                }
+
+                @Override
+                public void remove() {
+                    throw new UnsupportedOperationException();
+                }
+            };
+            return it;
+        }
+    }
 }
