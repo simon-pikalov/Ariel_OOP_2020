@@ -167,3 +167,5 @@ local.properties
 *.kotlin_module
 
 *.iml
+
+*.json
