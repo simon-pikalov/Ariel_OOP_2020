@@ -155,13 +155,18 @@ public class ArielLot implements CarLot ,Iterable<MotorVehicle>
           }
        }
 
+        for(MotorVehicle m : that.getAllVehicle()){
+            if(!this.lot.containsKey(m.getRegistrationPlate())) {
+                return false;
+            }
+        }
 
 
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        return lot != null ? lot.hashCode() : 0;
-    }
+//    @Override
+//    public int hashCode() {
+//        return lot != null ? lot.hashCode() : 0;
+//    }
 }

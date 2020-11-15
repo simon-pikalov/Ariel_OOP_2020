@@ -33,6 +33,7 @@ public class general {
     @Test
     @Disabled("Not implemented yet")
     void testShowSomething() {
+        assertEquals(true,false);
     }
 
     @AfterEach
@@ -55,17 +56,23 @@ public class general {
 
     @Test
     void assrtTrueMessege() {
-        assertTrue(-10 > -1, "-10 and -1 check "+String.valueOf("11"));
+        int a = 4;
+        int b = 5;
+        String aS = ""+a;
+        String bS = ""+b;
+        assertTrue(a > b, "Example of custom message "+aS+" > "+bS);
     }
 
     @Test
     void groupAssertions() {
         int[] numbers = {0, 1, 2, 3, 4};
-        assertAll("this is my check group",
-                ()->{ },
-                () -> assertEquals(numbers[0], 1,"my Message"),
-                () -> assertEquals(numbers[3], 3),
-                () -> assertEquals(numbers[4], 1)
+        assertAll("groupAssertions Example", // all test will run even if one test fails
+                ()->{ assertEquals(7,numbers[0]);}, // this is a block example
+                () -> assertEquals(1,numbers[1]),
+                () ->assertEquals(2,numbers[2]),
+                ()->assertEquals(3,numbers[3]),
+                ()->assertEquals(4,numbers[4]),
+                ()-> System.out.println("end of group")
         );
     }
 
@@ -81,6 +88,8 @@ public class general {
         assertEquals(2,numbers[2]);
         assertEquals(3,numbers[3]);
         assertEquals(4,numbers[4]);
+        System.out.println("end of group");
+
     }
 
 
@@ -107,7 +116,7 @@ public class general {
 
 
     @Test
-    void notLambda(){
+    void notLambdaThrowsException(){
 
         try {
             String str = null;
