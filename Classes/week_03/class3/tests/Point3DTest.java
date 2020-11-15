@@ -1,3 +1,5 @@
+import class3.Point3D;
+import class3.Points3D;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +24,8 @@ class Points3DTest {
 
     @Test
     void save() {
-        String file_name = "test_for_Point3D.mytest";
-        _pp0.save(file_name);
+        String file_name = "test_for_Points3D.obj";
+      //  _pp0.save(file_name);
         Points3D pp3  = new Points3D();
         pp3.load(file_name);
         Assertions.assertEquals(pp3,_pp0);

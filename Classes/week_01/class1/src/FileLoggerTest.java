@@ -11,7 +11,7 @@ public class FileLoggerTest {
     }
     public static void test1() {
         MyRandom r = new MyRandom(123);
-        FileLogger fl = new FileLogger(); // date based (now) file name
+        FileLogger fl = new FileLogger("1.txt"); // date based (now) file name
         System.out.println("***** class1.FileLogger - Tester: *****");
         fl.log("this is a first line 123");
         fl.log("second line");

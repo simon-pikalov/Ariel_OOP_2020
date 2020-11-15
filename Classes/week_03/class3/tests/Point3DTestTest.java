@@ -1,7 +1,9 @@
+import class3.Point3D;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class Point3DTestTest {
 
     /**
@@ -15,7 +17,9 @@ class Point3DTestTest {
         Point3D p1 = new Point3D(x1,y1,z1);
         p0.add(p1);
         Point3D r = new Point3D(x0+x1, y0+y1, z0+z1);
-        Assertions.assertEquals(p0,r);
+        assertEquals(p0,r);
+      //  boolean b = r.equals(p0);
+     //   if(b!=false) {fail("Erorr ");}
     }
     @Test
     public void factorTest() {
@@ -23,15 +27,15 @@ class Point3DTestTest {
         Point3D p0 = new Point3D(1,2,3);
         Point3D p1 = new Point3D(p0);
         p1.factor(1);
-        Assertions.assertEquals(p0,p1);
+        assertEquals(p0,p1);
 
         p1.factor(f2);
         p1.factor(1/f2);
-        Assertions.assertEquals(p0,p1);
+        assertEquals(p0,p1);
         p1.factor(f3);
         double d1 = p1.distance3D();
         double d0 = Math.abs(p0.distance3D()*f3);
-        Assertions.assertEquals(d0,d1,Point3D.EPS);
+        assertEquals(d0,d1,Point3D.EPS);
     }
 
     @Test
@@ -40,18 +44,17 @@ class Point3DTestTest {
         Point3D p = new Point3D(x,y,z);
         String s = p.toString();
         Point3D q = new Point3D(s);
-        Assertions.assertEquals(q,p);
+        assertEquals(q,p);
     }
-
 
     @Test
     public void distance3DTest() {
         double x=3,y=4, z=0, r=5;
         Point3D p = new Point3D(x,y,z);
         double d2 = p.distance3D();
-        Assertions.assertEquals(d2,r,Point3D.EPS);
+        assertEquals(d2,r,Point3D.EPS);
         double d3 = p.distance2D(new Point3D(Point3D.ORIGIN));
-        Assertions.assertEquals(d3,r,Point3D.EPS);
+        assertEquals(d3,r,Point3D.EPS);
         int size=10;
         for(int i=0;i<size;i++) {
             x=Math.random();
@@ -61,7 +64,7 @@ class Point3DTestTest {
             double d = p2.distance3D(p);
             double dx = x-p.x(), dy = y-p.y(), dz = z-p.z();
             double e = Math.pow(dx*dx+dy*dy+dz*dz, 0.5);
-            Assertions.assertEquals(d,e,Point3D.EPS);
+            assertEquals(d,e,Point3D.EPS);
         }
     }
 
@@ -75,9 +78,9 @@ class Point3DTestTest {
             Point3D p1 = new Point3D(x,y,z);
             Point3D p2 = new Point3D(p1);
             Point3D p3 = new Point3D(p2.toString());
-            Assertions.assertEquals(p1,p2);
+            assertEquals(p1,p2);
 
-            Assertions.assertEquals(p1.toString(),p3.toString());
+            assertEquals(p1.toString(),p3.toString());
             if(!p2.close2equals(p3)) {
                 Assertions.fail("Points: "+p2+","+p3+"  should be at least closeToEquale");
             }
@@ -138,7 +141,7 @@ class Point3DTestTest {
         if(l!=Point3D.LEFT) {
             Assertions.fail("should be left as: p="+pl+"  a="+a+", b="+b);
         }
-        Assertions.assertEquals(r,Point3D.RIGHT);
+        assertEquals(r,Point3D.RIGHT);
     }
     @Test
     public void PointEqualsTest() {
@@ -148,8 +151,8 @@ class Point3DTestTest {
         if(!p0.equals(p1)) {
             Assertions.fail("Err: Point p0 should be equals to p1: got: p0:"+p0+"  p1:"+p1);
         }
-        Assertions.assertEquals(p1,p2);
-        Assertions.assertEquals(p2,p0);
+        assertEquals(p1,p2);
+        assertEquals(p2,p0);
         p2.add(p1);
         Assertions.assertNotEquals(p1,p2);
     }

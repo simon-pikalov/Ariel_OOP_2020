@@ -33,7 +33,7 @@ public class iteratorExample {
 
     static void printForEach(List<String> list ){
         System.out.println("\n*******ForEach*******\n");
-        list.forEach( (element) -> System.out.println( element ) );
+        list.forEach( (element) -> System.out.println(element+"!"));
     }
 
 
@@ -47,8 +47,8 @@ public class iteratorExample {
         list.add("last");
 
         printIterator(list);
-//        printJavaFor(list);
-//        printForEach(list);
+        printJavaFor(list);
+        printForEach(list);
 
     }
 
