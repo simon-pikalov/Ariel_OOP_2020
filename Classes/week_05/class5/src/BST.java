@@ -1,10 +1,12 @@
+package class5.src;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
 /**
  * This class represents a simple Binary Search Tree, it was implemented in Class 5
- * as a class example - may contains alot of errors and untested methods!
+ * as a class example - may contains a lot of errors and untested methods!
  * @param <T>
  */
 public class BST<T> {
@@ -21,7 +23,16 @@ public class BST<T> {
     }
     public BST() {this(Natural_Order_By_ToString);}
     public Comparator<T> getComparator() {return _comp;}
-    public void setComparator(Comparator<T> c) {_comp = c; addMC();}
+    public void setComparator(Comparator<T> c) {
+        _comp = c;
+        addMC();//
+        // BUG a reorder of the BT is needed according to the new Comparator!
+    }
+
+    /**
+     * This method removes all data from the BST.
+     */
+    public void clear() {_root = null;}
     public void add(T t) {
         if (t != null) {
             addMC();
@@ -70,14 +81,16 @@ public class BST<T> {
         return ans;
     }
     private class SLOW_Inorder_Iterator implements Iterator<T> {
-        private int _ind=0;
-        public SLOW_Inorder_Iterator() {_ind = 0;}
+        private int _ind=0, _init_mc;
+        public SLOW_Inorder_Iterator() {_ind = 0; _init_mc = _mc;}
         @Override
         public boolean hasNext() {
-            return _ind < size();  // needs some thinking
+            if(_init_mc != _mc) { throw new RuntimeException("The BST was changed - invalid iterator");}
+            return _ind < size();
         }
         @Override
         public T next() {
+            if(_init_mc != _mc) { throw new RuntimeException("The BST was changed - invalid iterator");}
             T ans = get(_ind);
             _ind++;
             return ans;
@@ -138,6 +151,7 @@ public class BST<T> {
                         ans = _left.get(i);
                     }
                     else {  // i-(l+1)
+                        // i = 5, l = 2,
                         int ind = i-(l+1);
                         ans = _right.get(ind);
                     }

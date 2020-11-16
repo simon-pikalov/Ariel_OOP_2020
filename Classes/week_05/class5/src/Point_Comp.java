@@ -1,3 +1,7 @@
+package class5.src;
+
+import class3.Point3D;
+
 import java.util.Comparator;
 
 public class Point_Comp implements Comparator<Point3D> {

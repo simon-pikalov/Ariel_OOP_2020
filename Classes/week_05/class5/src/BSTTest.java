@@ -1,3 +1,6 @@
+package class5.src;
+
+import class3.Point3D;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
