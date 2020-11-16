@@ -1,6 +1,4 @@
-package class5.src;
 
-import class3.Point3D;
 
 import java.util.Comparator;
 

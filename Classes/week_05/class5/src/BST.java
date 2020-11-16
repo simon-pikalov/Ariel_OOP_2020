@@ -1,4 +1,3 @@
-package class5.src;
 
 import java.util.ArrayList;
 import java.util.Comparator;
