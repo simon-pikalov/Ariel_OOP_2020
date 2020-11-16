@@ -1,14 +1,10 @@
-
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-
+import static org.junit.jupiter.api.Assertions.*;
 
 class BSTTest {
     private ArrayList<Point3D> _pp;
@@ -34,7 +30,7 @@ class BSTTest {
         }
         int s = _ps.size();
         assertEquals(s,_pp.size());
-     }
+    }
 
     @Test
     void interator() {
@@ -65,7 +61,7 @@ class BSTTest {
         for(int i=0;i<_pp.size();i++) {
             Point3D p1 = _pp.get(i);
             Point3D p2  = _ps.get(i);
-           // System.out.println(i+") "+p1+"   "+p2);
+            // System.out.println(i+") "+p1+"   "+p2);
             assertEquals(p1,p2);
         }
     }
