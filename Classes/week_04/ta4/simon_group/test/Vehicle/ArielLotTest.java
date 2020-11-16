@@ -38,6 +38,7 @@ class ArielLotTest {
 
     @Test
     void loadCars() {
+        lot = new ArielLot();
         lot.loadCars(filename);
     }
 

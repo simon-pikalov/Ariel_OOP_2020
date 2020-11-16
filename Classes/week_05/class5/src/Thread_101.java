@@ -7,8 +7,8 @@ public class Thread_101 extends Thread {
             System.out.print(""+i+") ");
             for(int j=0;j<10;j++) {
                 System.out.print(super.getName());
-                //      try{ sleep(2); }
-                //     catch(Exception e ) {e.printStackTrace();}
+              //       try{ sleep(2); }
+              //       catch(Exception e ) {e.printStackTrace();}
             }
             System.out.println();
         }

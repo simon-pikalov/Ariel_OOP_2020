@@ -87,7 +87,8 @@ public class Thread_main {
     public static void main(String[] a) {
         Thread_101 th1 = new Thread_101("A");
         Thread_101 th2 = new Thread_101("B");
-        th1.start();
+        th1.start();  // calling run() in parallel
         th2.start();
+        System.err.println("Main");
     }
 }

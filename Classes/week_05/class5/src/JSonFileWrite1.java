@@ -27,7 +27,7 @@ public static void jsonFileWrite(String fileName) throws JSONException {
     JSONObject phoneObj;
  
     empObj = new JSONObject();
-    empObj.put("Name", "ABC");
+    empObj.put("Name", "Anna");
     empObj.put("Designation", "Manager");
     empObj.put("Pay", "Rs. 60000/-");
  
@@ -41,7 +41,7 @@ public static void jsonFileWrite(String fileName) throws JSONException {
     empArray.put(empObj);
  
     empObj = new JSONObject();
-    empObj.put("Name", "ABC");
+    empObj.put("Name", "Bob");
     empObj.put("Designation", "Sr.Manager");
     empObj.put("Pay", "Rs. 60000/-");
  
