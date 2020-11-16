@@ -65,18 +65,6 @@ class WGraph_DSTest {
         }
     }
 
-    @org.junit.Test(timeout = 5000)
-    @Test
-    public void testRuntime() {
-        int v = 100000, e = v*10;
-        weighted_graph g = graph_creator(v,e,1);
-        int key = 1;
-        Collection<node_info> ni1 = g.getV(1);
-        double w = g.getEdge(key, ni1.iterator().next().getKey());
-        double ex = 0.0632310507;
-        assertEquals(w,ex,0.0001);
-    }
-
     @Test
     void hasEdge() {
         int v = 10, e = v*(v-1)/2;
