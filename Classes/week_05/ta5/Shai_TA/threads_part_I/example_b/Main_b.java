@@ -26,7 +26,7 @@ public class Main_b {
         ArrayList<CounterThread> count_lst = new ArrayList<>();
 
         // Create new threads
-        int count_n = 10000;
+        int count_n = 1000;
         for (int i = 0; i < count_n; ++i) {
             count_lst.add(new CounterThread(c));
         }

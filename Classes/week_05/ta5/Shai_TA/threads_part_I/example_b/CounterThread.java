@@ -6,10 +6,10 @@ public class CounterThread extends Thread {
     }
 
     public void run() {
-        for (int i = 0; i < 10000; i++) {
-//            synchronized (_counter) {
+        for (int i = 0; i < 100; i++) {
+            synchronized (_counter) {
                 _counter.increment();
-//            }
+            }
         }
     }
 }
