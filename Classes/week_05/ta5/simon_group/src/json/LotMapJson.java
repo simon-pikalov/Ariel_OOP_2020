@@ -8,7 +8,7 @@ import vehicle.MotorVehicle;
 
 import java.util.HashMap;
 
-public class LotJson {
+public class LotMapJson {
     static String star = "********************************";
     static boolean print = true;
 

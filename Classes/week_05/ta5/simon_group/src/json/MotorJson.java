@@ -2,7 +2,7 @@ package json;
 
 import com.google.gson.*;
 import vehicle.Car;
-import vehicle.MotorVehicle;
+
 
 import java.lang.reflect.Type;
 

@@ -4,11 +4,14 @@ package generics;
 public class GenericMethodTest {
     // generic method printArray
     public static < E > void printArray( E[] inputArray ) {
+
+        System.out.print("\n[");
         // Display array elements
         for(E element : inputArray) {
-            System.out.printf("%s ", element);
+            System.out.print(","+element+" ");
         }
-        System.out.println();
+        System.out.print("]");
+
     }
 
     public static void main(String args[]) {

@@ -1,44 +1,41 @@
 package threads;
 
+
 public class ThreadExtends extends Thread {
-    private Thread t;
-    private String threadName;
 
-    ThreadExtends(String name) {
-        threadName = name;
-        System.out.println("Creating " +  threadName );
-    }
-
+    @Override
     public void run() {
-        System.out.println("Running " +  threadName );
-        try {
-            for(int i = 4; i > 0; i--) {
-                System.out.println("Thread: " + threadName + ", " + i);
-                // Let the thread sleep for a while.
-                Thread.sleep(50);
+        while (true){
+            System.out.println(Thread.currentThread().getName());
+            try {
+                Thread.sleep(189);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        } catch (InterruptedException e) {
-            System.out.println("Thread " +  threadName + " interrupted.");
-        }
-        System.out.println("Thread " +  threadName + " exiting.");
-    }
-
-    public void start () {
-        System.out.println("Starting " +  threadName );
-        if (t == null) {
-            t = new Thread (this, threadName);
-            t.start ();
         }
     }
 }
 
- class TestThreadExtends {
+class TestThreadExtends {
 
     public static void main(String args[]) {
-        ThreadExtends T1 = new ThreadExtends( "Thread-1");
-        T1.start();
+        RunnableDemo r1 = new RunnableDemo();
+        Thread t1 = new Thread(r1);
+        // t1.setName("t1");
+        t1.start();
 
-        ThreadExtends T2 = new ThreadExtends( "Thread-2");
-        T2.start();
+        RunnableDemo r2 = new RunnableDemo();
+        Thread t2 = new Thread(r2);
+        //t2.setName("t2");
+        t2.start();
+
+        while (true){
+            System.out.println(Thread.currentThread().getName());
+            try {
+                Thread.sleep(189);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

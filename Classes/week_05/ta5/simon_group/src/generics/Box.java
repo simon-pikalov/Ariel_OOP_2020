@@ -19,7 +19,7 @@ public class Box<T> {
         integerBox.add(new Integer(10));
         stringBox.add(new String("Hello World"));
 
-        System.out.printf("Integer Value :%d\n\n", integerBox.get());
-        System.out.printf("String Value :%s\n", stringBox.get());
+        System.out.println(integerBox.get());
+        System.out.println(stringBox.get());
     }
 }
