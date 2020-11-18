@@ -1,0 +1,26 @@
+{
+  "nick_name": "TARDIS",
+  "full_name": "Time And Relative Dimensions In Space",
+  "type": "Time machine/spacecraft",
+  "function": "Travels through time and space",
+  "is_consciousness": true,
+  "abilities": [
+    "Can change its outer dimensions",
+    "Impregnable",
+    "Telepathic"
+  ],
+  "dimentions": {
+    "outter": {
+      "width": 1.524,
+      "length": 1.524,
+      "height": 3.048
+    },
+    "inner": {
+      "width": -1,
+      "length": -1,
+      "height": -1
+    }
+  },
+  "Gmaps Location":"https://www.google.com/maps/@51.4921374,-0.1928784,3a,75y,282.9h,82.02t/data=!3m6!1e1!3m4!1sc9UMhWP_MWm9U0L48xEjYw!2e0!7i13312!8i6656",
+  "wiki_link": "https://en.wikipedia.org/wiki/TARDIS"
+}
