@@ -1,3 +1,4 @@
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +36,7 @@ public static void jsonFileWrite(String fileName) throws JSONException {
     phoneNumbers= new JSONArray();
     phoneObj=new JSONObject();
     phoneObj.put("LandLine", "11-2xxxx99");
-    phoneObj.put("Mobile", "99xxxxxx11");
+    phoneObj.put("Mobile", 12345);
     phoneNumbers.put(phoneObj);
  
     empObj.put("PhoneNumbers", phoneNumbers);

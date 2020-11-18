@@ -1,3 +1,12 @@
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 /**
  * output #1:
  * 0) BBBBBBBBBB
@@ -85,10 +94,12 @@
  */
 public class Thread_main {
     public static void main(String[] a) {
+      //  ArrayList<String> shared_memory = new ArrayList<String>();
         Thread_101 th1 = new Thread_101("A");
         Thread_101 th2 = new Thread_101("B");
         th1.start();  // calling run() in parallel
         th2.start();
-        System.err.println("Main");
+        System.out.println("Main");
+        
     }
 }

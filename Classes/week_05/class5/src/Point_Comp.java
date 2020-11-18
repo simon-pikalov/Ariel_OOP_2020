@@ -1,5 +1,4 @@
 
-
 import java.util.Comparator;
 
 public class Point_Comp implements Comparator<Point3D> {

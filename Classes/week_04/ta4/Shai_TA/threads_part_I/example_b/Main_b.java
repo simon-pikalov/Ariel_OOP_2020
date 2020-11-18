@@ -5,33 +5,40 @@ import java.util.ArrayList;
  */
 
 public class Main_b {
-    public static void main(String[] args) throws InterruptedException {
+
+    /**
+     * Checks if all the threads have ended
+     * @param ct_lst List of all Threads
+     * @return True if all threads have ended, else False
+     */
+    public static boolean allDead(ArrayList<CounterThread> ct_lst){
+        for (CounterThread ct : ct_lst) {
+            if (ct.isAlive()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    public static void main(String[] args) {
         Counter c = new Counter();
         ArrayList<CounterThread> count_lst = new ArrayList<>();
-        int count_n = 1000;
+
+        // Create new threads
+        int count_n = 10000;
         for (int i = 0; i < count_n; ++i) {
             count_lst.add(new CounterThread(c));
         }
+
+        // Start the threads
         for (CounterThread ct : count_lst) {
             ct.start();
         }
 
-//		t1.join();
-//		t2.join();
-        while (true) {
-//            System.out.println(c.getCounter());
-
-            boolean all_dead = true;
-            for (CounterThread ct : count_lst) {
-                if (ct.isAlive()) {
-                    all_dead = false;
-                    break;
-                }
-            }
-            if (all_dead) {
-                break;
-            }
-        }
+        do {
+            System.out.println(c.getCounter());
+        } while (!allDead(count_lst));
 
         System.out.println("Final Count:" + c.getCounter());
     }
