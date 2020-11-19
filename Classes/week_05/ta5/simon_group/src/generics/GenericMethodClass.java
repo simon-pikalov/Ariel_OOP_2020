@@ -1,7 +1,7 @@
 package generics;
 
 
-public class GenericMethodTest {
+public class GenericMethodClass {
     // generic method printArray
     public static < E > void printArray( E[] inputArray ) {
 

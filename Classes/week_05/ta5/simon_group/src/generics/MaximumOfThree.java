@@ -1,6 +1,6 @@
 package generics;
 
-public class MaximumTest {
+public class MaximumOfThree {
     // determines the largest of three Comparable objects
 
     public static <T extends Comparable<T>> T maximum(T x, T y, T z) {

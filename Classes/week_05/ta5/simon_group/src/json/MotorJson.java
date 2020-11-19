@@ -61,6 +61,7 @@ public  class MotorJson {
         Car kia ;
         kia = gson.fromJson(kiaJson,Car.class);
         if(print)System.out.println(kia);
+
     }
 
     /**
@@ -69,14 +70,15 @@ public  class MotorJson {
     private static void nestedCarDeSerializationAutoFail(){
         if(print)System.out.println(star+"nestedCarDeSerialization"+star+"\n");
         String kiaJson = "{\"car_producer\":\"Kia\",\"car_model\":\"Picanto\",\"car_id\":\"409-94-301\",\"car_weight\":959.0,\"car_max_speed\":173,\"car_seats\":5,\"engine_name\":\"GDI turbo I3\",\"engine_id\":\"0645343424\"}";
-        Gson gson = new Gson();
+        System.out.println(kiaJson);
         Car kia ;
+        Gson gson = new Gson();
         kia = gson.fromJson(kiaJson,Car.class);
         if(print)System.out.println(kia);
     }
 
     /**
-     * Nested automatic Deserialization example - this method will return all fields empty !
+     * Nested automatic Deserialization example.
      */
 
     private static void nestedCarDeSerializationManual(){
@@ -105,7 +107,7 @@ public  class MotorJson {
             }};
 
 
-         gsonBuilder.registerTypeAdapter(Car.class, deserializer);
+        gsonBuilder.registerTypeAdapter(Car.class, deserializer);
         Gson customGson = gsonBuilder.create();
         Car car =  customGson.fromJson(kiaJson, Car.class);
         System.out.println(car);

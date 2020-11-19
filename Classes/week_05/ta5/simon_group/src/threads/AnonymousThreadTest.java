@@ -1,4 +1,4 @@
-package inner;
+package threads;
 
 
 public class AnonymousThreadTest {

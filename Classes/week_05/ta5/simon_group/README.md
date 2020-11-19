@@ -10,6 +10,11 @@ https://www.youtube.com/watch?v=OcqO82sk_Xk&list=PLI1YQ3QGdy-Y5KxXuxGUXuh6idMfJI
 
 ![alt text](https://facingissuesonitcom.files.wordpress.com/2019/07/student-json-object.jpg?w=1000)
 
+Generate Plain Old Java Objects from JSON or JSON-Schema : http://www.jsonschema2pojo.org/
+
+Gson Jar : https://github.com/simon-pikalov/Ariel_OOP_2020/tree/master/libs
+
+
 ## Inner classes
 
 ![alt text](https://www.tutorialspoint.com/java/images/inner_classes.jpg)

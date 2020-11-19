@@ -69,7 +69,7 @@ public class LotArrayJson {
 
 
     public static void main(String[] args) {
-        turnOnPrint();
+        turnOffPrint();
         lotSerializeVehicle();
         lotDeSerialization();
 
