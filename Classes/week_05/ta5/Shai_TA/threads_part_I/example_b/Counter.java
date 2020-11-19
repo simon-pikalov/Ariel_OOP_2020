@@ -8,7 +8,6 @@ public class Counter {
         return _count;
     }
     public void increment() {
-//        _count = 1;
-        _count = _count+1;
+        _count = _count + 1;
     }
 }
