@@ -24,7 +24,7 @@ If your code meets the requirments you should have the following output:
 
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/DRtgRN8/image.png" alt="image" border="0"></a>
 
-### Linux
+### Linux:
 In Linux, we have made a bash script which checks your github repo. <br>
 In order to run the test, please make sure you have the following arguments:
 * Your github repo
@@ -41,4 +41,7 @@ bash TEST arg1 arg2
   For example: 096563d6bfg4d329687a28ei3ad210f9f8ef4626 <br>
 
 The bash script will create a new folder named: ex1_test, clone your project into the new directory and run the script. <br>
-Once the script is done, you will see the output in the terminal.
+Once the script is done, you will see the output in the terminal. <br>
+
+### Example:
+You can find an example for ex1 structure in [here](https://github.com/Justrygh/ex1-structure-test)
