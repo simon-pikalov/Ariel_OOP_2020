@@ -13,7 +13,10 @@ First of all, you need to make sure your code meets the following requirements: 
   * WGraph_Algo.java
   * WGraph_DS.java
   
+  **THIS PICTURE ILLUSTRATES HOW PACKAGE EX1 SHOULD LOOK LIKE:** <br>
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/nwjgDW6/image.png" alt="image" border="0"></a> <br>
+
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/mGYwqb7/image.png" alt="image" border="0"></a>
 
 Once your code meets the following requirements you can check yourself. <br>
 This code supports the following Operation Systems: **Windows & Linux**.
