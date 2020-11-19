@@ -1,0 +1,10 @@
+{
+  "car_producer": "Kia",
+  "car_model": "Picanto",
+  "car_id": "409-94-301",
+  "car_weight": 959.0,
+  "car_max_speed": 173,
+  "car_seats": 5,
+  "engine_name": "GDI turbo I3",
+  "engine_id": "0645343424"
+}
