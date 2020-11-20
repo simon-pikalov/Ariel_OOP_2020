@@ -47,4 +47,4 @@ The bash script will create a new folder named: ex1_test, clone your project int
 Once the script is done, you will see the output in the terminal. <br>
 
 ### Example:
-You can find an example for ex1 structure in [here](https://github.com/Justrygh/ex1-structure-test)
+You can find an example for ex1 structure in [here](https://github.com/Justrygh/ex1)
