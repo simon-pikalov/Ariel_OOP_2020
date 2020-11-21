@@ -1,0 +1,8 @@
+#!/bin/bash
+mkdir ex1_test
+javac -d ex1_test Structure.java
+cd ex1_test
+git clone $1
+git checkout $2
+java Structure
+rm Structure.class

@@ -1,0 +1,63 @@
+{
+  "409-94-301": {
+    "manufacturer": "Kia",
+    "model": "Picanto",
+    "registrationPlate": "409-94-301",
+    "weight": 959.0,
+    "maxSpeed": 173,
+    "seats": 5,
+    "engine": {
+      "engineName": "",
+      "id": ""
+    }
+  },
+  "479-08-801": {
+    "manufacturer": "Chevrolet",
+    "model": "Spark",
+    "registrationPlate": "479-08-801",
+    "weight": 1088.0,
+    "maxSpeed": 179,
+    "seats": 5,
+    "engine": {
+      "engineName": "",
+      "id": ""
+    }
+  },
+  "548-38-301": {
+    "manufacturer": "Hyndai",
+    "model": "i10",
+    "registrationPlate": "548-38-301",
+    "weight": 952.0,
+    "maxSpeed": 163,
+    "seats": 5,
+    "engine": {
+      "engineName": "",
+      "id": ""
+    }
+  },
+  "000-38-000": {
+    "manufacturer": "Misubushi",
+    "model": "space-star",
+    "registrationPlate": "000-38-000",
+    "weight": 865.0,
+    "maxSpeed": 173,
+    "seats": 5,
+    "engine": {
+      "engineName": "",
+      "id": ""
+    }
+  },
+  "656-55-103": {
+    "currPassengerCount": 0,
+    "manufacturer": "Volvo",
+    "model": "9900",
+    "registrationPlate": "656-55-103",
+    "weight": 26500.0,
+    "maxSpeed": 120,
+    "seats": 52,
+    "engine": {
+      "engineName": "",
+      "id": ""
+    }
+  }
+}

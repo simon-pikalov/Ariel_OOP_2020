@@ -1,0 +1,12 @@
+{
+  "manufacturer": "Kia",
+  "model": "Picanto",
+  "registrationPlate": "409-94-301",
+  "weight": 959.0,
+  "maxSpeed": 173,
+  "seats": 5,
+  "engine": {
+    "engineName": "GDI turbo I3",
+    "id": "0645343424"
+  }
+}

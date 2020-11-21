@@ -4,12 +4,16 @@ import java.nio.file.Paths;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         System.out.println("ThreadMaster");
 
-        String logo_path = "src/logo.txt";
-        String logo_str = new String(Files.readAllBytes(Paths.get(logo_path)));
-        System.out.println(logo_str);
+        try {
+            String logo_path = "src/logo.txt";
+            String logo_str = new String(Files.readAllBytes(Paths.get(logo_path)));
+            System.out.println(logo_str);
+        } catch (IOException e){
+
+        }
 
         int times = 100;
         Thread t1 = new Thread(new Spider(10, times));
