@@ -1,4 +1,5 @@
-package class5; /**
+//package class5;
+/**
  * This demo class presents a multi-threaded sorting algorithm - 
  * which is 20-40% faster than a single threaded sorting -
  * with the same code (using run(), and not start()) 
