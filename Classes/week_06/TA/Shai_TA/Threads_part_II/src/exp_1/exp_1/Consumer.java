@@ -3,7 +3,7 @@ package exp_1;
 
 public class Consumer extends Thread {
     static int consumer_counter = 0;
-    private int con_serial = consumer_counter++;
+    private final int con_serial = ++consumer_counter;
     private final DataCenter data;
 
     public Consumer(DataCenter data) {

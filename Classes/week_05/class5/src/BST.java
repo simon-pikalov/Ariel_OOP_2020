@@ -108,13 +108,13 @@ public class BST<T> {
             _left = null;
             _right = null;
         }
-        public T getData() {return _data;};
-        public BN getLeft() {return _left;}
-        public BN getRight() {return _right;}
-        public void setLeft(BN a) { _left=a;}
-        public void setRight(BN a) { _right=a;}
-        public boolean isLeaf() {return _left==null && _right==null;}
-        public int size() {
+        private T getData() {return _data;};
+        private BN getLeft() {return _left;}
+        private BN getRight() {return _right;}
+        private void setLeft(BN a) { _left=a;}
+        private void setRight(BN a) { _right=a;}
+        private boolean isLeaf() {return _left==null && _right==null;}
+        private int size() {
             int l = 0, r = 0;
             if(this.getLeft()!=null) {l = this.getLeft().size();}
             if(this.getRight()!=null) {r = this.getRight().size();}
@@ -176,7 +176,7 @@ public class BST<T> {
         }
     }
 
-    public static class BN_Comp<T> implements Comparator<T> {
+    private static class BN_Comp<T> implements Comparator<T> {
         private BN_Comp() {;}
         @Override
         public int compare(T o1, T o2) {

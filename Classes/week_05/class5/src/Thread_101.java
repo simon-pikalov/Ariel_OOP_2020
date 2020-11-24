@@ -1,19 +1,13 @@
 public class Thread_101 extends Thread {
-    public Thread_101(String name) {
+    public MyInt _c;
+    public Thread_101(String name, MyInt c) {
         super(name);
+        _c = c;
     }
     public void run() {
         System.out.println("**** "+
                 super.getName()+"  Start!");
-        for(int i=0;i<20;i++) {
-            System.out.print(""+i+") ");
-            for(int j=0;j<10;j++) {
-                System.out.print(super.getName());
-                 //    try{ sleep(1); }
-                 //    catch(Exception e ) {e.printStackTrace();}
-            }
-            System.out.println();
-        }
+        for(int i=0;i<100000;i++) { _c.inc(); }
         System.out.println("**** "+
                 super.getName()+"  Done!");
     }

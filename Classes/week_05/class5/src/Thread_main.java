@@ -93,13 +93,21 @@ import static org.junit.jupiter.api.Assertions.fail;
  * 19) AAAAAAAAAA
  */
 public class Thread_main {
-    public static void main(String[] a) {
+    public static void main(String[] a)  {
+        MyInt c=new MyInt(0);
       //  ArrayList<String> shared_memory = new ArrayList<String>();
-        Thread_101 th1 = new Thread_101("A");
-        Thread_101 th2 = new Thread_101("B");
+        Thread_101 th1 = new Thread_101("A",c);
+        Thread_101 th2 = new Thread_101("B",c);
         th1.start();  // calling run() in parallel
         th2.start();
-        System.out.println("Main");
+        try {
+            th1.join();
+            th2.join();
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Main  c= "+c.get());
         
     }
 }

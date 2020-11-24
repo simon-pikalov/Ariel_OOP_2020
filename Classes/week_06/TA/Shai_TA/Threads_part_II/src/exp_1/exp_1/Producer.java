@@ -4,7 +4,7 @@ package exp_1;
 public class Producer extends Thread {
     static int producer_counter = 0;
 
-    private int prod_serial = producer_counter++;
+    private final int prod_serial = ++producer_counter;
     private final DataCenter data;
     private int counterMsg = 0;
 
@@ -23,7 +23,7 @@ public class Producer extends Thread {
                         System.out.println("Producer- wait (" + prod_serial + ")");
                         data.wait();
                     }
-                    String msg = String.format("MSG:{%s}", counterMsg++);
+                    String msg = String.format("MSG:{%s}", ++counterMsg);
                     data.addMsg(msg);
                     data.notifyAll();
                 }

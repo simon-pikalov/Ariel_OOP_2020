@@ -1,8 +1,8 @@
 package exp_2;
 
 public class Task implements Runnable {
+    private static final float kTASK_STEPS = 6.f;
     private String name;
-    private final float kTASK_STEPS = 6.f;
 
     public Task(String name) {
         this.name = name;
@@ -14,7 +14,7 @@ public class Task implements Runnable {
     private void exe() {
         try {
             System.out.println(name + " Started!");
-            for (int i = 0; i <= kTASK_STEPS; i++) {
+            for (int i = 0; i <= kTASK_STEPS; ++i) {
                 System.out.println(String.format("Executing task: %s %.2f%%", name, 100 * i / kTASK_STEPS));
 
                 Thread.sleep(100);

@@ -1,11 +1,11 @@
-package Lesson_6_Threads.first;
+package first;
 public class JoinDemo {
 	public static void main(String[] args) {
 		ThreadJoin t1 = new ThreadJoin("T1");
 		t1.start();
 		try {
-			t1.join();
-			//t1.join(20);
+			//t1.join();
+			t1.join(100);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -19,7 +19,7 @@ class ThreadJoin extends  Thread{
 	public void run(){
 		for (int i=1; i<=5; i++) {
 			System.out.println(i+" "+this.getName());
-			int r = 1000;
+			int r = 10;
 			try{
 				sleep(r);
 			}

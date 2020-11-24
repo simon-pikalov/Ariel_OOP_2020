@@ -6,17 +6,17 @@ import java.util.ArrayList;
 
 public class MainI {
     public static void main(String[] args) throws InterruptedException {
-        DataCenter data = new DataCenter();
+        DataCenter data_center = new DataCenter();
 
         ArrayList<Thread> threads_lst = new ArrayList<>();
         // Producers
-        threads_lst.add(new Producer(data));
-        threads_lst.add(new Producer(data));
-        threads_lst.add(new Producer(data));
+        threads_lst.add(new Producer(data_center));
+        threads_lst.add(new Producer(data_center));
+        threads_lst.add(new Producer(data_center));
 
         // Consumers
-        threads_lst.add(new Consumer(data));
-        threads_lst.add(new Consumer(data));
+        threads_lst.add(new Consumer(data_center));
+        threads_lst.add(new Consumer(data_center));
 
         for(Thread t: threads_lst){
         	t.start();
