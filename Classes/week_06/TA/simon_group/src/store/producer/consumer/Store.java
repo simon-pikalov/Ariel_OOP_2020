@@ -17,6 +17,9 @@ public class Store{
         System.out.println("remaining products amount: " + product);
         notify();
     }
+
+
+
     public  void put() {
         synchronized (this){ ////method two synchronized block
             while (product>=3) { //generate a dead lock
@@ -24,6 +27,7 @@ public class Store{
                     wait();
                 }
                 catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
             product++;

@@ -64,7 +64,7 @@ class ImagePanel extends JPanel {
     Image image;
 
     public ImagePanel() {
-        image = Toolkit.getDefaultToolkit().createImage("atomic/integer/tenor.gif");
+        image = Toolkit.getDefaultToolkit().createImage("./resources/tenor.gif");
     }
 
     @Override
