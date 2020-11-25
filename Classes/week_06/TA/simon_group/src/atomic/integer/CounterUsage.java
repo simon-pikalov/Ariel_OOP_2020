@@ -1,14 +1,14 @@
-package thread.shared.resources;
+package atomic.integer;
 
 public class CounterUsage implements Runnable {
 
-    Counter c;
+    AtomicCounter c;
 
     public CounterUsage() {
-        Counter c = new Counter();
+        AtomicCounter c = new AtomicCounter();
     }
 
-    public CounterUsage(Counter c ) {
+    public CounterUsage(AtomicCounter c ) {
         this.c = c;
     }
 
@@ -24,7 +24,7 @@ public class CounterUsage implements Runnable {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Counter counter = new Counter();
+        AtomicCounter counter = new AtomicCounter();
         CounterUsage counterUsage = new CounterUsage(counter);
         CounterUsage counterUsageTwo = new CounterUsage(counter);
         Thread thread1 = new Thread(counterUsage);

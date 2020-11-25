@@ -54,11 +54,7 @@ public class ThreadMotivation {
         Thread musicThread = new Thread(player);
         musicThread.start(); // r
 
-
         printPrime();
-
-
-
 
     }
 }
@@ -68,7 +64,7 @@ class ImagePanel extends JPanel {
     Image image;
 
     public ImagePanel() {
-        image = Toolkit.getDefaultToolkit().createImage("./resources/tenor.gif");
+        image = Toolkit.getDefaultToolkit().createImage("atomic/integer/tenor.gif");
     }
 
     @Override

@@ -92,14 +92,14 @@ public class AudioPlayerExample1 implements LineListener ,Runnable {
     }
 
     public static void main(String[] args) {
-        String audioFilePath = "./resources/file_example_WAV_1MG.wav";
+        String audioFilePath = "atomic/integer/file_example_WAV_1MG.wav";
         AudioPlayerExample1 player = new AudioPlayerExample1();
         player.play(audioFilePath);
     }
 
     @Override
     public void run() {
-        String audioFilePath = "./resources/file_example_WAV_1MG.wav";
+        String audioFilePath = "atomic/integer/file_example_WAV_1MG.wav";
         AudioPlayerExample1 player = new AudioPlayerExample1();
         player.play(audioFilePath);
     }

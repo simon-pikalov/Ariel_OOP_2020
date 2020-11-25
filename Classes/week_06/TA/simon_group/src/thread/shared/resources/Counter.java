@@ -1,7 +1,7 @@
 package thread.shared.resources;
 
 public class Counter{
-    public Integer count ;
+    public int count ;
 
     public Counter() {
         this.count = 0;
@@ -12,7 +12,7 @@ public class Counter{
        count++;
     }
 
-    public Integer getCount() {
+    public int getCount() {
         return count;
     }
 
