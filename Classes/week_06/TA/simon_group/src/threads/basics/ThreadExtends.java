@@ -15,15 +15,13 @@ public class ThreadExtends extends Thread {
         }
     }
     public static void main(String args[]) {
-        RunnableDemo r1 = new RunnableDemo();
-        Thread t1 = new Thread(r1);
-        t1.setName("t1");
-        t1.start();
 
-        Runnable r2 = new RunnableDemo();
-        Thread t2 = new Thread(r2);
-        t2.setName("t2");
+        ThreadExtends t1 = new ThreadExtends();
+        ThreadExtends t2 = new ThreadExtends();
+        t1.start();
         t2.start();
+
+
 
         while (true){
             System.out.println("Hello from "+Thread.currentThread().getName());

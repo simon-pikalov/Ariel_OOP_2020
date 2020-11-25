@@ -5,11 +5,13 @@ public class AnonymousThreadTest {
 
 
     public static void main(String[] args) {
-        new Thread() {
+
+        Thread t1 = new Thread(){
             @Override
-            public void run() {
-                while (true) {
-                    System.out.println("Anonymous Thread  ");
+            public  void run(){
+                while (true){
+                    Thread.currentThread().setName("Anon Thread");
+                    System.out.println("Hello from "+Thread.currentThread().getName());
                     try {
                         Thread.sleep(100);
                     } catch (InterruptedException e) {
@@ -17,12 +19,14 @@ public class AnonymousThreadTest {
                     }
                 }
             }
-        }.start(); // end of Anonymous class
+        };
+        t1.start();
 
+        Thread t2 = new Thread(()->{
 
-        new Thread(() -> {
-            while (true) {
-                System.out.println(" Thread Lambda ");
+            while (true){
+                Thread.currentThread().setName("Lambda Thread");
+                System.out.println("Hello from "+Thread.currentThread().getName());
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
@@ -30,7 +34,10 @@ public class AnonymousThreadTest {
                 }
             }
 
-        }).start();
+        });
+
+        t2.start();
+
 
     }
 }

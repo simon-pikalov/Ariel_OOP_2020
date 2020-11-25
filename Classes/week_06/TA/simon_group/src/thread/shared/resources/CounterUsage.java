@@ -13,7 +13,7 @@ public class CounterUsage implements Runnable {
     }
 
 
-//100000
+//100000 - works with the print
     @Override
     public void run() {
         for (int i=0 ; i < 10000; i++){

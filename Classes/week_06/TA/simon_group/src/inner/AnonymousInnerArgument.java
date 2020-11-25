@@ -18,12 +18,24 @@ interface Message {
                 ", This is an example of anonymous inner class as an argument");
     }
 
+    public static void  foo (Comparable<Integer> comparable){
+
+    }
 
 
     public static void main(String args[]) {
+
+        // more simple example
+
+        foo(new Comparable<Integer>() {
+            @Override
+            public int compareTo(Integer o) {
+                return 0;
+            }
+        });
+
         // Instantiating the class
         MessageUse argExample = new MessageUse();
-
 
         // Passing an anonymous inner class as an argument
         argExample.displayMessage(new Message() {
