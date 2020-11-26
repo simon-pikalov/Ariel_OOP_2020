@@ -6,24 +6,19 @@ https://www.youtube.com/watch?v=OcqO82sk_Xk&list=PLI1YQ3QGdy-Y5KxXuxGUXuh6idMfJI
 
 # Themes for this Recitation  
 
-## json
+## Threads life cycle
 
-![alt text](https://facingissuesonitcom.files.wordpress.com/2019/07/student-json-object.jpg?w=1000)
-
-
-Generate Plain Old Java Objects from JSON or JSON-Schema : http://www.jsonschema2pojo.org/
-
-Gson Jar Link : https://github.com/simon-pikalov/Ariel_OOP_2020/tree/master/libs
+![alt text](https://beginnersbook.com/wp-content/uploads/2013/03/thread-life-cycle-in-java-flowchart.gif)
 
 
-## Inner classes
+## Thread types
 
-![alt text](https://www.tutorialspoint.com/java/images/inner_classes.jpg)
+![alt text](https://media.geeksforgeeks.org/wp-content/uploads/main-thread-in-java.jpeg)
 
 
-## Generics
+## join , wait and notify
  (how to make a good looking github README.md)
-![alt text](https://www.educative.io/api/edpresso/shot/4952609204994048/image/6278078927994880)
+![alt text](https://4.bp.blogspot.com/-REiHbzOXAwM/VZPzn9IOM5I/AAAAAAAADOw/6oX4j4aBUno/s1600/wait%2Bmethod%2Bin%2BJava%2B2.jpg)
 
 
 ## Threads intro
