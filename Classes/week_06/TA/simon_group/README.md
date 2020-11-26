@@ -21,7 +21,3 @@ https://www.youtube.com/watch?v=OcqO82sk_Xk&list=PLI1YQ3QGdy-Y5KxXuxGUXuh6idMfJI
 ![alt text](https://4.bp.blogspot.com/-REiHbzOXAwM/VZPzn9IOM5I/AAAAAAAADOw/6oX4j4aBUno/s1600/wait%2Bmethod%2Bin%2BJava%2B2.jpg)
 
 
-## Threads intro
-![alt text](https://www.tutorialspoint.com/java/images/Thread_Life_Cycle.jpg)
-
-
