@@ -5,11 +5,8 @@ import javax.swing.*;
 
 public class MyPanel extends JPanel{
 
-    //Image image;
-
     MyPanel(){
 
-        //image = new ImageIcon("sky.png").getImage();
         this.setPreferredSize(new Dimension(500,500));
     }
     @Override

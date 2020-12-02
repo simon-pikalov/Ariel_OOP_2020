@@ -16,8 +16,11 @@ public class GraphPanel extends JPanel implements MouseListener {
    private LinkedList<Point2D> points;
    String message;
 
-public GraphPanel(){
+
+
+    public GraphPanel(){
     super();
+    this.setBackground(new Color(7, 43, 73)); //change color of background
     points = new LinkedList<Point2D>();
     this.addMouseListener(this);
     message = "To add a Node Press on the Screen";
@@ -67,12 +70,13 @@ void reset(){
     {
         super.paintComponent(g);
         g.setFont(new Font("MV Boli",Font.PLAIN,25)); //set font of text
+        g.setColor(Color.white);
         g.drawString(message, 100,100);
         Point2D prev = null;
 
         for (Point2D p : points)
         {
-            g.setColor(Color.BLUE);
+            g.setColor(Color.WHITE);
             g.fillOval((int)p.getX(), (int)p.getY(), 10, 10);
 
             if(prev != null)
@@ -89,6 +93,12 @@ void reset(){
             prev = p;
         }
     }
+
+    public void displayHelp() {
+        message = "To add a Node Press on the Screen";
+        repaint();
+    }
+
 
 
 

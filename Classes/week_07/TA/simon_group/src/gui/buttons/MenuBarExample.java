@@ -70,7 +70,7 @@ public class MenuBarExample extends JFrame implements ActionListener{
         this.setVisible(true);
     }
 
-    private ImageIcon scaleImageIcon(ImageIcon imageIcon,int width,int height){
+    public static ImageIcon scaleImageIcon(ImageIcon imageIcon,int width,int height){
         Image image = imageIcon.getImage(); // transform it
         Image newimg = image.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         return new ImageIcon(newimg);  // transform it back
