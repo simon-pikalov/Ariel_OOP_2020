@@ -1,9 +1,7 @@
 package producer.consumer;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 //https://dzone.com/
+
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -16,11 +14,13 @@ public class ProducerConsumerWithBlockingQueue {
             try {
                 int value = 0;
                 while (true) {
+                    value = (int) (Math.random() * 100);
                     blockingQueue.put(value);
-
+                    value = (int) (Math.random() * 100);
+                    blockingQueue.put(value);
                     System.out.println("Produced " + value);
+                    System.out.println("buffer after  Produce :" + blockingQueue.toString());
 
-                    value++;
 
                     Thread.sleep(1000);
                 }
@@ -35,6 +35,7 @@ public class ProducerConsumerWithBlockingQueue {
                     int value = blockingQueue.take();
 
                     System.out.println("Consume " + value);
+                    System.out.println("buffer after  Consume :" + blockingQueue.toString());
 
                     Thread.sleep(1000);
                 }
@@ -46,7 +47,6 @@ public class ProducerConsumerWithBlockingQueue {
 
         producerThread.start();
         consumerThread.start();
-
         producerThread.join();
         consumerThread.join();
     }

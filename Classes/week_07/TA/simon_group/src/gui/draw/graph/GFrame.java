@@ -10,8 +10,7 @@ import java.awt.event.KeyListener;
 import static gui.buttons.MenuBarExample.scaleImageIcon;
 
 public class GFrame extends JFrame implements KeyListener , ActionListener {
-        GraphPanel panel;
-
+    GraphPanel panel;
     JMenuBar menuBar;
     JMenu fileMenu;
     JMenu editMenu;
