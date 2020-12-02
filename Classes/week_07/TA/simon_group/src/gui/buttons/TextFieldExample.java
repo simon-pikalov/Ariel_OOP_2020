@@ -30,7 +30,6 @@ public class TextFieldExample extends JFrame implements ActionListener{
         textField.setCaretColor(Color.white);
         textField.setText("username");
 
-
         this.add(button);
         this.add(textField);
         this.pack();
@@ -48,7 +47,6 @@ public class TextFieldExample extends JFrame implements ActionListener{
 
     public static void main(String[] args) {
         // JTextField = A GUI textbox component that can be used to add, set, or get text
-
         new TextFieldExample();
     }
 }

@@ -41,7 +41,7 @@ public class ButtonExample extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()== exampleButton) {
             System.out.println("poo");
-            exampleButton.setEnabled(false);
+            exampleButton.setEnabled(true);
 
         }
     }
