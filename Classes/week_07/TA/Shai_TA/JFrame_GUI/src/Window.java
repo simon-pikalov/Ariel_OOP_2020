@@ -114,10 +114,10 @@ public class Window extends JFrame implements ActionListener, MouseListener, Mou
             mPoints.add(p3);
             mPoints.add(p1);
 
-            repaint();
+//            repaint();
         } else if (str.equals("clean-up")) {
             mPoints.clear();
-            repaint();
+//            repaint();
         }
 
     }
@@ -148,7 +148,7 @@ public class Window extends JFrame implements ActionListener, MouseListener, Mou
             _pivot_point = tmp;
         }
         _draw_pivot = true;
-        repaint();
+//        repaint();
         System.out.println("mousePressed");
     }
 
@@ -162,7 +162,7 @@ public class Window extends JFrame implements ActionListener, MouseListener, Mou
         _pivot_point = null;
         _draw_pivot = false;
 
-        repaint();
+//        repaint();
     }
 
     @Override
@@ -184,7 +184,7 @@ public class Window extends JFrame implements ActionListener, MouseListener, Mou
             _pivot_point.setX(x);
             _pivot_point.setY(y);
 
-            repaint();
+//            repaint();
         }
     }
 
