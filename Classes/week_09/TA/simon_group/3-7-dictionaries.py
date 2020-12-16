@@ -1,10 +1,9 @@
 #assign
 thisdict = {
-    "key" : "value"
+    "key" : "value",
     "brand": "Ford",
     "model": "Mustang",
-    "year": 1964
-}
+    "year": 1964}
 #or
 thisdict = dict(brand="Ford", model="Mustang", year=1964)
 
@@ -34,10 +33,10 @@ for x in thisdict.values():
 # Loop through both keys and values, by using the items() function:
 for x, y in thisdict.items():
     print(x, y)
-    
+
 #Check if "model" is present in the dictionary:
 if "model" in thisdict:
-  print("Yes, 'model' is one of the keys in the thisdict dictionary") 
+  print("Yes, 'model' is one of the keys in the thisdict dictionary")
 
 #length
 print( len(thisdict) )
@@ -90,7 +89,7 @@ myfamily = {
     "name" : "Linus",
     "year" : 2011
   }
-} 
+}
 
 #OR
 
@@ -111,7 +110,7 @@ myfamily = {
   "child1" : child1,
   "child2" : child2,
   "child3" : child3
-} 
+}
 
 
 #More methods here:https://www.w3schools.com/python/python_ref_dictionary.asp

@@ -1,9 +1,8 @@
-
 a = 33
 b = 200
 if b > a:
     print("b is greater than a")
-#Indentation is a must
+# Indentation is a must
 """
 
  Equals: a == b
@@ -38,10 +37,8 @@ else:
 # If you have only one statement to execute
 if a > b: print("a is greater than b")
 
-    
 # Short Hand If ... Else
 print("A") if a > b else print("B")
-
 
 # One line if else statement, with 3 conditions:
 print("A") if a > b else print("=") if a == b else print("B")
@@ -49,25 +46,24 @@ print("A") if a > b else print("=") if a == b else print("B")
 # And
 if a > b and c > a:
     print("Both conditions are True")
-#or
+# or
 if a > b or a > c:
     print("At least one of the conditions are True")
 
-    
-#You can have if statements inside if statement(Nested if):
+# You can have if statements inside if statement(Nested if):
 x = 41
 
 if x > 10:
-  print("Above ten,")
-  if x > 20:
-    print("and also above 20!")
-  else:
-    print("but not above 20.") 
+    print("Above ten,")
+    if x > 20:
+        print("and also above 20!")
+    else:
+        print("but not above 20.")
 
-# put in the pass statement to make it empty:
+    # put in the pass statement to make it empty:
 
 a = 33
 b = 200
 
 if b > a:
-  pass
+    pass

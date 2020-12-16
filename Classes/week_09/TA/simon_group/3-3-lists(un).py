@@ -69,10 +69,12 @@ thislist = ["apple", "banana", "cherry"]
 del thislist[0]
 print(thislist)
 
-# The del keyword can also delete the list completely:
-thislist = ["apple", "banana", "cherry"]
-del thislist
-print(thislist)  # this will cause an error because "thislist" no longer exists
+#################################################### Wont Work
+# # The del keyword can also delete the list completely:
+# thislist = ["apple", "banana", "cherry"]
+# del thislist
+# print(thislist)  # this will cause an error because "thislist" no longer exists
+#################################################### Wont Work
 
 # The clear() method empties the list:
 thislist = ["apple", "banana", "cherry"]
@@ -84,6 +86,9 @@ print(thislist)
 # note the double round-brackets
 thislist = list(("apple", "banana", "cherry"))
 print(thislist)
+
+list1 = ["a", "b", "c"]
+list2 = [1, 2, 3]
 
 # Join Two Lists
 # method 1
