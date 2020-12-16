@@ -1,25 +1,22 @@
-#_____________________________________for loop_____________________________________#
+# _____________________________________for loop_____________________________________#
 # for loop: iterating(repeating) over a sequence (that is either a list, a tuple, a dctionary, a set, or a string).
 
 fruits = ["apple", "banana", "cherry"]
 for x in fruits:
     print(x)
 
-
-#Loop Through a String
+# Loop Through a String
 for x in "banana":
     print(x)
-    
-    
-#Exit the loop when x is "banana":
+
+# Exit the loop when x is "banana":
 fruits = ["apple", "banana", "cherry"]
 for x in fruits:
     print(x)
     if x == "banana":
         break
-        
-        
-#Exit the loop when x is "banana", but this time the break comes before the print:(banana is not printed)
+
+# Exit the loop when x is "banana", but this time the break comes before the print:(banana is not printed)
 fruits = ["apple", "banana", "cherry"]
 for x in fruits:
     if x == "banana":
@@ -31,7 +28,7 @@ fruits = ["apple", "banana", "cherry"]
 for x in fruits:
     if x == "banana":
         continue
-    print(x) #doesn't print banana but continues loop
+    print(x)  # doesn't print banana but continues loop
 
 # The range() Function
 # To loop through a set of code a specified number of timtes, we can use the range() function,
@@ -70,11 +67,11 @@ fruits = ["apple", "banana", "cherry"]
 
 for x in adj:
     for y in fruits:
-        print(x, y) #tryit: https://www.w3schools.com/python/trypython.asp?filename=demo_for_nested
-#you can make for loops empty by pass statement:
+        print(x, y)  # tryit: https://www.w3schools.com/python/trypython.asp?filename=demo_for_nested
+# you can make for loops empty by pass statement:
 
 for x in [0, 1, 2]:
-  pass
+    pass
 
 
 # Recursion
@@ -86,9 +83,10 @@ def tri_recursion(k):
         result = 0
     return result
 
+
 print("\n\nRecursion Example Results")
 tri_recursion(6)
-#---------------
+# ---------------
 i = 1
 while i < 6:
     print(i)
