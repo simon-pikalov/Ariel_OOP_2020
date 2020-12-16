@@ -17,7 +17,6 @@ print(a[1])  # output: e
 b = "Hello, World!"
 print(b[2:5])  # output: llo
 
-
 # String Length
 # To get the length of a string
 

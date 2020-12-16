@@ -1,17 +1,17 @@
-#assign
+# assign
 thisdict = {
-    "key" : "value",
+    "key": "value",
     "brand": "Ford",
     "model": "Mustang",
     "year": 1964}
-#or
+# or
 thisdict = dict(brand="Ford", model="Mustang", year=1964)
 
 # Accessing Items
-#Get the value of the "model" key:
+# Get the value of the "model" key:
 
 x = thisdict["model"]
-x = thisdict.get("model") #output: Mustang
+x = thisdict.get("model")  # output: Mustang
 
 # Change Values
 
@@ -34,12 +34,12 @@ for x in thisdict.values():
 for x, y in thisdict.items():
     print(x, y)
 
-#Check if "model" is present in the dictionary:
+# Check if "model" is present in the dictionary:
 if "model" in thisdict:
-  print("Yes, 'model' is one of the keys in the thisdict dictionary")
+    print("Yes, 'model' is one of the keys in the thisdict dictionary")
 
-#length
-print( len(thisdict) )
+# length
+print(len(thisdict))
 
 # Adding Items
 #
@@ -52,65 +52,67 @@ print(thisdict)
 # The del keyword removes the item with the specified key name:
 del thisdict["model"]
 
-
 # The pop() method removes the item with the specified key name:
-thisdict.pop("model")
-print(thisdict)
+try :
+    thisdict.pop("model")
+    print(thisdict)
+except:
+    print("Cant pop a non existing key")
 
-#The popitem() method removes the last inserted item (in versions before 3.7, a random item is removed instead):
+# The popitem() method removes the last inserted item (in versions before 3.7, a random item is removed instead):
 thisdict.popitem()
 print(thisdict)
 
-# The del keyword removes the item with the specified key name:
-del thisdict["model"]
 
-# The del keyword can also delete the dictionary completely:
-del thisdict
+# Make a copy of a dictionary with the copy() method:
+mydict = thisdict.copy()
+
 
 # The clear() keyword empties the dictionary:
 thisdict.clear()
 
-#Make a copy of a dictionary with the copy() method:
-mydict = thisdict.copy()
+# The del keyword can also delete the dictionary completely:
+del thisdict
 
-#Nested Dictionaries
-#Dictionaries in one dic.
+
+
+# Nested Dictionaries
+# Dictionaries in one dic.
 
 myfamily = {
-  "child1" : {
-    "name" : "Emil",
-    "year" : 2004
-  },
-  "child2" : {
-    "name" : "Tobias",
-    "year" : 2007
-  },
-  "child3" : {
-    "name" : "Linus",
-    "year" : 2011
-  }
+    "child1": {
+        "name": "Emil",
+        "year": 2004
+    },
+    "child2": {
+        "name": "Tobias",
+        "year": 2007
+    },
+    "child3": {
+        "name": "Linus",
+        "year": 2011
+    }
 }
 
-#OR
+# OR
 
 child1 = {
-  "name" : "Emil",
-  "year" : 2004
+    "name": "Emil",
+    "year": 2004
 }
 child2 = {
-  "name" : "Tobias",
-  "year" : 2007
+    "name": "Tobias",
+    "year": 2007
 }
 child3 = {
-  "name" : "Linus",
-  "year" : 2011
+    "name": "Linus",
+    "year": 2011
 }
 
 myfamily = {
-  "child1" : child1,
-  "child2" : child2,
-  "child3" : child3
+    "child1": child1,
+    "child2": child2,
+    "child3": child3
 }
 
-
-#More methods here:https://www.w3schools.com/python/python_ref_dictionary.asp
+# More methods here:https://www.w3schools.com/python/python_ref_dictionary.asp

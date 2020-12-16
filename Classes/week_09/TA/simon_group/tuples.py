@@ -7,12 +7,12 @@ thistuple = ("apple", "banana", "cherry")
 
 # Access Tuple Items
 thistuple = ("apple", "banana", "cherry")
-print( thistuple[1] )
+print(thistuple[1])
 
 # Change Tuple Values
 # Once a tuple is created, you cannot change its values. Tuples are unchangeable.
 thistuple = ("apple", "banana", "cherry")
-#thistuple[1] = "blackcurrant"
+# thistuple[1] = "blackcurrant"
 
 # The values will remain the same:
 print(thistuple)
@@ -24,12 +24,12 @@ for x in thistuple:
 
 # Tuple Length
 thistuple = ("apple", "banana", "cherry")
-print( len(thistuple) )
+print(len(thistuple))
 
 # Add Items
 # Once a tuple is created, you cannot add items to it. Tuples are unchangeable.
 thistuple = ("apple", "banana", "cherry")
-#thistuple[3] = "orange" # This will raise an error
+# thistuple[3] = "orange" # This will raise an error
 print(thistuple)
 
 # Remove Items
@@ -38,13 +38,13 @@ print(thistuple)
 #
 # Tuples are unchangeable, so you cannot remove items from it, but you can delete the tuple completely:
 thistuple = ("apple", "banana", "cherry")
-#del thistuple
-print(thistuple) # this will raise an error because the tuple no longer exists
+# del thistuple
+print(thistuple)  # this will raise an error because the tuple no longer exists
 
 # The tuple() Constructor
 #
 # It is also possible to use the tuple() constructor to make a tuple.
-thistuple = tuple(("apple", "banana", "cherry")) # note the double round-brackets
+thistuple = tuple(("apple", "banana", "cherry"))  # note the double round-brackets
 print(thistuple)
 
 # Tuple Methods
