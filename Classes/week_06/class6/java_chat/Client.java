@@ -1,4 +1,4 @@
-package class6.java_chat;
+package java_chat;
 /**
  * This code was cloned from: https://github.com/pchampio/java-chat.git
 

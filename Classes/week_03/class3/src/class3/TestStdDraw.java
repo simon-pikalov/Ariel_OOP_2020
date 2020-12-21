@@ -1,9 +1,9 @@
-//package stdDraw;
+package class3;
 
 public class TestStdDraw {
 	public static void main(String[] args) {
-		StdDraw.setCanvasSize(400, 400);
-		StdDraw.setPenRadius(0.07);
+		StdDraw.setCanvasSize(700, 400);
+		StdDraw.setPenRadius(0.01);
 		StdDraw.setPenColor(StdDraw.BLUE);
 		StdDraw.point(0.5, 0.5);
 		StdDraw.setPenColor(StdDraw.MAGENTA);

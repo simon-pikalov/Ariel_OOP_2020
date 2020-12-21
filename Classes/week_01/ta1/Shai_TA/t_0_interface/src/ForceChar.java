@@ -4,6 +4,6 @@ enum LightSaberColor {
 
 public interface ForceChar {
     String getName();
-
     LightSaberColor getLightSaberColor();
+    String rankStr();
 }

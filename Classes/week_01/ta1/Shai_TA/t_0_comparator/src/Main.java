@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 
 import static java.lang.System.out;
 
@@ -25,15 +27,14 @@ public class Main {
         fc_arr.add(new Jedi("Mace Windu", LightSaberColor.PURPLE, JediRank.MASTER));
         fc_arr.add(new Jedi("Luke SkyWalker", LightSaberColor.BLUE, JediRank.MASTER));
         fc_arr.add(new Sith("Darth Vader", LightSaberColor.RED, SithRanks.LORD));
-
+        
         fc_arr.sort(new ForceComp());
 //        fc_arr.sort(new JediLightSaberComp());
 //        fc_arr.sort(new JediNameComp());
+
         out.println("The Force Characters");
         out.println("===========");
-        for (ForceCharacters force_char :
-                fc_arr
-                ) {
+        for (ForceCharacters force_char : fc_arr) {
             Side fc_side = force_char.get_side();
             switch (fc_side) {
                 case LIGHT:

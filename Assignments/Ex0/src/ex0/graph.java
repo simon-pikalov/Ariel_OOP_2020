@@ -17,7 +17,7 @@ public interface graph {
 	 */
 	public node_data getNode(int key);
 	/**
-	 * return the data of the edge (src,dest), null if none.
+	 * return true iff (if and only if) there is an edge between node1 and node2
 	 * Note: this method should run in O(1) time.
 	 * @param node1
 	 * @param node2
@@ -31,9 +31,9 @@ public interface graph {
 	 */
 	public void addNode(node_data n);
 /**
- * Connect an edge with weight w between node src to node dest.
+ * Connect an edge between node1 and node2.
  * Note: this method should run in O(1) time.
- * Note2: if the edge node1-node2 already exists - the the method simply does nothing.
+ * Note2: if the edge node1-node2 already exists - the method simply does nothing.
  */
 	public void connect(int node1, int node2);
 	/**
@@ -44,8 +44,8 @@ public interface graph {
 	 */
 	public Collection<node_data> getV();
 	/**
-	 * This method return a collection of  the
-	 * collection representing all the nodes connected to node_id
+	 * This method returns a collection containing all the
+	 * nodes connected to node_id
 	 * Note: this method should run in O(1) time.
 	 * @return Collection<node_data>
 	 */
@@ -63,7 +63,6 @@ public interface graph {
 	 * Note: this method should run in O(1) time.
 	 * @param node1
 	 * @param node2
-	 * @return the data of the removed edge (null if none).
 	 */
 	public void removeEdge(int node1, int node2);
 	/** return the number of vertices (nodes) in the graph.

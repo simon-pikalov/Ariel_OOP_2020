@@ -23,7 +23,7 @@
  *       images and strings
  *
  ******************************************************************************/
-
+package class3;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.FileDialog;
