@@ -1,4 +1,8 @@
 if __name__ == '__main__':
+
+    print(1,2,3 , sep=',' ,end="\n\n\n\n")
+    print("@")
+
     # first way to format str
     idd = input("Please insert your id :")
     name = input("Please insert your name :")
