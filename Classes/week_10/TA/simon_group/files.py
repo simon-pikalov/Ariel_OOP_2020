@@ -6,6 +6,11 @@ if __name__ == '__main__':
     f.write("this is a test")
     f.close()
 
+    """ One more cool way :) """
+    f = open(file_name,"w")
+    print("print test this is a test", file=f)
+    f.close()
+
     """This block will throw an Error deu to file already exist
     """
     # f = open(file_name, "x")
@@ -33,3 +38,5 @@ if __name__ == '__main__':
             f.write("\nwith open\n")
     except IOError as e:
         print(e)
+
+

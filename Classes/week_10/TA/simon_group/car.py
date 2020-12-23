@@ -28,6 +28,8 @@ class Car(MotorVehicle):
         return f"repr : MotorVehicle manufacturer:{self.manufacturer}, model:{self.model}, registration_plate:{self.registration_plate}, weight:{self.weight}, max_speed:{self.max_speed},km: {self.__km}"
 
 
+
+
 if __name__ == '__main__':
     kia_picanto = Car("Kia", "Picanto", "409-94-301", 959, 173)
     shevrolet_spark = Car("Chevrolet", "Spark", "479-08-801", 1088, 179)
