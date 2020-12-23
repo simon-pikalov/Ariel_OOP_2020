@@ -1,6 +1,5 @@
 import json
 
-
 class MotorVehicle(object):
 
     def __init__(self, manufacturer: str = None, model: str = None, registration_plate: str = None,
