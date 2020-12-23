@@ -20,7 +20,10 @@ class MotorVehicle:
         self.passenger_count = 0
 
     def __str__(self) -> str:
-        return f"MotorVehicle manufacturer:{self.manufacturer}, model:{self.model}, registration_plate:{self.registration_plate}, weight:{self.weight}, max_speed:{self.max_speed}"
+        return f"str : MotorVehicle manufacturer:{self.manufacturer}, model:{self.model}, registration_plate:{self.registration_plate}, weight:{self.weight}, max_speed:{self.max_speed}"
+
+    def __repr__(self):
+        return f"repr : MotorVehicle manufacturer:{self.manufacturer}, model:{self.model}, registration_plate:{self.registration_plate}, weight:{self.weight}, max_speed:{self.max_speed}"
 
     def __lt__(self, other):
         return self.max_speed<other.max_speed
@@ -51,4 +54,5 @@ if __name__ == '__main__':
         print(v)
         print(json.dumps(v.encoder_motor_vehicle()))
 
-    print(vehicles.sort())
+    vehicles.sort()
+    print(vehicles)
