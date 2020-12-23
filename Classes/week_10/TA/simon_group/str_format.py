@@ -1,3 +1,6 @@
+__author__ = "Simon Pikalov"
+
+
 if __name__ == '__main__':
     print(1, 2, 3, sep=',', end="\n\n\n\n")
     print("@")

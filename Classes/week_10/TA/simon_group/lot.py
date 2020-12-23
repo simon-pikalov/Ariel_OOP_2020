@@ -1,3 +1,5 @@
+__author__ = "Simon Pikalov"
+
 import json
 
 from motor_vehicle import MotorVehicle

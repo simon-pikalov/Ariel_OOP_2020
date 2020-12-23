@@ -1,4 +1,4 @@
-import json
+__author__ = "Simon Pikalov"
 
 class MotorVehicle(object):
 
@@ -55,6 +55,7 @@ if __name__ == '__main__':
     vehicles.append(kia_picanto)
     vehicles.append(shevrolet_spark)
     vehicles.append(hunda_i10)
+    vehicles.sort()
 
     print(kia_picanto)
     kia_picanto + 90  # after installing turbo :)

@@ -1,3 +1,5 @@
+__author__ = "Simon Pikalov"
+
 import json
 
 from motor_vehicle import MotorVehicle
@@ -17,6 +19,7 @@ class Car(MotorVehicle):
         super().__init__( manufacturer, model, registration_plate,
                        weight, max_speed)
         self.__km = km
+
 
     def __add__(self, other):
         self.__km += other
@@ -55,3 +58,5 @@ if __name__ == '__main__':
     print("The original list is Unsorted ", vehicles)
     vehicles.sort() # im place
     print("sorted in place   ", vehicles)
+
+

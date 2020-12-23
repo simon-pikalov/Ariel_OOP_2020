@@ -1,3 +1,5 @@
+__author__ = "Simon Pikalov"
+
 if __name__ == '__main__':
 
     file_name = "test.txt"
@@ -7,7 +9,7 @@ if __name__ == '__main__':
     f.close()
 
     """ One more cool way :) """
-    f = open(file_name,"w")
+    f = open(file_name, "w")
     print("print test this is a test", file=f)
     f.close()
 
@@ -20,23 +22,18 @@ if __name__ == '__main__':
     """Same thing but with try and except"""
 
     try:
-        try:
-            f = open(file_name, "x")
-            f.write("this is a test")
-        except FileExistsError as e:
-            print(e)
-        finally:
-            f.close()
-    except IOError as e:
+        f = open(file_name, "x")
+        f.write("this is a test")
+    except FileExistsError as e:
         print(e)
+    finally:
+        f.close()
 
-    """
-    Same as the the code above 
-    """
-    try:
-        with open(file_name, "x") as f:
-            f.write("\nwith open\n")
-    except IOError as e:
-        print(e)
-
-
+"""
+Same as the the code above 
+"""
+try:
+    with open(file_name, "x") as f:
+        f.write("\nwith open\n")
+except IOError as e:
+    print(e)
