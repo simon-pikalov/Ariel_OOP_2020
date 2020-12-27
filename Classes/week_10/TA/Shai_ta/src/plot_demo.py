@@ -12,8 +12,8 @@ def main():
     plt.plot(xs, ys, '*-r')
     plt.show()
 
-    mat = np.zeros((10,30))
-    mat[4:6,5:25] = 1
+    mat = np.zeros((10, 30))
+    mat[4:6, 5:25] = 1
 
     plt.matshow(mat)
     plt.show()

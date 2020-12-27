@@ -1,32 +1,47 @@
+from abc import ABC, abstractmethod
 from typing import List
 
 
-class Human(object):
-    _human_id = 0
+class Human(ABC):
+    _humanId = 0
 
     def __init__(self, name: str, age: float):
-        self.id = Human._human_id
-        Human._human_id += 1
+        self.id = Human._humanId
+        Human._humanId += 1
         self.name = name[:1].upper() + name[1:]
         self.age = age
 
+    @abstractmethod
     def trick(self):
+        """
+        This function is an 'abstractmethd' and thus every class that inherits Human
+        cannot be initiated without defining it.
+        :return:
+        """
+        pass
+
+    def simple_trick(self):
+        """
+        This function is *not* an 'abstractmethd' and thus classes that inherits Human
+        don't have to define it, but they will raise an exception if it is used/
+        :return:
+        """
         raise NotImplementedError
 
 
 class Student(Human):
-    _serial_id = 0
+    _serialId = 0
 
     def __init__(self, name: str, age: float, classes: List[str] = None):
         super().__init__(name, age)
-        self.id = Student._serial_id
-        Student._serial_id += 1
+        self.id = Student._serialId
+        Student._serialId += 1
         self.classes = classes if classes else []
 
-    def addClass(self, new_class: str):
+    def add_class(self, new_class: str):
         self.classes.append(new_class)
 
-    def getClasses(self):
+    def get_classes(self):
         return self.classes
 
     def trick(self):
@@ -58,38 +73,38 @@ class Student(Human):
 
 
 def main():
-    stud_a = Student("Yossi", 23, ["Agrostology", "International Relationships"])
-    stud_b = Student("Jhon", 23, ["Chemistry", "Law"])
+    studA = Student("Yossi", 23, ["Agrostology", "International Relationships"])
+    studB = Student("Jhon", 23, ["Chemistry", "Law"])
 
     # String
     print("\nString")
-    print(stud_a)
+    print(studA)
 
     # Static function
     print("\nStatic Functions")
-    Student.print(stud_b)
+    Student.print(studB)
 
     # Sort objects
     print("\nSorting")
-    s_lst = [stud_b, stud_a]
-    print("Before sort:", s_lst)
-    s_lst.sort()
-    print("After sort: ", s_lst)
+    sLst = [studB, studA]
+    print("Before sort:", sLst)
+    sLst.sort()
+    print("After sort: ", sLst)
 
     # Hash
     print("\nHash")
-    s_set = set(s_lst)
-    print(s_set)
+    sSet = set(sLst)
+    print(sSet)
 
     # Inheritance
     print("\nInheritance")
-    [print(x.trick()) for x in s_lst]
+    [print(x.trick()) for x in sLst]
 
     # EQ
     print("\nEquals")
-    stud_c = Student("Jhon", 23, ["Chemistry", "Law"])
-    print("stud_b == stud_b:", stud_b == stud_b)
-    print("stud_b == stud_c:", stud_b == stud_c)
+    studC = Student("Jhon", 23, ["Chemistry", "Law"])
+    print("studB == studB:", studB == studB)
+    print("studB == studC:", studB == studC)
 
 
 if __name__ == '__main__':
