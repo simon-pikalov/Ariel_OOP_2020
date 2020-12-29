@@ -5,6 +5,7 @@
     + start
     + join 
     + Daemon
+    + Pool
 - Lock
     + acquire()
     + release

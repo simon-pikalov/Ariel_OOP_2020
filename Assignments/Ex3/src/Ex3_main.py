@@ -5,11 +5,8 @@ from GraphAlgo import GraphAlgo
 
 def check():
     """
-        This file represents a simple function name tester.
-        Make sure you run this example to check your naming.
-        ***** output: ******
         Graph: |V|=4 , |E|=5
-        {0: 0: score inf, 1: 1: score inf, 2: 2: score inf, 3: 3: score inf}
+        {0: 0: |edges out| 1 |edges in| 1, 1: 1: |edges out| 3 |edges in| 1, 2: 2: |edges out| 1 |edges in| 1, 3: 3: |edges out| 0 |edges in| 2}
         {0: 1}
         {0: 1.1, 2: 1.3, 3: 10}
         (3.4, [0, 1, 2, 3])
@@ -23,7 +20,7 @@ def check():
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
         [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47]]
 
-        """
+    """
     check0()
     check1()
     check2()
