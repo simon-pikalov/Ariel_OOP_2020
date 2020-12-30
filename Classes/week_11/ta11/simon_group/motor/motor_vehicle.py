@@ -3,7 +3,7 @@ __author__ = "Simon Pikalov"
 class MotorVehicle(object):
 
     def __init__(self, manufacturer: str = None, model: str = None, registration_plate: str = None,
-                 weight: float = None, max_speed: int = None):
+                 weight: float = None, max_speed: int = None,**kwargs):
         """
         :param manufacturer: The manufacturer of the vehicle.
         :param model: The model of the vehicle .
@@ -16,6 +16,7 @@ class MotorVehicle(object):
         self.registration_plate = registration_plate
         self.weight = weight
         self.max_speed = max_speed
+        self.__author__ = "Simon Pikalov"
 
     def __str__(self) -> str:
         return f"str : MotorVehicle manufacturer:{self.manufacturer}, model:{self.model}, registration_plate:{self.registration_plate}, weight:{self.weight}, max_speed:{self.max_speed}"
@@ -38,25 +39,14 @@ class MotorVehicle(object):
             # registration_plate is unique
         return False
 
-    def encoder_motor_vehicle(self):
-        return {"manufacturer": self.manufacturer, "model": self.model, "registration_plate": self.registration_plate,
-                "weight": self.weight, "max_speed": self.max_speed}
+    def as_dict(self):
+        m_dict = self.__dict__
+        # print(dir(self))
+        try:
+            del m_dict["__author__"]
+        except Exception as e:
+            print(e)
+        return m_dict
 
 
-# print("this code will be executed when importing ") # will be printed
 
-if __name__ == '__main__':
-    kia_picanto = MotorVehicle("Kia", "Picanto", "409-94-301", 959, 173)
-    shevrolet_spark = MotorVehicle("Chevrolet", "Spark", "479-08-801", 1088, 179)
-    hunda_i10 = MotorVehicle("Hyndai", "i10", "548-38-301", 952, 163)
-    mitsubishi_SpaceStar = MotorVehicle("Misubushi", "space-star", "000-38-000", 865, 173)
-    print(kia_picanto==kia_picanto)
-    vehicles = []
-    vehicles.append(kia_picanto)
-    vehicles.append(shevrolet_spark)
-    vehicles.append(hunda_i10)
-    vehicles.sort()
-
-    print(kia_picanto)
-    kia_picanto + 90  # after installing turbo :)
-    print(kia_picanto)
