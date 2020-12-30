@@ -1,4 +1,4 @@
-__author__ = "Simon Pikalov"
+
 
 import math
 
@@ -13,6 +13,8 @@ class PrimeRange:
         self.start = start
         self.end = end
         self.num = start
+        self.__author__ = "Simon Pikalov"
+
 
     def __iter__(self):
         return self
@@ -34,5 +36,7 @@ if __name__ == '__main__':
     for i in PrimeRange(1, 100):
         print(i)
 
-    list_primes = [p for p in PrimeRange(1,1000)]
+    list_primes2 = list(map(lambda  i :i ,PrimeRange(1,1000))) # map function
+    list_primes = [p for p in PrimeRange(1,1000)] # list comprehension
     print(list_primes)
+    print(list_primes2)

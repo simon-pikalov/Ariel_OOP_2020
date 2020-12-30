@@ -9,6 +9,7 @@ class CarLot:
 
     def __init__(self):
         self.vehicles = {}
+        self.__author__ = "Simon Pikalov"
 
     def add_vehicle(self, vehicle: MotorVehicle) -> None:
         self.vehicles[vehicle.registration_plate] = vehicle  # add the curr bus
@@ -43,8 +44,6 @@ class CarLot:
 
     def __iter__(self):
         return self.vehicles.values().__iter__()
-
-
 
 if __name__ == '__main__':
     kia_picanto = MotorVehicle("Kia", "Picanto", "409-94-301", 959, 173)
