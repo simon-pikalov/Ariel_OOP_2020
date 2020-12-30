@@ -1,4 +1,4 @@
-class GraphInteface:
+class GraphInterface:
     """This abstract class represents an interface of a graph."""
 
     def v_size(self) -> int:
@@ -16,7 +16,7 @@ class GraphInteface:
         raise NotImplementedError
 
     def get_all_v(self) -> dict:
-        """return a dictionary of all the nodes in the Graph, each node is represented using apair  (key, node_data)
+        """return a dictionary of all the nodes in the Graph, each node is represented using a pair  (key, node_data)
         """
 
     def all_in_edges_of_node(self, id1: int) -> dict:

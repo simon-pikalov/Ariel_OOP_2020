@@ -57,8 +57,8 @@ def timer_demo():
 
 
 def main():
-    # thread_pool()
-    # race_demo()
+    thread_pool()
+    race_demo()
     timer_demo()
 
 

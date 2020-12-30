@@ -23,7 +23,7 @@ class GraphAlgoInterface:
         """
         Saves the graph in JSON format to a file
         @param file_name: The path to the out file
-        @return: True if the save was successful, Flase o.w.
+        @return: True if the save was successful, False o.w.
         """
         raise NotImplementedError
 
