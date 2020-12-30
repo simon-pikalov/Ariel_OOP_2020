@@ -15,3 +15,5 @@ if __name__ == '__main__':
     my_id, name = input("plese insert id and name (with a space)  :").split()  # note the unpack
     p = f"Id is :{my_id}, and name is {name}."
     print(p)
+
+

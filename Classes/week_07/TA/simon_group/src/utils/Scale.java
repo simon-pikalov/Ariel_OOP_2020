@@ -17,6 +17,11 @@ public class Scale {
     {
         double res = ((data - r_min) / (r_max-r_min)) * (t_max - t_min) + t_min;
         return res;
+
+        //32.343434343 -> 100
+        //33.0001
+
+
     }
 
 }

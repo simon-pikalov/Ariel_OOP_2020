@@ -2,8 +2,7 @@ __author__ = "Simon Pikalov"
 
 import json
 
-from motor_vehicle import MotorVehicle
-
+from motor.motor_vehicle import MotorVehicle
 
 class Car(MotorVehicle):
 
@@ -33,31 +32,5 @@ class Car(MotorVehicle):
 
 
 
-
-if __name__ == '__main__':
-    kia_picanto = Car("Kia", "Picanto", "409-94-301", 959, 173)
-    shevrolet_spark = Car("Chevrolet", "Spark", "479-08-801", 1088, 179)
-    hunda_i10 = Car("Hyndai", "i10", "548-38-301", 952, 163)
-    mitsubishi_SpaceStar = Car("Misubushi", "space-star", "000-38-000", 865, 173)
-
-    vehicles = []
-    vehicles.append(kia_picanto)
-    vehicles.append(shevrolet_spark)
-    vehicles.append(hunda_i10)
-
-    print(kia_picanto)
-    kia_picanto + 90  # after installing turbo :)
-    print(kia_picanto)
-
-    for v in vehicles:
-        print(v)
-        print(json.dumps(v.encoder_motor_vehicle()))
-
-    print("Unsorted ", vehicles)
-    sorted_vehicle_list = sorted(vehicles)
-    print("sorted copy  ", sorted_vehicle_list)
-    print("The original list is Unsorted ", vehicles)
-    vehicles.sort() # im place
-    print("sorted in place   ", vehicles)
 
 
