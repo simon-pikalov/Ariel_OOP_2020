@@ -16,17 +16,18 @@ class GraphInterface:
         raise NotImplementedError
 
     def get_all_v(self) -> dict:
-        """return a dictionary of all the nodes in the Graph, each node is represented using a pair  (key, node_data)
+        """return a dictionary of all the nodes in the Graph, each node is represented using a pair
+         (node_id, node_data)
         """
 
     def all_in_edges_of_node(self, id1: int) -> dict:
         """return a dictionary of all the nodes connected to (into) node_id ,
-        each node is represented using a pair (key, weight)
+        each node is represented using a pair (other_node_id, weight)
          """
 
     def all_out_edges_of_node(self, id1: int) -> dict:
-        """return a dictionary of all the nodes connected from node_id , each node is represented using a pair (key,
-        weight)
+        """return a dictionary of all the nodes connected from node_id , each node is represented using a pair
+        (other_node_id, weight)
         """
 
     def get_mc(self) -> int:
