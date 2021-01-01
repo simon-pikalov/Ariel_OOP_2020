@@ -7,10 +7,14 @@ def inc_times(lock, num):
     global shared_int
 
     for t in range(num):
-        lock.acquire()
-        shared_int += 1
-        lock.release()
 
+        with lock:
+            if t % (int(num/100)) == 0 :print(threading.currentThread().getName(),": incremented shared_int")
+            shared_int+=1
+        # same as :
+        # lock.acquire()
+        # shared_int += 1
+        # lock.release()
 
 def main_task(num):
     lock = threading.Lock()

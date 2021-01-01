@@ -22,5 +22,3 @@ class PublicTransfer(ABC):
         :return: updated number
         """
         pass
-
-
