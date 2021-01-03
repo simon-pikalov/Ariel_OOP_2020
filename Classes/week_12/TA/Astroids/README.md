@@ -3,7 +3,7 @@
 ## GUI
 For the GUI part we implemented a simple Asteroids game.
 
-<img src="game_demo" width="500" height="500" />
+![Game Demo](game_demo.gif)
 
 ## UML
 [UML free software](https://pynsource.com/index.html)
