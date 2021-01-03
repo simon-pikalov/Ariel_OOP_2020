@@ -2,10 +2,9 @@ import time
 
 import numpy as np
 import pygame
-from pygame.sprite import Sprite
 
-from Fire import Fire
-from utils import Rotatable
+from src.Fire import Fire
+from src.utils import Rotatable
 
 SPEED_DECAY = 0.9
 ACCELERATE_SPEED = 10

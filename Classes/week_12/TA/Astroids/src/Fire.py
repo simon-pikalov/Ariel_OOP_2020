@@ -1,6 +1,6 @@
 import pygame
 
-from utils import Rotatable
+from src.utils import Rotatable
 import numpy as np
 
 FIRE_SPEED = 500

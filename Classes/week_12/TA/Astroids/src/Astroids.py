@@ -1,7 +1,7 @@
 import numpy as np
 import pygame
 
-from utils import Rotatable
+from src.utils import Rotatable
 
 SPEED_DECAY = 0.9
 ACCELERATE_SPEED = 10

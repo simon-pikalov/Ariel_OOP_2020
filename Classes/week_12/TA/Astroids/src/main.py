@@ -1,8 +1,8 @@
 import pygame
 from pygame.time import Clock
 
-from Astroids import Astroid
-from SimpleShip import StarShip
+from src.Astroids import Astroid
+from src.SimpleShip import StarShip
 
 screen_w, screen_h = 1000, 800
 FPS = 60
