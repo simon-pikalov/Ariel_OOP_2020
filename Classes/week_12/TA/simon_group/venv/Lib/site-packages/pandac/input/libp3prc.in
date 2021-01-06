@@ -1,0 +1,5106 @@
+1608630756
+3 3
+8 libp3prc 4 Flsb 12 panda3d.core 
+382
+384 11 ConfigFlags 0 4 766 24 ConfigFlags::ConfigFlags 0 2 1 2 0
+112
+inline ConfigFlags::ConfigFlags(void) = default;
+inline ConfigFlags::ConfigFlags(ConfigFlags const &) = default;
+
+385 12 ~ConfigFlags 0 4 766 25 ConfigFlags::~ConfigFlags 0 0 0
+32
+ConfigFlags::~ConfigFlags(void);
+
+386 16 get_default_page 0 4 769 28 ConfigPage::get_default_page 0 1 3 136
+/**
+ * Returns a pointer to the global "default page".  This is the ConfigPage
+ * that lists all variables' original default values.
+ */
+54
+static ConfigPage *ConfigPage::get_default_page(void);
+
+387 14 get_local_page 0 4 769 26 ConfigPage::get_local_page 0 1 4 191
+/**
+ * Returns a pointer to the global "local page".  This is the ConfigPage that
+ * lists the locally-assigned values for any variables in the world that have
+ * such a local assignment.
+ */
+52
+static ConfigPage *ConfigPage::get_local_page(void);
+
+388 8 get_name 0 4 769 20 ConfigPage::get_name 0 1 5 115
+/**
+ * Returns the name of the page.  If the page was loaded from a .prc file,
+ * this is usually the filename.
+ */
+59
+inline std::string const &ConfigPage::get_name(void) const;
+
+389 10 is_special 0 4 769 22 ConfigPage::is_special 0 1 6 248
+/**
+ * Returns true if this is the special "default" or "local" page, or false if
+ * it is an ordinary page, e.g.  an implicit page loaded from a prc file at
+ * startup, or an explicit page created by
+ * ConfigPageManager::make_explicit_page().
+ */
+47
+inline bool ConfigPage::is_special(void) const;
+
+390 11 is_implicit 0 4 769 23 ConfigPage::is_implicit 0 1 7 180
+/**
+ * Returns true if the page was loaded by implicitly searching the config path
+ * on startup, or false if it was explicitly loaded by dynamic code after
+ * initial startup.
+ */
+48
+inline bool ConfigPage::is_implicit(void) const;
+
+391 8 set_sort 0 4 769 20 ConfigPage::set_sort 0 1 8 363
+/**
+ * Changes the explicit sort order of this particular ConfigPage.  Lower-
+ * numbered pages supercede higher-numbered pages.  Initially, all explicitly-
+ * loaded pages have sort value 0, and implicitly-loaded pages (found on disk)
+ * have sort value 10; you may set an individual page higher or lower to
+ * influence its priority relative to other pages.
+ */
+36
+void ConfigPage::set_sort(int sort);
+
+392 8 get_sort 0 4 769 20 ConfigPage::get_sort 0 1 9 93
+/**
+ * Returns the explicit sort order of this particular ConfigPage.  See
+ * set_sort().
+ */
+44
+inline int ConfigPage::get_sort(void) const;
+
+393 12 get_page_seq 0 4 769 24 ConfigPage::get_page_seq 0 1 10 413
+/**
+ * Returns the sequence number of the page.
+ *
+ * Sequence numbers for a particular class (implicit vs.  explicit) of pages
+ * are assigned as each page is loaded; each page is given a higher sequence
+ * number than all the pages loaded before it.
+ *
+ * The implicit_load pages, which are discovered in the file system
+ * automatically, have a different set of sequence numbers than the explicit
+ * pages.
+ */
+48
+inline int ConfigPage::get_page_seq(void) const;
+
+394 15 get_trust_level 0 4 769 27 ConfigPage::get_trust_level 0 1 11 302
+/**
+ * Returns the trust level associated with this page.  An untrusted page is
+ * trust level 0; if the page was loaded from a signed .prc file, its trust
+ * level is the index number of the certificate that signed it.  Generally, a
+ * higher trust level value represents a greater level of trust.
+ */
+51
+inline int ConfigPage::get_trust_level(void) const;
+
+395 15 set_trust_level 0 4 769 27 ConfigPage::set_trust_level 0 1 12 195
+/**
+ * Explicitly sets the trust level on this particular page.  Note that any
+ * subsequent changes to the page, or to any variable declarations on it, will
+ * reset the trust level to zero.
+ */
+57
+inline void ConfigPage::set_trust_level(int trust_level);
+
+396 13 get_signature 0 4 769 25 ConfigPage::get_signature 0 1 13 153
+/**
+ * Returns the raw binary signature that was found in the prc file, if any.
+ * This method is probably not terribly useful for most applications.
+ */
+64
+inline std::string const &ConfigPage::get_signature(void) const;
+
+397 5 clear 0 4 769 17 ConfigPage::clear 0 1 14 57
+/**
+ * Removes all of the declarations from the page.
+ */
+29
+void ConfigPage::clear(void);
+
+398 8 read_prc 0 4 769 20 ConfigPage::read_prc 0 1 15 392
+/**
+ * Reads the contents of a complete prc file, as returned by the indicated
+ * istream, into the current page file.  Returns true on success, or false on
+ * some I/O error.
+ *
+ * This is a low-level interface.  Normally you do not need to call it
+ * directly.  See the global functions load_prc_file() and unload_prc_file(),
+ * defined in panda/src/putil, for a higher-level interface.
+ */
+44
+bool ConfigPage::read_prc(std::istream &in);
+
+399 18 read_encrypted_prc 0 4 769 30 ConfigPage::read_encrypted_prc 0 1 16 155
+/**
+ * Automatically decrypts and reads the stream, given the indicated password.
+ * Note that if the password is incorrect, the result may be garbage.
+ */
+83
+bool ConfigPage::read_encrypted_prc(std::istream &in, std::string const &password);
+
+400 16 make_declaration 0 4 769 28 ConfigPage::make_declaration 0 2 17 18 168
+/**
+ * Adds the indicated variable/value pair as a new declaration on the page.
+ */
+
+/**
+ * Adds the indicated variable/value pair as a new declaration on the page.
+ */
+208
+ConfigDeclaration *ConfigPage::make_declaration(std::string const &variable, std::string const &value);
+ConfigDeclaration *ConfigPage::make_declaration(ConfigVariableCore *variable, std::string const &value);
+
+401 18 delete_declaration 0 4 769 30 ConfigPage::delete_declaration 0 1 19 171
+/**
+ * Removes the indicated declaration from the page and deletes it.  Returns
+ * true if the declaration is successfully removed, false if it was not on the
+ * page.
+ */
+61
+bool ConfigPage::delete_declaration(ConfigDeclaration *decl);
+
+402 20 get_num_declarations 0 4 769 32 ConfigPage::get_num_declarations 0 1 20 58
+/**
+ * Returns the number of declarations on the page.
+ */
+57
+std::size_t ConfigPage::get_num_declarations(void) const;
+
+403 15 get_declaration 0 4 769 27 ConfigPage::get_declaration 0 1 21 51
+/**
+ * Returns the nth declaration on the page.
+ */
+74
+ConfigDeclaration const *ConfigPage::get_declaration(std::size_t n) const;
+
+404 18 modify_declaration 0 4 769 30 ConfigPage::modify_declaration 0 1 22 180
+/**
+ * Returns a modifiable pointer to the nth declaration on the page.  Any
+ * modifications will appear in the output, if the page is written out with
+ * ConfigPage::write().
+ */
+65
+ConfigDeclaration *ConfigPage::modify_declaration(std::size_t n);
+
+405 17 get_variable_name 0 4 769 29 ConfigPage::get_variable_name 0 1 23 73
+/**
+ * Returns the variable named by the nth declaration on the page.
+ */
+63
+std::string ConfigPage::get_variable_name(std::size_t n) const;
+
+406 16 get_string_value 0 4 769 28 ConfigPage::get_string_value 0 1 24 73
+/**
+ * Returns the value assigned by the nth declaration on the page.
+ */
+62
+std::string ConfigPage::get_string_value(std::size_t n) const;
+
+407 16 is_variable_used 0 4 769 28 ConfigPage::is_variable_used 0 1 25 105
+/**
+ * Returns true if the nth active variable on the page has been used by code,
+ * false otherwise.
+ */
+55
+bool ConfigPage::is_variable_used(std::size_t n) const;
+
+408 8 get_page 0 4 776 27 ConfigDeclaration::get_page 0 1 29 67
+/**
+ * Returns the page on which this declaration can be found.
+ */
+59
+inline ConfigPage *ConfigDeclaration::get_page(void) const;
+
+409 12 get_variable 0 4 776 31 ConfigDeclaration::get_variable 0 1 30 148
+/**
+ * Returns the variable that this declaration names.  This variable may or may
+ * not have been defined by the time the declaration is read.
+ */
+71
+inline ConfigVariableCore *ConfigDeclaration::get_variable(void) const;
+
+410 8 get_name 0 4 779 28 ConfigVariableCore::get_name 0 1 53 44
+/**
+ * Returns the name of the variable.
+ */
+67
+inline std::string const &ConfigVariableCore::get_name(void) const;
+
+411 7 is_used 0 4 779 27 ConfigVariableCore::is_used 0 1 54 118
+/**
+ * Returns true if the variable has been referenced by a ConfigVariable
+ * somewhere in code, false otherwise.
+ */
+52
+inline bool ConfigVariableCore::is_used(void) const;
+
+412 14 get_value_type 0 4 779 34 ConfigVariableCore::get_value_type 0 1 55 125
+/**
+ * Returns the stated type of this variable.  If the variable has not yet been
+ * defined, this will be VT_undefined.
+ */
+77
+inline ConfigFlags::ValueType ConfigVariableCore::get_value_type(void) const;
+
+413 15 get_description 0 4 779 35 ConfigVariableCore::get_description 0 1 56 82
+/**
+ * Returns the brief description of this variable, if it has been defined.
+ */
+74
+inline std::string const &ConfigVariableCore::get_description(void) const;
+
+414 9 get_flags 0 4 779 29 ConfigVariableCore::get_flags 0 1 57 250
+/**
+ * Returns the flags value as set by set_flags().  This includes the trust
+ * level and some other settings.  See the individual methods is_closed(),
+ * get_trust_level(), etc.  to pull out the semantic meaning of these flags
+ * individually.
+ */
+53
+inline int ConfigVariableCore::get_flags(void) const;
+
+415 9 is_closed 0 4 779 29 ConfigVariableCore::is_closed 0 1 58 413
+/**
+ * Returns true if the variable is not trusted by any prc file (and hence
+ * cannot be modified from its compiled-in default value), or false for the
+ * normal case, in which the variable can be modified by any prc file at or
+ * above its trust level (see get_trust_level()).
+ *
+ * This value only has effect in a release build (specifically, when
+ * PRC_RESPECT_TRUST_LEVEL is defined true in Config.pp).
+ */
+54
+inline bool ConfigVariableCore::is_closed(void) const;
+
+416 15 get_trust_level 0 4 779 35 ConfigVariableCore::get_trust_level 0 1 59 479
+/**
+ * Returns the minimum trust_level a prc file must demonstrate in order to
+ * redefine the value for this variable.  Arguably, this should be called the
+ * "mistrust level", since the larger the value, the more suspicious we are of
+ * prc files.  This value is not used if is_closed() returns true, which
+ * indicates no file may be trusted.
+ *
+ * This value only has effect in a release build (specifically, when
+ * PRC_RESPECT_TRUST_LEVEL is defined true in Config.pp).
+ */
+59
+inline int ConfigVariableCore::get_trust_level(void) const;
+
+417 10 is_dynamic 0 4 779 30 ConfigVariableCore::is_dynamic 0 1 60 232
+/**
+ * Returns true if the variable was indicated as "dynamic" by its constructor,
+ * indicating that its name was dynamically generated, possibly from a large
+ * pool, and it should not be listed along with the other variables.
+ */
+55
+inline bool ConfigVariableCore::is_dynamic(void) const;
+
+418 17 get_default_value 0 4 779 37 ConfigVariableCore::get_default_value 0 1 61 137
+/**
+ * Returns the default variable specified for this variable.  If the variable
+ * has not yet been defined, this will return NULL.
+ */
+82
+inline ConfigDeclaration const *ConfigVariableCore::get_default_value(void) const;
+
+419 14 set_value_type 0 4 779 34 ConfigVariableCore::set_value_type 0 1 62 212
+/**
+ * Specifies the type of this variable.  See get_value_type().  It is not an
+ * error to call this multiple times, but if the value changes once
+ * get_declaration() has been called, a warning is printed.
+ */
+75
+void ConfigVariableCore::set_value_type(ConfigFlags::ValueType value_type);
+
+420 9 set_flags 0 4 779 29 ConfigVariableCore::set_flags 0 1 63 214
+/**
+ * Specifies the trust level of this variable.  See get_flags().  It is not an
+ * error to call this multiple times, but if the value changes once
+ * get_declaration() has been called, a warning is printed.
+ */
+46
+void ConfigVariableCore::set_flags(int flags);
+
+421 15 set_description 0 4 779 35 ConfigVariableCore::set_description 0 1 64 232
+/**
+ * Specifies the one-line description of this variable.  See
+ * get_description().  It is not an error to call this multiple times, but if
+ * the value changes once get_declaration() has been called, a warning is
+ * printed.
+ */
+73
+void ConfigVariableCore::set_description(std::string const &description);
+
+422 17 set_default_value 0 4 779 37 ConfigVariableCore::set_default_value 0 1 65 97
+/**
+ * Specifies the default value for this variable if it is not defined in any
+ * prc file.
+ */
+77
+void ConfigVariableCore::set_default_value(std::string const &default_value);
+
+423 8 set_used 0 4 779 28 ConfigVariableCore::set_used 0 1 66 75
+/**
+ * Marks that the variable has been "declared" by a ConfigVariable.
+ */
+47
+inline void ConfigVariableCore::set_used(void);
+
+424 16 make_local_value 0 4 779 36 ConfigVariableCore::make_local_value 0 1 67 324
+/**
+ * Creates a new local value for this variable, if there is not already one
+ * specified.  This will shadow any values defined in the various .prc files.
+ *
+ * If there is already a local value defined for this variable, simply returns
+ * that one.
+ *
+ * Use clear_local_value() to remove the local value definition.
+ */
+62
+ConfigDeclaration *ConfigVariableCore::make_local_value(void);
+
+425 17 clear_local_value 0 4 779 37 ConfigVariableCore::clear_local_value 0 1 68 240
+/**
+ * Removes the local value defined for this variable, and allows its value to
+ * be once again retrieved from the .prc files.
+ *
+ * Returns true if the value was successfully removed, false if it did not
+ * exist in the first place.
+ */
+49
+bool ConfigVariableCore::clear_local_value(void);
+
+426 15 has_local_value 0 4 779 35 ConfigVariableCore::has_local_value 0 1 69 148
+/**
+ * Returns true if this variable's value has been shadowed by a local
+ * assignment (as created via make_local_value()), or false otherwise.
+ */
+60
+inline bool ConfigVariableCore::has_local_value(void) const;
+
+427 9 has_value 0 4 779 29 ConfigVariableCore::has_value 0 1 70 149
+/**
+ * Returns true if this variable has an explicit value, either from a prc file
+ * or locally set, or false if variable has its default value.
+ */
+47
+bool ConfigVariableCore::has_value(void) const;
+
+428 20 get_num_declarations 0 4 779 40 ConfigVariableCore::get_num_declarations 0 1 71 194
+/**
+ * Returns the number of declarations that contribute to this variable's
+ * value.  If the variable has been defined, this will always be at least 1
+ * (for the default value, at least).
+ */
+65
+std::size_t ConfigVariableCore::get_num_declarations(void) const;
+
+429 15 get_declaration 0 4 779 35 ConfigVariableCore::get_declaration 0 1 72 285
+/**
+ * Returns the nth declarations that contributes to this variable's value.
+ * The declarations are arranged in order such that earlier declarations
+ * shadow later declarations; thus, get_declaration(0) is always defined and
+ * always returns the current value of the variable.
+ */
+82
+ConfigDeclaration const *ConfigVariableCore::get_declaration(std::size_t n) const;
+
+430 18 get_num_references 0 4 779 38 ConfigVariableCore::get_num_references 0 1 73 157
+/**
+ * Returns the number of prc files that reference this variable.  This is not
+ * exactly the same as the number of declarations; see get_reference().
+ */
+70
+inline std::size_t ConfigVariableCore::get_num_references(void) const;
+
+431 13 get_reference 0 4 779 33 ConfigVariableCore::get_reference 0 1 74 335
+/**
+ * Returns the nth declaration in a prc file that references this variable.
+ * This is similar, but not identical to, get_declaration().  The difference
+ * is that this will list *only* true references in a prc file, and will not
+ * list default values or locally-assigned values; it also will list even the
+ * untrusted files.
+ */
+87
+inline ConfigDeclaration const *ConfigVariableCore::get_reference(std::size_t n) const;
+
+432 26 get_num_trusted_references 0 4 779 46 ConfigVariableCore::get_num_trusted_references 0 1 75 115
+/**
+ * Returns the number of trusted prc files that reference this variable.  See
+ * also get_num_references().
+ */
+78
+inline std::size_t ConfigVariableCore::get_num_trusted_references(void) const;
+
+433 21 get_trusted_reference 0 4 779 41 ConfigVariableCore::get_trusted_reference 0 1 76 428
+/**
+ * Returns the nth declaration in a trusted prc file that references this
+ * variable.  This is similar, but not identical to, get_declaration().  The
+ * difference is that this will list *only* true references in a prc file, and
+ * will not list default values or locally-assigned values.
+ *
+ * This is also similar to get_reference(), except that it only lists the
+ * trusted declarations, omitting the untrusted ones.
+ */
+95
+inline ConfigDeclaration const *ConfigVariableCore::get_trusted_reference(std::size_t n) const;
+
+434 25 get_num_unique_references 0 4 779 45 ConfigVariableCore::get_num_unique_references 0 1 77 107
+/**
+ * Returns the number of trusted, unique (by string value) values there exist
+ * for this variable.
+ */
+77
+inline std::size_t ConfigVariableCore::get_num_unique_references(void) const;
+
+435 20 get_unique_reference 0 4 779 40 ConfigVariableCore::get_unique_reference 0 1 78 157
+/**
+ * Returns the nth trusted, unique value for this variable.  This is similar
+ * to get_trusted_reference(), except that duplicate values are removed.
+ */
+94
+inline ConfigDeclaration const *ConfigVariableCore::get_unique_reference(std::size_t n) const;
+
+436 6 output 0 4 779 26 ConfigVariableCore::output 0 1 79 10
+/**
+ *
+ */
+57
+void ConfigVariableCore::output(std::ostream &out) const;
+
+437 5 write 0 4 779 25 ConfigVariableCore::write 0 1 80 10
+/**
+ *
+ */
+56
+void ConfigVariableCore::write(std::ostream &out) const;
+
+438 16 get_string_value 0 4 776 35 ConfigDeclaration::get_string_value 0 1 31 186
+/**
+ * Returns the value assigned to this variable.  This is the original one-line
+ * text defined for the variable in the .prc file (or passed to
+ * ConfigPage::make_declaration()).
+ */
+74
+inline std::string const &ConfigDeclaration::get_string_value(void) const;
+
+439 16 set_string_value 0 4 776 35 ConfigDeclaration::set_string_value 0 1 32 55
+/**
+ * Changes the value assigned to this variable.
+ */
+74
+inline void ConfigDeclaration::set_string_value(std::string const &value);
+
+440 13 get_num_words 0 4 776 32 ConfigDeclaration::get_num_words 0 1 33 156
+/**
+ * Returns the number of words in the declaration's value.  A word is defined
+ * as a sequence of non-whitespace characters delimited by whitespace.
+ */
+64
+inline std::size_t ConfigDeclaration::get_num_words(void) const;
+
+441 15 has_string_word 0 4 776 34 ConfigDeclaration::has_string_word 0 1 34 184
+/**
+ * Returns true if the declaration's value has a valid string value for the
+ * nth word.  This is really the same thing as asking if there are at least n
+ * words in the value.
+ */
+68
+inline bool ConfigDeclaration::has_string_word(std::size_t n) const;
+
+442 13 has_bool_word 0 4 776 32 ConfigDeclaration::has_bool_word 0 1 35 97
+/**
+ * Returns true if the declaration's value has a valid boolean value for the
+ * nth word.
+ */
+66
+inline bool ConfigDeclaration::has_bool_word(std::size_t n) const;
+
+443 12 has_int_word 0 4 776 31 ConfigDeclaration::has_int_word 0 1 36 97
+/**
+ * Returns true if the declaration's value has a valid integer value for the
+ * nth word.
+ */
+65
+inline bool ConfigDeclaration::has_int_word(std::size_t n) const;
+
+444 14 has_int64_word 0 4 776 33 ConfigDeclaration::has_int64_word 0 1 37 95
+/**
+ * Returns true if the declaration's value has a valid int64 value for the nth
+ * word.
+ */
+67
+inline bool ConfigDeclaration::has_int64_word(std::size_t n) const;
+
+445 15 has_double_word 0 4 776 34 ConfigDeclaration::has_double_word 0 1 38 97
+/**
+ * Returns true if the declaration's value has a valid integer value for the
+ * nth word.
+ */
+68
+inline bool ConfigDeclaration::has_double_word(std::size_t n) const;
+
+446 15 get_string_word 0 4 776 34 ConfigDeclaration::get_string_word 0 1 39 153
+/**
+ * Returns the string value of the nth word of the declaration's value, or
+ * empty string if there is no nth value.  See also has_string_word().
+ */
+75
+inline std::string ConfigDeclaration::get_string_word(std::size_t n) const;
+
+447 13 get_bool_word 0 4 776 32 ConfigDeclaration::get_bool_word 0 1 40 145
+/**
+ * Returns the boolean value of the nth word of the declaration's value, or
+ * false if there is no nth value.  See also has_bool_word().
+ */
+66
+inline bool ConfigDeclaration::get_bool_word(std::size_t n) const;
+
+448 12 get_int_word 0 4 776 31 ConfigDeclaration::get_int_word 0 1 41 140
+/**
+ * Returns the integer value of the nth word of the declaration's value, or 0
+ * if there is no nth value.  See also has_int_word().
+ */
+64
+inline int ConfigDeclaration::get_int_word(std::size_t n) const;
+
+449 14 get_int64_word 0 4 776 33 ConfigDeclaration::get_int64_word 0 1 42 140
+/**
+ * Returns the int64 value of the nth word of the declaration's value, or 0 if
+ * there is no nth value.  See also has_int64_word().
+ */
+70
+inline int64_t ConfigDeclaration::get_int64_word(std::size_t n) const;
+
+450 15 get_double_word 0 4 776 34 ConfigDeclaration::get_double_word 0 1 43 143
+/**
+ * Returns the integer value of the nth word of the declaration's value, or 0
+ * if there is no nth value.  See also has_double_word().
+ */
+70
+inline double ConfigDeclaration::get_double_word(std::size_t n) const;
+
+451 15 set_string_word 0 4 776 34 ConfigDeclaration::set_string_word 0 1 44 92
+/**
+ * Changes the nth word to the indicated value without affecting the other
+ * words.
+ */
+81
+void ConfigDeclaration::set_string_word(std::size_t n, std::string const &value);
+
+452 13 set_bool_word 0 4 776 32 ConfigDeclaration::set_bool_word 0 1 45 92
+/**
+ * Changes the nth word to the indicated value without affecting the other
+ * words.
+ */
+65
+void ConfigDeclaration::set_bool_word(std::size_t n, bool value);
+
+453 12 set_int_word 0 4 776 31 ConfigDeclaration::set_int_word 0 1 46 92
+/**
+ * Changes the nth word to the indicated value without affecting the other
+ * words.
+ */
+63
+void ConfigDeclaration::set_int_word(std::size_t n, int value);
+
+454 14 set_int64_word 0 4 776 33 ConfigDeclaration::set_int64_word 0 1 47 92
+/**
+ * Changes the nth word to the indicated value without affecting the other
+ * words.
+ */
+69
+void ConfigDeclaration::set_int64_word(std::size_t n, int64_t value);
+
+455 15 set_double_word 0 4 776 34 ConfigDeclaration::set_double_word 0 1 48 92
+/**
+ * Changes the nth word to the indicated value without affecting the other
+ * words.
+ */
+69
+void ConfigDeclaration::set_double_word(std::size_t n, double value);
+
+456 18 get_filename_value 0 4 776 37 ConfigDeclaration::get_filename_value 0 1 49 100
+/**
+ * Interprets the string value as a filename and returns it, with any
+ * variables expanded.
+ */
+59
+Filename ConfigDeclaration::get_filename_value(void) const;
+
+457 12 get_decl_seq 0 4 776 31 ConfigDeclaration::get_decl_seq 0 1 50 254
+/**
+ * Returns the sequence number of the declaration within the page.  Sequence
+ * numbers are assigned as each declaration is created; each declaration is
+ * given a higher sequence number than all the declarations created in the
+ * page before it.
+ */
+55
+inline int ConfigDeclaration::get_decl_seq(void) const;
+
+458 6 output 0 4 776 25 ConfigDeclaration::output 0 1 51 10
+/**
+ *
+ */
+56
+void ConfigDeclaration::output(std::ostream &out) const;
+
+459 5 write 0 4 776 24 ConfigDeclaration::write 0 1 52 10
+/**
+ *
+ */
+55
+void ConfigDeclaration::write(std::ostream &out) const;
+
+460 6 output 0 4 769 18 ConfigPage::output 0 1 26 10
+/**
+ *
+ */
+49
+void ConfigPage::output(std::ostream &out) const;
+
+461 22 output_brief_signature 0 4 769 34 ConfigPage::output_brief_signature 0 1 27 61
+/**
+ * Outputs the first few hex digits of the signature.
+ */
+65
+void ConfigPage::output_brief_signature(std::ostream &out) const;
+
+462 5 write 0 4 769 17 ConfigPage::write 0 1 28 10
+/**
+ *
+ */
+48
+void ConfigPage::write(std::ostream &out) const;
+
+463 6 Notify 0 4 783 14 Notify::Notify 0 2 81 82 10
+/**
+ *
+ */
+70
+Notify::Notify(void);
+inline Notify::Notify(Notify const &) = default;
+
+464 7 ~Notify 0 4 783 15 Notify::~Notify 0 0 10
+/**
+ *
+ */
+22
+Notify::~Notify(void);
+
+465 15 set_ostream_ptr 0 4 783 23 Notify::set_ostream_ptr 0 1 83 250
+/**
+ * Changes the ostream that all subsequent Notify messages will be written to.
+ * If the previous ostream was set with delete_later = true, this will delete
+ * the previous ostream.  If ostream_ptr is NULL, this resets the default to
+ * cerr.
+ */
+75
+void Notify::set_ostream_ptr(std::ostream *ostream_ptr, bool delete_later);
+
+466 15 get_ostream_ptr 0 4 783 23 Notify::get_ostream_ptr 0 1 84 67
+/**
+ * Returns the system-wide ostream for all Notify messages.
+ */
+50
+std::ostream *Notify::get_ostream_ptr(void) const;
+
+467 18 set_assert_handler 0 4 783 26 Notify::set_assert_handler 0 0 540
+/**
+ * Sets a pointer to a C function that will be called when an assertion test
+ * fails.  This function may decide what to do when that happens: it may
+ * choose to abort or return.  If it returns, it should return true to
+ * indicate that the assertion should be respected (and the calling function
+ * should return out of its block of code), or false to indicate that the
+ * assertion should be completely ignored.
+ *
+ * If an assert handler is installed, it completely replaces the default
+ * behavior of nassertr() and nassertv().
+ */
+71
+void Notify::set_assert_handler(Notify::AssertHandler *assert_handler);
+
+468 20 clear_assert_handler 0 4 783 28 Notify::clear_assert_handler 0 1 85 110
+/**
+ * Removes the installed assert handler and restores default behavior of
+ * nassertr() and nassertv().
+ */
+40
+void Notify::clear_assert_handler(void);
+
+469 18 has_assert_handler 0 4 783 26 Notify::has_assert_handler 0 1 86 85
+/**
+ * Returns true if a user assert handler has been installed, false otherwise.
+ */
+44
+bool Notify::has_assert_handler(void) const;
+
+470 18 get_assert_handler 0 4 783 26 Notify::get_assert_handler 0 1 87 110
+/**
+ * Returns a pointer to the user-installed assert handler, if one was
+ * installed, or NULL otherwise.
+ */
+62
+Notify::AssertHandler *Notify::get_assert_handler(void) const;
+
+471 17 has_assert_failed 0 4 783 25 Notify::has_assert_failed 0 1 88 637
+/**
+ * Returns true if an assertion test has failed (and not been ignored) since
+ * the last call to clear_assert_failed().
+ *
+ * When an assertion test fails, the assert handler may decide either to
+ * abort, return, or ignore the assertion.  Naturally, if it decides to abort,
+ * this flag is irrelevant.  If it chooses to ignore the assertion, the flag
+ * is not set.  However, if the assert handler chooses to return out of the
+ * function (the normal case), it will also set this flag to indicate that an
+ * assertion failure has occurred.
+ *
+ * This will also be the behavior in the absence of a user-defined assert
+ * handler.
+ */
+50
+inline bool Notify::has_assert_failed(void) const;
+
+472 24 get_assert_error_message 0 4 783 32 Notify::get_assert_error_message 0 1 89 100
+/**
+ * Returns the error message that corresponds to the assertion that most
+ * recently failed.
+ */
+71
+inline std::string const &Notify::get_assert_error_message(void) const;
+
+473 19 clear_assert_failed 0 4 783 27 Notify::clear_assert_failed 0 1 90 114
+/**
+ * Resets the assert_failed flag that is set whenever an assertion test fails.
+ * See has_assert_failed().
+ */
+46
+inline void Notify::clear_assert_failed(void);
+
+474 16 get_top_category 0 4 783 24 Notify::get_top_category 0 1 91 129
+/**
+ * Returns the topmost Category in the hierarchy.  This may be used to
+ * traverse the hierarchy of available Categories.
+ */
+47
+NotifyCategory *Notify::get_top_category(void);
+
+475 12 get_category 0 4 783 20 Notify::get_category 0 3 92 93 94 844
+/**
+ * Finds or creates a new Category given the basename of the category and its
+ * parent in the category hierarchy.  The parent pointer may be NULL to
+ * indicate this is a top-level Category.
+ */
+
+/**
+ * Finds or creates a new Category given the basename of the category and the
+ * fullname of its parent.  This is another way to create a category when you
+ * don't have a pointer to its parent handy, but you know the name of its
+ * parent.  If the parent Category does not already exist, it will be created.
+ */
+
+/**
+ * Finds or creates a new Category given the fullname of the Category.  This
+ * name should be a sequence of colon-separated names of parent Categories,
+ * ending in the basename of this Category, e.g.  display:glxdisplay.  This is
+ * a shorthand way to define a Category when a pointer to its parent is not
+ * handy.
+ */
+269
+NotifyCategory *Notify::get_category(std::string const &basename, NotifyCategory *parent_category);
+NotifyCategory *Notify::get_category(std::string const &basename, std::string const &parent_fullname);
+NotifyCategory *Notify::get_category(std::string const &fullname);
+
+476 3 out 0 4 783 11 Notify::out 0 1 95 189
+/**
+ * A convenient way to get the ostream that should be written to for a Notify-
+ * type message.  Also see Category::out() for a message that is specific to a
+ * particular Category.
+ */
+39
+static std::ostream &Notify::out(void);
+
+477 4 null 0 4 783 12 Notify::null 0 1 96 159
+/**
+ * A convenient way to get an ostream that doesn't do anything.  Returned by
+ * Category::out() when a particular Category and/or Severity is disabled.
+ */
+40
+static std::ostream &Notify::null(void);
+
+478 12 write_string 0 4 783 20 Notify::write_string 0 1 97 209
+/**
+ * A convenient way for scripting languages, which may know nothing about
+ * ostreams, to write to Notify.  This writes a single string, followed by an
+ * implicit newline, to the Notify output stream.
+ */
+57
+static void Notify::write_string(std::string const &str);
+
+479 3 ptr 0 4 783 11 Notify::ptr 0 1 98 104
+/**
+ * Returns the pointer to the global Notify object.  There is only one of
+ * these in the world.
+ */
+33
+static Notify *Notify::ptr(void);
+
+480 21 loaded_implicit_pages 0 4 784 40 ConfigPageManager::loaded_implicit_pages 0 1 99 157
+/**
+ * Returns true if the implicit `*.prc` files have already been loaded, false
+ * otherwise.  Normally this will only be false briefly before startup.
+ */
+65
+inline bool ConfigPageManager::loaded_implicit_pages(void) const;
+
+481 19 load_implicit_pages 0 4 784 38 ConfigPageManager::load_implicit_pages 0 1 100 252
+/**
+ * Searches the PRC_DIR and/or PRC_PATH directories for `*.prc` files and loads
+ * them in as pages.  This is normally called automatically at startup time,
+ * when the first variable's value is referenced.  See also
+ * reload_implicit_pages().
+ */
+57
+inline void ConfigPageManager::load_implicit_pages(void);
+
+482 21 reload_implicit_pages 0 4 784 40 ConfigPageManager::reload_implicit_pages 0 1 101 211
+/**
+ * Searches the PRC_DIR and/or PRC_PATH directories for *.prc files and loads
+ * them in as pages.
+ *
+ * This may be called after startup, to force the system to re-read all of the
+ * implicit prc files.
+ */
+52
+void ConfigPageManager::reload_implicit_pages(void);
+
+483 15 get_search_path 0 4 784 34 ConfigPageManager::get_search_path 0 1 102 274
+/**
+ * Returns the search path used to locate implicit .prc files.  This is
+ * determined by the PRC_DIR and PRC_PATH environment variables.  The object
+ * returned by this method may be modified to change the path at runtime, and
+ * then reload_implicit_pages() called.
+ */
+61
+inline DSearchPath &ConfigPageManager::get_search_path(void);
+
+484 20 get_num_prc_patterns 0 4 784 39 ConfigPageManager::get_num_prc_patterns 0 1 103 270
+/**
+ * Returns the number of patterns, like `*.prc`, that are compiled in that
+ * will be searched for as default config filenames.  Normally there is only
+ * one pattern, and it is `*.prc`, but others may be specified with the
+ * PRC_FILENAME variable in Config.pp.
+ */
+71
+inline std::size_t ConfigPageManager::get_num_prc_patterns(void) const;
+
+485 15 get_prc_pattern 0 4 784 34 ConfigPageManager::get_prc_pattern 0 1 104 131
+/**
+ * Returns the nth filename pattern that will be considered a match as a valid
+ * config file.  See get_num_prc_patterns().
+ */
+75
+inline std::string ConfigPageManager::get_prc_pattern(std::size_t n) const;
+
+486 30 get_num_prc_encrypted_patterns 0 4 784 49 ConfigPageManager::get_num_prc_encrypted_patterns 0 1 105 170
+/**
+ * Returns the number of patterns, like `*.pre`, that are compiled in that
+ * will be searched for as special config files that are understood to be
+ * encrypted.
+ */
+81
+inline std::size_t ConfigPageManager::get_num_prc_encrypted_patterns(void) const;
+
+487 25 get_prc_encrypted_pattern 0 4 784 44 ConfigPageManager::get_prc_encrypted_pattern 0 1 106 151
+/**
+ * Returns the nth filename pattern that will be considered a match as a valid
+ * encrypted config file.  See get_num_prc_encrypted_patterns().
+ */
+85
+inline std::string ConfigPageManager::get_prc_encrypted_pattern(std::size_t n) const;
+
+488 31 get_num_prc_executable_patterns 0 4 784 50 ConfigPageManager::get_num_prc_executable_patterns 0 1 107 232
+/**
+ * Returns the number of patterns, like `*.exe`, that are compiled in that
+ * will be searched for as special config files that are to be executed as a
+ * program, and their output taken to be input.  This is normally empty.
+ */
+82
+inline std::size_t ConfigPageManager::get_num_prc_executable_patterns(void) const;
+
+489 26 get_prc_executable_pattern 0 4 784 45 ConfigPageManager::get_prc_executable_pattern 0 1 108 159
+/**
+ * Returns the nth filename pattern that will be considered a match as a valid
+ * executable-style config file.  See get_num_prc_executable_patterns().
+ */
+86
+inline std::string ConfigPageManager::get_prc_executable_pattern(std::size_t n) const;
+
+490 18 make_explicit_page 0 4 784 37 ConfigPageManager::make_explicit_page 0 1 109 206
+/**
+ * Creates and returns a new, empty ConfigPage.  This page will be stacked on
+ * top of any pages that were created before; it may shadow variable
+ * declarations that are defined in previous pages.
+ */
+75
+ConfigPage *ConfigPageManager::make_explicit_page(std::string const &name);
+
+491 20 delete_explicit_page 0 4 784 39 ConfigPageManager::delete_explicit_page 0 1 110 318
+/**
+ * Removes a previously-constructed ConfigPage from the set of active pages,
+ * and deletes it.  The ConfigPage object is no longer valid after this call.
+ * Returns true if the page is successfully deleted, or false if it was
+ * unknown (which should never happen if the page was legitimately
+ * constructed).
+ */
+63
+bool ConfigPageManager::delete_explicit_page(ConfigPage *page);
+
+492 22 get_num_implicit_pages 0 4 784 41 ConfigPageManager::get_num_implicit_pages 0 1 111 174
+/**
+ * Returns the current number of implicitly-loaded ConfigPages in the world.
+ * These represent files that were automatically discovered on the disk as
+ * .prc files.
+ */
+73
+inline std::size_t ConfigPageManager::get_num_implicit_pages(void) const;
+
+493 17 get_implicit_page 0 4 784 36 ConfigPageManager::get_implicit_page 0 1 112 94
+/**
+ * Returns the nth implicit ConfigPage in the world.  See
+ * get_num_implicit_pages().
+ */
+77
+inline ConfigPage *ConfigPageManager::get_implicit_page(std::size_t n) const;
+
+494 22 get_num_explicit_pages 0 4 784 41 ConfigPageManager::get_num_explicit_pages 0 1 113 214
+/**
+ * Returns the current number of explicitly-loaded ConfigPages in the world.
+ * These represent pages that were loaded dynamically at runtime by explicit
+ * calls to ConfigPageManager::make_explicit_page().
+ */
+73
+inline std::size_t ConfigPageManager::get_num_explicit_pages(void) const;
+
+495 17 get_explicit_page 0 4 784 36 ConfigPageManager::get_explicit_page 0 1 114 94
+/**
+ * Returns the nth explicit ConfigPage in the world.  See
+ * get_num_explicit_pages().
+ */
+77
+inline ConfigPage *ConfigPageManager::get_explicit_page(std::size_t n) const;
+
+496 6 output 0 4 784 25 ConfigPageManager::output 0 1 115 10
+/**
+ *
+ */
+56
+void ConfigPageManager::output(std::ostream &out) const;
+
+497 5 write 0 4 784 24 ConfigPageManager::write 0 1 116 10
+/**
+ *
+ */
+55
+void ConfigPageManager::write(std::ostream &out) const;
+
+498 14 get_global_ptr 0 4 784 33 ConfigPageManager::get_global_ptr 0 1 117 10
+/**
+ *
+ */
+66
+static ConfigPageManager *ConfigPageManager::get_global_ptr(void);
+
+499 13 make_variable 0 4 785 36 ConfigVariableManager::make_variable 0 1 118 181
+/**
+ * Creates and returns a new, undefined ConfigVariableCore with the indicated
+ * name; or if a variable with this name has already been created, returns
+ * that one instead.
+ */
+82
+ConfigVariableCore *ConfigVariableManager::make_variable(std::string const &name);
+
+500 22 make_variable_template 0 4 785 45 ConfigVariableManager::make_variable_template 0 1 119 899
+/**
+ * Defines a variable "template" to match against dynamically-defined
+ * variables that may or may not be created in the future.
+ *
+ * The template consists of a glob pattern, e.g.  `notify-level-*`, which will
+ * be tested against any config variable passed to a future call to
+ * make_variable().  If the pattern matches, the returned ConfigVariableCore
+ * is copied to define the new variable, instead of creating a default, empty
+ * one.
+ *
+ * This is useful to pre-specify default values for a family of variables that
+ * all have similar properties, and all may not be created at the same time.
+ * It is especially useful to avoid cluttering up the list of available
+ * variables with user-declared variables that have not been defined yet by
+ * the application (e.g. `egg-object-type-*`).
+ *
+ * This method basically pre-defines all variables that match the specified
+ * glob pattern.
+ */
+215
+ConfigVariableCore *ConfigVariableManager::make_variable_template(std::string const &pattern, ConfigFlags::ValueType type, std::string const &default_value, std::string const &description = string(), int flags = 0);
+
+501 17 get_num_variables 0 4 785 40 ConfigVariableManager::get_num_variables 0 1 120 81
+/**
+ * Returns the current number of active ConfigVariableCores in the world.
+ */
+72
+inline std::size_t ConfigVariableManager::get_num_variables(void) const;
+
+502 12 get_variable 0 4 785 35 ConfigVariableManager::get_variable 0 1 121 66
+/**
+ * Returns the nth active ConfigVariableCore in the world.
+ */
+84
+inline ConfigVariableCore *ConfigVariableManager::get_variable(std::size_t n) const;
+
+503 17 get_variable_name 0 4 785 40 ConfigVariableManager::get_variable_name 0 1 122 73
+/**
+ * Returns the name of the nth active ConfigVariable in the list.
+ */
+74
+std::string ConfigVariableManager::get_variable_name(std::size_t n) const;
+
+504 16 is_variable_used 0 4 785 39 ConfigVariableManager::is_variable_used 0 1 123 111
+/**
+ * Returns true if the nth active ConfigVariable in the list has been used by
+ * code, false otherwise.
+ */
+66
+bool ConfigVariableManager::is_variable_used(std::size_t n) const;
+
+505 6 output 0 4 785 29 ConfigVariableManager::output 0 1 124 10
+/**
+ *
+ */
+60
+void ConfigVariableManager::output(std::ostream &out) const;
+
+506 5 write 0 4 785 28 ConfigVariableManager::write 0 1 125 10
+/**
+ *
+ */
+59
+void ConfigVariableManager::write(std::ostream &out) const;
+
+507 19 write_prc_variables 0 4 785 42 ConfigVariableManager::write_prc_variables 0 1 126 343
+/**
+ * Writes all of the prc-set config variables, as they appear in a prc file
+ * somewhere, one per line, very concisely.  This lists the dominant value in
+ * the prc file; it does not list shadowed values, and it does not list
+ * locally-set values.
+ *
+ * This is mainly intended for generating a hash of the input config file
+ * state.
+ */
+73
+void ConfigVariableManager::write_prc_variables(std::ostream &out) const;
+
+508 21 list_unused_variables 0 4 785 44 ConfigVariableManager::list_unused_variables 0 1 127 133
+/**
+ * Writes a list of all the variables that have been defined in a prc file
+ * without having been declared somewhere in code.
+ */
+62
+void ConfigVariableManager::list_unused_variables(void) const;
+
+509 14 list_variables 0 4 785 37 ConfigVariableManager::list_variables 0 1 128 123
+/**
+ * Writes a list of all the variables that have been declared somewhere in
+ * code, along with a brief description.
+ */
+55
+void ConfigVariableManager::list_variables(void) const;
+
+510 22 list_dynamic_variables 0 4 785 45 ConfigVariableManager::list_dynamic_variables 0 1 129 241
+/**
+ * Writes a list of all the "dynamic" variables that have been declared
+ * somewhere in code, along with a brief description.  This is a (usually
+ * large) list of config variables that are declared with a generated variable
+ * name.
+ */
+63
+void ConfigVariableManager::list_dynamic_variables(void) const;
+
+511 14 get_global_ptr 0 4 785 37 ConfigVariableManager::get_global_ptr 0 1 130 10
+/**
+ *
+ */
+74
+static ConfigVariableManager *ConfigVariableManager::get_global_ptr(void);
+
+512 8 get_name 0 4 786 28 ConfigVariableBase::get_name 0 1 131 44
+/**
+ * Returns the name of the variable.
+ */
+67
+inline std::string const &ConfigVariableBase::get_name(void) const;
+
+513 14 get_value_type 0 4 786 34 ConfigVariableBase::get_value_type 0 1 132 132
+/**
+ * Returns the stated type of this variable.  This should be VT_list, unless a
+ * later variable declaration has changed it.
+ */
+77
+inline ConfigFlags::ValueType ConfigVariableBase::get_value_type(void) const;
+
+514 15 get_description 0 4 786 35 ConfigVariableBase::get_description 0 1 133 82
+/**
+ * Returns the brief description of this variable, if it has been defined.
+ */
+74
+inline std::string const &ConfigVariableBase::get_description(void) const;
+
+515 9 get_flags 0 4 786 29 ConfigVariableBase::get_flags 0 1 134 250
+/**
+ * Returns the flags value as set by set_flags().  This includes the trust
+ * level and some other settings.  See the individual methods is_closed(),
+ * get_trust_level(), etc.  to pull out the semantic meaning of these flags
+ * individually.
+ */
+53
+inline int ConfigVariableBase::get_flags(void) const;
+
+516 9 is_closed 0 4 786 29 ConfigVariableBase::is_closed 0 1 135 413
+/**
+ * Returns true if the variable is not trusted by any prc file (and hence
+ * cannot be modified from its compiled-in default value), or false for the
+ * normal case, in which the variable can be modified by any prc file at or
+ * above its trust level (see get_trust_level()).
+ *
+ * This value only has effect in a release build (specifically, when
+ * PRC_RESPECT_TRUST_LEVEL is defined true in Config.pp).
+ */
+54
+inline bool ConfigVariableBase::is_closed(void) const;
+
+517 15 get_trust_level 0 4 786 35 ConfigVariableBase::get_trust_level 0 1 136 479
+/**
+ * Returns the minimum trust_level a prc file must demonstrate in order to
+ * redefine the value for this variable.  Arguably, this should be called the
+ * "mistrust level", since the larger the value, the more suspicious we are of
+ * prc files.  This value is not used if is_closed() returns true, which
+ * indicates no file may be trusted.
+ *
+ * This value only has effect in a release build (specifically, when
+ * PRC_RESPECT_TRUST_LEVEL is defined true in Config.pp).
+ */
+59
+inline int ConfigVariableBase::get_trust_level(void) const;
+
+518 10 is_dynamic 0 4 786 30 ConfigVariableBase::is_dynamic 0 1 137 232
+/**
+ * Returns true if the variable was indicated as "dynamic" by its constructor,
+ * indicating that its name was dynamically generated, possibly from a large
+ * pool, and it should not be listed along with the other variables.
+ */
+55
+inline bool ConfigVariableBase::is_dynamic(void) const;
+
+519 17 clear_local_value 0 4 786 37 ConfigVariableBase::clear_local_value 0 1 138 240
+/**
+ * Removes the local value defined for this variable, and allows its value to
+ * be once again retrieved from the .prc files.
+ *
+ * Returns true if the value was successfully removed, false if it did not
+ * exist in the first place.
+ */
+56
+inline bool ConfigVariableBase::clear_local_value(void);
+
+520 15 has_local_value 0 4 786 35 ConfigVariableBase::has_local_value 0 1 139 148
+/**
+ * Returns true if this variable's value has been shadowed by a local
+ * assignment (as created via make_local_value()), or false otherwise.
+ */
+60
+inline bool ConfigVariableBase::has_local_value(void) const;
+
+521 9 has_value 0 4 786 29 ConfigVariableBase::has_value 0 1 140 149
+/**
+ * Returns true if this variable has an explicit value, either from a prc file
+ * or locally set, or false if variable has its default value.
+ */
+54
+inline bool ConfigVariableBase::has_value(void) const;
+
+522 6 output 0 4 786 26 ConfigVariableBase::output 0 1 141 10
+/**
+ *
+ */
+64
+inline void ConfigVariableBase::output(std::ostream &out) const;
+
+523 5 write 0 4 786 25 ConfigVariableBase::write 0 1 142 10
+/**
+ *
+ */
+63
+inline void ConfigVariableBase::write(std::ostream &out) const;
+
+524 14 ConfigVariable 0 4 787 30 ConfigVariable::ConfigVariable 0 2 143 144 458
+/**
+ * This constructor is only intended to be called from a specialized
+ * ConfigVariableFoo derived class.
+ */
+
+/**
+ * This constructor is only intended to be called from a specialized
+ * ConfigVariableFoo derived class.
+ */
+
+/**
+ * Use this constructor to make a ConfigVariable of an unspecified type.
+ * Usually you'd want to do this just to reference a previously-defined
+ * ConfigVariable of a specific type, without having to know what type it is.
+ */
+145
+inline explicit ConfigVariable::ConfigVariable(std::string const &name);
+inline ConfigVariable::ConfigVariable(ConfigVariable const &) = default;
+
+525 15 ~ConfigVariable 0 4 787 31 ConfigVariable::~ConfigVariable 0 0 10
+/**
+ *
+ */
+45
+inline ConfigVariable::~ConfigVariable(void);
+
+526 16 get_string_value 0 4 787 32 ConfigVariable::get_string_value 0 1 145 77
+/**
+ * Returns the toplevel value of the variable, formatted as a string.
+ */
+71
+inline std::string const &ConfigVariable::get_string_value(void) const;
+
+527 16 set_string_value 0 4 787 32 ConfigVariable::set_string_value 0 1 146 177
+/**
+ * Changes the value assigned to this variable.  This creates a local value
+ * that shadows any values defined in the .prc files, until
+ * clear_local_value() is called.
+ */
+71
+inline void ConfigVariable::set_string_value(std::string const &value);
+
+528 11 clear_value 0 4 787 27 ConfigVariable::clear_value 0 1 147 129
+/**
+ * Removes the value assigned to this variable, and lets its original value
+ * (as read from the prc files) show through.
+ */
+46
+inline void ConfigVariable::clear_value(void);
+
+529 13 get_num_words 0 4 787 29 ConfigVariable::get_num_words 0 1 148 153
+/**
+ * Returns the number of words in the variable's value.  A word is defined as
+ * a sequence of non-whitespace characters delimited by whitespace.
+ */
+61
+inline std::size_t ConfigVariable::get_num_words(void) const;
+
+530 18 ConfigVariableBool 0 4 788 38 ConfigVariableBool::ConfigVariableBool 0 4 149 150 151 152 34
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+470
+inline ConfigVariableBool::ConfigVariableBool(std::string const &name);
+inline ConfigVariableBool::ConfigVariableBool(std::string const &name, bool default_value, std::string const &description = string(), int flags = 0);
+inline ConfigVariableBool::ConfigVariableBool(std::string const &name, std::string const &default_value, std::string const &description = string(), int flags = 0);
+inline ConfigVariableBool::ConfigVariableBool(ConfigVariableBool const &) = default;
+
+531 10 operator = 0 4 788 30 ConfigVariableBool::operator = 0 1 153 0
+55
+inline void ConfigVariableBool::operator =(bool value);
+
+532 22 operator typecast bool 0 132 788 42 ConfigVariableBool::operator typecast bool 0 1 161 0
+34
+inline operator bool (void) const;
+
+533 4 size 0 4 788 24 ConfigVariableBool::size 0 1 154 62
+/**
+ * Returns the number of unique words in the variable.
+ */
+56
+inline std::size_t ConfigVariableBool::size(void) const;
+
+534 11 operator [] 0 4 788 31 ConfigVariableBool::operator [] 0 1 155 0
+65
+inline bool ConfigVariableBool::operator [](std::size_t n) const;
+
+535 9 set_value 0 4 788 29 ConfigVariableBool::set_value 0 1 156 48
+/**
+ * Reassigns the variable's local value.
+ */
+54
+inline void ConfigVariableBool::set_value(bool value);
+
+536 9 get_value 0 4 788 29 ConfigVariableBool::get_value 0 1 157 40
+/**
+ * Returns the variable's value.
+ */
+54
+inline bool ConfigVariableBool::get_value(void) const;
+
+537 17 get_default_value 0 4 788 37 ConfigVariableBool::get_default_value 0 1 158 48
+/**
+ * Returns the variable's default value.
+ */
+62
+inline bool ConfigVariableBool::get_default_value(void) const;
+
+538 8 get_word 0 4 788 28 ConfigVariableBool::get_word 0 1 159 44
+/**
+ * Returns the variable's nth value.
+ */
+62
+inline bool ConfigVariableBool::get_word(std::size_t n) const;
+
+539 8 set_word 0 4 788 28 ConfigVariableBool::set_word 0 1 160 107
+/**
+ * Reassigns the variable's nth value.  This makes a local copy of the
+ * variable's overall value.
+ */
+68
+inline void ConfigVariableBool::set_word(std::size_t n, bool value);
+
+540 19 ~ConfigVariableBool 0 4 788 39 ConfigVariableBool::~ConfigVariableBool 0 0 0
+46
+ConfigVariableBool::~ConfigVariableBool(void);
+
+541 20 ConfigVariableDouble 0 4 789 42 ConfigVariableDouble::ConfigVariableDouble 0 4 162 163 164 165 34
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+490
+inline ConfigVariableDouble::ConfigVariableDouble(std::string const &name);
+inline ConfigVariableDouble::ConfigVariableDouble(std::string const &name, double default_value, std::string const &description = string(), int flags = 0);
+inline ConfigVariableDouble::ConfigVariableDouble(std::string const &name, std::string const &default_value, std::string const &description = string(), int flags = 0);
+inline ConfigVariableDouble::ConfigVariableDouble(ConfigVariableDouble const &) = default;
+
+542 10 operator = 0 4 789 32 ConfigVariableDouble::operator = 0 1 166 0
+59
+inline void ConfigVariableDouble::operator =(double value);
+
+543 24 operator typecast double 0 132 789 46 ConfigVariableDouble::operator typecast double 0 1 174 0
+36
+inline operator double (void) const;
+
+544 4 size 0 4 789 26 ConfigVariableDouble::size 0 1 167 62
+/**
+ * Returns the number of unique words in the variable.
+ */
+58
+inline std::size_t ConfigVariableDouble::size(void) const;
+
+545 11 operator [] 0 4 789 33 ConfigVariableDouble::operator [] 0 1 168 0
+69
+inline double ConfigVariableDouble::operator [](std::size_t n) const;
+
+546 9 set_value 0 4 789 31 ConfigVariableDouble::set_value 0 1 169 48
+/**
+ * Reassigns the variable's local value.
+ */
+58
+inline void ConfigVariableDouble::set_value(double value);
+
+547 9 get_value 0 4 789 31 ConfigVariableDouble::get_value 0 1 170 40
+/**
+ * Returns the variable's value.
+ */
+58
+inline double ConfigVariableDouble::get_value(void) const;
+
+548 17 get_default_value 0 4 789 39 ConfigVariableDouble::get_default_value 0 1 171 48
+/**
+ * Returns the variable's default value.
+ */
+66
+inline double ConfigVariableDouble::get_default_value(void) const;
+
+549 8 get_word 0 4 789 30 ConfigVariableDouble::get_word 0 1 172 44
+/**
+ * Returns the variable's nth value.
+ */
+66
+inline double ConfigVariableDouble::get_word(std::size_t n) const;
+
+550 8 set_word 0 4 789 30 ConfigVariableDouble::set_word 0 1 173 107
+/**
+ * Reassigns the variable's nth value.  This makes a local copy of the
+ * variable's overall value.
+ */
+72
+inline void ConfigVariableDouble::set_word(std::size_t n, double value);
+
+551 21 ~ConfigVariableDouble 0 4 789 43 ConfigVariableDouble::~ConfigVariableDouble 0 0 0
+50
+ConfigVariableDouble::~ConfigVariableDouble(void);
+
+552 22 ConfigVariableFilename 0 4 791 46 ConfigVariableFilename::ConfigVariableFilename 0 3 175 176 177 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+345
+inline ConfigVariableFilename::ConfigVariableFilename(std::string const &name);
+inline ConfigVariableFilename::ConfigVariableFilename(std::string const &name, Filename const &default_value, std::string const &description = string(), int flags = 0);
+inline ConfigVariableFilename::ConfigVariableFilename(ConfigVariableFilename const &) = default;
+
+553 10 operator = 0 4 791 34 ConfigVariableFilename::operator = 0 1 178 0
+70
+inline void ConfigVariableFilename::operator =(Filename const &value);
+
+554 17 operator typecast 0 132 791 41 ConfigVariableFilename::operator typecast 0 1 197 0
+45
+inline operator Filename const &(void) const;
+
+555 5 c_str 0 4 791 29 ConfigVariableFilename::c_str 0 1 179 88
+// These methods help the ConfigVariableFilename act like a Filename object.
+
+/**
+ *
+ */
+61
+inline char const *ConfigVariableFilename::c_str(void) const;
+
+556 5 empty 0 4 791 29 ConfigVariableFilename::empty 0 1 180 10
+/**
+ *
+ */
+54
+inline bool ConfigVariableFilename::empty(void) const;
+
+557 6 length 0 4 791 30 ConfigVariableFilename::length 0 1 181 10
+/**
+ *
+ */
+62
+inline std::size_t ConfigVariableFilename::length(void) const;
+
+558 11 operator [] 0 4 791 35 ConfigVariableFilename::operator [] 0 1 182 0
+69
+inline char ConfigVariableFilename::operator [](std::size_t n) const;
+
+559 12 get_fullpath 0 4 791 36 ConfigVariableFilename::get_fullpath 0 1 183 183
+/**
+ * Returns the entire filename: directory, basename, extension.  This is the
+ * same thing returned by the string typecast operator, so this function is a
+ * little redundant.
+ */
+68
+inline std::string ConfigVariableFilename::get_fullpath(void) const;
+
+560 11 get_dirname 0 4 791 35 ConfigVariableFilename::get_dirname 0 1 184 139
+/**
+ * Returns the directory part of the filename.  This is everything in the
+ * filename up to, but not including the rightmost slash.
+ */
+67
+inline std::string ConfigVariableFilename::get_dirname(void) const;
+
+561 12 get_basename 0 4 791 36 ConfigVariableFilename::get_basename 0 1 185 145
+/**
+ * Returns the basename part of the filename.  This is everything in the
+ * filename after the rightmost slash, including any extensions.
+ */
+68
+inline std::string ConfigVariableFilename::get_basename(void) const;
+
+562 25 get_fullpath_wo_extension 0 4 791 49 ConfigVariableFilename::get_fullpath_wo_extension 0 1 186 96
+/**
+ * Returns the full filename--directory and basename parts--except for the
+ * extension.
+ */
+81
+inline std::string ConfigVariableFilename::get_fullpath_wo_extension(void) const;
+
+563 25 get_basename_wo_extension 0 4 791 49 ConfigVariableFilename::get_basename_wo_extension 0 1 187 81
+/**
+ * Returns the basename part of the filename, without the file extension.
+ */
+81
+inline std::string ConfigVariableFilename::get_basename_wo_extension(void) const;
+
+564 13 get_extension 0 4 791 37 ConfigVariableFilename::get_extension 0 1 188 140
+/**
+ * Returns the file extension.  This is everything after the rightmost dot, if
+ * there is one, or the empty string if there is not.
+ */
+69
+inline std::string ConfigVariableFilename::get_extension(void) const;
+
+565 11 operator == 0 4 791 35 ConfigVariableFilename::operator == 0 1 189 34
+// Comparison operators are handy.
+77
+inline bool ConfigVariableFilename::operator ==(Filename const &other) const;
+
+566 11 operator != 0 4 791 35 ConfigVariableFilename::operator != 0 1 190 0
+77
+inline bool ConfigVariableFilename::operator !=(Filename const &other) const;
+
+567 10 operator < 0 4 791 34 ConfigVariableFilename::operator < 0 1 191 0
+76
+inline bool ConfigVariableFilename::operator <(Filename const &other) const;
+
+568 9 set_value 0 4 791 33 ConfigVariableFilename::set_value 0 1 192 48
+/**
+ * Reassigns the variable's local value.
+ */
+69
+inline void ConfigVariableFilename::set_value(Filename const &value);
+
+569 9 get_value 0 4 791 33 ConfigVariableFilename::get_value 0 1 193 40
+/**
+ * Returns the variable's value.
+ */
+62
+inline Filename ConfigVariableFilename::get_value(void) const;
+
+570 17 get_default_value 0 4 791 41 ConfigVariableFilename::get_default_value 0 1 194 48
+/**
+ * Returns the variable's default value.
+ */
+70
+inline Filename ConfigVariableFilename::get_default_value(void) const;
+
+571 8 get_word 0 4 791 32 ConfigVariableFilename::get_word 0 1 195 44
+/**
+ * Returns the variable's nth value.
+ */
+70
+inline Filename ConfigVariableFilename::get_word(std::size_t n) const;
+
+572 8 set_word 0 4 791 32 ConfigVariableFilename::set_word 0 1 196 107
+/**
+ * Reassigns the variable's nth value.  This makes a local copy of the
+ * variable's overall value.
+ */
+83
+inline void ConfigVariableFilename::set_word(std::size_t n, Filename const &value);
+
+573 23 ~ConfigVariableFilename 0 4 791 47 ConfigVariableFilename::~ConfigVariableFilename 0 0 0
+54
+ConfigVariableFilename::~ConfigVariableFilename(void);
+
+574 17 ConfigVariableInt 0 4 793 36 ConfigVariableInt::ConfigVariableInt 0 4 198 199 200 201 34
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+460
+inline ConfigVariableInt::ConfigVariableInt(std::string const &name);
+inline ConfigVariableInt::ConfigVariableInt(std::string const &name, int default_value, std::string const &description = string(), int flags = 0);
+inline ConfigVariableInt::ConfigVariableInt(std::string const &name, std::string const &default_value, std::string const &description = string(), int flags = 0);
+inline ConfigVariableInt::ConfigVariableInt(ConfigVariableInt const &) = default;
+
+575 10 operator = 0 4 793 29 ConfigVariableInt::operator = 0 1 202 0
+53
+inline void ConfigVariableInt::operator =(int value);
+
+576 21 operator typecast int 0 132 793 40 ConfigVariableInt::operator typecast int 0 1 210 0
+33
+inline operator int (void) const;
+
+577 4 size 0 4 793 23 ConfigVariableInt::size 0 1 203 62
+/**
+ * Returns the number of unique words in the variable.
+ */
+55
+inline std::size_t ConfigVariableInt::size(void) const;
+
+578 11 operator [] 0 4 793 30 ConfigVariableInt::operator [] 0 1 204 0
+63
+inline int ConfigVariableInt::operator [](std::size_t n) const;
+
+579 9 set_value 0 4 793 28 ConfigVariableInt::set_value 0 1 205 48
+/**
+ * Reassigns the variable's local value.
+ */
+52
+inline void ConfigVariableInt::set_value(int value);
+
+580 9 get_value 0 4 793 28 ConfigVariableInt::get_value 0 1 206 40
+/**
+ * Returns the variable's value.
+ */
+52
+inline int ConfigVariableInt::get_value(void) const;
+
+581 17 get_default_value 0 4 793 36 ConfigVariableInt::get_default_value 0 1 207 48
+/**
+ * Returns the variable's default value.
+ */
+60
+inline int ConfigVariableInt::get_default_value(void) const;
+
+582 8 get_word 0 4 793 27 ConfigVariableInt::get_word 0 1 208 44
+/**
+ * Returns the variable's nth value.
+ */
+60
+inline int ConfigVariableInt::get_word(std::size_t n) const;
+
+583 8 set_word 0 4 793 27 ConfigVariableInt::set_word 0 1 209 107
+/**
+ * Reassigns the variable's nth value.  This makes a local copy of the
+ * variable's overall value.
+ */
+66
+inline void ConfigVariableInt::set_word(std::size_t n, int value);
+
+584 18 ~ConfigVariableInt 0 4 793 37 ConfigVariableInt::~ConfigVariableInt 0 0 0
+44
+ConfigVariableInt::~ConfigVariableInt(void);
+
+585 19 ConfigVariableInt64 0 4 794 40 ConfigVariableInt64::ConfigVariableInt64 0 4 211 212 213 214 34
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+482
+inline ConfigVariableInt64::ConfigVariableInt64(std::string const &name);
+inline ConfigVariableInt64::ConfigVariableInt64(std::string const &name, int64_t default_value, std::string const &description = string(), int flags = 0);
+inline ConfigVariableInt64::ConfigVariableInt64(std::string const &name, std::string const &default_value, std::string const &description = string(), int flags = 0);
+inline ConfigVariableInt64::ConfigVariableInt64(ConfigVariableInt64 const &) = default;
+
+586 10 operator = 0 4 794 31 ConfigVariableInt64::operator = 0 1 215 0
+59
+inline void ConfigVariableInt64::operator =(int64_t value);
+
+587 25 operator typecast int64_t 0 132 794 46 ConfigVariableInt64::operator typecast int64_t 0 1 223 0
+37
+inline operator int64_t (void) const;
+
+588 4 size 0 4 794 25 ConfigVariableInt64::size 0 1 216 62
+/**
+ * Returns the number of unique words in the variable.
+ */
+57
+inline std::size_t ConfigVariableInt64::size(void) const;
+
+589 11 operator [] 0 4 794 32 ConfigVariableInt64::operator [] 0 1 217 0
+69
+inline int64_t ConfigVariableInt64::operator [](std::size_t n) const;
+
+590 9 set_value 0 4 794 30 ConfigVariableInt64::set_value 0 1 218 48
+/**
+ * Reassigns the variable's local value.
+ */
+58
+inline void ConfigVariableInt64::set_value(int64_t value);
+
+591 9 get_value 0 4 794 30 ConfigVariableInt64::get_value 0 1 219 40
+/**
+ * Returns the variable's value.
+ */
+58
+inline int64_t ConfigVariableInt64::get_value(void) const;
+
+592 17 get_default_value 0 4 794 38 ConfigVariableInt64::get_default_value 0 1 220 48
+/**
+ * Returns the variable's default value.
+ */
+66
+inline int64_t ConfigVariableInt64::get_default_value(void) const;
+
+593 8 get_word 0 4 794 29 ConfigVariableInt64::get_word 0 1 221 44
+/**
+ * Returns the variable's nth value.
+ */
+66
+inline int64_t ConfigVariableInt64::get_word(std::size_t n) const;
+
+594 8 set_word 0 4 794 29 ConfigVariableInt64::set_word 0 1 222 107
+/**
+ * Reassigns the variable's nth value.  This makes a local copy of the
+ * variable's overall value.
+ */
+72
+inline void ConfigVariableInt64::set_word(std::size_t n, int64_t value);
+
+595 20 ~ConfigVariableInt64 0 4 794 41 ConfigVariableInt64::~ConfigVariableInt64 0 0 0
+48
+ConfigVariableInt64::~ConfigVariableInt64(void);
+
+596 18 ConfigVariableList 0 4 797 38 ConfigVariableList::ConfigVariableList 0 2 224 225 10
+/**
+ *
+ */
+214
+inline ConfigVariableList::ConfigVariableList(std::string const &name, std::string const &description = string(), int flags = 0);
+inline ConfigVariableList::ConfigVariableList(ConfigVariableList const &) = default;
+
+597 19 ~ConfigVariableList 0 4 797 39 ConfigVariableList::~ConfigVariableList 0 0 10
+/**
+ *
+ */
+53
+inline ConfigVariableList::~ConfigVariableList(void);
+
+598 14 get_num_values 0 4 797 34 ConfigVariableList::get_num_values 0 1 226 56
+/**
+ * Returns the number of values in the variable.
+ */
+66
+inline std::size_t ConfigVariableList::get_num_values(void) const;
+
+599 16 get_string_value 0 4 797 36 ConfigVariableList::get_string_value 0 1 227 49
+/**
+ * Returns the nth value of the variable.
+ */
+77
+inline std::string ConfigVariableList::get_string_value(std::size_t n) const;
+
+600 21 get_num_unique_values 0 4 797 41 ConfigVariableList::get_num_unique_values 0 1 228 63
+/**
+ * Returns the number of unique values in the variable.
+ */
+73
+inline std::size_t ConfigVariableList::get_num_unique_values(void) const;
+
+601 16 get_unique_value 0 4 797 36 ConfigVariableList::get_unique_value 0 1 229 56
+/**
+ * Returns the nth unique value of the variable.
+ */
+77
+inline std::string ConfigVariableList::get_unique_value(std::size_t n) const;
+
+602 4 size 0 4 797 24 ConfigVariableList::size 0 1 230 63
+/**
+ * Returns the number of unique values of the variable.
+ */
+56
+inline std::size_t ConfigVariableList::size(void) const;
+
+603 11 operator [] 0 4 797 31 ConfigVariableList::operator [] 0 1 231 0
+72
+inline std::string ConfigVariableList::operator [](std::size_t n) const;
+
+604 6 output 0 4 797 26 ConfigVariableList::output 0 1 232 10
+/**
+ *
+ */
+57
+void ConfigVariableList::output(std::ostream &out) const;
+
+605 5 write 0 4 797 25 ConfigVariableList::write 0 1 233 10
+/**
+ *
+ */
+56
+void ConfigVariableList::write(std::ostream &out) const;
+
+606 24 ConfigVariableSearchPath 0 4 798 50 ConfigVariableSearchPath::ConfigVariableSearchPath 0 3 234 235 236 34
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+471
+inline ConfigVariableSearchPath::ConfigVariableSearchPath(std::string const &name, std::string const &description = string(), int flags = 0);
+inline ConfigVariableSearchPath::ConfigVariableSearchPath(std::string const &name, DSearchPath const &default_value, std::string const &description, int flags = 0);
+inline ConfigVariableSearchPath::ConfigVariableSearchPath(std::string const &name, std::string const &default_value, std::string const &description, int flags = 0);
+
+607 25 ~ConfigVariableSearchPath 0 4 798 51 ConfigVariableSearchPath::~ConfigVariableSearchPath 0 0 10
+/**
+ *
+ */
+65
+inline ConfigVariableSearchPath::~ConfigVariableSearchPath(void);
+
+608 29 operator typecast DSearchPath 0 132 798 55 ConfigVariableSearchPath::operator typecast DSearchPath 0 1 254 0
+41
+inline operator DSearchPath (void) const;
+
+609 9 get_value 0 4 798 35 ConfigVariableSearchPath::get_value 0 1 237 10
+/**
+ *
+ */
+67
+inline DSearchPath ConfigVariableSearchPath::get_value(void) const;
+
+610 17 get_default_value 0 4 798 43 ConfigVariableSearchPath::get_default_value 0 1 238 10
+/**
+ *
+ */
+82
+inline DSearchPath const &ConfigVariableSearchPath::get_default_value(void) const;
+
+611 17 clear_local_value 0 4 798 43 ConfigVariableSearchPath::clear_local_value 0 1 239 113
+/**
+ * Removes all the directories locally added to the search list, and restores
+ * it to its original form.
+ */
+62
+inline bool ConfigVariableSearchPath::clear_local_value(void);
+
+612 5 clear 0 4 798 31 ConfigVariableSearchPath::clear 0 1 240 113
+/**
+ * Removes all the directories locally added to the search list, and restores
+ * it to its original form.
+ */
+50
+inline void ConfigVariableSearchPath::clear(void);
+
+613 16 append_directory 0 4 798 42 ConfigVariableSearchPath::append_directory 0 1 241 62
+/**
+ * Adds a new directory to the end of the search list.
+ */
+82
+inline void ConfigVariableSearchPath::append_directory(Filename const &directory);
+
+614 17 prepend_directory 0 4 798 43 ConfigVariableSearchPath::prepend_directory 0 1 242 64
+/**
+ * Adds a new directory to the front of the search list.
+ */
+83
+inline void ConfigVariableSearchPath::prepend_directory(Filename const &directory);
+
+615 11 append_path 0 4 798 37 ConfigVariableSearchPath::append_path 0 2 243 244 198
+/**
+ * Adds all of the directories listed in the search path to the end of the
+ * search list.
+ */
+
+/**
+ * Adds all of the directories listed in the search path to the end of the
+ * search list.
+ */
+192
+inline void ConfigVariableSearchPath::append_path(std::string const &path, std::string const &separator = string());
+inline void ConfigVariableSearchPath::append_path(DSearchPath const &path);
+
+616 12 prepend_path 0 4 798 38 ConfigVariableSearchPath::prepend_path 0 1 245 104
+/**
+ * Adds all of the directories listed in the search path to the beginning of
+ * the search list.
+ */
+76
+inline void ConfigVariableSearchPath::prepend_path(DSearchPath const &path);
+
+617 8 is_empty 0 4 798 34 ConfigVariableSearchPath::is_empty 0 1 246 69
+/**
+ * Returns true if the search list is empty, false otherwise.
+ */
+59
+inline bool ConfigVariableSearchPath::is_empty(void) const;
+
+618 19 get_num_directories 0 4 798 45 ConfigVariableSearchPath::get_num_directories 0 1 247 64
+/**
+ * Returns the number of directories on the search list.
+ */
+77
+inline std::size_t ConfigVariableSearchPath::get_num_directories(void) const;
+
+619 13 get_directory 0 4 798 39 ConfigVariableSearchPath::get_directory 0 1 248 56
+/**
+ * Returns the nth directory on the search list.
+ */
+77
+inline Filename ConfigVariableSearchPath::get_directory(std::size_t n) const;
+
+620 9 find_file 0 4 798 35 ConfigVariableSearchPath::find_file 0 1 249 197
+/**
+ * Searches all the directories in the search list for the indicated file, in
+ * order.  Returns the full matching pathname of the first match if found, or
+ * the empty string if not found.
+ */
+84
+inline Filename ConfigVariableSearchPath::find_file(Filename const &filename) const;
+
+621 14 find_all_files 0 4 798 40 ConfigVariableSearchPath::find_all_files 0 2 250 251 549
+/**
+ * Searches all the directories in the search list for the indicated file, in
+ * order.  Fills up the results list with *all* of the matching filenames
+ * found, if any.  Returns the number of matches found.
+ *
+ * It is the responsibility of the the caller to clear the results list first;
+ * otherwise, the newly-found files will be appended to the list.
+ */
+
+/**
+ * This variant of find_all_files() returns the new Results object, instead of
+ * filling on in on the parameter list.  This is a little more convenient to
+ * call from Python.
+ */
+225
+inline std::size_t ConfigVariableSearchPath::find_all_files(Filename const &filename, DSearchPath::Results &results) const;
+inline DSearchPath::Results ConfigVariableSearchPath::find_all_files(Filename const &filename) const;
+
+622 6 output 0 4 798 32 ConfigVariableSearchPath::output 0 1 252 10
+/**
+ *
+ */
+70
+inline void ConfigVariableSearchPath::output(std::ostream &out) const;
+
+623 5 write 0 4 798 31 ConfigVariableSearchPath::write 0 1 253 10
+/**
+ *
+ */
+69
+inline void ConfigVariableSearchPath::write(std::ostream &out) const;
+
+624 20 ConfigVariableString 0 4 801 42 ConfigVariableString::ConfigVariableString 0 3 255 256 257 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+334
+inline ConfigVariableString::ConfigVariableString(std::string const &name);
+inline ConfigVariableString::ConfigVariableString(std::string const &name, std::string const &default_value, std::string const &description = string(), int flags = 0);
+inline ConfigVariableString::ConfigVariableString(ConfigVariableString const &) = default;
+
+625 10 operator = 0 4 801 32 ConfigVariableString::operator = 0 1 258 0
+71
+inline void ConfigVariableString::operator =(std::string const &value);
+
+626 17 operator typecast 0 132 801 39 ConfigVariableString::operator typecast 0 1 271 0
+48
+inline operator std::string const &(void) const;
+
+627 5 c_str 0 4 801 27 ConfigVariableString::c_str 0 1 259 88
+// These methods help the ConfigVariableString act like a C++ string object.
+
+/**
+ *
+ */
+59
+inline char const *ConfigVariableString::c_str(void) const;
+
+628 5 empty 0 4 801 27 ConfigVariableString::empty 0 1 260 10
+/**
+ *
+ */
+52
+inline bool ConfigVariableString::empty(void) const;
+
+629 6 length 0 4 801 28 ConfigVariableString::length 0 1 261 10
+/**
+ *
+ */
+60
+inline std::size_t ConfigVariableString::length(void) const;
+
+630 11 operator [] 0 4 801 33 ConfigVariableString::operator [] 0 1 262 0
+67
+inline char ConfigVariableString::operator [](std::size_t n) const;
+
+631 11 operator == 0 4 801 33 ConfigVariableString::operator == 0 1 263 34
+// Comparison operators are handy.
+78
+inline bool ConfigVariableString::operator ==(std::string const &other) const;
+
+632 11 operator != 0 4 801 33 ConfigVariableString::operator != 0 1 264 0
+78
+inline bool ConfigVariableString::operator !=(std::string const &other) const;
+
+633 10 operator < 0 4 801 32 ConfigVariableString::operator < 0 1 265 0
+77
+inline bool ConfigVariableString::operator <(std::string const &other) const;
+
+634 9 set_value 0 4 801 31 ConfigVariableString::set_value 0 1 266 48
+/**
+ * Reassigns the variable's local value.
+ */
+70
+inline void ConfigVariableString::set_value(std::string const &value);
+
+635 9 get_value 0 4 801 31 ConfigVariableString::get_value 0 1 267 40
+/**
+ * Returns the variable's value.
+ */
+70
+inline std::string const &ConfigVariableString::get_value(void) const;
+
+636 17 get_default_value 0 4 801 39 ConfigVariableString::get_default_value 0 1 268 48
+/**
+ * Returns the variable's default value.
+ */
+71
+inline std::string ConfigVariableString::get_default_value(void) const;
+
+637 8 get_word 0 4 801 30 ConfigVariableString::get_word 0 1 269 44
+/**
+ * Returns the variable's nth value.
+ */
+71
+inline std::string ConfigVariableString::get_word(std::size_t n) const;
+
+638 8 set_word 0 4 801 30 ConfigVariableString::set_word 0 1 270 107
+/**
+ * Reassigns the variable's nth value.  This makes a local copy of the
+ * variable's overall value.
+ */
+84
+inline void ConfigVariableString::set_word(std::size_t n, std::string const &value);
+
+639 21 ~ConfigVariableString 0 4 801 43 ConfigVariableString::~ConfigVariableString 0 0 0
+50
+ConfigVariableString::~ConfigVariableString(void);
+
+640 20 upcast_to_MemoryBase 0 12 802 36 NotifyCategory::upcast_to_MemoryBase 0 1 294 40
+upcast from NotifyCategory to MemoryBase
+55
+MemoryBase *NotifyCategory::upcast_to_MemoryBase(void);
+
+641 26 downcast_to_NotifyCategory 0 12 803 38 MemoryBase::downcast_to_NotifyCategory 0 0 42
+downcast from MemoryBase to NotifyCategory
+61
+NotifyCategory *MemoryBase::downcast_to_NotifyCategory(void);
+
+642 21 upcast_to_ConfigFlags 0 12 802 37 NotifyCategory::upcast_to_ConfigFlags 0 1 295 41
+upcast from NotifyCategory to ConfigFlags
+57
+ConfigFlags *NotifyCategory::upcast_to_ConfigFlags(void);
+
+643 26 downcast_to_NotifyCategory 0 12 766 39 ConfigFlags::downcast_to_NotifyCategory 0 0 43
+downcast from ConfigFlags to NotifyCategory
+62
+NotifyCategory *ConfigFlags::downcast_to_NotifyCategory(void);
+
+644 12 get_fullname 0 4 802 28 NotifyCategory::get_fullname 0 1 273 10
+/**
+ *
+ */
+60
+inline std::string NotifyCategory::get_fullname(void) const;
+
+645 12 get_basename 0 4 802 28 NotifyCategory::get_basename 0 1 274 10
+/**
+ *
+ */
+60
+inline std::string NotifyCategory::get_basename(void) const;
+
+646 12 get_severity 0 4 802 28 NotifyCategory::get_severity 0 1 275 10
+/**
+ *
+ */
+63
+inline NotifySeverity NotifyCategory::get_severity(void) const;
+
+647 12 set_severity 0 4 802 28 NotifyCategory::set_severity 0 1 276 150
+/**
+ * Sets the severity level of messages that will be reported from this
+ * Category.  This allows any message of this severity level or higher.
+ */
+66
+inline void NotifyCategory::set_severity(NotifySeverity severity);
+
+648 5 is_on 0 4 802 21 NotifyCategory::is_on 0 1 277 110
+/**
+ * Returns true if messages of the indicated severity level ought to be
+ * reported for this Category.
+ */
+65
+inline bool NotifyCategory::is_on(NotifySeverity severity) const;
+
+649 7 is_spam 0 4 802 23 NotifyCategory::is_spam 0 1 278 446
+// When NOTIFY_DEBUG is not defined, the categories will never be set to
+// "spam" or "debug" severities, and these methods are redefined to be
+// static to make it more obvious to the compiler.  However, we still want
+// to present a consistent interface to our scripting language, so during
+// the interrogate pass (that is, when CPPPARSER is defined), we still
+// pretend they're nonstatic.
+
+/**
+ * A shorthand way to write is_on(NS_spam).
+ */
+48
+inline bool NotifyCategory::is_spam(void) const;
+
+650 8 is_debug 0 4 802 24 NotifyCategory::is_debug 0 1 279 52
+/**
+ * A shorthand way to write is_on(NS_debug).
+ */
+49
+inline bool NotifyCategory::is_debug(void) const;
+
+651 7 is_info 0 4 802 23 NotifyCategory::is_info 0 1 280 51
+/**
+ * A shorthand way to write is_on(NS_info).
+ */
+48
+inline bool NotifyCategory::is_info(void) const;
+
+652 10 is_warning 0 4 802 26 NotifyCategory::is_warning 0 1 281 54
+/**
+ * A shorthand way to write is_on(NS_warning).
+ */
+51
+inline bool NotifyCategory::is_warning(void) const;
+
+653 8 is_error 0 4 802 24 NotifyCategory::is_error 0 1 282 52
+/**
+ * A shorthand way to write is_on(NS_error).
+ */
+49
+inline bool NotifyCategory::is_error(void) const;
+
+654 8 is_fatal 0 4 802 24 NotifyCategory::is_fatal 0 1 283 52
+/**
+ * A shorthand way to write is_on(NS_fatal).
+ */
+49
+inline bool NotifyCategory::is_fatal(void) const;
+
+655 3 out 0 4 802 19 NotifyCategory::out 0 1 284 277
+/**
+ * Begins a new message to this Category at the indicated severity level.  If
+ * the indicated severity level is enabled, this writes a prefixing string to
+ * the Notify::out() stream and returns that.  If the severity level is
+ * disabled, this returns Notify::null().
+ */
+85
+std::ostream &NotifyCategory::out(NotifySeverity severity, bool prefix = true) const;
+
+656 4 spam 0 4 802 20 NotifyCategory::spam 0 1 285 49
+/**
+ * A shorthand way to write out(NS_spam).
+ */
+68
+inline std::ostream &NotifyCategory::spam(bool prefix = true) const;
+
+657 5 debug 0 4 802 21 NotifyCategory::debug 0 1 286 50
+/**
+ * A shorthand way to write out(NS_debug).
+ */
+69
+inline std::ostream &NotifyCategory::debug(bool prefix = true) const;
+
+658 4 info 0 4 802 20 NotifyCategory::info 0 1 287 49
+/**
+ * A shorthand way to write out(NS_info).
+ */
+68
+inline std::ostream &NotifyCategory::info(bool prefix = true) const;
+
+659 7 warning 0 4 802 23 NotifyCategory::warning 0 1 288 52
+/**
+ * A shorthand way to write out(NS_warning).
+ */
+71
+inline std::ostream &NotifyCategory::warning(bool prefix = true) const;
+
+660 5 error 0 4 802 21 NotifyCategory::error 0 1 289 50
+/**
+ * A shorthand way to write out(NS_error).
+ */
+69
+inline std::ostream &NotifyCategory::error(bool prefix = true) const;
+
+661 5 fatal 0 4 802 21 NotifyCategory::fatal 0 1 290 50
+/**
+ * A shorthand way to write out(NS_fatal).
+ */
+69
+inline std::ostream &NotifyCategory::fatal(bool prefix = true) const;
+
+662 16 get_num_children 0 4 802 32 NotifyCategory::get_num_children 0 1 291 78
+/**
+ * Returns the number of child Categories of this particular Category.
+ */
+57
+std::size_t NotifyCategory::get_num_children(void) const;
+
+663 9 get_child 0 4 802 25 NotifyCategory::get_child 0 1 292 70
+/**
+ * Returns the nth child Category of this particular Category.
+ */
+63
+NotifyCategory *NotifyCategory::get_child(std::size_t i) const;
+
+664 16 set_server_delta 0 4 802 32 NotifyCategory::set_server_delta 0 1 293 207
+/**
+ * Sets a global delta (in seconds) between the local time and the server's
+ * time, for the purpose of synchronizing the time stamps in the log messages
+ * of the client with that of a known server.
+ */
+61
+static void NotifyCategory::set_server_delta(long int delta);
+
+665 14 NotifyCategory 0 4 802 30 NotifyCategory::NotifyCategory 0 1 272 10
+/**
+ *
+ */
+72
+inline NotifyCategory::NotifyCategory(NotifyCategory const &) = default;
+
+666 15 ~NotifyCategory 0 4 802 31 NotifyCategory::~NotifyCategory 0 0 0
+38
+NotifyCategory::~NotifyCategory(void);
+
+667 14 IDecryptStream 0 4 805 30 IDecryptStream::IDecryptStream 0 2 296 297 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+161
+inline IDecryptStream::IDecryptStream(void);
+inline explicit IDecryptStream::IDecryptStream(std::istream *source, bool owns_source, std::string const &password);
+
+668 4 open 0 4 805 20 IDecryptStream::open 0 1 298 10
+/**
+ *
+ */
+113
+inline IDecryptStream &IDecryptStream::open(std::istream *source, bool owns_source, std::string const &password);
+
+669 5 close 0 4 805 21 IDecryptStream::close 0 1 299 124
+/**
+ * Resets the EncryptStream to empty, but does not actually close the source
+ * istream unless owns_source was true.
+ */
+51
+inline IDecryptStream &IDecryptStream::close(void);
+
+670 13 get_algorithm 0 4 805 29 IDecryptStream::get_algorithm 0 1 300 74
+/**
+ * Returns the encryption algorithm that was read from the stream.
+ */
+68
+inline std::string const &IDecryptStream::get_algorithm(void) const;
+
+671 14 get_key_length 0 4 805 30 IDecryptStream::get_key_length 0 1 301 85
+/**
+ * Returns the encryption key length, in bits, that was read from the stream.
+ */
+54
+inline int IDecryptStream::get_key_length(void) const;
+
+672 19 get_iteration_count 0 4 805 35 IDecryptStream::get_iteration_count 0 1 302 63
+/**
+ * Returns the value that was was read from the stream.
+ */
+59
+inline int IDecryptStream::get_iteration_count(void) const;
+
+673 15 ~IDecryptStream 0 4 805 31 IDecryptStream::~IDecryptStream 0 0 0
+38
+IDecryptStream::~IDecryptStream(void);
+
+674 14 OEncryptStream 0 4 807 30 OEncryptStream::OEncryptStream 0 2 303 304 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+157
+inline OEncryptStream::OEncryptStream(void);
+inline explicit OEncryptStream::OEncryptStream(std::ostream *dest, bool owns_dest, std::string const &password);
+
+675 4 open 0 4 807 20 OEncryptStream::open 0 1 305 10
+/**
+ *
+ */
+109
+inline OEncryptStream &OEncryptStream::open(std::ostream *dest, bool owns_dest, std::string const &password);
+
+676 5 close 0 4 807 21 OEncryptStream::close 0 1 306 120
+/**
+ * Resets the EncryptStream to empty, but does not actually close the dest
+ * ostream unless owns_dest was true.
+ */
+51
+inline OEncryptStream &OEncryptStream::close(void);
+
+677 13 set_algorithm 0 4 807 29 OEncryptStream::set_algorithm 0 1 307 383
+/**
+ * Specifies the encryption algorithm that should be used for future calls to
+ * open().  The default is whatever is specified by the encryption-algorithm
+ * config variable.  The complete set of available algorithms is defined by
+ * the current version of OpenSSL.
+ *
+ * If an invalid algorithm is specified, there is no immediate error return
+ * code, but open() will fail.
+ */
+72
+inline void OEncryptStream::set_algorithm(std::string const &algorithm);
+
+678 14 set_key_length 0 4 807 30 OEncryptStream::set_key_length 0 1 308 347
+/**
+ * Specifies the length of the key, in bits, that should be used to encrypt
+ * the stream in future calls to open().  The default is whatever is specified
+ * by the encryption-key-length config variable.
+ *
+ * If an invalid key_length for the chosen algorithm is specified, there is no
+ * immediate error return code, but open() will fail.
+ */
+59
+inline void OEncryptStream::set_key_length(int key_length);
+
+679 19 set_iteration_count 0 4 807 35 OEncryptStream::set_iteration_count 0 1 309 495
+/**
+ * Specifies the number of times to repeatedly hash the key before writing it
+ * to the stream in future calls to open().  Its purpose is to make it
+ * computationally more expensive for an attacker to search the key space
+ * exhaustively.  This should be a multiple of 1,000 and should not exceed
+ * about 65 million; the value 0 indicates just one application of the hashing
+ * algorithm.
+ *
+ * The default is whatever is specified by the encryption-iteration-count
+ * config variable.
+ */
+69
+inline void OEncryptStream::set_iteration_count(int iteration_count);
+
+680 13 get_algorithm 0 4 807 29 OEncryptStream::get_algorithm 0 0 74
+/**
+ * Returns the encryption algorithm that was read from the stream.
+ */
+68
+inline std::string const &OEncryptStream::get_algorithm(void) const;
+
+681 14 get_key_length 0 4 807 30 OEncryptStream::get_key_length 0 0 85
+/**
+ * Returns the encryption key length, in bits, that was read from the stream.
+ */
+54
+inline int OEncryptStream::get_key_length(void) const;
+
+682 19 get_iteration_count 0 4 807 35 OEncryptStream::get_iteration_count 0 0 63
+/**
+ * Returns the value that was was read from the stream.
+ */
+59
+inline int OEncryptStream::get_iteration_count(void) const;
+
+683 15 ~OEncryptStream 0 4 807 31 OEncryptStream::~OEncryptStream 0 0 0
+38
+OEncryptStream::~OEncryptStream(void);
+
+684 12 StreamReader 0 4 809 26 StreamReader::StreamReader 0 2 310 311 189
+/**
+ *
+ */
+
+/**
+ * If owns_stream is true, the stream pointer will be deleted when the
+ * StreamReader destructs.
+ */
+
+/**
+ * The copy constructor does not copy ownership of the stream.
+ */
+140
+inline explicit StreamReader::StreamReader(std::istream *in, bool owns_stream);
+inline StreamReader::StreamReader(StreamReader const &copy);
+
+685 10 operator = 0 4 809 24 StreamReader::operator = 0 1 312 0
+63
+inline void StreamReader::operator =(StreamReader const &copy);
+
+686 13 ~StreamReader 0 4 809 27 StreamReader::~StreamReader 0 0 10
+/**
+ *
+ */
+41
+inline StreamReader::~StreamReader(void);
+
+687 11 get_istream 0 4 809 25 StreamReader::get_istream 0 1 313 37
+/**
+ * Returns the stream in use.
+ */
+59
+inline std::istream *StreamReader::get_istream(void) const;
+
+688 8 get_bool 0 4 809 22 StreamReader::get_bool 0 1 314 36
+/**
+ * Extracts a boolean value.
+ */
+41
+inline bool StreamReader::get_bool(void);
+
+689 8 get_int8 0 4 809 22 StreamReader::get_int8 0 1 315 43
+/**
+ * Extracts a signed 8-bit integer.
+ */
+43
+inline int8_t StreamReader::get_int8(void);
+
+690 9 get_uint8 0 4 809 23 StreamReader::get_uint8 0 1 316 46
+/**
+ * Extracts an unsigned 8-bit integer.
+ */
+45
+inline uint8_t StreamReader::get_uint8(void);
+
+691 9 get_int16 0 4 809 23 StreamReader::get_int16 0 1 317 44
+/**
+ * Extracts a signed 16-bit integer.
+ */
+45
+inline int16_t StreamReader::get_int16(void);
+
+692 9 get_int32 0 4 809 23 StreamReader::get_int32 0 1 318 44
+/**
+ * Extracts a signed 32-bit integer.
+ */
+45
+inline int32_t StreamReader::get_int32(void);
+
+693 9 get_int64 0 4 809 23 StreamReader::get_int64 0 1 319 44
+/**
+ * Extracts a signed 64-bit integer.
+ */
+45
+inline int64_t StreamReader::get_int64(void);
+
+694 10 get_uint16 0 4 809 24 StreamReader::get_uint16 0 1 320 47
+/**
+ * Extracts an unsigned 16-bit integer.
+ */
+47
+inline uint16_t StreamReader::get_uint16(void);
+
+695 10 get_uint32 0 4 809 24 StreamReader::get_uint32 0 1 321 47
+/**
+ * Extracts an unsigned 32-bit integer.
+ */
+47
+inline uint32_t StreamReader::get_uint32(void);
+
+696 10 get_uint64 0 4 809 24 StreamReader::get_uint64 0 1 322 47
+/**
+ * Extracts an unsigned 64-bit integer.
+ */
+47
+inline uint64_t StreamReader::get_uint64(void);
+
+697 11 get_float32 0 4 809 25 StreamReader::get_float32 0 1 323 186
+/**
+ * Extracts a 32-bit single-precision floating-point number.  Since this kind
+ * of float is not necessarily portable across different architectures,
+ * special care is required.
+ */
+45
+inline float StreamReader::get_float32(void);
+
+698 11 get_float64 0 4 809 25 StreamReader::get_float64 0 1 324 51
+/**
+ * Extracts a 64-bit floating-point number.
+ */
+50
+inline PN_float64 StreamReader::get_float64(void);
+
+699 12 get_be_int16 0 4 809 26 StreamReader::get_be_int16 0 1 325 55
+/**
+ * Extracts a signed big-endian 16-bit integer.
+ */
+48
+inline int16_t StreamReader::get_be_int16(void);
+
+700 12 get_be_int32 0 4 809 26 StreamReader::get_be_int32 0 1 326 55
+/**
+ * Extracts a signed big-endian 32-bit integer.
+ */
+48
+inline int32_t StreamReader::get_be_int32(void);
+
+701 12 get_be_int64 0 4 809 26 StreamReader::get_be_int64 0 1 327 55
+/**
+ * Extracts a signed big-endian 64-bit integer.
+ */
+48
+inline int64_t StreamReader::get_be_int64(void);
+
+702 13 get_be_uint16 0 4 809 27 StreamReader::get_be_uint16 0 1 328 58
+/**
+ * Extracts an unsigned big-endian 16-bit integer.
+ */
+50
+inline uint16_t StreamReader::get_be_uint16(void);
+
+703 13 get_be_uint32 0 4 809 27 StreamReader::get_be_uint32 0 1 329 58
+/**
+ * Extracts an unsigned big-endian 32-bit integer.
+ */
+50
+inline uint32_t StreamReader::get_be_uint32(void);
+
+704 13 get_be_uint64 0 4 809 27 StreamReader::get_be_uint64 0 1 330 58
+/**
+ * Extracts an unsigned big-endian 64-bit integer.
+ */
+50
+inline uint64_t StreamReader::get_be_uint64(void);
+
+705 14 get_be_float32 0 4 809 28 StreamReader::get_be_float32 0 1 331 197
+/**
+ * Extracts a 32-bit single-precision big-endian floating-point number.  Since
+ * this kind of float is not necessarily portable across different
+ * architectures, special care is required.
+ */
+48
+inline float StreamReader::get_be_float32(void);
+
+706 14 get_be_float64 0 4 809 28 StreamReader::get_be_float64 0 1 332 62
+/**
+ * Extracts a 64-bit big-endian floating-point number.
+ */
+53
+inline PN_float64 StreamReader::get_be_float64(void);
+
+707 10 get_string 0 4 809 24 StreamReader::get_string 0 1 333 45
+/**
+ * Extracts a variable-length string.
+ */
+43
+std::string StreamReader::get_string(void);
+
+708 12 get_string32 0 4 809 26 StreamReader::get_string32 0 1 334 72
+/**
+ * Extracts a variable-length string with a 32-bit length field.
+ */
+45
+std::string StreamReader::get_string32(void);
+
+709 12 get_z_string 0 4 809 26 StreamReader::get_z_string 0 1 335 74
+/**
+ * Extracts a variable-length string, as a NULL-terminated string.
+ */
+45
+std::string StreamReader::get_z_string(void);
+
+710 16 get_fixed_string 0 4 809 30 StreamReader::get_fixed_string 0 1 336 128
+/**
+ * Extracts a fixed-length string.  However, if a zero byte occurs within the
+ * string, it marks the end of the string.
+ */
+61
+std::string StreamReader::get_fixed_string(std::size_t size);
+
+711 10 skip_bytes 0 4 809 24 StreamReader::skip_bytes 0 1 337 66
+/**
+ * Skips over the indicated number of bytes in the stream.
+ */
+48
+void StreamReader::skip_bytes(std::size_t size);
+
+712 13 extract_bytes 0 4 809 27 StreamReader::extract_bytes 0 1 338 380
+/**
+ * Extracts the indicated number of bytes in the stream into the given
+ * character buffer.  Assumes that the buffer is big enough to hold the
+ * requested number of bytes.  Returns the number of bytes that were
+ * successfully written.
+ */
+
+/**
+ * Extracts the indicated number of bytes in the stream and returns them as a
+ * string.  Returns empty string at end-of-file.
+ */
+136
+std::size_t StreamReader::extract_bytes(unsigned char *into, std::size_t size);
+PyObject *StreamReader::extract_bytes(std::size_t size);
+
+713 8 readline 0 4 809 22 StreamReader::readline 0 1 339 303
+/**
+ * Assumes the stream represents a text file, and extracts one line up to and
+ * including the trailing newline character.  Returns empty string when the
+ * end of file is reached.
+ *
+ * The interface here is intentionally designed to be similar to that for
+ * Python's File.readline() function.
+ */
+39
+PyObject *StreamReader::readline(void);
+
+714 9 readlines 0 4 809 23 StreamReader::readlines 0 1 340 0
+40
+PyObject *StreamReader::readlines(void);
+
+715 12 StreamWriter 0 4 811 26 StreamWriter::StreamWriter 0 2 341 342 94
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ * The copy constructor does not copy ownership of the stream.
+ */
+141
+inline explicit StreamWriter::StreamWriter(std::ostream *out, bool owns_stream);
+inline StreamWriter::StreamWriter(StreamWriter const &copy);
+
+716 10 operator = 0 4 811 24 StreamWriter::operator = 0 1 343 0
+63
+inline void StreamWriter::operator =(StreamWriter const &copy);
+
+717 13 ~StreamWriter 0 4 811 27 StreamWriter::~StreamWriter 0 0 10
+/**
+ *
+ */
+41
+inline StreamWriter::~StreamWriter(void);
+
+718 11 get_ostream 0 4 811 25 StreamWriter::get_ostream 0 1 344 37
+/**
+ * Returns the stream in use.
+ */
+59
+inline std::ostream *StreamWriter::get_ostream(void) const;
+
+719 8 add_bool 0 4 811 22 StreamWriter::add_bool 0 1 345 46
+/**
+ * Adds a boolean value to the stream.
+ */
+47
+inline void StreamWriter::add_bool(bool value);
+
+720 8 add_int8 0 4 811 22 StreamWriter::add_int8 0 1 346 53
+/**
+ * Adds a signed 8-bit integer to the stream.
+ */
+49
+inline void StreamWriter::add_int8(int8_t value);
+
+721 9 add_uint8 0 4 811 23 StreamWriter::add_uint8 0 1 347 56
+/**
+ * Adds an unsigned 8-bit integer to the stream.
+ */
+51
+inline void StreamWriter::add_uint8(uint8_t value);
+
+722 9 add_int16 0 4 811 23 StreamWriter::add_int16 0 1 348 104
+// The default numeric packing is little-endian.
+
+/**
+ * Adds a signed 16-bit integer to the stream.
+ */
+51
+inline void StreamWriter::add_int16(int16_t value);
+
+723 9 add_int32 0 4 811 23 StreamWriter::add_int32 0 1 349 54
+/**
+ * Adds a signed 32-bit integer to the stream.
+ */
+51
+inline void StreamWriter::add_int32(int32_t value);
+
+724 9 add_int64 0 4 811 23 StreamWriter::add_int64 0 1 350 54
+/**
+ * Adds a signed 64-bit integer to the stream.
+ */
+51
+inline void StreamWriter::add_int64(int64_t value);
+
+725 10 add_uint16 0 4 811 24 StreamWriter::add_uint16 0 1 351 57
+/**
+ * Adds an unsigned 16-bit integer to the stream.
+ */
+53
+inline void StreamWriter::add_uint16(uint16_t value);
+
+726 10 add_uint32 0 4 811 24 StreamWriter::add_uint32 0 1 352 57
+/**
+ * Adds an unsigned 32-bit integer to the stream.
+ */
+53
+inline void StreamWriter::add_uint32(uint32_t value);
+
+727 10 add_uint64 0 4 811 24 StreamWriter::add_uint64 0 1 353 57
+/**
+ * Adds an unsigned 64-bit integer to the stream.
+ */
+53
+inline void StreamWriter::add_uint64(uint64_t value);
+
+728 11 add_float32 0 4 811 25 StreamWriter::add_float32 0 1 354 196
+/**
+ * Adds a 32-bit single-precision floating-point number to the stream.  Since
+ * this kind of float is not necessarily portable across different
+ * architectures, special care is required.
+ */
+51
+inline void StreamWriter::add_float32(float value);
+
+729 11 add_float64 0 4 811 25 StreamWriter::add_float64 0 1 355 61
+/**
+ * Adds a 64-bit floating-point number to the stream.
+ */
+56
+inline void StreamWriter::add_float64(PN_float64 value);
+
+730 12 add_be_int16 0 4 811 26 StreamWriter::add_be_int16 0 1 356 140
+// These functions pack numbers big-endian, in case that's desired.
+
+/**
+ * Adds a signed 16-bit big-endian integer to the streamWriter.
+ */
+54
+inline void StreamWriter::add_be_int16(int16_t value);
+
+731 12 add_be_int32 0 4 811 26 StreamWriter::add_be_int32 0 1 357 71
+/**
+ * Adds a signed 32-bit big-endian integer to the streamWriter.
+ */
+54
+inline void StreamWriter::add_be_int32(int32_t value);
+
+732 12 add_be_int64 0 4 811 26 StreamWriter::add_be_int64 0 1 358 71
+/**
+ * Adds a signed 64-bit big-endian integer to the streamWriter.
+ */
+54
+inline void StreamWriter::add_be_int64(int64_t value);
+
+733 13 add_be_uint16 0 4 811 27 StreamWriter::add_be_uint16 0 1 359 74
+/**
+ * Adds an unsigned 16-bit big-endian integer to the streamWriter.
+ */
+56
+inline void StreamWriter::add_be_uint16(uint16_t value);
+
+734 13 add_be_uint32 0 4 811 27 StreamWriter::add_be_uint32 0 1 360 74
+/**
+ * Adds an unsigned 32-bit big-endian integer to the streamWriter.
+ */
+56
+inline void StreamWriter::add_be_uint32(uint32_t value);
+
+735 13 add_be_uint64 0 4 811 27 StreamWriter::add_be_uint64 0 1 361 74
+/**
+ * Adds an unsigned 64-bit big-endian integer to the streamWriter.
+ */
+56
+inline void StreamWriter::add_be_uint64(uint64_t value);
+
+736 14 add_be_float32 0 4 811 28 StreamWriter::add_be_float32 0 1 362 207
+/**
+ * Adds a 32-bit single-precision big-endian floating-point number to the
+ * stream.  Since this kind of float is not necessarily portable across
+ * different architectures, special care is required.
+ */
+54
+inline void StreamWriter::add_be_float32(float value);
+
+737 14 add_be_float64 0 4 811 28 StreamWriter::add_be_float64 0 1 363 78
+/**
+ * Adds a 64-bit big-endian floating-point number to the streamWriter.
+ */
+59
+inline void StreamWriter::add_be_float64(PN_float64 value);
+
+738 10 add_string 0 4 811 24 StreamWriter::add_string 0 1 364 107
+/**
+ * Adds a variable-length string to the stream.  This actually adds a count
+ * followed by n bytes.
+ */
+61
+inline void StreamWriter::add_string(std::string const &str);
+
+739 12 add_string32 0 4 811 26 StreamWriter::add_string32 0 1 365 84
+/**
+ * Adds a variable-length string to the stream, using a 32-bit length field.
+ */
+63
+inline void StreamWriter::add_string32(std::string const &str);
+
+740 12 add_z_string 0 4 811 26 StreamWriter::add_z_string 0 1 366 84
+/**
+ * Adds a variable-length string to the stream, as a NULL-terminated string.
+ */
+56
+inline void StreamWriter::add_z_string(std::string str);
+
+741 16 add_fixed_string 0 4 811 30 StreamWriter::add_fixed_string 0 1 367 236
+/**
+ * Adds a fixed-length string to the stream.  If the string given is less than
+ * the requested size, this will pad the string out with zeroes; if it is
+ * greater than the requested size, this will silently truncate the string.
+ */
+85
+inline void StreamWriter::add_fixed_string(std::string const &str, std::size_t size);
+
+742 9 pad_bytes 0 4 811 23 StreamWriter::pad_bytes 0 1 368 65
+/**
+ * Adds the indicated number of zero bytes to the stream.
+ */
+47
+void StreamWriter::pad_bytes(std::size_t size);
+
+743 11 append_data 0 4 811 25 StreamWriter::append_data 0 1 369 140
+/**
+ * Appends some more raw data to the end of the streamWriter.
+ */
+
+/**
+ * Appends some more raw data to the end of the streamWriter.
+ */
+47
+void StreamWriter::append_data(PyObject *data);
+
+744 5 flush 0 4 811 19 StreamWriter::flush 0 1 370 50
+/**
+ * Calls flush() on the underlying stream.
+ */
+38
+inline void StreamWriter::flush(void);
+
+745 5 write 0 4 811 19 StreamWriter::write 0 1 371 132
+/**
+ * A synonym of append_data().  This is useful when assigning the StreamWriter
+ * to sys.stderr and/or sys.stdout in Python.
+ */
+56
+inline void StreamWriter::write(std::string const &str);
+
+746 13 get_softspace 0 20 811 27 StreamWriter::get_softspace 0 0 39
+getter for int StreamWriter::softspace;
+44
+int StreamWriter::get_softspace(void) const;
+
+747 13 set_softspace 0 36 811 27 StreamWriter::set_softspace 0 0 39
+setter for int StreamWriter::softspace;
+44
+void StreamWriter::set_softspace(int value);
+
+748 7 acquire 0 4 813 26 StreamWrapperBase::acquire 0 1 372 572
+/**
+ * Acquires the internal lock.
+ *
+ * User code should call this to take temporary possession of the stream and
+ * perform direct I/O operations on it, for instance to make several
+ * sequential atomic reads.  You may not call any of the StreamWrapper methods
+ * while the lock is held, other than release().
+ *
+ * Use with extreme caution!  This is a very low-level, non-recursive lock.
+ * You must call acquire() only once, and you must later call release()
+ * exactly once.  Failing to do so may result in a hard deadlock with no
+ * available debugging features.
+ */
+45
+inline void StreamWrapperBase::acquire(void);
+
+749 7 release 0 4 813 26 StreamWrapperBase::release 0 1 373 135
+/**
+ * Releases the internal lock.  Must be called exactly once following a call
+ * to acquire().  See the cautions with acquire().
+ */
+45
+inline void StreamWrapperBase::release(void);
+
+750 18 ~StreamWrapperBase 0 4 813 37 StreamWrapperBase::~StreamWrapperBase 0 0 0
+44
+StreamWrapperBase::~StreamWrapperBase(void);
+
+751 27 upcast_to_StreamWrapperBase 0 12 814 43 IStreamWrapper::upcast_to_StreamWrapperBase 0 1 376 47
+upcast from IStreamWrapper to StreamWrapperBase
+69
+StreamWrapperBase *IStreamWrapper::upcast_to_StreamWrapperBase(void);
+
+752 14 IStreamWrapper 0 4 814 30 IStreamWrapper::IStreamWrapper 0 1 374 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+69
+inline explicit IStreamWrapper::IStreamWrapper(std::istream &stream);
+
+753 15 ~IStreamWrapper 0 4 814 31 IStreamWrapper::~IStreamWrapper 0 0 10
+/**
+ *
+ */
+38
+IStreamWrapper::~IStreamWrapper(void);
+
+754 11 get_istream 0 4 814 27 IStreamWrapper::get_istream 0 1 375 55
+/**
+ * Returns the istream this object is wrapping.
+ */
+61
+inline std::istream *IStreamWrapper::get_istream(void) const;
+
+755 27 upcast_to_StreamWrapperBase 0 12 815 43 OStreamWrapper::upcast_to_StreamWrapperBase 0 1 379 47
+upcast from OStreamWrapper to StreamWrapperBase
+69
+StreamWrapperBase *OStreamWrapper::upcast_to_StreamWrapperBase(void);
+
+756 14 OStreamWrapper 0 4 815 30 OStreamWrapper::OStreamWrapper 0 1 377 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+69
+inline explicit OStreamWrapper::OStreamWrapper(std::ostream &stream);
+
+757 15 ~OStreamWrapper 0 4 815 31 OStreamWrapper::~OStreamWrapper 0 0 10
+/**
+ *
+ */
+38
+OStreamWrapper::~OStreamWrapper(void);
+
+758 11 get_ostream 0 4 815 27 OStreamWrapper::get_ostream 0 1 378 55
+/**
+ * Returns the ostream this object is wrapping.
+ */
+61
+inline std::ostream *OStreamWrapper::get_ostream(void) const;
+
+759 24 upcast_to_IStreamWrapper 0 12 816 39 StreamWrapper::upcast_to_IStreamWrapper 0 1 382 43
+upcast from StreamWrapper to IStreamWrapper
+62
+IStreamWrapper *StreamWrapper::upcast_to_IStreamWrapper(void);
+
+760 25 downcast_to_StreamWrapper 0 12 814 41 IStreamWrapper::downcast_to_StreamWrapper 0 0 45
+downcast from IStreamWrapper to StreamWrapper
+63
+StreamWrapper *IStreamWrapper::downcast_to_StreamWrapper(void);
+
+761 24 upcast_to_OStreamWrapper 0 12 816 39 StreamWrapper::upcast_to_OStreamWrapper 0 1 383 43
+upcast from StreamWrapper to OStreamWrapper
+62
+OStreamWrapper *StreamWrapper::upcast_to_OStreamWrapper(void);
+
+762 25 downcast_to_StreamWrapper 0 12 815 41 OStreamWrapper::downcast_to_StreamWrapper 0 0 45
+downcast from OStreamWrapper to StreamWrapper
+63
+StreamWrapper *OStreamWrapper::downcast_to_StreamWrapper(void);
+
+763 13 StreamWrapper 0 4 816 28 StreamWrapper::StreamWrapper 0 1 380 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+68
+inline explicit StreamWrapper::StreamWrapper(std::iostream &stream);
+
+764 14 ~StreamWrapper 0 4 816 29 StreamWrapper::~StreamWrapper 0 0 10
+/**
+ *
+ */
+36
+StreamWrapper::~StreamWrapper(void);
+
+765 12 get_iostream 0 4 816 27 StreamWrapper::get_iostream 0 1 381 56
+/**
+ * Returns the iostream this object is wrapping.
+ */
+62
+inline std::iostream *StreamWrapper::get_iostream(void) const;
+
+383
+1 0 0 7 4 819 385 0 0 0 
+2 0 0 7 4 819 385 0 0 1 6 param0 0 820  
+3 0 0 6 7 777 0 0 136 /**
+ * Returns a pointer to the global "default page".  This is the ConfigPage
+ * that lists all variables' original default values.
+ */ 0 
+4 0 0 6 8 777 0 0 191 /**
+ * Returns a pointer to the global "local page".  This is the ConfigPage that
+ * lists the locally-assigned values for any variables in the world that have
+ * such a local assignment.
+ */ 0 
+5 0 0 6 9 824 0 0 115 /**
+ * Returns the name of the page.  If the page was loaded from a .prc file,
+ * this is usually the filename.
+ */ 1 4 this 3 822  
+6 0 0 6 14 773 0 0 248 /**
+ * Returns true if this is the special "default" or "local" page, or false if
+ * it is an ordinary page, e.g.  an implicit page loaded from a prc file at
+ * startup, or an explicit page created by
+ * ConfigPageManager::make_explicit_page().
+ */ 1 4 this 3 822  
+7 0 0 6 15 773 0 0 180 /**
+ * Returns true if the page was loaded by implicitly searching the config path
+ * on startup, or false if it was explicitly loaded by dynamic code after
+ * initial startup.
+ */ 1 4 this 3 822  
+8 0 0 4 19 825 0 0 363 /**
+ * Changes the explicit sort order of this particular ConfigPage.  Lower-
+ * numbered pages supercede higher-numbered pages.  Initially, all explicitly-
+ * loaded pages have sort value 0, and implicitly-loaded pages (found on disk)
+ * have sort value 10; you may set an individual page higher or lower to
+ * influence its priority relative to other pages.
+ */ 2 4 this 3 777  4 sort 1 774  
+9 0 0 6 20 774 0 0 93 /**
+ * Returns the explicit sort order of this particular ConfigPage.  See
+ * set_sort().
+ */ 1 4 this 3 822  
+10 0 0 6 23 774 0 0 413 /**
+ * Returns the sequence number of the page.
+ *
+ * Sequence numbers for a particular class (implicit vs.  explicit) of pages
+ * are assigned as each page is loaded; each page is given a higher sequence
+ * number than all the pages loaded before it.
+ *
+ * The implicit_load pages, which are discovered in the file system
+ * automatically, have a different set of sequence numbers than the explicit
+ * pages.
+ */ 1 4 this 3 822  
+11 0 0 6 24 774 0 0 302 /**
+ * Returns the trust level associated with this page.  An untrusted page is
+ * trust level 0; if the page was loaded from a signed .prc file, its trust
+ * level is the index number of the certificate that signed it.  Generally, a
+ * higher trust level value represents a greater level of trust.
+ */ 1 4 this 3 822  
+12 0 0 4 25 825 0 0 195 /**
+ * Explicitly sets the trust level on this particular page.  Note that any
+ * subsequent changes to the page, or to any variable declarations on it, will
+ * reset the trust level to zero.
+ */ 2 4 this 3 777  11 trust_level 1 774  
+13 0 0 6 26 824 0 0 153 /**
+ * Returns the raw binary signature that was found in the prc file, if any.
+ * This method is probably not terribly useful for most applications.
+ */ 1 4 this 3 822  
+14 0 0 4 30 825 0 0 57 /**
+ * Removes all of the declarations from the page.
+ */ 1 4 this 3 777  
+15 0 0 6 31 773 0 0 392 /**
+ * Reads the contents of a complete prc file, as returned by the indicated
+ * istream, into the current page file.  Returns true on success, or false on
+ * some I/O error.
+ *
+ * This is a low-level interface.  Normally you do not need to call it
+ * directly.  See the global functions load_prc_file() and unload_prc_file(),
+ * defined in panda/src/putil, for a higher-level interface.
+ */ 2 4 this 3 777  2 in 1 810  
+16 0 0 6 32 773 0 0 155 /**
+ * Automatically decrypts and reads the stream, given the indicated password.
+ * Note that if the password is incorrect, the result may be garbage.
+ */ 3 4 this 3 777  2 in 1 810  8 password 1 824  
+17 0 0 6 33 775 0 0 83 /**
+ * Adds the indicated variable/value pair as a new declaration on the page.
+ */ 3 4 this 3 777  8 variable 1 778  5 value 1 824  
+18 0 0 6 33 775 0 0 83 /**
+ * Adds the indicated variable/value pair as a new declaration on the page.
+ */ 3 4 this 3 777  8 variable 1 824  5 value 1 824  
+19 0 0 6 34 773 0 0 171 /**
+ * Removes the indicated declaration from the page and deletes it.  Returns
+ * true if the declaration is successfully removed, false if it was not on the
+ * page.
+ */ 2 4 this 3 777  4 decl 1 775  
+20 0 0 6 35 826 0 0 58 /**
+ * Returns the number of declarations on the page.
+ */ 1 4 this 3 822  
+21 0 0 6 36 780 0 0 51 /**
+ * Returns the nth declaration on the page.
+ */ 2 4 this 3 822  1 n 1 826  
+22 0 0 6 37 775 0 0 180 /**
+ * Returns a modifiable pointer to the nth declaration on the page.  Any
+ * modifications will appear in the output, if the page is written out with
+ * ConfigPage::write().
+ */ 2 4 this 3 777  1 n 1 826  
+23 0 0 6 38 824 0 0 73 /**
+ * Returns the variable named by the nth declaration on the page.
+ */ 2 4 this 3 822  1 n 1 826  
+24 0 0 6 39 824 0 0 73 /**
+ * Returns the value assigned by the nth declaration on the page.
+ */ 2 4 this 3 822  1 n 1 826  
+25 0 0 6 40 773 0 0 105 /**
+ * Returns true if the nth active variable on the page has been used by code,
+ * false otherwise.
+ */ 2 4 this 3 822  1 n 1 826  
+26 0 0 4 119 825 0 0 10 /**
+ *
+ */ 2 4 this 3 822  3 out 1 812  
+27 0 0 4 120 825 0 0 61 /**
+ * Outputs the first few hex digits of the signature.
+ */ 2 4 this 3 822  3 out 1 812  
+28 0 0 4 121 825 0 0 10 /**
+ *
+ */ 2 4 this 3 822  3 out 1 812  
+29 0 0 6 44 777 0 0 67 /**
+ * Returns the page on which this declaration can be found.
+ */ 1 4 this 3 780  
+30 0 0 6 45 778 0 0 148 /**
+ * Returns the variable that this declaration names.  This variable may or may
+ * not have been defined by the time the declaration is read.
+ */ 1 4 this 3 780  
+31 0 0 6 97 824 0 0 186 /**
+ * Returns the value assigned to this variable.  This is the original one-line
+ * text defined for the variable in the .prc file (or passed to
+ * ConfigPage::make_declaration()).
+ */ 1 4 this 3 780  
+32 0 0 4 98 825 0 0 55 /**
+ * Changes the value assigned to this variable.
+ */ 2 4 this 3 775  5 value 1 824  
+33 0 0 6 99 826 0 0 156 /**
+ * Returns the number of words in the declaration's value.  A word is defined
+ * as a sequence of non-whitespace characters delimited by whitespace.
+ */ 1 4 this 3 780  
+34 0 0 6 100 773 0 0 184 /**
+ * Returns true if the declaration's value has a valid string value for the
+ * nth word.  This is really the same thing as asking if there are at least n
+ * words in the value.
+ */ 2 4 this 3 780  1 n 1 826  
+35 0 0 6 101 773 0 0 97 /**
+ * Returns true if the declaration's value has a valid boolean value for the
+ * nth word.
+ */ 2 4 this 3 780  1 n 1 826  
+36 0 0 6 102 773 0 0 97 /**
+ * Returns true if the declaration's value has a valid integer value for the
+ * nth word.
+ */ 2 4 this 3 780  1 n 1 826  
+37 0 0 6 103 773 0 0 95 /**
+ * Returns true if the declaration's value has a valid int64 value for the nth
+ * word.
+ */ 2 4 this 3 780  1 n 1 826  
+38 0 0 6 104 773 0 0 97 /**
+ * Returns true if the declaration's value has a valid integer value for the
+ * nth word.
+ */ 2 4 this 3 780  1 n 1 826  
+39 0 0 6 105 824 0 0 153 /**
+ * Returns the string value of the nth word of the declaration's value, or
+ * empty string if there is no nth value.  See also has_string_word().
+ */ 2 4 this 3 780  1 n 1 826  
+40 0 0 6 106 773 0 0 145 /**
+ * Returns the boolean value of the nth word of the declaration's value, or
+ * false if there is no nth value.  See also has_bool_word().
+ */ 2 4 this 3 780  1 n 1 826  
+41 0 0 6 107 774 0 0 140 /**
+ * Returns the integer value of the nth word of the declaration's value, or 0
+ * if there is no nth value.  See also has_int_word().
+ */ 2 4 this 3 780  1 n 1 826  
+42 0 0 6 108 795 0 0 140 /**
+ * Returns the int64 value of the nth word of the declaration's value, or 0 if
+ * there is no nth value.  See also has_int64_word().
+ */ 2 4 this 3 780  1 n 1 826  
+43 0 0 6 109 790 0 0 143 /**
+ * Returns the integer value of the nth word of the declaration's value, or 0
+ * if there is no nth value.  See also has_double_word().
+ */ 2 4 this 3 780  1 n 1 826  
+44 0 0 4 110 825 0 0 92 /**
+ * Changes the nth word to the indicated value without affecting the other
+ * words.
+ */ 3 4 this 3 775  1 n 1 826  5 value 1 824  
+45 0 0 4 111 825 0 0 92 /**
+ * Changes the nth word to the indicated value without affecting the other
+ * words.
+ */ 3 4 this 3 775  1 n 1 826  5 value 1 773  
+46 0 0 4 112 825 0 0 92 /**
+ * Changes the nth word to the indicated value without affecting the other
+ * words.
+ */ 3 4 this 3 775  1 n 1 826  5 value 1 774  
+47 0 0 4 113 825 0 0 92 /**
+ * Changes the nth word to the indicated value without affecting the other
+ * words.
+ */ 3 4 this 3 775  1 n 1 826  5 value 1 795  
+48 0 0 4 114 825 0 0 92 /**
+ * Changes the nth word to the indicated value without affecting the other
+ * words.
+ */ 3 4 this 3 775  1 n 1 826  5 value 1 790  
+49 0 0 7 115 828 0 0 100 /**
+ * Interprets the string value as a filename and returns it, with any
+ * variables expanded.
+ */ 1 4 this 3 780  
+50 0 0 6 116 774 0 0 254 /**
+ * Returns the sequence number of the declaration within the page.  Sequence
+ * numbers are assigned as each declaration is created; each declaration is
+ * given a higher sequence number than all the declarations created in the
+ * page before it.
+ */ 1 4 this 3 780  
+51 0 0 4 117 825 0 0 10 /**
+ *
+ */ 2 4 this 3 780  3 out 1 812  
+52 0 0 4 118 825 0 0 10 /**
+ *
+ */ 2 4 this 3 780  3 out 1 812  
+53 0 0 6 51 824 0 0 44 /**
+ * Returns the name of the variable.
+ */ 1 4 this 3 829  
+54 0 0 6 52 773 0 0 118 /**
+ * Returns true if the variable has been referenced by a ConfigVariable
+ * somewhere in code, false otherwise.
+ */ 1 4 this 3 829  
+55 0 0 6 53 767 0 0 125 /**
+ * Returns the stated type of this variable.  If the variable has not yet been
+ * defined, this will be VT_undefined.
+ */ 1 4 this 3 829  
+56 0 0 6 54 824 0 0 82 /**
+ * Returns the brief description of this variable, if it has been defined.
+ */ 1 4 this 3 829  
+57 0 0 6 55 774 0 0 250 /**
+ * Returns the flags value as set by set_flags().  This includes the trust
+ * level and some other settings.  See the individual methods is_closed(),
+ * get_trust_level(), etc.  to pull out the semantic meaning of these flags
+ * individually.
+ */ 1 4 this 3 829  
+58 0 0 6 56 773 0 0 413 /**
+ * Returns true if the variable is not trusted by any prc file (and hence
+ * cannot be modified from its compiled-in default value), or false for the
+ * normal case, in which the variable can be modified by any prc file at or
+ * above its trust level (see get_trust_level()).
+ *
+ * This value only has effect in a release build (specifically, when
+ * PRC_RESPECT_TRUST_LEVEL is defined true in Config.pp).
+ */ 1 4 this 3 829  
+59 0 0 6 57 774 0 0 479 /**
+ * Returns the minimum trust_level a prc file must demonstrate in order to
+ * redefine the value for this variable.  Arguably, this should be called the
+ * "mistrust level", since the larger the value, the more suspicious we are of
+ * prc files.  This value is not used if is_closed() returns true, which
+ * indicates no file may be trusted.
+ *
+ * This value only has effect in a release build (specifically, when
+ * PRC_RESPECT_TRUST_LEVEL is defined true in Config.pp).
+ */ 1 4 this 3 829  
+60 0 0 6 58 773 0 0 232 /**
+ * Returns true if the variable was indicated as "dynamic" by its constructor,
+ * indicating that its name was dynamically generated, possibly from a large
+ * pool, and it should not be listed along with the other variables.
+ */ 1 4 this 3 829  
+61 0 0 6 59 780 0 0 137 /**
+ * Returns the default variable specified for this variable.  If the variable
+ * has not yet been defined, this will return NULL.
+ */ 1 4 this 3 829  
+62 0 0 4 60 825 0 0 212 /**
+ * Specifies the type of this variable.  See get_value_type().  It is not an
+ * error to call this multiple times, but if the value changes once
+ * get_declaration() has been called, a warning is printed.
+ */ 2 4 this 3 778  10 value_type 1 767  
+63 0 0 4 61 825 0 0 214 /**
+ * Specifies the trust level of this variable.  See get_flags().  It is not an
+ * error to call this multiple times, but if the value changes once
+ * get_declaration() has been called, a warning is printed.
+ */ 2 4 this 3 778  5 flags 1 774  
+64 0 0 4 62 825 0 0 232 /**
+ * Specifies the one-line description of this variable.  See
+ * get_description().  It is not an error to call this multiple times, but if
+ * the value changes once get_declaration() has been called, a warning is
+ * printed.
+ */ 2 4 this 3 778  11 description 1 824  
+65 0 0 4 63 825 0 0 97 /**
+ * Specifies the default value for this variable if it is not defined in any
+ * prc file.
+ */ 2 4 this 3 778  13 default_value 1 824  
+66 0 0 4 64 825 0 0 75 /**
+ * Marks that the variable has been "declared" by a ConfigVariable.
+ */ 1 4 this 3 778  
+67 0 0 6 65 775 0 0 324 /**
+ * Creates a new local value for this variable, if there is not already one
+ * specified.  This will shadow any values defined in the various .prc files.
+ *
+ * If there is already a local value defined for this variable, simply returns
+ * that one.
+ *
+ * Use clear_local_value() to remove the local value definition.
+ */ 1 4 this 3 778  
+68 0 0 6 66 773 0 0 240 /**
+ * Removes the local value defined for this variable, and allows its value to
+ * be once again retrieved from the .prc files.
+ *
+ * Returns true if the value was successfully removed, false if it did not
+ * exist in the first place.
+ */ 1 4 this 3 778  
+69 0 0 6 67 773 0 0 148 /**
+ * Returns true if this variable's value has been shadowed by a local
+ * assignment (as created via make_local_value()), or false otherwise.
+ */ 1 4 this 3 829  
+70 0 0 6 68 773 0 0 149 /**
+ * Returns true if this variable has an explicit value, either from a prc file
+ * or locally set, or false if variable has its default value.
+ */ 1 4 this 3 829  
+71 0 0 6 69 826 0 0 194 /**
+ * Returns the number of declarations that contribute to this variable's
+ * value.  If the variable has been defined, this will always be at least 1
+ * (for the default value, at least).
+ */ 1 4 this 3 829  
+72 0 0 6 70 780 0 0 285 /**
+ * Returns the nth declarations that contributes to this variable's value.
+ * The declarations are arranged in order such that earlier declarations
+ * shadow later declarations; thus, get_declaration(0) is always defined and
+ * always returns the current value of the variable.
+ */ 2 4 this 3 829  1 n 1 826  
+73 0 0 6 72 826 0 0 157 /**
+ * Returns the number of prc files that reference this variable.  This is not
+ * exactly the same as the number of declarations; see get_reference().
+ */ 1 4 this 3 829  
+74 0 0 6 73 780 0 0 335 /**
+ * Returns the nth declaration in a prc file that references this variable.
+ * This is similar, but not identical to, get_declaration().  The difference
+ * is that this will list *only* true references in a prc file, and will not
+ * list default values or locally-assigned values; it also will list even the
+ * untrusted files.
+ */ 2 4 this 3 829  1 n 1 826  
+75 0 0 6 75 826 0 0 115 /**
+ * Returns the number of trusted prc files that reference this variable.  See
+ * also get_num_references().
+ */ 1 4 this 3 829  
+76 0 0 6 76 780 0 0 428 /**
+ * Returns the nth declaration in a trusted prc file that references this
+ * variable.  This is similar, but not identical to, get_declaration().  The
+ * difference is that this will list *only* true references in a prc file, and
+ * will not list default values or locally-assigned values.
+ *
+ * This is also similar to get_reference(), except that it only lists the
+ * trusted declarations, omitting the untrusted ones.
+ */ 2 4 this 3 829  1 n 1 826  
+77 0 0 6 78 826 0 0 107 /**
+ * Returns the number of trusted, unique (by string value) values there exist
+ * for this variable.
+ */ 1 4 this 3 829  
+78 0 0 6 79 780 0 0 157 /**
+ * Returns the nth trusted, unique value for this variable.  This is similar
+ * to get_trusted_reference(), except that duplicate values are removed.
+ */ 2 4 this 3 829  1 n 1 826  
+79 0 0 4 84 825 0 0 10 /**
+ *
+ */ 2 4 this 3 829  3 out 1 812  
+80 0 0 4 85 825 0 0 10 /**
+ *
+ */ 2 4 this 3 829  3 out 1 812  
+81 0 0 7 124 831 464 0 10 /**
+ *
+ */ 0 
+82 0 0 7 124 831 464 0 0 1 6 param0 0 832  
+83 0 0 4 126 825 0 0 250 /**
+ * Changes the ostream that all subsequent Notify messages will be written to.
+ * If the previous ostream was set with delete_later = true, this will delete
+ * the previous ostream.  If ostream_ptr is NULL, this resets the default to
+ * cerr.
+ */ 3 4 this 3 831  11 ostream_ptr 1 812  12 delete_later 1 773  
+84 0 0 6 127 812 0 0 67 /**
+ * Returns the system-wide ostream for all Notify messages.
+ */ 1 4 this 3 832  
+85 0 0 4 129 825 0 0 110 /**
+ * Removes the installed assert handler and restores default behavior of
+ * nassertr() and nassertv().
+ */ 1 4 this 3 831  
+86 0 0 6 130 773 0 0 85 /**
+ * Returns true if a user assert handler has been installed, false otherwise.
+ */ 1 4 this 3 832  
+87 0 0 4 131 825 0 0 110 /**
+ * Returns a pointer to the user-installed assert handler, if one was
+ * installed, or NULL otherwise.
+ */ 1 4 this 3 832  
+88 0 0 6 132 773 0 0 637 /**
+ * Returns true if an assertion test has failed (and not been ignored) since
+ * the last call to clear_assert_failed().
+ *
+ * When an assertion test fails, the assert handler may decide either to
+ * abort, return, or ignore the assertion.  Naturally, if it decides to abort,
+ * this flag is irrelevant.  If it chooses to ignore the assertion, the flag
+ * is not set.  However, if the assert handler chooses to return out of the
+ * function (the normal case), it will also set this flag to indicate that an
+ * assertion failure has occurred.
+ *
+ * This will also be the behavior in the absence of a user-defined assert
+ * handler.
+ */ 1 4 this 3 832  
+89 0 0 6 133 824 0 0 100 /**
+ * Returns the error message that corresponds to the assertion that most
+ * recently failed.
+ */ 1 4 this 3 832  
+90 0 0 4 134 825 0 0 114 /**
+ * Resets the assert_failed flag that is set whenever an assertion test fails.
+ * See has_assert_failed().
+ */ 1 4 this 3 831  
+91 0 0 6 135 804 0 0 129 /**
+ * Returns the topmost Category in the hierarchy.  This may be used to
+ * traverse the hierarchy of available Categories.
+ */ 1 4 this 3 831  
+92 0 0 6 136 804 0 0 325 /**
+ * Finds or creates a new Category given the fullname of the Category.  This
+ * name should be a sequence of colon-separated names of parent Categories,
+ * ending in the basename of this Category, e.g.  display:glxdisplay.  This is
+ * a shorthand way to define a Category when a pointer to its parent is not
+ * handy.
+ */ 2 4 this 3 831  8 fullname 1 824  
+93 0 0 6 136 804 0 0 199 /**
+ * Finds or creates a new Category given the basename of the category and its
+ * parent in the category hierarchy.  The parent pointer may be NULL to
+ * indicate this is a top-level Category.
+ */ 3 4 this 3 831  8 basename 1 824  15 parent_category 1 804  
+94 0 0 6 136 804 0 0 316 /**
+ * Finds or creates a new Category given the basename of the category and the
+ * fullname of its parent.  This is another way to create a category when you
+ * don't have a pointer to its parent handy, but you know the name of its
+ * parent.  If the parent Category does not already exist, it will be created.
+ */ 3 4 this 3 831  8 basename 1 824  15 parent_fullname 1 824  
+95 0 0 6 137 812 0 0 189 /**
+ * A convenient way to get the ostream that should be written to for a Notify-
+ * type message.  Also see Category::out() for a message that is specific to a
+ * particular Category.
+ */ 0 
+96 0 0 6 138 812 0 0 159 /**
+ * A convenient way to get an ostream that doesn't do anything.  Returned by
+ * Category::out() when a particular Category and/or Severity is disabled.
+ */ 0 
+97 0 0 4 139 825 0 0 209 /**
+ * A convenient way for scripting languages, which may know nothing about
+ * ostreams, to write to Notify.  This writes a single string, followed by an
+ * implicit newline, to the Notify output stream.
+ */ 1 3 str 1 824  
+98 0 0 6 140 831 0 0 104 /**
+ * Returns the pointer to the global Notify object.  There is only one of
+ * these in the world.
+ */ 0 
+99 0 0 6 142 773 0 0 157 /**
+ * Returns true if the implicit `*.prc` files have already been loaded, false
+ * otherwise.  Normally this will only be false briefly before startup.
+ */ 1 4 this 3 834  
+100 0 0 4 143 825 0 0 252 /**
+ * Searches the PRC_DIR and/or PRC_PATH directories for `*.prc` files and loads
+ * them in as pages.  This is normally called automatically at startup time,
+ * when the first variable's value is referenced.  See also
+ * reload_implicit_pages().
+ */ 1 4 this 3 836  
+101 0 0 4 144 825 0 0 211 /**
+ * Searches the PRC_DIR and/or PRC_PATH directories for *.prc files and loads
+ * them in as pages.
+ *
+ * This may be called after startup, to force the system to re-read all of the
+ * implicit prc files.
+ */ 1 4 this 3 836  
+102 0 0 6 145 837 0 0 274 /**
+ * Returns the search path used to locate implicit .prc files.  This is
+ * determined by the PRC_DIR and PRC_PATH environment variables.  The object
+ * returned by this method may be modified to change the path at runtime, and
+ * then reload_implicit_pages() called.
+ */ 1 4 this 3 836  
+103 0 0 6 146 826 0 0 270 /**
+ * Returns the number of patterns, like `*.prc`, that are compiled in that
+ * will be searched for as default config filenames.  Normally there is only
+ * one pattern, and it is `*.prc`, but others may be specified with the
+ * PRC_FILENAME variable in Config.pp.
+ */ 1 4 this 3 834  
+104 0 0 6 147 824 0 0 131 /**
+ * Returns the nth filename pattern that will be considered a match as a valid
+ * config file.  See get_num_prc_patterns().
+ */ 2 4 this 3 834  1 n 1 826  
+105 0 0 6 148 826 0 0 170 /**
+ * Returns the number of patterns, like `*.pre`, that are compiled in that
+ * will be searched for as special config files that are understood to be
+ * encrypted.
+ */ 1 4 this 3 834  
+106 0 0 6 149 824 0 0 151 /**
+ * Returns the nth filename pattern that will be considered a match as a valid
+ * encrypted config file.  See get_num_prc_encrypted_patterns().
+ */ 2 4 this 3 834  1 n 1 826  
+107 0 0 6 150 826 0 0 232 /**
+ * Returns the number of patterns, like `*.exe`, that are compiled in that
+ * will be searched for as special config files that are to be executed as a
+ * program, and their output taken to be input.  This is normally empty.
+ */ 1 4 this 3 834  
+108 0 0 6 151 824 0 0 159 /**
+ * Returns the nth filename pattern that will be considered a match as a valid
+ * executable-style config file.  See get_num_prc_executable_patterns().
+ */ 2 4 this 3 834  1 n 1 826  
+109 0 0 6 152 777 0 0 206 /**
+ * Creates and returns a new, empty ConfigPage.  This page will be stacked on
+ * top of any pages that were created before; it may shadow variable
+ * declarations that are defined in previous pages.
+ */ 2 4 this 3 836  4 name 1 824  
+110 0 0 6 153 773 0 0 318 /**
+ * Removes a previously-constructed ConfigPage from the set of active pages,
+ * and deletes it.  The ConfigPage object is no longer valid after this call.
+ * Returns true if the page is successfully deleted, or false if it was
+ * unknown (which should never happen if the page was legitimately
+ * constructed).
+ */ 2 4 this 3 836  4 page 1 777  
+111 0 0 6 154 826 0 0 174 /**
+ * Returns the current number of implicitly-loaded ConfigPages in the world.
+ * These represent files that were automatically discovered on the disk as
+ * .prc files.
+ */ 1 4 this 3 834  
+112 0 0 6 155 777 0 0 94 /**
+ * Returns the nth implicit ConfigPage in the world.  See
+ * get_num_implicit_pages().
+ */ 2 4 this 3 834  1 n 1 826  
+113 0 0 6 156 826 0 0 214 /**
+ * Returns the current number of explicitly-loaded ConfigPages in the world.
+ * These represent pages that were loaded dynamically at runtime by explicit
+ * calls to ConfigPageManager::make_explicit_page().
+ */ 1 4 this 3 834  
+114 0 0 6 157 777 0 0 94 /**
+ * Returns the nth explicit ConfigPage in the world.  See
+ * get_num_explicit_pages().
+ */ 2 4 this 3 834  1 n 1 826  
+115 0 0 4 158 825 0 0 10 /**
+ *
+ */ 2 4 this 3 834  3 out 1 812  
+116 0 0 4 159 825 0 0 10 /**
+ *
+ */ 2 4 this 3 834  3 out 1 812  
+117 0 0 6 160 836 0 0 10 /**
+ *
+ */ 0 
+118 0 0 6 162 778 0 0 181 /**
+ * Creates and returns a new, undefined ConfigVariableCore with the indicated
+ * name; or if a variable with this name has already been created, returns
+ * that one instead.
+ */ 2 4 this 3 838  4 name 1 824  
+119 0 0 6 163 778 0 0 899 /**
+ * Defines a variable "template" to match against dynamically-defined
+ * variables that may or may not be created in the future.
+ *
+ * The template consists of a glob pattern, e.g.  `notify-level-*`, which will
+ * be tested against any config variable passed to a future call to
+ * make_variable().  If the pattern matches, the returned ConfigVariableCore
+ * is copied to define the new variable, instead of creating a default, empty
+ * one.
+ *
+ * This is useful to pre-specify default values for a family of variables that
+ * all have similar properties, and all may not be created at the same time.
+ * It is especially useful to avoid cluttering up the list of available
+ * variables with user-declared variables that have not been defined yet by
+ * the application (e.g. `egg-object-type-*`).
+ *
+ * This method basically pre-defines all variables that match the specified
+ * glob pattern.
+ */ 6 4 this 3 838  7 pattern 1 824  4 type 1 767  13 default_value 1 824  11 description 1 824  5 flags 1 774  
+120 0 0 6 164 826 0 0 81 /**
+ * Returns the current number of active ConfigVariableCores in the world.
+ */ 1 4 this 3 839  
+121 0 0 6 165 778 0 0 66 /**
+ * Returns the nth active ConfigVariableCore in the world.
+ */ 2 4 this 3 839  1 n 1 826  
+122 0 0 6 167 824 0 0 73 /**
+ * Returns the name of the nth active ConfigVariable in the list.
+ */ 2 4 this 3 839  1 n 1 826  
+123 0 0 6 168 773 0 0 111 /**
+ * Returns true if the nth active ConfigVariable in the list has been used by
+ * code, false otherwise.
+ */ 2 4 this 3 839  1 n 1 826  
+124 0 0 4 170 825 0 0 10 /**
+ *
+ */ 2 4 this 3 839  3 out 1 812  
+125 0 0 4 171 825 0 0 10 /**
+ *
+ */ 2 4 this 3 839  3 out 1 812  
+126 0 0 4 172 825 0 0 343 /**
+ * Writes all of the prc-set config variables, as they appear in a prc file
+ * somewhere, one per line, very concisely.  This lists the dominant value in
+ * the prc file; it does not list shadowed values, and it does not list
+ * locally-set values.
+ *
+ * This is mainly intended for generating a hash of the input config file
+ * state.
+ */ 2 4 this 3 839  3 out 1 812  
+127 0 0 4 173 825 0 0 133 /**
+ * Writes a list of all the variables that have been defined in a prc file
+ * without having been declared somewhere in code.
+ */ 1 4 this 3 839  
+128 0 0 4 174 825 0 0 123 /**
+ * Writes a list of all the variables that have been declared somewhere in
+ * code, along with a brief description.
+ */ 1 4 this 3 839  
+129 0 0 4 175 825 0 0 241 /**
+ * Writes a list of all the "dynamic" variables that have been declared
+ * somewhere in code, along with a brief description.  This is a (usually
+ * large) list of config variables that are declared with a generated variable
+ * name.
+ */ 1 4 this 3 839  
+130 0 0 6 176 838 0 0 10 /**
+ *
+ */ 0 
+131 0 0 6 178 824 0 0 44 /**
+ * Returns the name of the variable.
+ */ 1 4 this 3 841  
+132 0 0 6 179 767 0 0 132 /**
+ * Returns the stated type of this variable.  This should be VT_list, unless a
+ * later variable declaration has changed it.
+ */ 1 4 this 3 841  
+133 0 0 6 180 824 0 0 82 /**
+ * Returns the brief description of this variable, if it has been defined.
+ */ 1 4 this 3 841  
+134 0 0 6 181 774 0 0 250 /**
+ * Returns the flags value as set by set_flags().  This includes the trust
+ * level and some other settings.  See the individual methods is_closed(),
+ * get_trust_level(), etc.  to pull out the semantic meaning of these flags
+ * individually.
+ */ 1 4 this 3 841  
+135 0 0 6 182 773 0 0 413 /**
+ * Returns true if the variable is not trusted by any prc file (and hence
+ * cannot be modified from its compiled-in default value), or false for the
+ * normal case, in which the variable can be modified by any prc file at or
+ * above its trust level (see get_trust_level()).
+ *
+ * This value only has effect in a release build (specifically, when
+ * PRC_RESPECT_TRUST_LEVEL is defined true in Config.pp).
+ */ 1 4 this 3 841  
+136 0 0 6 183 774 0 0 479 /**
+ * Returns the minimum trust_level a prc file must demonstrate in order to
+ * redefine the value for this variable.  Arguably, this should be called the
+ * "mistrust level", since the larger the value, the more suspicious we are of
+ * prc files.  This value is not used if is_closed() returns true, which
+ * indicates no file may be trusted.
+ *
+ * This value only has effect in a release build (specifically, when
+ * PRC_RESPECT_TRUST_LEVEL is defined true in Config.pp).
+ */ 1 4 this 3 841  
+137 0 0 6 184 773 0 0 232 /**
+ * Returns true if the variable was indicated as "dynamic" by its constructor,
+ * indicating that its name was dynamically generated, possibly from a large
+ * pool, and it should not be listed along with the other variables.
+ */ 1 4 this 3 841  
+138 0 0 6 191 773 0 0 240 /**
+ * Removes the local value defined for this variable, and allows its value to
+ * be once again retrieved from the .prc files.
+ *
+ * Returns true if the value was successfully removed, false if it did not
+ * exist in the first place.
+ */ 1 4 this 3 843  
+139 0 0 6 192 773 0 0 148 /**
+ * Returns true if this variable's value has been shadowed by a local
+ * assignment (as created via make_local_value()), or false otherwise.
+ */ 1 4 this 3 841  
+140 0 0 6 193 773 0 0 149 /**
+ * Returns true if this variable has an explicit value, either from a prc file
+ * or locally set, or false if variable has its default value.
+ */ 1 4 this 3 841  
+141 0 0 4 194 825 0 0 10 /**
+ *
+ */ 2 4 this 3 841  3 out 1 812  
+142 0 0 4 195 825 0 0 10 /**
+ *
+ */ 2 4 this 3 841  3 out 1 812  
+143 0 0 7 197 846 525 0 0 1 6 param0 0 844  
+144 0 0 7 197 846 525 0 230 /**
+ * Use this constructor to make a ConfigVariable of an unspecified type.
+ * Usually you'd want to do this just to reference a previously-defined
+ * ConfigVariable of a specific type, without having to know what type it is.
+ */ 1 4 name 1 824  
+145 0 0 6 199 824 0 0 77 /**
+ * Returns the toplevel value of the variable, formatted as a string.
+ */ 1 4 this 3 844  
+146 0 0 4 200 825 0 0 177 /**
+ * Changes the value assigned to this variable.  This creates a local value
+ * that shadows any values defined in the .prc files, until
+ * clear_local_value() is called.
+ */ 2 4 this 3 846  5 value 1 824  
+147 0 0 4 201 825 0 0 129 /**
+ * Removes the value assigned to this variable, and lets its original value
+ * (as read from the prc files) show through.
+ */ 1 4 this 3 846  
+148 0 0 6 202 826 0 0 153 /**
+ * Returns the number of words in the variable's value.  A word is defined as
+ * a sequence of non-whitespace characters delimited by whitespace.
+ */ 1 4 this 3 844  
+149 0 0 7 204 849 540 0 0 1 6 param0 0 847  
+150 0 0 7 204 849 540 0 10 /**
+ *
+ */ 1 4 name 1 824  
+151 0 0 7 204 849 540 0 10 /**
+ *
+ */ 4 4 name 1 824  13 default_value 1 773  11 description 1 824  5 flags 1 774  
+152 0 0 7 204 849 540 0 10 /**
+ *
+ */ 4 4 name 1 824  13 default_value 1 824  11 description 1 824  5 flags 1 774  
+153 0 0 6 205 849 0 0 0 2 4 this 3 849  5 value 1 773  
+154 0 0 6 207 826 0 0 62 /**
+ * Returns the number of unique words in the variable.
+ */ 1 4 this 3 847  
+155 0 0 6 208 773 0 0 0 2 4 this 3 847  1 n 1 826  
+156 0 0 4 209 825 0 0 48 /**
+ * Reassigns the variable's local value.
+ */ 2 4 this 3 849  5 value 1 773  
+157 0 0 6 210 773 0 0 40 /**
+ * Returns the variable's value.
+ */ 1 4 this 3 847  
+158 0 0 6 211 773 0 0 48 /**
+ * Returns the variable's default value.
+ */ 1 4 this 3 847  
+159 0 0 6 214 773 0 0 44 /**
+ * Returns the variable's nth value.
+ */ 2 4 this 3 847  1 n 1 826  
+160 0 0 4 215 825 0 0 107 /**
+ * Reassigns the variable's nth value.  This makes a local copy of the
+ * variable's overall value.
+ */ 3 4 this 3 849  1 n 1 826  5 value 1 773  
+161 0 0 6 206 773 0 0 0 1 4 this 3 847  
+162 0 0 7 218 852 551 0 0 1 6 param0 0 850  
+163 0 0 7 218 852 551 0 10 /**
+ *
+ */ 1 4 name 1 824  
+164 0 0 7 218 852 551 0 10 /**
+ *
+ */ 4 4 name 1 824  13 default_value 1 790  11 description 1 824  5 flags 1 774  
+165 0 0 7 218 852 551 0 10 /**
+ *
+ */ 4 4 name 1 824  13 default_value 1 824  11 description 1 824  5 flags 1 774  
+166 0 0 6 219 852 0 0 0 2 4 this 3 852  5 value 1 790  
+167 0 0 6 221 826 0 0 62 /**
+ * Returns the number of unique words in the variable.
+ */ 1 4 this 3 850  
+168 0 0 6 222 790 0 0 0 2 4 this 3 850  1 n 1 826  
+169 0 0 4 223 825 0 0 48 /**
+ * Reassigns the variable's local value.
+ */ 2 4 this 3 852  5 value 1 790  
+170 0 0 6 224 790 0 0 40 /**
+ * Returns the variable's value.
+ */ 1 4 this 3 850  
+171 0 0 6 225 790 0 0 48 /**
+ * Returns the variable's default value.
+ */ 1 4 this 3 850  
+172 0 0 6 229 790 0 0 44 /**
+ * Returns the variable's nth value.
+ */ 2 4 this 3 850  1 n 1 826  
+173 0 0 4 230 825 0 0 107 /**
+ * Reassigns the variable's nth value.  This makes a local copy of the
+ * variable's overall value.
+ */ 3 4 this 3 852  1 n 1 826  5 value 1 790  
+174 0 0 6 220 790 0 0 0 1 4 this 3 850  
+175 0 0 7 233 855 573 0 0 1 6 param0 0 853  
+176 0 0 7 233 855 573 0 10 /**
+ *
+ */ 1 4 name 1 824  
+177 0 0 7 233 855 573 0 10 /**
+ *
+ */ 4 4 name 1 824  13 default_value 1 856  11 description 1 824  5 flags 1 774  
+178 0 0 6 234 855 0 0 0 2 4 this 3 855  5 value 1 856  
+179 0 0 6 236 824 0 0 76 // These methods help the ConfigVariableFilename act like a Filename object. 1 4 this 3 853  
+180 0 0 6 237 773 0 0 10 /**
+ *
+ */ 1 4 this 3 853  
+181 0 0 6 238 826 0 0 10 /**
+ *
+ */ 1 4 this 3 853  
+182 0 0 6 239 858 0 0 0 2 4 this 3 853  1 n 1 826  
+183 0 0 6 240 824 0 0 183 /**
+ * Returns the entire filename: directory, basename, extension.  This is the
+ * same thing returned by the string typecast operator, so this function is a
+ * little redundant.
+ */ 1 4 this 3 853  
+184 0 0 6 241 824 0 0 139 /**
+ * Returns the directory part of the filename.  This is everything in the
+ * filename up to, but not including the rightmost slash.
+ */ 1 4 this 3 853  
+185 0 0 6 242 824 0 0 145 /**
+ * Returns the basename part of the filename.  This is everything in the
+ * filename after the rightmost slash, including any extensions.
+ */ 1 4 this 3 853  
+186 0 0 6 243 824 0 0 96 /**
+ * Returns the full filename--directory and basename parts--except for the
+ * extension.
+ */ 1 4 this 3 853  
+187 0 0 6 244 824 0 0 81 /**
+ * Returns the basename part of the filename, without the file extension.
+ */ 1 4 this 3 853  
+188 0 0 6 245 824 0 0 140 /**
+ * Returns the file extension.  This is everything after the rightmost dot, if
+ * there is one, or the empty string if there is not.
+ */ 1 4 this 3 853  
+189 0 0 6 246 773 0 0 34 // Comparison operators are handy. 2 4 this 3 853  5 other 1 856  
+190 0 0 6 247 773 0 0 0 2 4 this 3 853  5 other 1 856  
+191 0 0 6 248 773 0 0 0 2 4 this 3 853  5 other 1 856  
+192 0 0 4 249 825 0 0 48 /**
+ * Reassigns the variable's local value.
+ */ 2 4 this 3 855  5 value 1 856  
+193 0 0 7 250 828 0 0 40 /**
+ * Returns the variable's value.
+ */ 1 4 this 3 853  
+194 0 0 7 251 828 0 0 48 /**
+ * Returns the variable's default value.
+ */ 1 4 this 3 853  
+195 0 0 7 255 828 0 0 44 /**
+ * Returns the variable's nth value.
+ */ 2 4 this 3 853  1 n 1 826  
+196 0 0 4 256 825 0 0 107 /**
+ * Reassigns the variable's nth value.  This makes a local copy of the
+ * variable's overall value.
+ */ 3 4 this 3 855  1 n 1 826  5 value 1 856  
+197 0 0 6 235 856 0 0 0 1 4 this 3 853  
+198 0 0 7 259 861 584 0 0 1 6 param0 0 859  
+199 0 0 7 259 861 584 0 10 /**
+ *
+ */ 1 4 name 1 824  
+200 0 0 7 259 861 584 0 10 /**
+ *
+ */ 4 4 name 1 824  13 default_value 1 774  11 description 1 824  5 flags 1 774  
+201 0 0 7 259 861 584 0 10 /**
+ *
+ */ 4 4 name 1 824  13 default_value 1 824  11 description 1 824  5 flags 1 774  
+202 0 0 6 260 861 0 0 0 2 4 this 3 861  5 value 1 774  
+203 0 0 6 262 826 0 0 62 /**
+ * Returns the number of unique words in the variable.
+ */ 1 4 this 3 859  
+204 0 0 6 263 774 0 0 0 2 4 this 3 859  1 n 1 826  
+205 0 0 4 264 825 0 0 48 /**
+ * Reassigns the variable's local value.
+ */ 2 4 this 3 861  5 value 1 774  
+206 0 0 6 265 774 0 0 40 /**
+ * Returns the variable's value.
+ */ 1 4 this 3 859  
+207 0 0 6 266 774 0 0 48 /**
+ * Returns the variable's default value.
+ */ 1 4 this 3 859  
+208 0 0 6 269 774 0 0 44 /**
+ * Returns the variable's nth value.
+ */ 2 4 this 3 859  1 n 1 826  
+209 0 0 4 270 825 0 0 107 /**
+ * Reassigns the variable's nth value.  This makes a local copy of the
+ * variable's overall value.
+ */ 3 4 this 3 861  1 n 1 826  5 value 1 774  
+210 0 0 6 261 774 0 0 0 1 4 this 3 859  
+211 0 0 7 273 864 595 0 0 1 6 param0 0 862  
+212 0 0 7 273 864 595 0 10 /**
+ *
+ */ 1 4 name 1 824  
+213 0 0 7 273 864 595 0 10 /**
+ *
+ */ 4 4 name 1 824  13 default_value 1 795  11 description 1 824  5 flags 1 774  
+214 0 0 7 273 864 595 0 10 /**
+ *
+ */ 4 4 name 1 824  13 default_value 1 824  11 description 1 824  5 flags 1 774  
+215 0 0 6 274 864 0 0 0 2 4 this 3 864  5 value 1 795  
+216 0 0 6 276 826 0 0 62 /**
+ * Returns the number of unique words in the variable.
+ */ 1 4 this 3 862  
+217 0 0 6 277 795 0 0 0 2 4 this 3 862  1 n 1 826  
+218 0 0 4 278 825 0 0 48 /**
+ * Reassigns the variable's local value.
+ */ 2 4 this 3 864  5 value 1 795  
+219 0 0 6 279 795 0 0 40 /**
+ * Returns the variable's value.
+ */ 1 4 this 3 862  
+220 0 0 6 280 795 0 0 48 /**
+ * Returns the variable's default value.
+ */ 1 4 this 3 862  
+221 0 0 6 285 795 0 0 44 /**
+ * Returns the variable's nth value.
+ */ 2 4 this 3 862  1 n 1 826  
+222 0 0 4 286 825 0 0 107 /**
+ * Reassigns the variable's nth value.  This makes a local copy of the
+ * variable's overall value.
+ */ 3 4 this 3 864  1 n 1 826  5 value 1 795  
+223 0 0 6 275 795 0 0 0 1 4 this 3 862  
+224 0 0 7 289 867 597 0 0 1 6 param0 0 865  
+225 0 0 7 289 867 597 0 10 /**
+ *
+ */ 3 4 name 1 824  11 description 1 824  5 flags 1 774  
+226 0 0 6 291 826 0 0 56 /**
+ * Returns the number of values in the variable.
+ */ 1 4 this 3 865  
+227 0 0 6 292 824 0 0 49 /**
+ * Returns the nth value of the variable.
+ */ 2 4 this 3 865  1 n 1 826  
+228 0 0 6 293 826 0 0 63 /**
+ * Returns the number of unique values in the variable.
+ */ 1 4 this 3 865  
+229 0 0 6 294 824 0 0 56 /**
+ * Returns the nth unique value of the variable.
+ */ 2 4 this 3 865  1 n 1 826  
+230 0 0 6 295 826 0 0 63 /**
+ * Returns the number of unique values of the variable.
+ */ 1 4 this 3 865  
+231 0 0 6 296 824 0 0 0 2 4 this 3 865  1 n 1 826  
+232 0 0 4 297 825 0 0 10 /**
+ *
+ */ 2 4 this 3 865  3 out 1 812  
+233 0 0 4 298 825 0 0 10 /**
+ *
+ */ 2 4 this 3 865  3 out 1 812  
+234 0 0 7 300 869 607 0 10 /**
+ *
+ */ 4 4 name 1 824  13 default_value 1 868  11 description 1 824  5 flags 1 774  
+235 0 0 7 300 869 607 0 10 /**
+ *
+ */ 3 4 name 1 824  11 description 1 824  5 flags 1 774  
+236 0 0 7 300 869 607 0 10 /**
+ *
+ */ 4 4 name 1 824  13 default_value 1 824  11 description 1 824  5 flags 1 774  
+237 0 0 7 303 837 0 0 10 /**
+ *
+ */ 1 4 this 3 870  
+238 0 0 6 304 868 0 0 10 /**
+ *
+ */ 1 4 this 3 870  
+239 0 0 6 309 773 0 0 113 /**
+ * Removes all the directories locally added to the search list, and restores
+ * it to its original form.
+ */ 1 4 this 3 869  
+240 0 0 4 310 825 0 0 113 /**
+ * Removes all the directories locally added to the search list, and restores
+ * it to its original form.
+ */ 1 4 this 3 869  
+241 0 0 4 311 825 0 0 62 /**
+ * Adds a new directory to the end of the search list.
+ */ 2 4 this 3 869  9 directory 1 856  
+242 0 0 4 312 825 0 0 64 /**
+ * Adds a new directory to the front of the search list.
+ */ 2 4 this 3 869  9 directory 1 856  
+243 0 0 4 313 825 0 0 98 /**
+ * Adds all of the directories listed in the search path to the end of the
+ * search list.
+ */ 2 4 this 3 869  4 path 1 868  
+244 0 0 4 313 825 0 0 98 /**
+ * Adds all of the directories listed in the search path to the end of the
+ * search list.
+ */ 3 4 this 3 869  4 path 1 824  9 separator 1 824  
+245 0 0 4 314 825 0 0 104 /**
+ * Adds all of the directories listed in the search path to the beginning of
+ * the search list.
+ */ 2 4 this 3 869  4 path 1 868  
+246 0 0 6 315 773 0 0 69 /**
+ * Returns true if the search list is empty, false otherwise.
+ */ 1 4 this 3 870  
+247 0 0 6 316 826 0 0 64 /**
+ * Returns the number of directories on the search list.
+ */ 1 4 this 3 870  
+248 0 0 7 317 828 0 0 56 /**
+ * Returns the nth directory on the search list.
+ */ 2 4 this 3 870  1 n 1 826  
+249 0 0 7 320 828 0 0 197 /**
+ * Searches all the directories in the search list for the indicated file, in
+ * order.  Returns the full matching pathname of the first match if found, or
+ * the empty string if not found.
+ */ 2 4 this 3 870  8 filename 1 856  
+250 0 0 7 321 873 0 0 184 /**
+ * This variant of find_all_files() returns the new Results object, instead of
+ * filling on in on the parameter list.  This is a little more convenient to
+ * call from Python.
+ */ 2 4 this 3 870  8 filename 1 856  
+251 0 0 6 321 826 0 0 363 /**
+ * Searches all the directories in the search list for the indicated file, in
+ * order.  Fills up the results list with *all* of the matching filenames
+ * found, if any.  Returns the number of matches found.
+ *
+ * It is the responsibility of the the caller to clear the results list first;
+ * otherwise, the newly-found files will be appended to the list.
+ */ 3 4 this 3 870  8 filename 1 856  7 results 1 873  
+252 0 0 4 322 825 0 0 10 /**
+ *
+ */ 2 4 this 3 870  3 out 1 812  
+253 0 0 4 323 825 0 0 10 /**
+ *
+ */ 2 4 this 3 870  3 out 1 812  
+254 0 0 7 302 837 0 0 0 1 4 this 3 870  
+255 0 0 7 325 876 639 0 0 1 6 param0 0 874  
+256 0 0 7 325 876 639 0 10 /**
+ *
+ */ 1 4 name 1 824  
+257 0 0 7 325 876 639 0 10 /**
+ *
+ */ 4 4 name 1 824  13 default_value 1 824  11 description 1 824  5 flags 1 774  
+258 0 0 6 326 876 0 0 0 2 4 this 3 876  5 value 1 824  
+259 0 0 6 328 824 0 0 76 // These methods help the ConfigVariableString act like a C++ string object. 1 4 this 3 874  
+260 0 0 6 329 773 0 0 10 /**
+ *
+ */ 1 4 this 3 874  
+261 0 0 6 330 826 0 0 10 /**
+ *
+ */ 1 4 this 3 874  
+262 0 0 6 331 858 0 0 0 2 4 this 3 874  1 n 1 826  
+263 0 0 6 332 773 0 0 34 // Comparison operators are handy. 2 4 this 3 874  5 other 1 824  
+264 0 0 6 333 773 0 0 0 2 4 this 3 874  5 other 1 824  
+265 0 0 6 334 773 0 0 0 2 4 this 3 874  5 other 1 824  
+266 0 0 4 335 825 0 0 48 /**
+ * Reassigns the variable's local value.
+ */ 2 4 this 3 876  5 value 1 824  
+267 0 0 6 336 824 0 0 40 /**
+ * Returns the variable's value.
+ */ 1 4 this 3 874  
+268 0 0 6 337 824 0 0 48 /**
+ * Returns the variable's default value.
+ */ 1 4 this 3 874  
+269 0 0 6 340 824 0 0 44 /**
+ * Returns the variable's nth value.
+ */ 2 4 this 3 874  1 n 1 826  
+270 0 0 4 341 825 0 0 107 /**
+ * Reassigns the variable's nth value.  This makes a local copy of the
+ * variable's overall value.
+ */ 3 4 this 3 876  1 n 1 826  5 value 1 824  
+271 0 0 6 327 824 0 0 0 1 4 this 3 874  
+272 0 0 7 376 804 666 0 0 1 6 param0 0 877  
+273 0 0 6 349 824 0 0 10 /**
+ *
+ */ 1 4 this 3 877  
+274 0 0 6 350 824 0 0 10 /**
+ *
+ */ 1 4 this 3 877  
+275 0 0 6 351 782 0 0 10 /**
+ *
+ */ 1 4 this 3 877  
+276 0 0 4 352 825 0 0 150 /**
+ * Sets the severity level of messages that will be reported from this
+ * Category.  This allows any message of this severity level or higher.
+ */ 2 4 this 3 804  8 severity 1 782  
+277 0 0 6 356 773 0 0 110 /**
+ * Returns true if messages of the indicated severity level ought to be
+ * reported for this Category.
+ */ 2 4 this 3 877  8 severity 1 782  
+278 0 0 6 357 773 0 0 393 // When NOTIFY_DEBUG is not defined, the categories will never be set to
+// "spam" or "debug" severities, and these methods are redefined to be
+// static to make it more obvious to the compiler.  However, we still want
+// to present a consistent interface to our scripting language, so during
+// the interrogate pass (that is, when CPPPARSER is defined), we still
+// pretend they're nonstatic. 1 4 this 3 877  
+279 0 0 6 358 773 0 0 52 /**
+ * A shorthand way to write is_on(NS_debug).
+ */ 1 4 this 3 877  
+280 0 0 6 359 773 0 0 51 /**
+ * A shorthand way to write is_on(NS_info).
+ */ 1 4 this 3 877  
+281 0 0 6 360 773 0 0 54 /**
+ * A shorthand way to write is_on(NS_warning).
+ */ 1 4 this 3 877  
+282 0 0 6 361 773 0 0 52 /**
+ * A shorthand way to write is_on(NS_error).
+ */ 1 4 this 3 877  
+283 0 0 6 362 773 0 0 52 /**
+ * A shorthand way to write is_on(NS_fatal).
+ */ 1 4 this 3 877  
+284 0 0 6 363 812 0 0 277 /**
+ * Begins a new message to this Category at the indicated severity level.  If
+ * the indicated severity level is enabled, this writes a prefixing string to
+ * the Notify::out() stream and returns that.  If the severity level is
+ * disabled, this returns Notify::null().
+ */ 3 4 this 3 877  8 severity 1 782  6 prefix 1 773  
+285 0 0 6 364 812 0 0 49 /**
+ * A shorthand way to write out(NS_spam).
+ */ 2 4 this 3 877  6 prefix 1 773  
+286 0 0 6 365 812 0 0 50 /**
+ * A shorthand way to write out(NS_debug).
+ */ 2 4 this 3 877  6 prefix 1 773  
+287 0 0 6 366 812 0 0 49 /**
+ * A shorthand way to write out(NS_info).
+ */ 2 4 this 3 877  6 prefix 1 773  
+288 0 0 6 367 812 0 0 52 /**
+ * A shorthand way to write out(NS_warning).
+ */ 2 4 this 3 877  6 prefix 1 773  
+289 0 0 6 368 812 0 0 50 /**
+ * A shorthand way to write out(NS_error).
+ */ 2 4 this 3 877  6 prefix 1 773  
+290 0 0 6 369 812 0 0 50 /**
+ * A shorthand way to write out(NS_fatal).
+ */ 2 4 this 3 877  6 prefix 1 773  
+291 0 0 6 370 826 0 0 78 /**
+ * Returns the number of child Categories of this particular Category.
+ */ 1 4 this 3 877  
+292 0 0 6 371 804 0 0 70 /**
+ * Returns the nth child Category of this particular Category.
+ */ 2 4 this 3 877  1 i 1 826  
+293 0 0 4 375 825 0 0 207 /**
+ * Sets a global delta (in seconds) between the local time and the server's
+ * time, for the purpose of synchronizing the time stamps in the log messages
+ * of the client with that of a known server.
+ */ 1 5 delta 1 879  
+294 0 0 6 345 880 0 0 0 1 4 this 3 804  
+295 0 0 6 347 819 0 0 0 1 4 this 3 804  
+296 0 0 7 380 881 673 0 10 /**
+ *
+ */ 0 
+297 0 0 7 380 881 673 0 10 /**
+ *
+ */ 3 6 source 1 810  11 owns_source 1 773  8 password 1 824  
+298 0 0 6 381 881 0 0 10 /**
+ *
+ */ 4 4 this 3 881  6 source 1 810  11 owns_source 1 773  8 password 1 824  
+299 0 0 6 382 881 0 0 124 /**
+ * Resets the EncryptStream to empty, but does not actually close the source
+ * istream unless owns_source was true.
+ */ 1 4 this 3 881  
+300 0 0 6 383 824 0 0 74 /**
+ * Returns the encryption algorithm that was read from the stream.
+ */ 1 4 this 3 882  
+301 0 0 6 384 774 0 0 85 /**
+ * Returns the encryption key length, in bits, that was read from the stream.
+ */ 1 4 this 3 882  
+302 0 0 6 385 774 0 0 63 /**
+ * Returns the value that was was read from the stream.
+ */ 1 4 this 3 882  
+303 0 0 7 392 884 683 0 10 /**
+ *
+ */ 0 
+304 0 0 7 392 884 683 0 10 /**
+ *
+ */ 3 4 dest 1 812  9 owns_dest 1 773  8 password 1 824  
+305 0 0 6 393 884 0 0 10 /**
+ *
+ */ 4 4 this 3 884  4 dest 1 812  9 owns_dest 1 773  8 password 1 824  
+306 0 0 6 394 884 0 0 120 /**
+ * Resets the EncryptStream to empty, but does not actually close the dest
+ * ostream unless owns_dest was true.
+ */ 1 4 this 3 884  
+307 0 0 4 395 825 0 0 383 /**
+ * Specifies the encryption algorithm that should be used for future calls to
+ * open().  The default is whatever is specified by the encryption-algorithm
+ * config variable.  The complete set of available algorithms is defined by
+ * the current version of OpenSSL.
+ *
+ * If an invalid algorithm is specified, there is no immediate error return
+ * code, but open() will fail.
+ */ 2 4 this 3 884  9 algorithm 1 824  
+308 0 0 4 396 825 0 0 347 /**
+ * Specifies the length of the key, in bits, that should be used to encrypt
+ * the stream in future calls to open().  The default is whatever is specified
+ * by the encryption-key-length config variable.
+ *
+ * If an invalid key_length for the chosen algorithm is specified, there is no
+ * immediate error return code, but open() will fail.
+ */ 2 4 this 3 884  10 key_length 1 774  
+309 0 0 4 397 825 0 0 495 /**
+ * Specifies the number of times to repeatedly hash the key before writing it
+ * to the stream in future calls to open().  Its purpose is to make it
+ * computationally more expensive for an attacker to search the key space
+ * exhaustively.  This should be a multiple of 1,000 and should not exceed
+ * about 65 million; the value 0 indicates just one application of the hashing
+ * algorithm.
+ *
+ * The default is whatever is specified by the encryption-iteration-count
+ * config variable.
+ */ 2 4 this 3 884  15 iteration_count 1 774  
+310 0 0 7 406 887 686 0 70 /**
+ * The copy constructor does not copy ownership of the stream.
+ */ 1 4 copy 1 885  
+311 0 0 7 406 887 686 0 105 /**
+ * If owns_stream is true, the stream pointer will be deleted when the
+ * StreamReader destructs.
+ */ 2 2 in 1 810  11 owns_stream 1 773  
+312 0 0 6 407 887 0 0 0 2 4 this 3 887  4 copy 1 885  
+313 0 0 6 409 810 0 0 37 /**
+ * Returns the stream in use.
+ */ 1 4 this 3 885  
+314 0 0 6 412 773 0 0 36 /**
+ * Extracts a boolean value.
+ */ 1 4 this 3 887  
+315 0 0 6 413 888 0 0 43 /**
+ * Extracts a signed 8-bit integer.
+ */ 1 4 this 3 887  
+316 0 0 6 414 890 0 0 46 /**
+ * Extracts an unsigned 8-bit integer.
+ */ 1 4 this 3 887  
+317 0 0 6 415 892 0 0 44 /**
+ * Extracts a signed 16-bit integer.
+ */ 1 4 this 3 887  
+318 0 0 6 416 894 0 0 44 /**
+ * Extracts a signed 32-bit integer.
+ */ 1 4 this 3 887  
+319 0 0 6 417 795 0 0 44 /**
+ * Extracts a signed 64-bit integer.
+ */ 1 4 this 3 887  
+320 0 0 6 418 895 0 0 47 /**
+ * Extracts an unsigned 16-bit integer.
+ */ 1 4 this 3 887  
+321 0 0 6 419 897 0 0 47 /**
+ * Extracts an unsigned 32-bit integer.
+ */ 1 4 this 3 887  
+322 0 0 6 420 899 0 0 47 /**
+ * Extracts an unsigned 64-bit integer.
+ */ 1 4 this 3 887  
+323 0 0 6 421 900 0 0 186 /**
+ * Extracts a 32-bit single-precision floating-point number.  Since this kind
+ * of float is not necessarily portable across different architectures,
+ * special care is required.
+ */ 1 4 this 3 887  
+324 0 0 6 422 901 0 0 51 /**
+ * Extracts a 64-bit floating-point number.
+ */ 1 4 this 3 887  
+325 0 0 6 423 892 0 0 55 /**
+ * Extracts a signed big-endian 16-bit integer.
+ */ 1 4 this 3 887  
+326 0 0 6 424 894 0 0 55 /**
+ * Extracts a signed big-endian 32-bit integer.
+ */ 1 4 this 3 887  
+327 0 0 6 425 795 0 0 55 /**
+ * Extracts a signed big-endian 64-bit integer.
+ */ 1 4 this 3 887  
+328 0 0 6 426 895 0 0 58 /**
+ * Extracts an unsigned big-endian 16-bit integer.
+ */ 1 4 this 3 887  
+329 0 0 6 427 897 0 0 58 /**
+ * Extracts an unsigned big-endian 32-bit integer.
+ */ 1 4 this 3 887  
+330 0 0 6 428 899 0 0 58 /**
+ * Extracts an unsigned big-endian 64-bit integer.
+ */ 1 4 this 3 887  
+331 0 0 6 429 900 0 0 197 /**
+ * Extracts a 32-bit single-precision big-endian floating-point number.  Since
+ * this kind of float is not necessarily portable across different
+ * architectures, special care is required.
+ */ 1 4 this 3 887  
+332 0 0 6 430 901 0 0 62 /**
+ * Extracts a 64-bit big-endian floating-point number.
+ */ 1 4 this 3 887  
+333 0 0 6 431 824 0 0 45 /**
+ * Extracts a variable-length string.
+ */ 1 4 this 3 887  
+334 0 0 6 432 824 0 0 72 /**
+ * Extracts a variable-length string with a 32-bit length field.
+ */ 1 4 this 3 887  
+335 0 0 6 433 824 0 0 74 /**
+ * Extracts a variable-length string, as a NULL-terminated string.
+ */ 1 4 this 3 887  
+336 0 0 6 434 824 0 0 128 /**
+ * Extracts a fixed-length string.  However, if a zero byte occurs within the
+ * string, it marks the end of the string.
+ */ 2 4 this 3 887  4 size 1 826  
+337 0 0 4 435 825 0 0 66 /**
+ * Skips over the indicated number of bytes in the stream.
+ */ 2 4 this 3 887  4 size 1 826  
+338 0 0 6 436 902 0 0 134 /**
+ * Extracts the indicated number of bytes in the stream and returns them as a
+ * string.  Returns empty string at end-of-file.
+ */ 2 4 this 3 887  4 size 1 826  
+339 0 0 6 437 902 0 0 303 /**
+ * Assumes the stream represents a text file, and extracts one line up to and
+ * including the trailing newline character.  Returns empty string when the
+ * end of file is reached.
+ *
+ * The interface here is intentionally designed to be similar to that for
+ * Python's File.readline() function.
+ */ 1 4 this 3 887  
+340 0 0 6 438 902 0 0 0 1 4 this 3 887  
+341 0 0 7 440 907 717 0 70 /**
+ * The copy constructor does not copy ownership of the stream.
+ */ 1 4 copy 1 905  
+342 0 0 7 440 907 717 0 10 /**
+ *
+ */ 2 3 out 1 812  11 owns_stream 1 773  
+343 0 0 6 441 907 0 0 0 2 4 this 3 907  4 copy 1 905  
+344 0 0 6 443 812 0 0 37 /**
+ * Returns the stream in use.
+ */ 1 4 this 3 905  
+345 0 0 4 446 825 0 0 46 /**
+ * Adds a boolean value to the stream.
+ */ 2 4 this 3 907  5 value 1 773  
+346 0 0 4 447 825 0 0 53 /**
+ * Adds a signed 8-bit integer to the stream.
+ */ 2 4 this 3 907  5 value 1 888  
+347 0 0 4 448 825 0 0 56 /**
+ * Adds an unsigned 8-bit integer to the stream.
+ */ 2 4 this 3 907  5 value 1 890  
+348 0 0 4 449 825 0 0 54 /**
+ * Adds a signed 16-bit integer to the stream.
+ */ 2 4 this 3 907  5 value 1 892  
+349 0 0 4 450 825 0 0 54 /**
+ * Adds a signed 32-bit integer to the stream.
+ */ 2 4 this 3 907  5 value 1 894  
+350 0 0 4 451 825 0 0 54 /**
+ * Adds a signed 64-bit integer to the stream.
+ */ 2 4 this 3 907  5 value 1 795  
+351 0 0 4 452 825 0 0 57 /**
+ * Adds an unsigned 16-bit integer to the stream.
+ */ 2 4 this 3 907  5 value 1 895  
+352 0 0 4 453 825 0 0 57 /**
+ * Adds an unsigned 32-bit integer to the stream.
+ */ 2 4 this 3 907  5 value 1 897  
+353 0 0 4 454 825 0 0 57 /**
+ * Adds an unsigned 64-bit integer to the stream.
+ */ 2 4 this 3 907  5 value 1 899  
+354 0 0 4 455 825 0 0 196 /**
+ * Adds a 32-bit single-precision floating-point number to the stream.  Since
+ * this kind of float is not necessarily portable across different
+ * architectures, special care is required.
+ */ 2 4 this 3 907  5 value 1 900  
+355 0 0 4 456 825 0 0 61 /**
+ * Adds a 64-bit floating-point number to the stream.
+ */ 2 4 this 3 907  5 value 1 901  
+356 0 0 4 457 825 0 0 71 /**
+ * Adds a signed 16-bit big-endian integer to the streamWriter.
+ */ 2 4 this 3 907  5 value 1 892  
+357 0 0 4 458 825 0 0 71 /**
+ * Adds a signed 32-bit big-endian integer to the streamWriter.
+ */ 2 4 this 3 907  5 value 1 894  
+358 0 0 4 459 825 0 0 71 /**
+ * Adds a signed 64-bit big-endian integer to the streamWriter.
+ */ 2 4 this 3 907  5 value 1 795  
+359 0 0 4 460 825 0 0 74 /**
+ * Adds an unsigned 16-bit big-endian integer to the streamWriter.
+ */ 2 4 this 3 907  5 value 1 895  
+360 0 0 4 461 825 0 0 74 /**
+ * Adds an unsigned 32-bit big-endian integer to the streamWriter.
+ */ 2 4 this 3 907  5 value 1 897  
+361 0 0 4 462 825 0 0 74 /**
+ * Adds an unsigned 64-bit big-endian integer to the streamWriter.
+ */ 2 4 this 3 907  5 value 1 899  
+362 0 0 4 463 825 0 0 207 /**
+ * Adds a 32-bit single-precision big-endian floating-point number to the
+ * stream.  Since this kind of float is not necessarily portable across
+ * different architectures, special care is required.
+ */ 2 4 this 3 907  5 value 1 900  
+363 0 0 4 464 825 0 0 78 /**
+ * Adds a 64-bit big-endian floating-point number to the streamWriter.
+ */ 2 4 this 3 907  5 value 1 901  
+364 0 0 4 465 825 0 0 107 /**
+ * Adds a variable-length string to the stream.  This actually adds a count
+ * followed by n bytes.
+ */ 2 4 this 3 907  3 str 1 824  
+365 0 0 4 466 825 0 0 84 /**
+ * Adds a variable-length string to the stream, using a 32-bit length field.
+ */ 2 4 this 3 907  3 str 1 824  
+366 0 0 4 467 825 0 0 84 /**
+ * Adds a variable-length string to the stream, as a NULL-terminated string.
+ */ 2 4 this 3 907  3 str 1 824  
+367 0 0 4 468 825 0 0 236 /**
+ * Adds a fixed-length string to the stream.  If the string given is less than
+ * the requested size, this will pad the string out with zeroes; if it is
+ * greater than the requested size, this will silently truncate the string.
+ */ 3 4 this 3 907  3 str 1 824  4 size 1 826  
+368 0 0 4 469 825 0 0 65 /**
+ * Adds the indicated number of zero bytes to the stream.
+ */ 2 4 this 3 907  4 size 1 826  
+369 0 0 4 470 825 0 0 0 2 4 this 3 907  4 data 1 902  
+370 0 0 4 471 825 0 0 50 /**
+ * Calls flush() on the underlying stream.
+ */ 1 4 this 3 907  
+371 0 0 4 472 825 0 0 132 /**
+ * A synonym of append_data().  This is useful when assigning the StreamWriter
+ * to sys.stderr and/or sys.stdout in Python.
+ */ 2 4 this 3 907  3 str 1 824  
+372 0 0 4 477 825 0 0 572 /**
+ * Acquires the internal lock.
+ *
+ * User code should call this to take temporary possession of the stream and
+ * perform direct I/O operations on it, for instance to make several
+ * sequential atomic reads.  You may not call any of the StreamWrapper methods
+ * while the lock is held, other than release().
+ *
+ * Use with extreme caution!  This is a very low-level, non-recursive lock.
+ * You must call acquire() only once, and you must later call release()
+ * exactly once.  Failing to do so may result in a hard deadlock with no
+ * available debugging features.
+ */ 1 4 this 3 908  
+373 0 0 4 478 825 0 0 135 /**
+ * Releases the internal lock.  Must be called exactly once following a call
+ * to acquire().  See the cautions with acquire().
+ */ 1 4 this 3 908  
+374 0 0 7 482 909 753 0 10 /**
+ *
+ */ 1 6 stream 1 810  
+375 0 0 6 484 810 0 0 55 /**
+ * Returns the istream this object is wrapping.
+ */ 1 4 this 3 910  
+376 0 0 6 481 908 0 0 0 1 4 this 3 909  
+377 0 0 7 487 912 757 0 10 /**
+ *
+ */ 1 6 stream 1 812  
+378 0 0 6 489 812 0 0 55 /**
+ * Returns the ostream this object is wrapping.
+ */ 1 4 this 3 913  
+379 0 0 6 486 908 0 0 0 1 4 this 3 912  
+380 0 0 7 495 915 764 0 10 /**
+ *
+ */ 1 6 stream 1 817  
+381 0 0 6 497 817 0 0 56 /**
+ * Returns the iostream this object is wrapping.
+ */ 1 4 this 3 916  
+382 0 0 6 491 909 0 0 0 1 4 this 3 915  
+383 0 0 6 493 912 0 0 0 1 4 this 3 915  
+152
+766 11 ConfigFlags 0 141313 11 ConfigFlags 11 ConfigFlags 0 0 0 1 384 385 0 0 0 0 0 0 2 767 768 195
+/**
+ * This class is the base class of both ConfigVariable and ConfigVariableCore.
+ * It exists only to provide a convenient name scoping for some enumerated
+ * values common to both classes.
+ */
+
+767 9 ValueType 0 794624 22 ConfigFlags::ValueType 22 ConfigFlags::ValueType 766 0 0 0 0 0 0 0 0 0 11 12 VT_undefined 25 ConfigFlags::VT_undefined 0
+0 7 VT_list 20 ConfigFlags::VT_list 0
+1 9 VT_string 22 ConfigFlags::VT_string 0
+2 11 VT_filename 24 ConfigFlags::VT_filename 0
+3 7 VT_bool 20 ConfigFlags::VT_bool 0
+4 6 VT_int 19 ConfigFlags::VT_int 0
+5 9 VT_double 22 ConfigFlags::VT_double 0
+6 7 VT_enum 20 ConfigFlags::VT_enum 0
+7 14 VT_search_path 27 ConfigFlags::VT_search_path 0
+8 8 VT_int64 21 ConfigFlags::VT_int64 0
+9 8 VT_color 21 ConfigFlags::VT_color 0
+10 0 0
+
+768 13 VariableFlags 0 794624 26 ConfigFlags::VariableFlags 26 ConfigFlags::VariableFlags 766 0 0 0 0 0 0 0 0 0 5 18 F_trust_level_mask 31 ConfigFlags::F_trust_level_mask 138
+// Trust level.  We have the bottom twelve bits reserved for a trust level
+// indicator; then the open and closed bits are a special case.
+4095 6 F_open 19 ConfigFlags::F_open 0
+4096 8 F_closed 21 ConfigFlags::F_closed 0
+8192 9 F_dynamic 22 ConfigFlags::F_dynamic 171
+// F_dynamic means that the variable name is generated dynamically
+// (possibly from a very large pool) and should not be included in the
+// normal list of variable names.
+16384 9 F_dconfig 22 ConfigFlags::F_dconfig 162
+// F_dconfig means that the variable was constructed from the legacy
+// DConfig system, rather than directly by the user.  You shouldn't pass
+// this in directly.
+32768 0 0
+
+769 10 ConfigPage 0 43009 10 ConfigPage 10 ConfigPage 0 0 0 0 0 8 918 919 920 921 922 923 924 925 25 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401 402 403 404 405 406 407 460 461 462 0 0 0 0 0 262
+/**
+ * A page of ConfigDeclarations that may be loaded or unloaded.  Typically
+ * this represents a single .prc file that is read from disk at runtime, but
+ * it may also represent a list of declarations built up by application code
+ * and explicitly loaded.
+ */
+
+770 12 string const 0 8832 17 std::string const 17 std::string const 0 0 771 0 0 0 0 0 0 0 0 0 0
+
+771 6 string 0 2105344 11 std::string 11 std::string 0 0 772 0 0 0 0 0 0 0 0 0 0
+
+772 20 basic_string< char > 0 2048 25 std::basic_string< char > 25 std::basic_string< char > 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+773 4 bool 0 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+774 3 int 0 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+775 19 ConfigDeclaration * 0 8576 19 ConfigDeclaration * 19 ConfigDeclaration * 0 0 776 0 0 0 0 0 0 0 0 0 0
+
+776 17 ConfigDeclaration 0 43009 17 ConfigDeclaration 17 ConfigDeclaration 0 0 0 0 0 2 926 927 24 408 409 438 439 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459 0 0 1 0 766 0 0 0 0 249
+/**
+ * A single declaration of a config variable, typically defined as one line in
+ * a .prc file, e.g.  "show-frame-rate-meter 1".  This is really just a
+ * pairing of a string name (actually, a ConfigVariableCore pointer) to a
+ * string value.
+ */
+
+777 12 ConfigPage * 0 8576 12 ConfigPage * 12 ConfigPage * 0 0 769 0 0 0 0 0 0 0 0 0 0
+
+778 20 ConfigVariableCore * 0 8576 20 ConfigVariableCore * 20 ConfigVariableCore * 0 0 779 0 0 0 0 0 0 0 0 0 0
+
+779 18 ConfigVariableCore 0 43009 18 ConfigVariableCore 18 ConfigVariableCore 0 0 0 0 0 12 928 929 930 931 932 933 934 935 936 937 938 939 28 410 411 412 413 414 415 416 417 418 419 420 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437 4 976 977 978 979 0 1 0 766 0 0 0 0 345
+/**
+ * The internal definition of a ConfigVariable.  This object is shared between
+ * all instances of a ConfigVariable that use the same variable name.
+ *
+ * You cannot create a ConfigVariableCore instance directly; instead, use the
+ * make() method, which may return a shared instance.  Once created, these
+ * objects are never destructed.
+ */
+
+780 25 ConfigDeclaration const * 0 8576 25 ConfigDeclaration const * 25 ConfigDeclaration const * 0 0 781 0 0 0 0 0 0 0 0 0 0
+
+781 23 ConfigDeclaration const 0 8832 23 ConfigDeclaration const 23 ConfigDeclaration const 0 0 776 0 0 0 0 0 0 0 0 0 0
+
+782 14 NotifySeverity 0 532481 14 NotifySeverity 14 NotifySeverity 0 0 0 0 0 0 0 0 0 0 7 14 NS_unspecified 14 NS_unspecified 41
+// Never used, a special case internally.
+0 7 NS_spam 7 NS_spam 0
+1 8 NS_debug 8 NS_debug 0
+2 7 NS_info 7 NS_info 0
+3 10 NS_warning 10 NS_warning 0
+4 8 NS_error 8 NS_error 37
+// Specifically, a recoverable error.
+5 8 NS_fatal 8 NS_fatal 55
+// A nonrecoverable error--expect abort() or core dump.
+6 0 0
+
+783 6 Notify 0 26625 6 Notify 6 Notify 0 0 0 1 463 464 0 15 465 466 467 468 469 470 471 472 473 474 475 476 477 478 479 0 0 0 0 0 529
+/**
+ * An object that handles general error reporting to the user.  It contains a
+ * pointer to an ostream, initially cerr, which can be reset at will to point
+ * to different output devices, according to the needs of the application.
+ * All output generated within Panda should vector through the Notify ostream.
+ *
+ * This also includes a collection of Categories and Severities, which may be
+ * independently enabled or disabled, so that error messages may be squelched
+ * or respected according to the wishes of the user.
+ */
+
+784 17 ConfigPageManager 0 43009 17 ConfigPageManager 17 ConfigPageManager 0 0 0 0 0 0 19 480 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495 496 497 498 0 0 1 0 766 0 0 0 0 124
+/**
+ * A global object that maintains the set of ConfigPages everywhere in the
+ * world, and keeps them in sorted order.
+ */
+
+785 21 ConfigVariableManager 0 43009 21 ConfigVariableManager 21 ConfigVariableManager 0 0 0 0 0 1 940 13 499 500 501 502 503 504 505 506 507 508 509 510 511 1 980 0 0 0 0 163
+/**
+ * A global object that maintains the set of ConfigVariables (actually,
+ * ConfigVariableCores) everywhere in the world, and keeps them in sorted
+ * order.
+ */
+
+786 18 ConfigVariableBase 0 43009 18 ConfigVariableBase 18 ConfigVariableBase 0 0 0 0 0 6 941 942 943 944 945 946 12 512 513 514 515 516 517 518 519 520 521 522 523 0 0 1 0 766 0 0 0 0 417
+/**
+ * This class is the base class for both ConfigVariableList and ConfigVariable
+ * (and hence for all of the ConfigVariableBool, ConfigVaribleString, etc.
+ * classes).  It collects together the common interface for all generic
+ * ConfigVariables.
+ *
+ * Mostly, this class serves as a thin wrapper around ConfigVariableCore
+ * and/or ConfigDeclaration, more or less duplicating the interface presented
+ * there.
+ */
+
+787 14 ConfigVariable 0 26625 14 ConfigVariable 14 ConfigVariable 0 0 0 1 524 525 0 4 526 527 528 529 0 0 1 0 786 0 0 0 0 415
+/**
+ * This is a generic, untyped ConfigVariable.  It is also the base class for
+ * the typed ConfigVariables, and contains all of the code common to
+ * ConfigVariables of all types (except ConfigVariableList, which is a bit of
+ * a special case).
+ *
+ * Mostly, this class serves as a thin wrapper around ConfigVariableCore
+ * and/or ConfigDeclaration, more or less duplicating the interface presented
+ * there.
+ */
+
+788 18 ConfigVariableBool 0 141313 18 ConfigVariableBool 18 ConfigVariableBool 0 0 0 1 530 540 2 947 948 8 531 533 534 535 536 537 538 539 0 1 532 1 0 787 0 0 0 0 86
+/**
+ * This is a convenience class to specialize ConfigVariable as a boolean type.
+ */
+
+789 20 ConfigVariableDouble 0 141313 20 ConfigVariableDouble 20 ConfigVariableDouble 0 0 0 1 541 551 2 949 950 8 542 544 545 546 547 548 549 550 0 1 543 1 0 787 0 0 0 0 97
+/**
+ * This is a convenience class to specialize ConfigVariable as a floating-
+ * point type.
+ */
+
+790 6 double 0 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0 0
+
+791 22 ConfigVariableFilename 0 141313 22 ConfigVariableFilename 22 ConfigVariableFilename 0 0 0 1 552 573 2 951 952 19 553 555 556 557 558 559 560 561 562 563 564 565 566 567 568 569 570 571 572 0 1 554 1 0 787 0 0 0 0 327
+/**
+ * This is a convenience class to specialize ConfigVariable as a Filename
+ * type.  It is almost the same thing as ConfigVariableString, except it
+ * handles an implicit Filename::expand_from() operation so that the user may
+ * put OS-specific filenames, or filenames based on environment variables, in
+ * the prc file.
+ */
+
+792 8 Filename 0 2048 8 Filename 8 Filename 0 0 0 0 0 0 0 0 0 0 0 0 550
+/**
+ * The name of a file, such as a texture file or an Egg file.  Stores the full
+ * pathname, and includes functions for extracting out the directory prefix
+ * part and the file extension and stuff.
+ *
+ * A Filename is also aware of the mapping between the Unix-like filename
+ * convention we use internally, and the local OS's specific filename
+ * convention, and it knows how to perform basic OS-specific I/O, like testing
+ * for file existence and searching a searchpath, as well as the best way to
+ * open an fstream for reading or writing.
+ */
+
+793 17 ConfigVariableInt 0 141313 17 ConfigVariableInt 17 ConfigVariableInt 0 0 0 1 574 584 2 953 954 8 575 577 578 579 580 581 582 583 0 1 576 1 0 787 0 0 0 0 90
+/**
+ * This is a convenience class to specialize ConfigVariable as an integer
+ * type.
+ */
+
+794 19 ConfigVariableInt64 0 141313 19 ConfigVariableInt64 19 ConfigVariableInt64 0 0 0 1 585 595 2 955 956 8 586 588 589 590 591 592 593 594 0 1 587 1 0 787 0 0 0 0 96
+/**
+ * This is a convenience class to specialize ConfigVariable as a 64-bit
+ * integer type.
+ */
+
+795 7 int64_t 0 2105344 7 int64_t 7 int64_t 0 0 796 0 0 0 0 0 0 0 0 0 0
+
+796 13 long long int 0 8226 13 long long int 13 long long int 0 8 0 0 0 0 0 0 0 0 0 0 0
+
+797 18 ConfigVariableList 0 26625 18 ConfigVariableList 18 ConfigVariableList 0 0 0 1 596 597 0 8 598 599 600 601 602 603 604 605 0 0 1 0 786 0 0 0 0 481
+/**
+ * This class is similar to ConfigVariable, but it reports its value as a list
+ * of strings.  In this special case, all of the declarations of the variable
+ * are returned as the elements of this list, in order.
+ *
+ * Note that this is different from a normal ConfigVariableString, which just
+ * returns its topmost value, which can optionally be treated as a number of
+ * discrete words by dividing it at the spaces.
+ *
+ * A ConfigVariableList cannot be modified locally.
+ */
+
+798 24 ConfigVariableSearchPath 0 26625 24 ConfigVariableSearchPath 24 ConfigVariableSearchPath 0 0 0 1 606 607 3 957 958 959 15 609 610 611 612 613 614 615 616 617 618 619 620 621 622 623 1 981 1 608 1 0 786 0 0 0 0 731
+/**
+ * This is similar to a ConfigVariableList, but it returns its list as a
+ * DSearchPath, as a list of directories.
+ *
+ * You may locally append directories to the end of the search path with the
+ * methods here, or prepend them to the beginning.  Use these methods to make
+ * adjustments to the path; do not attempt to directly modify the const
+ * DSearchPath object returned by get_value().
+ *
+ * Unlike other ConfigVariable types, local changes (made by calling
+ * append_directory() and prepend_directory()) are specific to this particular
+ * instance of the ConfigVariableSearchPath.  A separate instance of the same
+ * variable, created by using the same name to the constructor, will not
+ * reflect the local changes.
+ */
+
+799 11 DSearchPath 0 2048 11 DSearchPath 11 DSearchPath 0 0 0 0 0 0 0 0 0 0 0 0 304
+/**
+ * This class stores a list of directories that can be searched, in order, to
+ * locate a particular file.  It is normally constructed by passing it a
+ * traditional searchpath-style string, e.g.  a list of directory names
+ * delimited by spaces or colons, but it can also be built up explicitly.
+ */
+
+800 17 DSearchPath const 0 8832 17 DSearchPath const 17 DSearchPath const 0 0 799 0 0 0 0 0 0 0 0 0 0
+
+801 20 ConfigVariableString 0 141313 20 ConfigVariableString 20 ConfigVariableString 0 0 0 1 624 639 2 960 961 13 625 627 628 629 630 631 632 633 634 635 636 637 638 0 1 626 1 0 787 0 0 0 0 85
+/**
+ * This is a convenience class to specialize ConfigVariable as a string type.
+ */
+
+802 14 NotifyCategory 0 141313 14 NotifyCategory 14 NotifyCategory 0 0 0 1 665 666 4 962 963 964 965 21 644 645 646 647 648 649 650 651 652 653 654 655 656 657 658 659 660 661 662 663 664 1 982 0 2 3 803 640 641 3 766 642 643 0 0 284
+/**
+ * A particular category of error messages.  Typically there will be one of
+ * these per package, so that we can turn on or off error messages at least at
+ * a package level; further nested categories can be created within a package
+ * if a finer grain of control is required.
+ */
+
+803 10 MemoryBase 0 2048 10 MemoryBase 10 MemoryBase 0 0 0 0 0 0 0 0 0 0 0 0 428
+/**
+ * This class is intended to be the base class of all objects in Panda that
+ * might be allocated and deleted via the new and delete operators.  It
+ * redefines these operators to provide some memory tracking support.
+ *
+ * We used to try to override the global operator new and delete methods, but
+ * that seems to cause problems when including header files for C++-based
+ * system libraries (such as are found on OSX).
+ */
+
+804 16 NotifyCategory * 0 8576 16 NotifyCategory * 16 NotifyCategory * 0 0 802 0 0 0 0 0 0 0 0 0 0
+
+805 14 IDecryptStream 0 141313 14 IDecryptStream 14 IDecryptStream 0 0 0 1 667 673 3 966 967 968 5 668 669 670 671 672 0 0 1 0 806 0 0 0 0 340
+/**
+ * An input stream object that uses OpenSSL to decrypt the input from another
+ * source stream on-the-fly.
+ *
+ * Attach an IDecryptStream to an existing istream that provides encrypted
+ * data, as generated by an OEncryptStream, and read the corresponding
+ * unencrypted data from the IDecryptStream.
+ *
+ * Seeking is not supported.
+ */
+
+806 7 istream 0 2048 12 std::istream 12 std::istream 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+807 14 OEncryptStream 0 141313 14 OEncryptStream 14 OEncryptStream 0 0 0 1 674 683 3 969 970 971 5 675 676 677 678 679 0 0 1 0 808 0 0 0 0 296
+/**
+ * An input stream object that uses OpenSSL to encrypt data to another
+ * destination stream on-the-fly.
+ *
+ * Attach an OEncryptStream to an existing ostream that will accept encrypted
+ * data, and write your unencrypted source data to the OEncryptStream.
+ *
+ * Seeking is not supported.
+ */
+
+808 7 ostream 0 2048 12 std::ostream 12 std::ostream 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+809 12 StreamReader 0 26625 12 StreamReader 12 StreamReader 0 0 0 1 684 686 1 972 29 685 687 688 689 690 691 692 693 694 695 696 697 698 699 700 701 702 703 704 705 706 707 708 709 710 711 712 713 714 0 0 0 0 0 158
+/**
+ * A class to read sequential binary data directly from an istream.  Its
+ * interface is similar to DatagramIterator by design; see also StreamWriter.
+ */
+
+810 9 istream * 0 8576 14 std::istream * 14 std::istream * 0 0 806 0 0 0 0 0 0 0 0 0 0
+
+811 12 StreamWriter 0 26625 12 StreamWriter 12 StreamWriter 0 0 0 1 715 717 2 973 974 29 716 718 719 720 721 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738 739 740 741 742 743 744 745 0 0 0 0 0 300
+/**
+ * A StreamWriter object is used to write sequential binary data directly to
+ * an ostream.  Its interface is very similar to Datagram by design; it's
+ * primarily intended as a convenience to eliminate the overhead of writing
+ * bytes to a Datagram and then writing the Datagram to a stream.
+ */
+
+812 9 ostream * 0 8576 14 std::ostream * 14 std::ostream * 0 0 808 0 0 0 0 0 0 0 0 0 0
+
+813 17 StreamWrapperBase 0 141313 17 StreamWrapperBase 17 StreamWrapperBase 0 0 0 0 750 0 2 748 749 0 0 0 0 0 116
+/**
+ * The base class for both IStreamWrapper and OStreamWrapper, this provides
+ * the common locking interface.
+ */
+
+814 14 IStreamWrapper 0 26625 14 IStreamWrapper 14 IStreamWrapper 0 0 0 1 752 753 1 972 1 754 0 0 1 5 813 751 0 0 0 168
+/**
+ * This class provides a locking wrapper around an arbitrary istream pointer.
+ * A thread may use this class to perform an atomic seek/read/gcount
+ * operation.
+ */
+
+815 14 OStreamWrapper 0 26625 14 OStreamWrapper 14 OStreamWrapper 0 0 0 1 756 757 1 973 1 758 0 0 1 5 813 755 0 0 0 159
+/**
+ * This class provides a locking wrapper around an arbitrary ostream pointer.
+ * A thread may use this class to perform an atomic seek/write operation.
+ */
+
+816 13 StreamWrapper 0 26625 13 StreamWrapper 13 StreamWrapper 0 0 0 1 763 764 1 975 1 765 0 0 2 3 814 759 760 3 815 761 762 0 0 97
+/**
+ * This class provides a locking wrapper around a combination ostream/istream
+ * pointer.
+ */
+
+817 10 iostream * 0 8576 15 std::iostream * 15 std::iostream * 0 0 818 0 0 0 0 0 0 0 0 0 0
+
+818 8 iostream 0 2048 13 std::iostream 13 std::iostream 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+819 13 ConfigFlags * 0 8576 13 ConfigFlags * 13 ConfigFlags * 0 0 766 0 0 0 0 0 0 0 0 0 0
+
+820 19 ConfigFlags const * 0 8576 19 ConfigFlags const * 19 ConfigFlags const * 0 0 821 0 0 0 0 0 0 0 0 0 0
+
+821 17 ConfigFlags const 0 8832 17 ConfigFlags const 17 ConfigFlags const 0 0 766 0 0 0 0 0 0 0 0 0 0
+
+822 18 ConfigPage const * 0 8576 18 ConfigPage const * 18 ConfigPage const * 0 0 823 0 0 0 0 0 0 0 0 0 0
+
+823 16 ConfigPage const 0 8832 16 ConfigPage const 16 ConfigPage const 0 0 769 0 0 0 0 0 0 0 0 0 0
+
+824 13 atomic string 0 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+825 4 void 0 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+826 6 size_t 0 2105344 11 std::size_t 11 std::size_t 0 0 827 0 0 0 0 0 0 0 0 0 0
+
+827 22 unsigned long long int 0 8230 22 unsigned long long int 22 unsigned long long int 0 8 0 0 0 0 0 0 0 0 0 0 0
+
+828 10 Filename * 0 8576 10 Filename * 10 Filename * 0 0 792 0 0 0 0 0 0 0 0 0 0
+
+829 26 ConfigVariableCore const * 0 8576 26 ConfigVariableCore const * 26 ConfigVariableCore const * 0 0 830 0 0 0 0 0 0 0 0 0 0
+
+830 24 ConfigVariableCore const 0 8832 24 ConfigVariableCore const 24 ConfigVariableCore const 0 0 779 0 0 0 0 0 0 0 0 0 0
+
+831 8 Notify * 0 8576 8 Notify * 8 Notify * 0 0 783 0 0 0 0 0 0 0 0 0 0
+
+832 14 Notify const * 0 8576 14 Notify const * 14 Notify const * 0 0 833 0 0 0 0 0 0 0 0 0 0
+
+833 12 Notify const 0 8832 12 Notify const 12 Notify const 0 0 783 0 0 0 0 0 0 0 0 0 0
+
+834 25 ConfigPageManager const * 0 8576 25 ConfigPageManager const * 25 ConfigPageManager const * 0 0 835 0 0 0 0 0 0 0 0 0 0
+
+835 23 ConfigPageManager const 0 8832 23 ConfigPageManager const 23 ConfigPageManager const 0 0 784 0 0 0 0 0 0 0 0 0 0
+
+836 19 ConfigPageManager * 0 8576 19 ConfigPageManager * 19 ConfigPageManager * 0 0 784 0 0 0 0 0 0 0 0 0 0
+
+837 13 DSearchPath * 0 8576 13 DSearchPath * 13 DSearchPath * 0 0 799 0 0 0 0 0 0 0 0 0 0
+
+838 23 ConfigVariableManager * 0 8576 23 ConfigVariableManager * 23 ConfigVariableManager * 0 0 785 0 0 0 0 0 0 0 0 0 0
+
+839 29 ConfigVariableManager const * 0 8576 29 ConfigVariableManager const * 29 ConfigVariableManager const * 0 0 840 0 0 0 0 0 0 0 0 0 0
+
+840 27 ConfigVariableManager const 0 8832 27 ConfigVariableManager const 27 ConfigVariableManager const 0 0 785 0 0 0 0 0 0 0 0 0 0
+
+841 26 ConfigVariableBase const * 0 8576 26 ConfigVariableBase const * 26 ConfigVariableBase const * 0 0 842 0 0 0 0 0 0 0 0 0 0
+
+842 24 ConfigVariableBase const 0 8832 24 ConfigVariableBase const 24 ConfigVariableBase const 0 0 786 0 0 0 0 0 0 0 0 0 0
+
+843 20 ConfigVariableBase * 0 8576 20 ConfigVariableBase * 20 ConfigVariableBase * 0 0 786 0 0 0 0 0 0 0 0 0 0
+
+844 22 ConfigVariable const * 0 8576 22 ConfigVariable const * 22 ConfigVariable const * 0 0 845 0 0 0 0 0 0 0 0 0 0
+
+845 20 ConfigVariable const 0 8832 20 ConfigVariable const 20 ConfigVariable const 0 0 787 0 0 0 0 0 0 0 0 0 0
+
+846 16 ConfigVariable * 0 8576 16 ConfigVariable * 16 ConfigVariable * 0 0 787 0 0 0 0 0 0 0 0 0 0
+
+847 26 ConfigVariableBool const * 0 8576 26 ConfigVariableBool const * 26 ConfigVariableBool const * 0 0 848 0 0 0 0 0 0 0 0 0 0
+
+848 24 ConfigVariableBool const 0 8832 24 ConfigVariableBool const 24 ConfigVariableBool const 0 0 788 0 0 0 0 0 0 0 0 0 0
+
+849 20 ConfigVariableBool * 0 8576 20 ConfigVariableBool * 20 ConfigVariableBool * 0 0 788 0 0 0 0 0 0 0 0 0 0
+
+850 28 ConfigVariableDouble const * 0 8576 28 ConfigVariableDouble const * 28 ConfigVariableDouble const * 0 0 851 0 0 0 0 0 0 0 0 0 0
+
+851 26 ConfigVariableDouble const 0 8832 26 ConfigVariableDouble const 26 ConfigVariableDouble const 0 0 789 0 0 0 0 0 0 0 0 0 0
+
+852 22 ConfigVariableDouble * 0 8576 22 ConfigVariableDouble * 22 ConfigVariableDouble * 0 0 789 0 0 0 0 0 0 0 0 0 0
+
+853 30 ConfigVariableFilename const * 0 8576 30 ConfigVariableFilename const * 30 ConfigVariableFilename const * 0 0 854 0 0 0 0 0 0 0 0 0 0
+
+854 28 ConfigVariableFilename const 0 8832 28 ConfigVariableFilename const 28 ConfigVariableFilename const 0 0 791 0 0 0 0 0 0 0 0 0 0
+
+855 24 ConfigVariableFilename * 0 8576 24 ConfigVariableFilename * 24 ConfigVariableFilename * 0 0 791 0 0 0 0 0 0 0 0 0 0
+
+856 16 Filename const * 0 8576 16 Filename const * 16 Filename const * 0 0 857 0 0 0 0 0 0 0 0 0 0
+
+857 14 Filename const 0 8832 14 Filename const 14 Filename const 0 0 792 0 0 0 0 0 0 0 0 0 0
+
+858 4 char 0 8194 4 char 4 char 0 5 0 0 0 0 0 0 0 0 0 0 0
+
+859 25 ConfigVariableInt const * 0 8576 25 ConfigVariableInt const * 25 ConfigVariableInt const * 0 0 860 0 0 0 0 0 0 0 0 0 0
+
+860 23 ConfigVariableInt const 0 8832 23 ConfigVariableInt const 23 ConfigVariableInt const 0 0 793 0 0 0 0 0 0 0 0 0 0
+
+861 19 ConfigVariableInt * 0 8576 19 ConfigVariableInt * 19 ConfigVariableInt * 0 0 793 0 0 0 0 0 0 0 0 0 0
+
+862 27 ConfigVariableInt64 const * 0 8576 27 ConfigVariableInt64 const * 27 ConfigVariableInt64 const * 0 0 863 0 0 0 0 0 0 0 0 0 0
+
+863 25 ConfigVariableInt64 const 0 8832 25 ConfigVariableInt64 const 25 ConfigVariableInt64 const 0 0 794 0 0 0 0 0 0 0 0 0 0
+
+864 21 ConfigVariableInt64 * 0 8576 21 ConfigVariableInt64 * 21 ConfigVariableInt64 * 0 0 794 0 0 0 0 0 0 0 0 0 0
+
+865 26 ConfigVariableList const * 0 8576 26 ConfigVariableList const * 26 ConfigVariableList const * 0 0 866 0 0 0 0 0 0 0 0 0 0
+
+866 24 ConfigVariableList const 0 8832 24 ConfigVariableList const 24 ConfigVariableList const 0 0 797 0 0 0 0 0 0 0 0 0 0
+
+867 20 ConfigVariableList * 0 8576 20 ConfigVariableList * 20 ConfigVariableList * 0 0 797 0 0 0 0 0 0 0 0 0 0
+
+868 19 DSearchPath const * 0 8576 19 DSearchPath const * 19 DSearchPath const * 0 0 800 0 0 0 0 0 0 0 0 0 0
+
+869 26 ConfigVariableSearchPath * 0 8576 26 ConfigVariableSearchPath * 26 ConfigVariableSearchPath * 0 0 798 0 0 0 0 0 0 0 0 0 0
+
+870 32 ConfigVariableSearchPath const * 0 8576 32 ConfigVariableSearchPath const * 32 ConfigVariableSearchPath const * 0 0 871 0 0 0 0 0 0 0 0 0 0
+
+871 30 ConfigVariableSearchPath const 0 8832 30 ConfigVariableSearchPath const 30 ConfigVariableSearchPath const 0 0 798 0 0 0 0 0 0 0 0 0 0
+
+872 7 Results 0 264192 20 DSearchPath::Results 20 DSearchPath::Results 799 0 0 0 0 0 0 0 0 0 0 0 0
+
+873 9 Results * 0 8576 22 DSearchPath::Results * 22 DSearchPath::Results * 0 0 872 0 0 0 0 0 0 0 0 0 0
+
+874 28 ConfigVariableString const * 0 8576 28 ConfigVariableString const * 28 ConfigVariableString const * 0 0 875 0 0 0 0 0 0 0 0 0 0
+
+875 26 ConfigVariableString const 0 8832 26 ConfigVariableString const 26 ConfigVariableString const 0 0 801 0 0 0 0 0 0 0 0 0 0
+
+876 22 ConfigVariableString * 0 8576 22 ConfigVariableString * 22 ConfigVariableString * 0 0 801 0 0 0 0 0 0 0 0 0 0
+
+877 22 NotifyCategory const * 0 8576 22 NotifyCategory const * 22 NotifyCategory const * 0 0 878 0 0 0 0 0 0 0 0 0 0
+
+878 20 NotifyCategory const 0 8832 20 NotifyCategory const 20 NotifyCategory const 0 0 802 0 0 0 0 0 0 0 0 0 0
+
+879 8 long int 0 8210 8 long int 8 long int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+880 12 MemoryBase * 0 8576 12 MemoryBase * 12 MemoryBase * 0 0 803 0 0 0 0 0 0 0 0 0 0
+
+881 16 IDecryptStream * 0 8576 16 IDecryptStream * 16 IDecryptStream * 0 0 805 0 0 0 0 0 0 0 0 0 0
+
+882 22 IDecryptStream const * 0 8576 22 IDecryptStream const * 22 IDecryptStream const * 0 0 883 0 0 0 0 0 0 0 0 0 0
+
+883 20 IDecryptStream const 0 8832 20 IDecryptStream const 20 IDecryptStream const 0 0 805 0 0 0 0 0 0 0 0 0 0
+
+884 16 OEncryptStream * 0 8576 16 OEncryptStream * 16 OEncryptStream * 0 0 807 0 0 0 0 0 0 0 0 0 0
+
+885 20 StreamReader const * 0 8576 20 StreamReader const * 20 StreamReader const * 0 0 886 0 0 0 0 0 0 0 0 0 0
+
+886 18 StreamReader const 0 8832 18 StreamReader const 18 StreamReader const 0 0 809 0 0 0 0 0 0 0 0 0 0
+
+887 14 StreamReader * 0 8576 14 StreamReader * 14 StreamReader * 0 0 809 0 0 0 0 0 0 0 0 0 0
+
+888 6 int8_t 0 2105344 6 int8_t 6 int8_t 0 0 889 0 0 0 0 0 0 0 0 0 0
+
+889 11 signed char 0 8202 11 signed char 11 signed char 0 5 0 0 0 0 0 0 0 0 0 0 0
+
+890 7 uint8_t 0 2105344 7 uint8_t 7 uint8_t 0 0 891 0 0 0 0 0 0 0 0 0 0
+
+891 13 unsigned char 0 8198 13 unsigned char 13 unsigned char 0 5 0 0 0 0 0 0 0 0 0 0 0
+
+892 7 int16_t 0 2105344 7 int16_t 7 int16_t 0 0 893 0 0 0 0 0 0 0 0 0 0
+
+893 9 short int 0 8258 9 short int 9 short int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+894 7 int32_t 0 2105344 7 int32_t 7 int32_t 0 0 774 0 0 0 0 0 0 0 0 0 0
+
+895 8 uint16_t 0 2105344 8 uint16_t 8 uint16_t 0 0 896 0 0 0 0 0 0 0 0 0 0
+
+896 18 unsigned short int 0 8262 18 unsigned short int 18 unsigned short int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+897 8 uint32_t 0 2105344 8 uint32_t 8 uint32_t 0 0 898 0 0 0 0 0 0 0 0 0 0
+
+898 12 unsigned int 0 8198 12 unsigned int 12 unsigned int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+899 8 uint64_t 0 2105344 8 uint64_t 8 uint64_t 0 0 827 0 0 0 0 0 0 0 0 0 0
+
+900 5 float 0 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0 0
+
+901 10 PN_float64 0 2105344 10 PN_float64 10 PN_float64 0 0 790 0 0 0 0 0 0 0 0 0 0
+
+902 10 PyObject * 0 8576 10 PyObject * 10 PyObject * 0 0 903 0 0 0 0 0 0 0 0 0 0
+
+903 8 PyObject 0 2105344 8 PyObject 8 PyObject 0 0 904 0 0 0 0 0 0 0 0 0 0
+
+904 7 _object 0 1024 7 _object 7 _object 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+905 20 StreamWriter const * 0 8576 20 StreamWriter const * 20 StreamWriter const * 0 0 906 0 0 0 0 0 0 0 0 0 0
+
+906 18 StreamWriter const 0 8832 18 StreamWriter const 18 StreamWriter const 0 0 811 0 0 0 0 0 0 0 0 0 0
+
+907 14 StreamWriter * 0 8576 14 StreamWriter * 14 StreamWriter * 0 0 811 0 0 0 0 0 0 0 0 0 0
+
+908 19 StreamWrapperBase * 0 8576 19 StreamWrapperBase * 19 StreamWrapperBase * 0 0 813 0 0 0 0 0 0 0 0 0 0
+
+909 16 IStreamWrapper * 0 8576 16 IStreamWrapper * 16 IStreamWrapper * 0 0 814 0 0 0 0 0 0 0 0 0 0
+
+910 22 IStreamWrapper const * 0 8576 22 IStreamWrapper const * 22 IStreamWrapper const * 0 0 911 0 0 0 0 0 0 0 0 0 0
+
+911 20 IStreamWrapper const 0 8832 20 IStreamWrapper const 20 IStreamWrapper const 0 0 814 0 0 0 0 0 0 0 0 0 0
+
+912 16 OStreamWrapper * 0 8576 16 OStreamWrapper * 16 OStreamWrapper * 0 0 815 0 0 0 0 0 0 0 0 0 0
+
+913 22 OStreamWrapper const * 0 8576 22 OStreamWrapper const * 22 OStreamWrapper const * 0 0 914 0 0 0 0 0 0 0 0 0 0
+
+914 20 OStreamWrapper const 0 8832 20 OStreamWrapper const 20 OStreamWrapper const 0 0 815 0 0 0 0 0 0 0 0 0 0
+
+915 15 StreamWrapper * 0 8576 15 StreamWrapper * 15 StreamWrapper * 0 0 816 0 0 0 0 0 0 0 0 0 0
+
+916 21 StreamWrapper const * 0 8576 21 StreamWrapper const * 21 StreamWrapper const * 0 0 917 0 0 0 0 0 0 0 0 0 0
+
+917 19 StreamWrapper const 0 8832 19 StreamWrapper const 19 StreamWrapper const 0 0 816 0 0 0 0 0 0 0 0 0 0
+
+0
+58
+918 4 name 0 2 770 388 0 0 0 0 0 0 0 16 ConfigPage::name 0
+
+919 7 special 0 2 773 389 0 0 0 0 0 0 0 19 ConfigPage::special 0
+
+920 8 implicit 0 2 773 390 0 0 0 0 0 0 0 20 ConfigPage::implicit 0
+
+921 4 sort 0 6 774 392 391 0 0 0 0 0 0 16 ConfigPage::sort 0
+
+922 8 page_seq 0 2 774 393 0 0 0 0 0 0 0 20 ConfigPage::page_seq 0
+
+923 11 trust_level 0 6 774 394 395 0 0 0 0 0 0 23 ConfigPage::trust_level 0
+
+924 9 signature 0 2 770 396 0 0 0 0 0 0 0 21 ConfigPage::signature 0
+
+925 12 declarations 0 66 775 404 0 0 0 0 402 0 0 24 ConfigPage::declarations 0
+
+926 4 page 0 2 777 408 0 0 0 0 0 0 0 23 ConfigDeclaration::page 0
+
+927 8 variable 0 2 778 409 0 0 0 0 0 0 0 27 ConfigDeclaration::variable 0
+
+928 12 declarations 0 66 780 429 0 0 0 0 428 0 0 32 ConfigVariableCore::declarations 0
+
+929 4 name 0 2 770 410 0 0 0 0 0 0 0 24 ConfigVariableCore::name 0
+
+930 4 used 0 2 773 411 0 0 0 0 0 0 0 24 ConfigVariableCore::used 0
+
+931 6 closed 0 2 773 415 0 0 0 0 0 0 0 26 ConfigVariableCore::closed 0
+
+932 11 trust_level 0 2 774 416 0 0 0 0 0 0 0 31 ConfigVariableCore::trust_level 0
+
+933 7 dynamic 0 2 773 417 0 0 0 0 0 0 0 27 ConfigVariableCore::dynamic 0
+
+934 10 value_type 0 6 767 412 419 0 0 0 0 0 0 30 ConfigVariableCore::value_type 0
+
+935 11 description 0 6 770 413 421 0 0 0 0 0 0 31 ConfigVariableCore::description 0
+
+936 13 default_value 0 6 780 418 422 0 0 0 0 0 0 33 ConfigVariableCore::default_value 0
+
+937 10 references 0 66 780 431 0 0 0 0 430 0 0 30 ConfigVariableCore::references 0
+
+938 18 trusted_references 0 66 780 433 0 0 0 0 432 0 0 38 ConfigVariableCore::trusted_references 0
+
+939 17 unique_references 0 66 780 435 0 0 0 0 434 0 0 37 ConfigVariableCore::unique_references 0
+
+940 9 variables 0 66 778 502 0 0 0 0 501 0 0 32 ConfigVariableManager::variables 0
+
+941 4 name 0 2 770 512 0 0 0 0 0 0 0 24 ConfigVariableBase::name 0
+
+942 10 value_type 0 2 767 513 0 0 0 0 0 0 0 30 ConfigVariableBase::value_type 0
+
+943 11 description 0 2 770 514 0 0 0 0 0 0 0 31 ConfigVariableBase::description 0
+
+944 6 closed 0 2 773 516 0 0 0 0 0 0 0 26 ConfigVariableBase::closed 0
+
+945 11 trust_level 0 2 774 517 0 0 0 0 0 0 0 31 ConfigVariableBase::trust_level 0
+
+946 7 dynamic 0 2 773 518 0 0 0 0 0 0 0 27 ConfigVariableBase::dynamic 0
+
+947 5 value 0 6 773 536 535 0 0 0 0 0 0 25 ConfigVariableBool::value 0
+
+948 13 default_value 0 2 773 537 0 0 0 0 0 0 0 33 ConfigVariableBool::default_value 0
+
+949 5 value 0 6 790 547 546 0 0 0 0 0 0 27 ConfigVariableDouble::value 0
+
+950 13 default_value 0 2 790 548 0 0 0 0 0 0 0 35 ConfigVariableDouble::default_value 0
+
+951 5 value 0 6 792 569 568 0 0 0 0 0 0 29 ConfigVariableFilename::value 0
+
+952 13 default_value 0 2 792 570 0 0 0 0 0 0 0 37 ConfigVariableFilename::default_value 0
+
+953 5 value 0 6 774 580 579 0 0 0 0 0 0 24 ConfigVariableInt::value 0
+
+954 13 default_value 0 2 774 581 0 0 0 0 0 0 0 32 ConfigVariableInt::default_value 0
+
+955 5 value 0 6 795 591 590 0 0 0 0 0 0 26 ConfigVariableInt64::value 0
+
+956 13 default_value 0 2 795 592 0 0 0 0 0 0 0 34 ConfigVariableInt64::default_value 0
+
+957 5 value 0 2 799 609 0 0 0 0 0 0 0 31 ConfigVariableSearchPath::value 0
+
+958 13 default_value 0 2 800 610 0 0 0 0 0 0 0 39 ConfigVariableSearchPath::default_value 0
+
+959 11 directories 0 66 792 619 0 0 0 0 618 0 0 37 ConfigVariableSearchPath::directories 0
+
+960 5 value 0 6 770 635 634 0 0 0 0 0 0 27 ConfigVariableString::value 0
+
+961 13 default_value 0 2 771 636 0 0 0 0 0 0 0 35 ConfigVariableString::default_value 0
+
+962 8 fullname 0 2 771 644 0 0 0 0 0 0 0 24 NotifyCategory::fullname 0
+
+963 8 basename 0 2 771 645 0 0 0 0 0 0 0 24 NotifyCategory::basename 0
+
+964 8 severity 0 6 782 646 647 0 0 0 0 0 0 24 NotifyCategory::severity 0
+
+965 8 children 0 66 804 663 0 0 0 0 662 0 0 24 NotifyCategory::children 0
+
+966 9 algorithm 0 2 770 670 0 0 0 0 0 0 0 25 IDecryptStream::algorithm 0
+
+967 10 key_length 0 2 774 671 0 0 0 0 0 0 0 26 IDecryptStream::key_length 0
+
+968 15 iteration_count 0 2 774 672 0 0 0 0 0 0 0 31 IDecryptStream::iteration_count 0
+
+969 9 algorithm 0 6 770 680 677 0 0 0 0 0 0 25 OEncryptStream::algorithm 0
+
+970 10 key_length 0 6 774 681 678 0 0 0 0 0 0 26 OEncryptStream::key_length 0
+
+971 15 iteration_count 0 6 774 682 679 0 0 0 0 0 0 31 OEncryptStream::iteration_count 0
+
+972 7 istream 0 2 810 754 0 0 0 0 0 0 0 12 std::istream 0
+
+973 7 ostream 0 2 812 758 0 0 0 0 0 0 0 12 std::ostream 0
+
+974 9 softspace 0 6 774 746 747 0 0 0 0 0 0 23 StreamWriter::softspace 54
+// Python 2 needs this for printing to work correctly.
+
+975 8 iostream 0 2 817 765 0 0 0 0 0 0 0 13 std::iostream 0
+
+7
+976 16 get_declarations 0 428 429 36 ConfigVariableCore::get_declarations 0
+
+977 14 get_references 0 430 431 34 ConfigVariableCore::get_references 0
+
+978 22 get_trusted_references 0 432 433 42 ConfigVariableCore::get_trusted_references 0
+
+979 21 get_unique_references 0 434 435 41 ConfigVariableCore::get_unique_references 0
+
+980 13 get_variables 0 501 502 36 ConfigVariableManager::get_variables 0
+
+981 15 get_directories 0 618 619 41 ConfigVariableSearchPath::get_directories 0
+
+982 12 get_children 0 662 663 28 NotifyCategory::get_children 0
+

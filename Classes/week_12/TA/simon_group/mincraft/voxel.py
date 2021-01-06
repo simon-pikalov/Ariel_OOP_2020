@@ -36,7 +36,6 @@ class Voxel(Button):
         if self.hovered:
             print(self.block)
             if key == 'left mouse down':
-                # punch_sound.play()
                 if Voxel.block == Block.grass:
                     voxel = Voxel(position=self.position + mouse.normal, texture_name='grass')
                 if Voxel.block == Block.stone:

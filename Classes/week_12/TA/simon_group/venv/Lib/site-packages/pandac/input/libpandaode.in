@@ -1,0 +1,4016 @@
+1608999542
+3 3
+11 libpandaode 4 sTqO 11 panda3d.ode 
+587
+674 8 OdeWorld 0 4 1268 18 OdeWorld::OdeWorld 0 2 1 2 0
+67
+OdeWorld::OdeWorld(void);
+OdeWorld::OdeWorld(OdeWorld const &copy);
+
+675 7 destroy 0 4 1268 17 OdeWorld::destroy 0 1 3 0
+29
+void OdeWorld::destroy(void);
+
+676 8 is_empty 0 4 1268 18 OdeWorld::is_empty 0 1 4 205
+/**
+ * Returns true if the ID is 0, meaning the OdeWorld does not point to a valid
+ * world.  It is an error to call a method on an empty world.  Note that an
+ * empty OdeWorld also evaluates to False.
+ */
+43
+inline bool OdeWorld::is_empty(void) const;
+
+677 6 get_id 0 4 1268 16 OdeWorld::get_id 0 1 5 43
+/**
+ * Returns the underlying dWorldID.
+ */
+45
+inline dWorldID OdeWorld::get_id(void) const;
+
+678 11 set_gravity 0 4 1268 21 OdeWorld::set_gravity 0 2 6 7 0
+119
+inline void OdeWorld::set_gravity(dReal x, dReal y, dReal z);
+inline void OdeWorld::set_gravity(LVecBase3f const &vec);
+
+679 7 set_erp 0 4 1268 17 OdeWorld::set_erp 0 1 8 0
+41
+inline void OdeWorld::set_erp(dReal erp);
+
+680 7 set_cfm 0 4 1268 17 OdeWorld::set_cfm 0 1 9 0
+41
+inline void OdeWorld::set_cfm(dReal cfm);
+
+681 29 set_quick_step_num_iterations 0 4 1268 39 OdeWorld::set_quick_step_num_iterations 0 1 10 0
+61
+inline void OdeWorld::set_quick_step_num_iterations(int num);
+
+682 16 set_quick_step_w 0 4 1268 26 OdeWorld::set_quick_step_w 0 1 11 0
+62
+inline void OdeWorld::set_quick_step_w(dReal over_relaxation);
+
+683 30 set_contact_max_correcting_vel 0 4 1268 40 OdeWorld::set_contact_max_correcting_vel 0 1 12 0
+64
+inline void OdeWorld::set_contact_max_correcting_vel(dReal vel);
+
+684 25 set_contact_surface_layer 0 4 1268 35 OdeWorld::set_contact_surface_layer 0 1 13 0
+61
+inline void OdeWorld::set_contact_surface_layer(dReal depth);
+
+685 33 set_auto_disable_linear_threshold 0 4 1268 43 OdeWorld::set_auto_disable_linear_threshold 0 1 14 0
+80
+inline void OdeWorld::set_auto_disable_linear_threshold(dReal linear_threshold);
+
+686 34 set_auto_disable_angular_threshold 0 4 1268 44 OdeWorld::set_auto_disable_angular_threshold 0 1 15 0
+82
+inline void OdeWorld::set_auto_disable_angular_threshold(dReal angular_threshold);
+
+687 22 set_auto_disable_steps 0 4 1268 32 OdeWorld::set_auto_disable_steps 0 1 16 0
+56
+inline void OdeWorld::set_auto_disable_steps(int steps);
+
+688 21 set_auto_disable_time 0 4 1268 31 OdeWorld::set_auto_disable_time 0 1 17 0
+56
+inline void OdeWorld::set_auto_disable_time(dReal time);
+
+689 21 set_auto_disable_flag 0 4 1268 31 OdeWorld::set_auto_disable_flag 0 1 18 0
+65
+inline void OdeWorld::set_auto_disable_flag(int do_auto_disable);
+
+690 11 get_gravity 0 4 1268 21 OdeWorld::get_gravity 0 1 19 0
+52
+inline LVecBase3f OdeWorld::get_gravity(void) const;
+
+691 7 get_erp 0 4 1268 17 OdeWorld::get_erp 0 1 20 0
+43
+inline dReal OdeWorld::get_erp(void) const;
+
+692 7 get_cfm 0 4 1268 17 OdeWorld::get_cfm 0 1 21 0
+43
+inline dReal OdeWorld::get_cfm(void) const;
+
+693 29 get_quick_step_num_iterations 0 4 1268 39 OdeWorld::get_quick_step_num_iterations 0 1 22 0
+63
+inline int OdeWorld::get_quick_step_num_iterations(void) const;
+
+694 16 get_quick_step_w 0 4 1268 26 OdeWorld::get_quick_step_w 0 1 23 0
+52
+inline dReal OdeWorld::get_quick_step_w(void) const;
+
+695 30 get_contact_max_correcting_vel 0 4 1268 40 OdeWorld::get_contact_max_correcting_vel 0 1 24 0
+66
+inline dReal OdeWorld::get_contact_max_correcting_vel(void) const;
+
+696 25 get_contact_surface_layer 0 4 1268 35 OdeWorld::get_contact_surface_layer 0 1 25 0
+61
+inline dReal OdeWorld::get_contact_surface_layer(void) const;
+
+697 33 get_auto_disable_linear_threshold 0 4 1268 43 OdeWorld::get_auto_disable_linear_threshold 0 1 26 0
+69
+inline dReal OdeWorld::get_auto_disable_linear_threshold(void) const;
+
+698 34 get_auto_disable_angular_threshold 0 4 1268 44 OdeWorld::get_auto_disable_angular_threshold 0 1 27 0
+70
+inline dReal OdeWorld::get_auto_disable_angular_threshold(void) const;
+
+699 22 get_auto_disable_steps 0 4 1268 32 OdeWorld::get_auto_disable_steps 0 1 28 0
+56
+inline int OdeWorld::get_auto_disable_steps(void) const;
+
+700 21 get_auto_disable_time 0 4 1268 31 OdeWorld::get_auto_disable_time 0 1 29 0
+57
+inline dReal OdeWorld::get_auto_disable_time(void) const;
+
+701 21 get_auto_disable_flag 0 4 1268 31 OdeWorld::get_auto_disable_flag 0 1 30 0
+55
+inline int OdeWorld::get_auto_disable_flag(void) const;
+
+702 16 impulse_to_force 0 4 1268 26 OdeWorld::impulse_to_force 0 2 31 32 0
+180
+inline LVecBase3f OdeWorld::impulse_to_force(dReal stepsize, dReal ix, dReal iy, dReal iz);
+inline LVecBase3f OdeWorld::impulse_to_force(dReal stepsize, LVecBase3f const &impulse);
+
+703 4 step 0 4 1268 14 OdeWorld::step 0 1 33 0
+43
+inline void OdeWorld::step(dReal stepsize);
+
+704 10 quick_step 0 4 1268 20 OdeWorld::quick_step 0 1 34 0
+49
+inline void OdeWorld::quick_step(dReal stepsize);
+
+705 10 compare_to 0 4 1268 20 OdeWorld::compare_to 0 1 35 0
+61
+inline int OdeWorld::compare_to(OdeWorld const &other) const;
+
+706 18 init_surface_table 0 4 1268 28 OdeWorld::init_surface_table 0 1 36 0
+56
+void OdeWorld::init_surface_table(uint8_t num_surfaces);
+
+707 18 add_body_dampening 0 4 1268 28 OdeWorld::add_body_dampening 0 1 37 56
+// void assign_surface_body(OdeBody& body, int surface);
+62
+void OdeWorld::add_body_dampening(OdeBody &body, int surface);
+
+708 17 set_surface_entry 0 4 1268 27 OdeWorld::set_surface_entry 0 1 38 0
+161
+void OdeWorld::set_surface_entry(uint8_t pos1, uint8_t pos2, dReal mu, dReal bounce, dReal bounce_vel, dReal soft_erp, dReal soft_cfm, dReal slip, dReal dampen);
+
+709 15 apply_dampening 0 4 1268 25 OdeWorld::apply_dampening 0 1 39 0
+57
+float OdeWorld::apply_dampening(float dt, OdeBody &body);
+
+710 22 operator typecast bool 0 132 1268 32 OdeWorld::operator typecast bool 0 1 41 0
+27
+operator bool (void) const;
+
+711 14 get_class_type 0 4 1268 24 OdeWorld::get_class_type 0 1 40 0
+49
+static TypeHandle OdeWorld::get_class_type(void);
+
+712 13 OdeJointGroup 0 4 1270 28 OdeJointGroup::OdeJointGroup 0 1 42 0
+35
+OdeJointGroup::OdeJointGroup(void);
+
+713 7 destroy 0 4 1270 22 OdeJointGroup::destroy 0 1 43 0
+34
+void OdeJointGroup::destroy(void);
+
+714 6 get_id 0 4 1270 21 OdeJointGroup::get_id 0 1 44 0
+55
+inline dJointGroupID OdeJointGroup::get_id(void) const;
+
+715 5 empty 0 4 1270 20 OdeJointGroup::empty 0 1 45 0
+45
+inline void OdeJointGroup::empty(void) const;
+
+716 10 compare_to 0 4 1270 25 OdeJointGroup::compare_to 0 1 46 0
+71
+inline int OdeJointGroup::compare_to(OdeJointGroup const &other) const;
+
+717 14 get_class_type 0 4 1270 29 OdeJointGroup::get_class_type 0 1 47 0
+54
+static TypeHandle OdeJointGroup::get_class_type(void);
+
+718 10 get_force1 0 4 1271 28 OdeJointFeedback::get_force1 0 1 50 0
+64
+inline LVector3f const OdeJointFeedback::get_force1(void) const;
+
+719 10 get_force2 0 4 1271 28 OdeJointFeedback::get_force2 0 1 51 0
+64
+inline LVector3f const OdeJointFeedback::get_force2(void) const;
+
+720 11 get_torque1 0 4 1271 29 OdeJointFeedback::get_torque1 0 1 52 0
+65
+inline LVector3f const OdeJointFeedback::get_torque1(void) const;
+
+721 11 get_torque2 0 4 1271 29 OdeJointFeedback::get_torque2 0 1 53 0
+65
+inline LVector3f const OdeJointFeedback::get_torque2(void) const;
+
+722 16 OdeJointFeedback 0 4 1271 34 OdeJointFeedback::OdeJointFeedback 0 2 48 49 0
+137
+inline OdeJointFeedback::OdeJointFeedback(void) = default;
+inline OdeJointFeedback::OdeJointFeedback(OdeJointFeedback const &) = default;
+
+723 17 ~OdeJointFeedback 0 4 1271 35 OdeJointFeedback::~OdeJointFeedback 0 0 0
+42
+OdeJointFeedback::~OdeJointFeedback(void);
+
+724 7 destroy 0 4 1273 17 OdeJoint::destroy 0 1 54 0
+29
+void OdeJoint::destroy(void);
+
+725 8 is_empty 0 4 1273 18 OdeJoint::is_empty 0 1 55 205
+/**
+ * Returns true if the ID is 0, meaning the OdeJoint does not point to a valid
+ * joint.  It is an error to call a method on an empty joint.  Note that an
+ * empty OdeJoint also evaluates to False.
+ */
+43
+inline bool OdeJoint::is_empty(void) const;
+
+726 6 get_id 0 4 1273 16 OdeJoint::get_id 0 1 56 43
+/**
+ * Returns the underlying dJointID.
+ */
+45
+inline dJointID OdeJoint::get_id(void) const;
+
+727 14 get_joint_type 0 4 1273 24 OdeJoint::get_joint_type 0 1 57 30
+/* INLINE void *get_data(); */
+48
+inline int OdeJoint::get_joint_type(void) const;
+
+728 8 get_body 0 4 1273 18 OdeJoint::get_body 0 1 58 0
+44
+OdeBody OdeJoint::get_body(int index) const;
+
+729 12 set_feedback 0 4 1273 22 OdeJoint::set_feedback 0 2 59 60 0
+109
+inline void OdeJoint::set_feedback(OdeJointFeedback *);
+inline void OdeJoint::set_feedback(bool flag = true);
+
+730 12 get_feedback 0 4 1273 22 OdeJoint::get_feedback 0 1 61 0
+54
+inline OdeJointFeedback *OdeJoint::get_feedback(void);
+
+731 6 attach 0 4 1273 16 OdeJoint::attach 0 1 62 0
+56
+void OdeJoint::attach(PyObject *body1, PyObject *body2);
+
+732 13 attach_bodies 0 4 1273 23 OdeJoint::attach_bodies 0 1 63 175
+/**
+ * Attaches two OdeBody objects to this joint.  Order is important.  Consider
+ * using the OdeJoint::attach extension function if you're using the Python
+ * interface.
+ */
+73
+void OdeJoint::attach_bodies(OdeBody const &body1, OdeBody const &body2);
+
+733 11 attach_body 0 4 1273 21 OdeJoint::attach_body 0 1 64 237
+/**
+ * Attaches a single OdeBody to this joint at the specified index (0 or 1).
+ * The other index will be set to the environment (null). Consider using the
+ * OdeJoint::attach extension function if you're using the Python interface.
+ */
+59
+void OdeJoint::attach_body(OdeBody const &body, int index);
+
+734 6 detach 0 4 1273 16 OdeJoint::detach 0 1 65 0
+28
+void OdeJoint::detach(void);
+
+735 5 write 0 6 1273 15 OdeJoint::write 0 1 66 0
+93
+virtual void OdeJoint::write(std::ostream &out = ::std::cout, unsigned int indent = 0) const;
+
+736 10 compare_to 0 4 1273 20 OdeJoint::compare_to 0 1 67 0
+61
+inline int OdeJoint::compare_to(OdeJoint const &other) const;
+
+737 11 operator == 0 4 1273 21 OdeJoint::operator == 0 1 68 0
+63
+inline bool OdeJoint::operator ==(OdeJoint const &other) const;
+
+738 22 operator typecast bool 0 132 1273 32 OdeJoint::operator typecast bool 0 1 82 0
+27
+operator bool (void) const;
+
+739 7 convert 0 4 1273 17 OdeJoint::convert 0 1 69 0
+40
+PyObject *OdeJoint::convert(void) const;
+
+740 15 convert_to_ball 0 4 1273 25 OdeJoint::convert_to_ball 0 1 70 0
+51
+OdeBallJoint OdeJoint::convert_to_ball(void) const;
+
+741 16 convert_to_hinge 0 4 1273 26 OdeJoint::convert_to_hinge 0 1 71 0
+53
+OdeHingeJoint OdeJoint::convert_to_hinge(void) const;
+
+742 17 convert_to_slider 0 4 1273 27 OdeJoint::convert_to_slider 0 1 72 0
+55
+OdeSliderJoint OdeJoint::convert_to_slider(void) const;
+
+743 18 convert_to_contact 0 4 1273 28 OdeJoint::convert_to_contact 0 1 73 0
+57
+OdeContactJoint OdeJoint::convert_to_contact(void) const;
+
+744 20 convert_to_universal 0 4 1273 30 OdeJoint::convert_to_universal 0 1 74 0
+61
+OdeUniversalJoint OdeJoint::convert_to_universal(void) const;
+
+745 17 convert_to_hinge2 0 4 1273 27 OdeJoint::convert_to_hinge2 0 1 75 0
+55
+OdeHinge2Joint OdeJoint::convert_to_hinge2(void) const;
+
+746 16 convert_to_fixed 0 4 1273 26 OdeJoint::convert_to_fixed 0 1 76 0
+53
+OdeFixedJoint OdeJoint::convert_to_fixed(void) const;
+
+747 15 convert_to_null 0 4 1273 25 OdeJoint::convert_to_null 0 1 77 0
+51
+OdeNullJoint OdeJoint::convert_to_null(void) const;
+
+748 18 convert_to_a_motor 0 4 1273 28 OdeJoint::convert_to_a_motor 0 1 78 0
+56
+OdeAMotorJoint OdeJoint::convert_to_a_motor(void) const;
+
+749 18 convert_to_l_motor 0 4 1273 28 OdeJoint::convert_to_l_motor 0 1 79 0
+56
+OdeLMotorJoint OdeJoint::convert_to_l_motor(void) const;
+
+750 18 convert_to_plane2d 0 4 1273 28 OdeJoint::convert_to_plane2d 0 1 80 0
+57
+OdePlane2dJoint OdeJoint::convert_to_plane2d(void) const;
+
+751 14 get_class_type 0 4 1273 24 OdeJoint::get_class_type 0 1 81 0
+49
+static TypeHandle OdeJoint::get_class_type(void);
+
+752 14 OdeAMotorJoint 0 4 1275 30 OdeAMotorJoint::OdeAMotorJoint 0 2 83 84 0
+125
+OdeAMotorJoint::OdeAMotorJoint(OdeWorld &world);
+OdeAMotorJoint::OdeAMotorJoint(OdeWorld &world, OdeJointGroup &joint_group);
+
+753 12 set_num_axes 0 4 1275 28 OdeAMotorJoint::set_num_axes 0 1 85 0
+50
+inline void OdeAMotorJoint::set_num_axes(int num);
+
+754 8 set_axis 0 4 1275 24 OdeAMotorJoint::set_axis 0 2 86 87 0
+164
+inline void OdeAMotorJoint::set_axis(int anum, int rel, dReal x, dReal y, dReal z);
+inline void OdeAMotorJoint::set_axis(int anum, int rel, LVecBase3f const &axis);
+
+755 9 set_angle 0 4 1275 25 OdeAMotorJoint::set_angle 0 1 88 0
+61
+inline void OdeAMotorJoint::set_angle(int anum, dReal angle);
+
+756 8 set_mode 0 4 1275 24 OdeAMotorJoint::set_mode 0 1 89 0
+47
+inline void OdeAMotorJoint::set_mode(int mode);
+
+757 11 add_torques 0 4 1275 27 OdeAMotorJoint::add_torques 0 1 90 0
+85
+inline void OdeAMotorJoint::add_torques(dReal torque1, dReal torque2, dReal torque3);
+
+758 12 get_num_axes 0 4 1275 28 OdeAMotorJoint::get_num_axes 0 1 91 0
+52
+inline int OdeAMotorJoint::get_num_axes(void) const;
+
+759 8 get_axis 0 4 1275 24 OdeAMotorJoint::get_axis 0 1 92 0
+59
+inline LVecBase3f OdeAMotorJoint::get_axis(int anum) const;
+
+760 12 get_axis_rel 0 4 1275 28 OdeAMotorJoint::get_axis_rel 0 1 93 0
+56
+inline int OdeAMotorJoint::get_axis_rel(int anum) const;
+
+761 9 get_angle 0 4 1275 25 OdeAMotorJoint::get_angle 0 1 94 0
+55
+inline dReal OdeAMotorJoint::get_angle(int anum) const;
+
+762 14 get_angle_rate 0 4 1275 30 OdeAMotorJoint::get_angle_rate 0 1 95 0
+60
+inline dReal OdeAMotorJoint::get_angle_rate(int anum) const;
+
+763 8 get_mode 0 4 1275 24 OdeAMotorJoint::get_mode 0 1 96 0
+48
+inline int OdeAMotorJoint::get_mode(void) const;
+
+764 17 set_param_lo_stop 0 4 1275 33 OdeAMotorJoint::set_param_lo_stop 0 1 97 0
+67
+inline void OdeAMotorJoint::set_param_lo_stop(int axis, dReal val);
+
+765 17 set_param_hi_stop 0 4 1275 33 OdeAMotorJoint::set_param_hi_stop 0 1 98 0
+67
+inline void OdeAMotorJoint::set_param_hi_stop(int axis, dReal val);
+
+766 13 set_param_vel 0 4 1275 29 OdeAMotorJoint::set_param_vel 0 1 99 0
+63
+inline void OdeAMotorJoint::set_param_vel(int axis, dReal val);
+
+767 15 set_param_f_max 0 4 1275 31 OdeAMotorJoint::set_param_f_max 0 1 100 0
+65
+inline void OdeAMotorJoint::set_param_f_max(int axis, dReal val);
+
+768 22 set_param_fudge_factor 0 4 1275 38 OdeAMotorJoint::set_param_fudge_factor 0 1 101 0
+72
+inline void OdeAMotorJoint::set_param_fudge_factor(int axis, dReal val);
+
+769 16 set_param_bounce 0 4 1275 32 OdeAMotorJoint::set_param_bounce 0 1 102 0
+66
+inline void OdeAMotorJoint::set_param_bounce(int axis, dReal val);
+
+770 13 set_param_CFM 0 4 1275 29 OdeAMotorJoint::set_param_CFM 0 1 103 0
+63
+inline void OdeAMotorJoint::set_param_CFM(int axis, dReal val);
+
+771 18 set_param_stop_ERP 0 4 1275 34 OdeAMotorJoint::set_param_stop_ERP 0 1 104 0
+68
+inline void OdeAMotorJoint::set_param_stop_ERP(int axis, dReal val);
+
+772 18 set_param_stop_CFM 0 4 1275 34 OdeAMotorJoint::set_param_stop_CFM 0 1 105 0
+68
+inline void OdeAMotorJoint::set_param_stop_CFM(int axis, dReal val);
+
+773 17 get_param_lo_stop 0 4 1275 33 OdeAMotorJoint::get_param_lo_stop 0 1 106 0
+63
+inline dReal OdeAMotorJoint::get_param_lo_stop(int axis) const;
+
+774 17 get_param_hi_stop 0 4 1275 33 OdeAMotorJoint::get_param_hi_stop 0 1 107 0
+63
+inline dReal OdeAMotorJoint::get_param_hi_stop(int axis) const;
+
+775 13 get_param_vel 0 4 1275 29 OdeAMotorJoint::get_param_vel 0 1 108 0
+59
+inline dReal OdeAMotorJoint::get_param_vel(int axis) const;
+
+776 15 get_param_f_max 0 4 1275 31 OdeAMotorJoint::get_param_f_max 0 1 109 0
+61
+inline dReal OdeAMotorJoint::get_param_f_max(int axis) const;
+
+777 22 get_param_fudge_factor 0 4 1275 38 OdeAMotorJoint::get_param_fudge_factor 0 1 110 0
+68
+inline dReal OdeAMotorJoint::get_param_fudge_factor(int axis) const;
+
+778 16 get_param_bounce 0 4 1275 32 OdeAMotorJoint::get_param_bounce 0 1 111 0
+62
+inline dReal OdeAMotorJoint::get_param_bounce(int axis) const;
+
+779 13 get_param_CFM 0 4 1275 29 OdeAMotorJoint::get_param_CFM 0 1 112 0
+59
+inline dReal OdeAMotorJoint::get_param_CFM(int axis) const;
+
+780 18 get_param_stop_ERP 0 4 1275 34 OdeAMotorJoint::get_param_stop_ERP 0 1 113 0
+64
+inline dReal OdeAMotorJoint::get_param_stop_ERP(int axis) const;
+
+781 18 get_param_stop_CFM 0 4 1275 34 OdeAMotorJoint::get_param_stop_CFM 0 1 114 0
+64
+inline dReal OdeAMotorJoint::get_param_stop_CFM(int axis) const;
+
+782 14 get_class_type 0 4 1275 30 OdeAMotorJoint::get_class_type 0 1 115 0
+55
+static TypeHandle OdeAMotorJoint::get_class_type(void);
+
+783 12 OdeBallJoint 0 4 1276 26 OdeBallJoint::OdeBallJoint 0 2 116 117 0
+117
+OdeBallJoint::OdeBallJoint(OdeWorld &world);
+OdeBallJoint::OdeBallJoint(OdeWorld &world, OdeJointGroup &joint_group);
+
+784 10 set_anchor 0 4 1276 24 OdeBallJoint::set_anchor 0 2 118 119 0
+128
+inline void OdeBallJoint::set_anchor(dReal x, dReal y, dReal z);
+inline void OdeBallJoint::set_anchor(LVecBase3f const &anchor);
+
+785 11 set_anchor2 0 4 1276 25 OdeBallJoint::set_anchor2 0 2 120 121 0
+130
+inline void OdeBallJoint::set_anchor2(dReal x, dReal y, dReal z);
+inline void OdeBallJoint::set_anchor2(LVecBase3f const &anchor);
+
+786 10 get_anchor 0 4 1276 24 OdeBallJoint::get_anchor 0 1 122 0
+55
+inline LVecBase3f OdeBallJoint::get_anchor(void) const;
+
+787 11 get_anchor2 0 4 1276 25 OdeBallJoint::get_anchor2 0 1 123 0
+56
+inline LVecBase3f OdeBallJoint::get_anchor2(void) const;
+
+788 14 get_class_type 0 4 1276 28 OdeBallJoint::get_class_type 0 1 124 0
+53
+static TypeHandle OdeBallJoint::get_class_type(void);
+
+789 7 OdeMass 0 4 1277 16 OdeMass::OdeMass 0 2 125 126 0
+62
+OdeMass::OdeMass(void);
+OdeMass::OdeMass(OdeMass const &copy);
+
+790 5 check 0 4 1277 14 OdeMass::check 0 1 127 0
+32
+inline int OdeMass::check(void);
+
+791 8 set_zero 0 4 1277 17 OdeMass::set_zero 0 1 128 0
+36
+inline void OdeMass::set_zero(void);
+
+792 14 set_parameters 0 4 1277 23 OdeMass::set_parameters 0 2 129 130 0
+248
+inline void OdeMass::set_parameters(dReal themass, dReal cgx, dReal cgy, dReal cgz, dReal I11, dReal I22, dReal I33, dReal I12, dReal I13, dReal I23);
+inline void OdeMass::set_parameters(dReal themass, LVecBase3f const &center, LMatrix3f const &r);
+
+793 10 set_sphere 0 4 1277 19 OdeMass::set_sphere 0 1 131 0
+61
+inline void OdeMass::set_sphere(dReal density, dReal radius);
+
+794 16 set_sphere_total 0 4 1277 25 OdeMass::set_sphere_total 0 1 132 0
+70
+inline void OdeMass::set_sphere_total(dReal total_mass, dReal radius);
+
+795 11 set_capsule 0 4 1277 20 OdeMass::set_capsule 0 1 133 0
+91
+inline void OdeMass::set_capsule(dReal density, int direction, dReal radius, dReal length);
+
+796 17 set_capsule_total 0 4 1277 26 OdeMass::set_capsule_total 0 1 134 0
+100
+inline void OdeMass::set_capsule_total(dReal total_mass, int direction, dReal radius, dReal length);
+
+797 12 set_cylinder 0 4 1277 21 OdeMass::set_cylinder 0 1 135 0
+92
+inline void OdeMass::set_cylinder(dReal density, int direction, dReal radius, dReal length);
+
+798 18 set_cylinder_total 0 4 1277 27 OdeMass::set_cylinder_total 0 1 136 0
+101
+inline void OdeMass::set_cylinder_total(dReal total_mass, int direction, dReal radius, dReal length);
+
+799 7 set_box 0 4 1277 16 OdeMass::set_box 0 2 137 138 0
+143
+inline void OdeMass::set_box(dReal density, dReal lx, dReal ly, dReal lz);
+inline void OdeMass::set_box(dReal density, LVecBase3f const &size);
+
+800 13 set_box_total 0 4 1277 22 OdeMass::set_box_total 0 2 139 140 0
+161
+inline void OdeMass::set_box_total(dReal total_mass, dReal lx, dReal ly, dReal lz);
+inline void OdeMass::set_box_total(dReal total_mass, LVecBase3f const &size);
+
+801 6 adjust 0 4 1277 15 OdeMass::adjust 0 1 141 0
+43
+inline void OdeMass::adjust(dReal newmass);
+
+802 9 translate 0 4 1277 18 OdeMass::translate 0 2 142 143 0
+113
+inline void OdeMass::translate(dReal x, dReal y, dReal z);
+inline void OdeMass::translate(LVecBase3f const &pos);
+
+803 6 rotate 0 4 1277 15 OdeMass::rotate 0 1 144 0
+48
+inline void OdeMass::rotate(LMatrix3f const &r);
+
+804 3 add 0 4 1277 12 OdeMass::add 0 1 145 0
+41
+inline void OdeMass::add(OdeMass &other);
+
+805 13 get_magnitude 0 4 1277 22 OdeMass::get_magnitude 0 1 146 0
+48
+inline dReal OdeMass::get_magnitude(void) const;
+
+806 10 get_center 0 4 1277 19 OdeMass::get_center 0 1 147 0
+48
+inline LPoint3f OdeMass::get_center(void) const;
+
+807 19 get_inertial_tensor 0 4 1277 28 OdeMass::get_inertial_tensor 0 1 148 0
+58
+inline LMatrix3f OdeMass::get_inertial_tensor(void) const;
+
+808 5 write 0 6 1277 14 OdeMass::write 0 1 149 0
+92
+virtual void OdeMass::write(std::ostream &out = ::std::cout, unsigned int indent = 0) const;
+
+809 14 get_class_type 0 4 1277 23 OdeMass::get_class_type 0 1 150 0
+48
+static TypeHandle OdeMass::get_class_type(void);
+
+810 7 OdeBody 0 4 1279 16 OdeBody::OdeBody 0 1 151 0
+34
+OdeBody::OdeBody(OdeWorld &world);
+
+811 7 destroy 0 4 1279 16 OdeBody::destroy 0 1 152 0
+28
+void OdeBody::destroy(void);
+
+812 8 is_empty 0 4 1279 17 OdeBody::is_empty 0 1 153 201
+/**
+ * Returns true if the ID is 0, meaning the OdeBody does not point to a valid
+ * body.  It is an error to call a method on an empty body.  Note that an
+ * empty OdeBody also evaluates to False.
+ */
+42
+inline bool OdeBody::is_empty(void) const;
+
+813 6 get_id 0 4 1279 15 OdeBody::get_id 0 1 154 42
+/**
+ * Returns the underlying dBodyID.
+ */
+43
+inline dBodyID OdeBody::get_id(void) const;
+
+814 33 set_auto_disable_linear_threshold 0 4 1279 42 OdeBody::set_auto_disable_linear_threshold 0 1 155 0
+79
+inline void OdeBody::set_auto_disable_linear_threshold(dReal linear_threshold);
+
+815 34 set_auto_disable_angular_threshold 0 4 1279 43 OdeBody::set_auto_disable_angular_threshold 0 1 156 0
+81
+inline void OdeBody::set_auto_disable_angular_threshold(dReal angular_threshold);
+
+816 22 set_auto_disable_steps 0 4 1279 31 OdeBody::set_auto_disable_steps 0 1 157 0
+55
+inline void OdeBody::set_auto_disable_steps(int steps);
+
+817 21 set_auto_disable_time 0 4 1279 30 OdeBody::set_auto_disable_time 0 1 158 0
+55
+inline void OdeBody::set_auto_disable_time(dReal time);
+
+818 21 set_auto_disable_flag 0 4 1279 30 OdeBody::set_auto_disable_flag 0 1 159 0
+64
+inline void OdeBody::set_auto_disable_flag(int do_auto_disable);
+
+819 25 set_auto_disable_defaults 0 4 1279 34 OdeBody::set_auto_disable_defaults 0 1 160 0
+53
+inline void OdeBody::set_auto_disable_defaults(void);
+
+820 8 set_data 0 4 1279 17 OdeBody::set_data 0 1 161 0
+82
+inline void OdeBody::set_data(void *data);
+void OdeBody::set_data(PyObject *data);
+
+821 12 set_position 0 4 1279 21 OdeBody::set_position 0 2 162 163 0
+119
+inline void OdeBody::set_position(dReal x, dReal y, dReal z);
+inline void OdeBody::set_position(LVecBase3f const &pos);
+
+822 12 set_rotation 0 4 1279 21 OdeBody::set_rotation 0 1 164 0
+54
+inline void OdeBody::set_rotation(LMatrix3f const &r);
+
+823 14 set_quaternion 0 4 1279 23 OdeBody::set_quaternion 0 1 165 0
+59
+inline void OdeBody::set_quaternion(LQuaternionf const &q);
+
+824 14 set_linear_vel 0 4 1279 23 OdeBody::set_linear_vel 0 2 166 167 0
+123
+inline void OdeBody::set_linear_vel(dReal x, dReal y, dReal z);
+inline void OdeBody::set_linear_vel(LVecBase3f const &vel);
+
+825 15 set_angular_vel 0 4 1279 24 OdeBody::set_angular_vel 0 2 168 169 0
+125
+inline void OdeBody::set_angular_vel(dReal x, dReal y, dReal z);
+inline void OdeBody::set_angular_vel(LVecBase3f const &vel);
+
+826 8 set_mass 0 4 1279 17 OdeBody::set_mass 0 1 170 0
+45
+inline void OdeBody::set_mass(OdeMass &mass);
+
+827 33 get_auto_disable_linear_threshold 0 4 1279 42 OdeBody::get_auto_disable_linear_threshold 0 1 171 0
+68
+inline dReal OdeBody::get_auto_disable_linear_threshold(void) const;
+
+828 34 get_auto_disable_angular_threshold 0 4 1279 43 OdeBody::get_auto_disable_angular_threshold 0 1 172 0
+69
+inline dReal OdeBody::get_auto_disable_angular_threshold(void) const;
+
+829 22 get_auto_disable_steps 0 4 1279 31 OdeBody::get_auto_disable_steps 0 1 173 0
+55
+inline int OdeBody::get_auto_disable_steps(void) const;
+
+830 21 get_auto_disable_time 0 4 1279 30 OdeBody::get_auto_disable_time 0 1 174 0
+56
+inline dReal OdeBody::get_auto_disable_time(void) const;
+
+831 21 get_auto_disable_flag 0 4 1279 30 OdeBody::get_auto_disable_flag 0 1 175 0
+54
+inline int OdeBody::get_auto_disable_flag(void) const;
+
+832 8 get_data 0 4 1279 17 OdeBody::get_data 0 1 176 0
+40
+PyObject *OdeBody::get_data(void) const;
+
+833 12 get_position 0 4 1279 21 OdeBody::get_position 0 1 177 0
+52
+inline LVecBase3f OdeBody::get_position(void) const;
+
+834 12 get_rotation 0 4 1279 21 OdeBody::get_rotation 0 1 178 0
+51
+inline LMatrix3f OdeBody::get_rotation(void) const;
+
+835 14 get_quaternion 0 4 1279 23 OdeBody::get_quaternion 0 1 179 0
+54
+inline LVecBase4f OdeBody::get_quaternion(void) const;
+
+836 14 get_linear_vel 0 4 1279 23 OdeBody::get_linear_vel 0 1 180 0
+54
+inline LVecBase3f OdeBody::get_linear_vel(void) const;
+
+837 15 get_angular_vel 0 4 1279 24 OdeBody::get_angular_vel 0 1 181 0
+55
+inline LVecBase3f OdeBody::get_angular_vel(void) const;
+
+838 8 get_mass 0 4 1279 17 OdeBody::get_mass 0 1 182 0
+45
+inline OdeMass OdeBody::get_mass(void) const;
+
+839 9 add_force 0 4 1279 18 OdeBody::add_force 0 2 183 184 0
+114
+inline void OdeBody::add_force(dReal fx, dReal fy, dReal fz);
+inline void OdeBody::add_force(LVecBase3f const &f);
+
+840 10 add_torque 0 4 1279 19 OdeBody::add_torque 0 2 185 186 0
+116
+inline void OdeBody::add_torque(dReal fx, dReal fy, dReal fz);
+inline void OdeBody::add_torque(LVecBase3f const &f);
+
+841 13 add_rel_force 0 4 1279 22 OdeBody::add_rel_force 0 2 187 188 0
+122
+inline void OdeBody::add_rel_force(dReal fx, dReal fy, dReal fz);
+inline void OdeBody::add_rel_force(LVecBase3f const &f);
+
+842 14 add_rel_torque 0 4 1279 23 OdeBody::add_rel_torque 0 2 189 190 0
+124
+inline void OdeBody::add_rel_torque(dReal fx, dReal fy, dReal fz);
+inline void OdeBody::add_rel_torque(LVecBase3f const &f);
+
+843 16 add_force_at_pos 0 4 1279 25 OdeBody::add_force_at_pos 0 2 191 192 0
+181
+inline void OdeBody::add_force_at_pos(dReal fx, dReal fy, dReal fz, dReal px, dReal py, dReal pz);
+inline void OdeBody::add_force_at_pos(LVecBase3f const &f, LVecBase3f const &pos);
+
+844 20 add_force_at_rel_pos 0 4 1279 29 OdeBody::add_force_at_rel_pos 0 2 193 194 0
+189
+inline void OdeBody::add_force_at_rel_pos(dReal fx, dReal fy, dReal fz, dReal px, dReal py, dReal pz);
+inline void OdeBody::add_force_at_rel_pos(LVecBase3f const &f, LVecBase3f const &pos);
+
+845 20 add_rel_force_at_pos 0 4 1279 29 OdeBody::add_rel_force_at_pos 0 2 195 196 0
+189
+inline void OdeBody::add_rel_force_at_pos(dReal fx, dReal fy, dReal fz, dReal px, dReal py, dReal pz);
+inline void OdeBody::add_rel_force_at_pos(LVecBase3f const &f, LVecBase3f const &pos);
+
+846 24 add_rel_force_at_rel_pos 0 4 1279 33 OdeBody::add_rel_force_at_rel_pos 0 2 197 198 0
+197
+inline void OdeBody::add_rel_force_at_rel_pos(dReal fx, dReal fy, dReal fz, dReal px, dReal py, dReal pz);
+inline void OdeBody::add_rel_force_at_rel_pos(LVecBase3f const &f, LVecBase3f const &pos);
+
+847 9 set_force 0 4 1279 18 OdeBody::set_force 0 2 199 200 0
+111
+inline void OdeBody::set_force(dReal x, dReal y, dReal z);
+inline void OdeBody::set_force(LVecBase3f const &f);
+
+848 10 set_torque 0 4 1279 19 OdeBody::set_torque 0 2 201 202 0
+113
+inline void OdeBody::set_torque(dReal x, dReal y, dReal z);
+inline void OdeBody::set_torque(LVecBase3f const &f);
+
+849 17 get_rel_point_pos 0 4 1279 26 OdeBody::get_rel_point_pos 0 2 203 204 0
+152
+inline LPoint3f OdeBody::get_rel_point_pos(dReal px, dReal py, dReal pz) const;
+inline LPoint3f OdeBody::get_rel_point_pos(LVecBase3f const &pos) const;
+
+850 17 get_rel_point_vel 0 4 1279 26 OdeBody::get_rel_point_vel 0 2 205 206 0
+152
+inline LPoint3f OdeBody::get_rel_point_vel(dReal px, dReal py, dReal pz) const;
+inline LPoint3f OdeBody::get_rel_point_vel(LVecBase3f const &pos) const;
+
+851 13 get_point_vel 0 4 1279 22 OdeBody::get_point_vel 0 2 207 208 0
+144
+inline LPoint3f OdeBody::get_point_vel(dReal px, dReal py, dReal pz) const;
+inline LPoint3f OdeBody::get_point_vel(LVecBase3f const &pos) const;
+
+852 17 get_pos_rel_point 0 4 1279 26 OdeBody::get_pos_rel_point 0 2 209 210 0
+152
+inline LPoint3f OdeBody::get_pos_rel_point(dReal px, dReal py, dReal pz) const;
+inline LPoint3f OdeBody::get_pos_rel_point(LVecBase3f const &pos) const;
+
+853 15 vector_to_world 0 4 1279 24 OdeBody::vector_to_world 0 2 211 212 0
+152
+inline LVecBase3f OdeBody::vector_to_world(dReal px, dReal py, dReal pz) const;
+inline LVecBase3f OdeBody::vector_to_world(LVecBase3f const &pos) const;
+
+854 17 vector_from_world 0 4 1279 26 OdeBody::vector_from_world 0 2 213 214 0
+156
+inline LVecBase3f OdeBody::vector_from_world(dReal px, dReal py, dReal pz) const;
+inline LVecBase3f OdeBody::vector_from_world(LVecBase3f const &pos) const;
+
+855 24 set_finite_rotation_mode 0 4 1279 33 OdeBody::set_finite_rotation_mode 0 1 215 0
+56
+inline void OdeBody::set_finite_rotation_mode(int mode);
+
+856 24 set_finite_rotation_axis 0 4 1279 33 OdeBody::set_finite_rotation_axis 0 2 216 217 0
+144
+inline void OdeBody::set_finite_rotation_axis(dReal x, dReal y, dReal z);
+inline void OdeBody::set_finite_rotation_axis(LVecBase3f const &axis);
+
+857 24 get_finite_rotation_mode 0 4 1279 33 OdeBody::get_finite_rotation_mode 0 1 218 0
+57
+inline int OdeBody::get_finite_rotation_mode(void) const;
+
+858 24 get_finite_rotation_axis 0 4 1279 33 OdeBody::get_finite_rotation_axis 0 1 219 0
+64
+inline LVecBase3f OdeBody::get_finite_rotation_axis(void) const;
+
+859 14 get_num_joints 0 4 1279 23 OdeBody::get_num_joints 0 1 220 0
+47
+inline int OdeBody::get_num_joints(void) const;
+
+860 9 get_joint 0 4 1279 18 OdeBody::get_joint 0 1 221 0
+45
+OdeJoint OdeBody::get_joint(int index) const;
+
+861 19 get_converted_joint 0 4 1279 28 OdeBody::get_converted_joint 0 1 222 0
+59
+inline PyObject *OdeBody::get_converted_joint(int i) const;
+
+862 6 enable 0 4 1279 15 OdeBody::enable 0 1 223 0
+34
+inline void OdeBody::enable(void);
+
+863 7 disable 0 4 1279 16 OdeBody::disable 0 1 224 0
+35
+inline void OdeBody::disable(void);
+
+864 10 is_enabled 0 4 1279 19 OdeBody::is_enabled 0 1 225 0
+43
+inline int OdeBody::is_enabled(void) const;
+
+865 16 set_gravity_mode 0 4 1279 25 OdeBody::set_gravity_mode 0 1 226 0
+48
+inline void OdeBody::set_gravity_mode(int mode);
+
+866 16 get_gravity_mode 0 4 1279 25 OdeBody::get_gravity_mode 0 1 227 0
+49
+inline int OdeBody::get_gravity_mode(void) const;
+
+867 5 write 0 6 1279 14 OdeBody::write 0 1 228 0
+92
+virtual void OdeBody::write(std::ostream &out = ::std::cout, unsigned int indent = 0) const;
+
+868 22 operator typecast bool 0 132 1279 31 OdeBody::operator typecast bool 0 1 231 0
+27
+operator bool (void) const;
+
+869 10 compare_to 0 4 1279 19 OdeBody::compare_to 0 1 229 0
+59
+inline int OdeBody::compare_to(OdeBody const &other) const;
+
+870 14 get_class_type 0 4 1279 23 OdeBody::get_class_type 0 1 230 0
+48
+static TypeHandle OdeBody::get_class_type(void);
+
+871 7 destroy 0 4 1283 17 OdeSpace::destroy 0 1 232 0
+29
+void OdeSpace::destroy(void);
+
+872 8 is_empty 0 4 1283 18 OdeSpace::is_empty 0 1 233 205
+/**
+ * Returns true if the ID is 0, meaning the OdeSpace does not point to a valid
+ * space.  It is an error to call a method on an empty space.  Note that an
+ * empty OdeSpace also evaluates to False.
+ */
+43
+inline bool OdeSpace::is_empty(void) const;
+
+873 11 set_cleanup 0 4 1283 21 OdeSpace::set_cleanup 0 1 234 0
+44
+inline void OdeSpace::set_cleanup(int mode);
+
+874 11 get_cleanup 0 4 1283 21 OdeSpace::get_cleanup 0 1 235 0
+45
+inline int OdeSpace::get_cleanup(void) const;
+
+875 5 query 0 4 1283 15 OdeSpace::query 0 2 236 237 0
+97
+int OdeSpace::query(OdeGeom const &geom) const;
+int OdeSpace::query(OdeSpace const &space) const;
+
+876 13 get_num_geoms 0 4 1283 23 OdeSpace::get_num_geoms 0 1 238 0
+47
+inline int OdeSpace::get_num_geoms(void) const;
+
+877 8 get_AABB 0 4 1283 18 OdeSpace::get_AABB 0 1 239 0
+71
+inline void OdeSpace::get_AABB(LVecBase3f &min, LVecBase3f &max) const;
+
+878 13 get_AA_bounds 0 4 1283 23 OdeSpace::get_AA_bounds 0 1 240 0
+53
+inline PyObject *OdeSpace::get_AA_bounds(void) const;
+
+879 8 is_space 0 4 1283 18 OdeSpace::is_space 0 1 241 0
+36
+inline int OdeSpace::is_space(void);
+
+880 9 get_class 0 4 1283 19 OdeSpace::get_class 0 1 242 0
+43
+inline int OdeSpace::get_class(void) const;
+
+881 17 set_category_bits 0 4 1283 27 OdeSpace::set_category_bits 0 1 243 0
+63
+inline void OdeSpace::set_category_bits(BitMask32 const &bits);
+
+882 16 set_collide_bits 0 4 1283 26 OdeSpace::set_collide_bits 0 1 244 0
+62
+inline void OdeSpace::set_collide_bits(BitMask32 const &bits);
+
+883 17 get_category_bits 0 4 1283 27 OdeSpace::get_category_bits 0 1 245 0
+51
+inline BitMask32 OdeSpace::get_category_bits(void);
+
+884 16 get_collide_bits 0 4 1283 26 OdeSpace::get_collide_bits 0 1 246 0
+50
+inline BitMask32 OdeSpace::get_collide_bits(void);
+
+885 6 enable 0 4 1283 16 OdeSpace::enable 0 1 247 0
+35
+inline void OdeSpace::enable(void);
+
+886 7 disable 0 4 1283 17 OdeSpace::disable 0 1 248 0
+36
+inline void OdeSpace::disable(void);
+
+887 10 is_enabled 0 4 1283 20 OdeSpace::is_enabled 0 1 249 0
+38
+inline int OdeSpace::is_enabled(void);
+
+888 22 set_auto_collide_world 0 4 1283 32 OdeSpace::set_auto_collide_world 0 1 250 0
+50
+void OdeSpace::set_auto_collide_world(OdeWorld &);
+
+889 28 set_auto_collide_joint_group 0 4 1283 38 OdeSpace::set_auto_collide_joint_group 0 1 251 0
+61
+void OdeSpace::set_auto_collide_joint_group(OdeJointGroup &);
+
+890 3 add 0 4 1283 13 OdeSpace::add 0 2 252 253 0
+71
+void OdeSpace::add(OdeGeom &geom);
+void OdeSpace::add(OdeSpace &space);
+
+891 6 remove 0 4 1283 16 OdeSpace::remove 0 2 254 255 0
+77
+void OdeSpace::remove(OdeGeom &geom);
+void OdeSpace::remove(OdeSpace &space);
+
+892 5 clean 0 4 1283 15 OdeSpace::clean 0 1 256 0
+27
+void OdeSpace::clean(void);
+
+893 8 get_geom 0 4 1283 18 OdeSpace::get_geom 0 1 257 0
+34
+OdeGeom OdeSpace::get_geom(int i);
+
+894 9 get_space 0 4 1283 19 OdeSpace::get_space 0 1 258 0
+48
+inline OdeSpace OdeSpace::get_space(void) const;
+
+895 5 write 0 6 1283 15 OdeSpace::write 0 1 259 0
+93
+virtual void OdeSpace::write(std::ostream &out = ::std::cout, unsigned int indent = 0) const;
+
+896 22 operator typecast bool 0 132 1283 32 OdeSpace::operator typecast bool 0 1 279 0
+27
+operator bool (void) const;
+
+897 23 convert_to_simple_space 0 4 1283 33 OdeSpace::convert_to_simple_space 0 1 260 0
+61
+OdeSimpleSpace OdeSpace::convert_to_simple_space(void) const;
+
+898 21 convert_to_hash_space 0 4 1283 31 OdeSpace::convert_to_hash_space 0 1 261 0
+57
+OdeHashSpace OdeSpace::convert_to_hash_space(void) const;
+
+899 26 convert_to_quad_tree_space 0 4 1283 36 OdeSpace::convert_to_quad_tree_space 0 1 262 0
+66
+OdeQuadTreeSpace OdeSpace::convert_to_quad_tree_space(void) const;
+
+900 7 convert 0 4 1283 17 OdeSpace::convert 0 1 263 0
+40
+PyObject *OdeSpace::convert(void) const;
+
+901 18 get_converted_geom 0 4 1283 28 OdeSpace::get_converted_geom 0 1 264 0
+59
+inline PyObject *OdeSpace::get_converted_geom(int i) const;
+
+902 19 get_converted_space 0 4 1283 29 OdeSpace::get_converted_space 0 1 265 0
+59
+inline PyObject *OdeSpace::get_converted_space(void) const;
+
+903 12 auto_collide 0 4 1283 22 OdeSpace::auto_collide 0 1 266 0
+34
+void OdeSpace::auto_collide(void);
+
+904 7 collide 0 4 1283 17 OdeSpace::collide 0 1 267 0
+62
+int OdeSpace::collide(PyObject *arg, PyObject *near_callback);
+
+905 14 set_collide_id 0 4 1283 24 OdeSpace::set_collide_id 0 2 268 269 0
+118
+int OdeSpace::set_collide_id(int collide_id, dGeomID id);
+int OdeSpace::set_collide_id(OdeGeom &geom, int collide_id);
+
+906 16 set_surface_type 0 4 1283 26 OdeSpace::set_surface_type 0 2 270 271 0
+128
+void OdeSpace::set_surface_type(int surface_type, dGeomID id);
+void OdeSpace::set_surface_type(OdeGeom &geom, int surface_type);
+
+907 16 get_surface_type 0 4 1283 26 OdeSpace::get_surface_type 0 2 272 273 0
+90
+int OdeSpace::get_surface_type(dGeomID o1);
+int OdeSpace::get_surface_type(OdeGeom &geom);
+
+908 14 get_collide_id 0 4 1283 24 OdeSpace::get_collide_id 0 2 274 275 0
+86
+int OdeSpace::get_collide_id(dGeomID o1);
+int OdeSpace::get_collide_id(OdeGeom &geom);
+
+909 19 set_collision_event 0 4 1283 29 OdeSpace::set_collision_event 0 1 276 0
+73
+inline void OdeSpace::set_collision_event(std::string const &event_name);
+
+910 19 get_collision_event 0 4 1283 29 OdeSpace::get_collision_event 0 1 277 0
+55
+inline std::string OdeSpace::get_collision_event(void);
+
+911 14 get_class_type 0 4 1283 24 OdeSpace::get_class_type 0 1 278 0
+49
+static TypeHandle OdeSpace::get_class_type(void);
+
+912 7 destroy 0 4 1284 16 OdeGeom::destroy 0 1 280 0
+28
+void OdeGeom::destroy(void);
+
+913 8 is_empty 0 4 1284 17 OdeGeom::is_empty 0 1 281 201
+/**
+ * Returns true if the ID is 0, meaning the OdeGeom does not point to a valid
+ * geom.  It is an error to call a method on an empty geom.  Note that an
+ * empty OdeGeom also evaluates to False.
+ */
+42
+inline bool OdeGeom::is_empty(void) const;
+
+914 6 get_id 0 4 1284 15 OdeGeom::get_id 0 1 282 42
+/**
+ * Returns the underlying dGeomID.
+ */
+43
+inline dGeomID OdeGeom::get_id(void) const;
+
+915 8 set_body 0 4 1284 17 OdeGeom::set_body 0 1 283 36
+// INLINE void set_data(void* data);
+45
+inline void OdeGeom::set_body(OdeBody &body);
+
+916 8 has_body 0 4 1284 17 OdeGeom::has_body 0 1 284 0
+42
+inline bool OdeGeom::has_body(void) const;
+
+917 8 get_body 0 4 1284 17 OdeGeom::get_body 0 1 285 0
+45
+inline OdeBody OdeGeom::get_body(void) const;
+
+918 12 set_position 0 4 1284 21 OdeGeom::set_position 0 2 286 287 0
+119
+inline void OdeGeom::set_position(dReal x, dReal y, dReal z);
+inline void OdeGeom::set_position(LVecBase3f const &pos);
+
+919 12 set_rotation 0 4 1284 21 OdeGeom::set_rotation 0 1 288 0
+54
+inline void OdeGeom::set_rotation(LMatrix3f const &r);
+
+920 14 set_quaternion 0 4 1284 23 OdeGeom::set_quaternion 0 1 289 0
+59
+inline void OdeGeom::set_quaternion(LQuaternionf const &q);
+
+921 12 get_position 0 4 1284 21 OdeGeom::get_position 0 1 290 0
+50
+inline LPoint3f OdeGeom::get_position(void) const;
+
+922 12 get_rotation 0 4 1284 21 OdeGeom::get_rotation 0 1 291 0
+51
+inline LMatrix3f OdeGeom::get_rotation(void) const;
+
+923 14 get_quaternion 0 4 1284 23 OdeGeom::get_quaternion 0 1 292 0
+56
+inline LQuaternionf OdeGeom::get_quaternion(void) const;
+
+924 8 get_AABB 0 4 1284 17 OdeGeom::get_AABB 0 1 293 0
+70
+inline void OdeGeom::get_AABB(LVecBase3f &min, LVecBase3f &max) const;
+
+925 13 get_AA_bounds 0 4 1284 22 OdeGeom::get_AA_bounds 0 1 294 0
+52
+inline PyObject *OdeGeom::get_AA_bounds(void) const;
+
+926 8 is_space 0 4 1284 17 OdeGeom::is_space 0 1 295 0
+35
+inline int OdeGeom::is_space(void);
+
+927 9 get_class 0 4 1284 18 OdeGeom::get_class 0 1 296 0
+42
+inline int OdeGeom::get_class(void) const;
+
+928 17 set_category_bits 0 4 1284 26 OdeGeom::set_category_bits 0 1 297 0
+62
+inline void OdeGeom::set_category_bits(BitMask32 const &bits);
+
+929 16 set_collide_bits 0 4 1284 25 OdeGeom::set_collide_bits 0 1 298 0
+61
+inline void OdeGeom::set_collide_bits(BitMask32 const &bits);
+
+930 17 get_category_bits 0 4 1284 26 OdeGeom::get_category_bits 0 1 299 0
+50
+inline BitMask32 OdeGeom::get_category_bits(void);
+
+931 16 get_collide_bits 0 4 1284 25 OdeGeom::get_collide_bits 0 1 300 0
+49
+inline BitMask32 OdeGeom::get_collide_bits(void);
+
+932 6 enable 0 4 1284 15 OdeGeom::enable 0 1 301 0
+34
+inline void OdeGeom::enable(void);
+
+933 7 disable 0 4 1284 16 OdeGeom::disable 0 1 302 0
+35
+inline void OdeGeom::disable(void);
+
+934 10 is_enabled 0 4 1284 19 OdeGeom::is_enabled 0 1 303 0
+37
+inline int OdeGeom::is_enabled(void);
+
+935 19 set_offset_position 0 4 1284 28 OdeGeom::set_offset_position 0 2 304 305 0
+133
+inline void OdeGeom::set_offset_position(dReal x, dReal y, dReal z);
+inline void OdeGeom::set_offset_position(LVecBase3f const &pos);
+
+936 19 set_offset_rotation 0 4 1284 28 OdeGeom::set_offset_rotation 0 1 306 0
+61
+inline void OdeGeom::set_offset_rotation(LMatrix3f const &r);
+
+937 21 set_offset_quaternion 0 4 1284 30 OdeGeom::set_offset_quaternion 0 1 307 0
+66
+inline void OdeGeom::set_offset_quaternion(LQuaternionf const &q);
+
+938 25 set_offset_world_position 0 4 1284 34 OdeGeom::set_offset_world_position 0 2 308 309 0
+145
+inline void OdeGeom::set_offset_world_position(dReal x, dReal y, dReal z);
+inline void OdeGeom::set_offset_world_position(LVecBase3f const &pos);
+
+939 25 set_offset_world_rotation 0 4 1284 34 OdeGeom::set_offset_world_rotation 0 1 310 0
+67
+inline void OdeGeom::set_offset_world_rotation(LMatrix3f const &r);
+
+940 27 set_offset_world_quaternion 0 4 1284 36 OdeGeom::set_offset_world_quaternion 0 1 311 0
+72
+inline void OdeGeom::set_offset_world_quaternion(LQuaternionf const &q);
+
+941 12 clear_offset 0 4 1284 21 OdeGeom::clear_offset 0 1 312 0
+40
+inline void OdeGeom::clear_offset(void);
+
+942 9 is_offset 0 4 1284 18 OdeGeom::is_offset 0 1 313 0
+36
+inline int OdeGeom::is_offset(void);
+
+943 19 get_offset_position 0 4 1284 28 OdeGeom::get_offset_position 0 1 314 0
+57
+inline LPoint3f OdeGeom::get_offset_position(void) const;
+
+944 19 get_offset_rotation 0 4 1284 28 OdeGeom::get_offset_rotation 0 1 315 0
+58
+inline LMatrix3f OdeGeom::get_offset_rotation(void) const;
+
+945 21 get_offset_quaternion 0 4 1284 30 OdeGeom::get_offset_quaternion 0 1 316 0
+63
+inline LQuaternionf OdeGeom::get_offset_quaternion(void) const;
+
+946 9 get_space 0 4 1284 18 OdeGeom::get_space 0 1 317 0
+40
+OdeSpace OdeGeom::get_space(void) const;
+
+947 19 get_converted_space 0 4 1284 28 OdeGeom::get_converted_space 0 1 318 0
+58
+inline PyObject *OdeGeom::get_converted_space(void) const;
+
+948 5 write 0 6 1284 14 OdeGeom::write 0 1 319 0
+92
+virtual void OdeGeom::write(std::ostream &out = ::std::cout, unsigned int indent = 0) const;
+
+949 22 operator typecast bool 0 132 1284 31 OdeGeom::operator typecast bool 0 1 333 0
+27
+operator bool (void) const;
+
+950 10 compare_to 0 4 1284 19 OdeGeom::compare_to 0 1 320 0
+59
+inline int OdeGeom::compare_to(OdeGeom const &other) const;
+
+951 7 convert 0 4 1284 16 OdeGeom::convert 0 1 321 0
+39
+PyObject *OdeGeom::convert(void) const;
+
+952 14 convert_to_box 0 4 1284 23 OdeGeom::convert_to_box 0 1 322 0
+47
+OdeBoxGeom OdeGeom::convert_to_box(void) const;
+
+953 26 convert_to_capped_cylinder 0 4 1284 35 OdeGeom::convert_to_capped_cylinder 0 1 323 0
+70
+OdeCappedCylinderGeom OdeGeom::convert_to_capped_cylinder(void) const;
+
+954 19 convert_to_cylinder 0 4 1284 28 OdeGeom::convert_to_cylinder 0 1 324 43
+// OdeConvexGeom convert_to_convex() const;
+57
+OdeCylinderGeom OdeGeom::convert_to_cylinder(void) const;
+
+955 16 convert_to_plane 0 4 1284 25 OdeGeom::convert_to_plane 0 1 325 53
+// OdeHeightfieldGeom convert_to_heightfield() const;
+51
+OdePlaneGeom OdeGeom::convert_to_plane(void) const;
+
+956 14 convert_to_ray 0 4 1284 23 OdeGeom::convert_to_ray 0 1 326 0
+47
+OdeRayGeom OdeGeom::convert_to_ray(void) const;
+
+957 17 convert_to_sphere 0 4 1284 26 OdeGeom::convert_to_sphere 0 1 327 0
+53
+OdeSphereGeom OdeGeom::convert_to_sphere(void) const;
+
+958 19 convert_to_tri_mesh 0 4 1284 28 OdeGeom::convert_to_tri_mesh 0 1 328 0
+56
+OdeTriMeshGeom OdeGeom::convert_to_tri_mesh(void) const;
+
+959 23 convert_to_simple_space 0 4 1284 32 OdeGeom::convert_to_simple_space 0 1 329 0
+60
+OdeSimpleSpace OdeGeom::convert_to_simple_space(void) const;
+
+960 21 convert_to_hash_space 0 4 1284 30 OdeGeom::convert_to_hash_space 0 1 330 0
+56
+OdeHashSpace OdeGeom::convert_to_hash_space(void) const;
+
+961 26 convert_to_quad_tree_space 0 4 1284 35 OdeGeom::convert_to_quad_tree_space 0 1 331 0
+65
+OdeQuadTreeSpace OdeGeom::convert_to_quad_tree_space(void) const;
+
+962 14 get_class_type 0 4 1284 23 OdeGeom::get_class_type 0 1 332 0
+48
+static TypeHandle OdeGeom::get_class_type(void);
+
+963 10 OdeBoxGeom 0 4 1286 22 OdeBoxGeom::OdeBoxGeom 0 3 334 335 336 0
+189
+OdeBoxGeom::OdeBoxGeom(dReal lx, dReal ly, dReal lz);
+OdeBoxGeom::OdeBoxGeom(OdeSpace &space, dReal lx, dReal ly, dReal lz);
+OdeBoxGeom::OdeBoxGeom(OdeSpace &space, LVecBase3f const &size);
+
+964 11 set_lengths 0 4 1286 23 OdeBoxGeom::set_lengths 0 2 337 338 0
+127
+inline void OdeBoxGeom::set_lengths(dReal lx, dReal ly, dReal lz);
+inline void OdeBoxGeom::set_lengths(LVecBase3f const &size);
+
+965 11 get_lengths 0 4 1286 23 OdeBoxGeom::get_lengths 0 1 339 0
+48
+inline LVecBase3f OdeBoxGeom::get_lengths(void);
+
+966 15 get_point_depth 0 4 1286 27 OdeBoxGeom::get_point_depth 0 2 340 341 0
+129
+inline dReal OdeBoxGeom::get_point_depth(dReal x, dReal y, dReal z);
+inline dReal OdeBoxGeom::get_point_depth(LPoint3f const &p);
+
+967 14 get_class_type 0 4 1286 26 OdeBoxGeom::get_class_type 0 1 342 0
+51
+static TypeHandle OdeBoxGeom::get_class_type(void);
+
+968 21 OdeCappedCylinderGeom 0 4 1287 44 OdeCappedCylinderGeom::OdeCappedCylinderGeom 0 2 343 344 0
+164
+OdeCappedCylinderGeom::OdeCappedCylinderGeom(dReal radius, dReal length);
+OdeCappedCylinderGeom::OdeCappedCylinderGeom(OdeSpace &space, dReal radius, dReal length);
+
+969 10 set_params 0 4 1287 33 OdeCappedCylinderGeom::set_params 0 1 345 0
+74
+inline void OdeCappedCylinderGeom::set_params(dReal radius, dReal length);
+
+970 10 get_params 0 4 1287 33 OdeCappedCylinderGeom::get_params 0 0 0
+82
+inline void OdeCappedCylinderGeom::get_params(dReal *radius, dReal *length) const;
+
+971 10 get_radius 0 4 1287 33 OdeCappedCylinderGeom::get_radius 0 1 346 0
+59
+inline dReal OdeCappedCylinderGeom::get_radius(void) const;
+
+972 10 get_length 0 4 1287 33 OdeCappedCylinderGeom::get_length 0 1 347 0
+59
+inline dReal OdeCappedCylinderGeom::get_length(void) const;
+
+973 15 get_point_depth 0 4 1287 38 OdeCappedCylinderGeom::get_point_depth 0 2 348 349 0
+163
+inline dReal OdeCappedCylinderGeom::get_point_depth(dReal x, dReal y, dReal z) const;
+inline dReal OdeCappedCylinderGeom::get_point_depth(LPoint3f const &p) const;
+
+974 14 get_class_type 0 4 1287 37 OdeCappedCylinderGeom::get_class_type 0 1 350 0
+62
+static TypeHandle OdeCappedCylinderGeom::get_class_type(void);
+
+975 14 OdeContactGeom 0 4 1288 30 OdeContactGeom::OdeContactGeom 0 2 351 352 0
+97
+OdeContactGeom::OdeContactGeom(void);
+OdeContactGeom::OdeContactGeom(OdeContactGeom const &copy);
+
+976 7 get_pos 0 4 1288 23 OdeContactGeom::get_pos 0 1 353 0
+54
+inline LVecBase3f OdeContactGeom::get_pos(void) const;
+
+977 10 get_normal 0 4 1288 26 OdeContactGeom::get_normal 0 1 354 0
+57
+inline LVecBase3f OdeContactGeom::get_normal(void) const;
+
+978 9 get_depth 0 4 1288 25 OdeContactGeom::get_depth 0 1 355 0
+51
+inline dReal OdeContactGeom::get_depth(void) const;
+
+979 6 get_g1 0 4 1288 22 OdeContactGeom::get_g1 0 1 356 0
+50
+inline OdeGeom OdeContactGeom::get_g1(void) const;
+
+980 6 get_g2 0 4 1288 22 OdeContactGeom::get_g2 0 1 357 0
+50
+inline OdeGeom OdeContactGeom::get_g2(void) const;
+
+981 9 get_side1 0 4 1288 25 OdeContactGeom::get_side1 0 1 358 0
+49
+inline int OdeContactGeom::get_side1(void) const;
+
+982 9 get_side2 0 4 1288 25 OdeContactGeom::get_side2 0 1 359 0
+49
+inline int OdeContactGeom::get_side2(void) const;
+
+983 7 set_pos 0 4 1288 23 OdeContactGeom::set_pos 0 1 360 0
+59
+inline void OdeContactGeom::set_pos(LVecBase3f const &pos);
+
+984 10 set_normal 0 4 1288 26 OdeContactGeom::set_normal 0 1 361 0
+65
+inline void OdeContactGeom::set_normal(LVecBase3f const &normal);
+
+985 9 set_depth 0 4 1288 25 OdeContactGeom::set_depth 0 1 362 0
+57
+inline void OdeContactGeom::set_depth(dReal const depth);
+
+986 6 set_g1 0 4 1288 22 OdeContactGeom::set_g1 0 1 363 0
+56
+inline void OdeContactGeom::set_g1(OdeGeom const &geom);
+
+987 6 set_g2 0 4 1288 22 OdeContactGeom::set_g2 0 1 364 0
+56
+inline void OdeContactGeom::set_g2(OdeGeom const &geom);
+
+988 14 get_class_type 0 4 1288 30 OdeContactGeom::get_class_type 0 1 365 0
+55
+static TypeHandle OdeContactGeom::get_class_type(void);
+
+989 9 get_geom1 0 4 1289 28 OdeCollisionEntry::get_geom1 0 1 367 51
+/**
+ * Returns the first geom in the collision.
+ */
+56
+inline OdeGeom OdeCollisionEntry::get_geom1(void) const;
+
+990 9 get_geom2 0 4 1289 28 OdeCollisionEntry::get_geom2 0 1 368 52
+/**
+ * Returns the second geom in the collision.
+ */
+56
+inline OdeGeom OdeCollisionEntry::get_geom2(void) const;
+
+991 9 get_body1 0 4 1289 28 OdeCollisionEntry::get_body1 0 1 369 51
+/**
+ * Returns the first body in the collision.
+ */
+56
+inline OdeBody OdeCollisionEntry::get_body1(void) const;
+
+992 9 get_body2 0 4 1289 28 OdeCollisionEntry::get_body2 0 1 370 52
+/**
+ * Returns the second body in the collision.
+ */
+56
+inline OdeBody OdeCollisionEntry::get_body2(void) const;
+
+993 16 get_num_contacts 0 4 1289 35 OdeCollisionEntry::get_num_contacts 0 1 371 59
+/**
+ * Returns the number of contacts in the collision.
+ */
+67
+inline std::size_t OdeCollisionEntry::get_num_contacts(void) const;
+
+994 17 get_contact_point 0 4 1289 36 OdeCollisionEntry::get_contact_point 0 1 372 123
+/**
+ * Returns the nth contact point in the collision.  This does exactly the same
+ * as get_contact_geom(n).get_pos().
+ */
+74
+inline LPoint3f OdeCollisionEntry::get_contact_point(std::size_t n) const;
+
+995 16 get_contact_geom 0 4 1289 35 OdeCollisionEntry::get_contact_geom 0 1 373 57
+/**
+ * Returns the nth contact geom in the collision.
+ */
+79
+inline OdeContactGeom OdeCollisionEntry::get_contact_geom(std::size_t n) const;
+
+996 11 operator [] 0 4 1289 30 OdeCollisionEntry::operator [] 0 1 374 0
+74
+inline OdeContactGeom OdeCollisionEntry::operator [](std::size_t n) const;
+
+997 22 operator typecast bool 0 132 1289 41 OdeCollisionEntry::operator typecast bool 0 1 377 0
+34
+inline operator bool (void) const;
+
+998 8 is_empty 0 4 1289 27 OdeCollisionEntry::is_empty 0 1 375 55
+/**
+ * Returns true if the entry holds no contacts.
+ */
+52
+inline bool OdeCollisionEntry::is_empty(void) const;
+
+999 14 get_class_type 0 4 1289 33 OdeCollisionEntry::get_class_type 0 1 376 0
+58
+static TypeHandle OdeCollisionEntry::get_class_type(void);
+
+1000 17 OdeCollisionEntry 0 4 1289 36 OdeCollisionEntry::OdeCollisionEntry 0 1 366 10
+/**
+ *
+ */
+81
+inline OdeCollisionEntry::OdeCollisionEntry(OdeCollisionEntry const &) = default;
+
+1001 20 OdeSurfaceParameters 0 4 1290 42 OdeSurfaceParameters::OdeSurfaceParameters 0 1 378 0
+71
+OdeSurfaceParameters::OdeSurfaceParameters(int mode = 0, dReal mu = 0);
+
+1002 8 set_mode 0 4 1290 30 OdeSurfaceParameters::set_mode 0 1 379 0
+53
+inline void OdeSurfaceParameters::set_mode(int mode);
+
+1003 6 set_mu 0 4 1290 28 OdeSurfaceParameters::set_mu 0 1 380 0
+51
+inline void OdeSurfaceParameters::set_mu(dReal mu);
+
+1004 7 set_mu2 0 4 1290 29 OdeSurfaceParameters::set_mu2 0 1 381 0
+53
+inline void OdeSurfaceParameters::set_mu2(dReal mu2);
+
+1005 10 set_bounce 0 4 1290 32 OdeSurfaceParameters::set_bounce 0 1 382 0
+59
+inline void OdeSurfaceParameters::set_bounce(dReal bounce);
+
+1006 14 set_bounce_vel 0 4 1290 36 OdeSurfaceParameters::set_bounce_vel 0 1 383 0
+67
+inline void OdeSurfaceParameters::set_bounce_vel(dReal bounce_vel);
+
+1007 12 set_soft_erp 0 4 1290 34 OdeSurfaceParameters::set_soft_erp 0 1 384 0
+63
+inline void OdeSurfaceParameters::set_soft_erp(dReal soft_erp);
+
+1008 12 set_soft_cfm 0 4 1290 34 OdeSurfaceParameters::set_soft_cfm 0 1 385 0
+63
+inline void OdeSurfaceParameters::set_soft_cfm(dReal soft_cfm);
+
+1009 11 set_motion1 0 4 1290 33 OdeSurfaceParameters::set_motion1 0 1 386 0
+60
+inline void OdeSurfaceParameters::set_motion1(dReal motion);
+
+1010 11 set_motion2 0 4 1290 33 OdeSurfaceParameters::set_motion2 0 1 387 0
+60
+inline void OdeSurfaceParameters::set_motion2(dReal motion);
+
+1011 9 set_slip1 0 4 1290 31 OdeSurfaceParameters::set_slip1 0 1 388 0
+56
+inline void OdeSurfaceParameters::set_slip1(dReal slip);
+
+1012 9 set_slip2 0 4 1290 31 OdeSurfaceParameters::set_slip2 0 1 389 0
+56
+inline void OdeSurfaceParameters::set_slip2(dReal slip);
+
+1013 8 get_mode 0 4 1290 30 OdeSurfaceParameters::get_mode 0 1 390 0
+54
+inline int OdeSurfaceParameters::get_mode(void) const;
+
+1014 6 get_mu 0 4 1290 28 OdeSurfaceParameters::get_mu 0 1 391 0
+54
+inline dReal OdeSurfaceParameters::get_mu(void) const;
+
+1015 7 get_mu2 0 4 1290 29 OdeSurfaceParameters::get_mu2 0 1 392 0
+55
+inline dReal OdeSurfaceParameters::get_mu2(void) const;
+
+1016 10 get_bounce 0 4 1290 32 OdeSurfaceParameters::get_bounce 0 1 393 0
+58
+inline dReal OdeSurfaceParameters::get_bounce(void) const;
+
+1017 14 get_bounce_vel 0 4 1290 36 OdeSurfaceParameters::get_bounce_vel 0 1 394 0
+62
+inline dReal OdeSurfaceParameters::get_bounce_vel(void) const;
+
+1018 12 get_soft_erp 0 4 1290 34 OdeSurfaceParameters::get_soft_erp 0 1 395 0
+60
+inline dReal OdeSurfaceParameters::get_soft_erp(void) const;
+
+1019 12 get_soft_cfm 0 4 1290 34 OdeSurfaceParameters::get_soft_cfm 0 1 396 0
+60
+inline dReal OdeSurfaceParameters::get_soft_cfm(void) const;
+
+1020 11 get_motion1 0 4 1290 33 OdeSurfaceParameters::get_motion1 0 1 397 0
+59
+inline dReal OdeSurfaceParameters::get_motion1(void) const;
+
+1021 11 get_motion2 0 4 1290 33 OdeSurfaceParameters::get_motion2 0 1 398 0
+59
+inline dReal OdeSurfaceParameters::get_motion2(void) const;
+
+1022 9 get_slip1 0 4 1290 31 OdeSurfaceParameters::get_slip1 0 1 399 0
+57
+inline dReal OdeSurfaceParameters::get_slip1(void) const;
+
+1023 9 get_slip2 0 4 1290 31 OdeSurfaceParameters::get_slip2 0 1 400 0
+57
+inline dReal OdeSurfaceParameters::get_slip2(void) const;
+
+1024 14 get_class_type 0 4 1290 36 OdeSurfaceParameters::get_class_type 0 1 401 0
+61
+static TypeHandle OdeSurfaceParameters::get_class_type(void);
+
+1025 10 OdeContact 0 4 1292 22 OdeContact::OdeContact 0 2 402 403 38
+// OdeContact(const OdeContact &copy);
+78
+OdeContact::OdeContact(void);
+OdeContact::OdeContact(dContact const &contact);
+
+1026 11 get_surface 0 4 1292 23 OdeContact::get_surface 0 1 404 0
+64
+inline OdeSurfaceParameters OdeContact::get_surface(void) const;
+
+1027 8 get_geom 0 4 1292 20 OdeContact::get_geom 0 1 405 0
+49
+inline OdeContactGeom OdeContact::get_geom(void);
+
+1028 9 get_fdir1 0 4 1292 21 OdeContact::get_fdir1 0 1 406 0
+52
+inline LVecBase3f OdeContact::get_fdir1(void) const;
+
+1029 11 set_surface 0 4 1292 23 OdeContact::set_surface 0 1 407 0
+84
+inline void OdeContact::set_surface(OdeSurfaceParameters const &surface_parameters);
+
+1030 8 set_geom 0 4 1292 20 OdeContact::set_geom 0 1 408 0
+69
+inline void OdeContact::set_geom(OdeContactGeom const &contact_geom);
+
+1031 9 set_fdir1 0 4 1292 21 OdeContact::set_fdir1 0 1 409 0
+59
+inline void OdeContact::set_fdir1(LVecBase3f const &fdir1);
+
+1032 14 get_class_type 0 4 1292 26 OdeContact::get_class_type 0 1 410 0
+51
+static TypeHandle OdeContact::get_class_type(void);
+
+1033 15 OdeContactJoint 0 4 1293 32 OdeContactJoint::OdeContactJoint 0 2 411 412 0
+183
+OdeContactJoint::OdeContactJoint(OdeWorld &world, OdeContact const &contact);
+OdeContactJoint::OdeContactJoint(OdeWorld &world, OdeJointGroup &joint_group, OdeContact const &contact);
+
+1034 14 get_class_type 0 4 1293 31 OdeContactJoint::get_class_type 0 1 413 0
+56
+static TypeHandle OdeContactJoint::get_class_type(void);
+
+1035 15 OdeCylinderGeom 0 4 1294 32 OdeCylinderGeom::OdeCylinderGeom 0 2 414 415 0
+140
+OdeCylinderGeom::OdeCylinderGeom(dReal radius, dReal length);
+OdeCylinderGeom::OdeCylinderGeom(OdeSpace &space, dReal radius, dReal length);
+
+1036 10 set_params 0 4 1294 27 OdeCylinderGeom::set_params 0 1 416 0
+68
+inline void OdeCylinderGeom::set_params(dReal radius, dReal length);
+
+1037 10 get_params 0 4 1294 27 OdeCylinderGeom::get_params 0 0 0
+76
+inline void OdeCylinderGeom::get_params(dReal *radius, dReal *length) const;
+
+1038 10 get_radius 0 4 1294 27 OdeCylinderGeom::get_radius 0 1 417 0
+53
+inline dReal OdeCylinderGeom::get_radius(void) const;
+
+1039 10 get_length 0 4 1294 27 OdeCylinderGeom::get_length 0 1 418 0
+53
+inline dReal OdeCylinderGeom::get_length(void) const;
+
+1040 14 get_class_type 0 4 1294 31 OdeCylinderGeom::get_class_type 0 1 419 0
+56
+static TypeHandle OdeCylinderGeom::get_class_type(void);
+
+1041 13 OdeFixedJoint 0 4 1295 28 OdeFixedJoint::OdeFixedJoint 0 2 420 421 0
+121
+OdeFixedJoint::OdeFixedJoint(OdeWorld &world);
+OdeFixedJoint::OdeFixedJoint(OdeWorld &world, OdeJointGroup &joint_group);
+
+1042 3 set 0 4 1295 18 OdeFixedJoint::set 0 1 422 0
+37
+inline void OdeFixedJoint::set(void);
+
+1043 14 get_class_type 0 4 1295 29 OdeFixedJoint::get_class_type 0 1 423 0
+54
+static TypeHandle OdeFixedJoint::get_class_type(void);
+
+1044 12 OdeHashSpace 0 4 1296 26 OdeHashSpace::OdeHashSpace 0 2 424 425 0
+78
+OdeHashSpace::OdeHashSpace(void);
+OdeHashSpace::OdeHashSpace(OdeSpace &space);
+
+1045 10 set_levels 0 4 1296 24 OdeHashSpace::set_levels 0 1 426 0
+65
+inline void OdeHashSpace::set_levels(int minlevel, int maxlevel);
+
+1046 13 get_min_level 0 4 1296 27 OdeHashSpace::get_min_level 0 1 427 0
+51
+inline int OdeHashSpace::get_min_level(void) const;
+
+1047 13 get_max_level 0 4 1296 27 OdeHashSpace::get_max_level 0 1 428 0
+51
+inline int OdeHashSpace::get_max_level(void) const;
+
+1048 14 get_class_type 0 4 1296 28 OdeHashSpace::get_class_type 0 1 429 0
+53
+static TypeHandle OdeHashSpace::get_class_type(void);
+
+1049 14 OdeHinge2Joint 0 4 1297 30 OdeHinge2Joint::OdeHinge2Joint 0 2 430 431 0
+125
+OdeHinge2Joint::OdeHinge2Joint(OdeWorld &world, OdeJointGroup &joint_group);
+OdeHinge2Joint::OdeHinge2Joint(OdeWorld &world);
+
+1050 10 set_anchor 0 4 1297 26 OdeHinge2Joint::set_anchor 0 2 432 433 0
+132
+inline void OdeHinge2Joint::set_anchor(dReal x, dReal y, dReal z);
+inline void OdeHinge2Joint::set_anchor(LVecBase3f const &anchor);
+
+1051 9 set_axis1 0 4 1297 25 OdeHinge2Joint::set_axis1 0 2 434 435 0
+128
+inline void OdeHinge2Joint::set_axis1(dReal x, dReal y, dReal z);
+inline void OdeHinge2Joint::set_axis1(LVecBase3f const &axis);
+
+1052 9 set_axis2 0 4 1297 25 OdeHinge2Joint::set_axis2 0 2 436 437 0
+128
+inline void OdeHinge2Joint::set_axis2(dReal x, dReal y, dReal z);
+inline void OdeHinge2Joint::set_axis2(LVecBase3f const &axis);
+
+1053 11 add_torques 0 4 1297 27 OdeHinge2Joint::add_torques 0 1 438 0
+70
+inline void OdeHinge2Joint::add_torques(dReal torque1, dReal torque2);
+
+1054 10 get_anchor 0 4 1297 26 OdeHinge2Joint::get_anchor 0 1 439 0
+57
+inline LVecBase3f OdeHinge2Joint::get_anchor(void) const;
+
+1055 11 get_anchor2 0 4 1297 27 OdeHinge2Joint::get_anchor2 0 1 440 0
+58
+inline LVecBase3f OdeHinge2Joint::get_anchor2(void) const;
+
+1056 9 get_axis1 0 4 1297 25 OdeHinge2Joint::get_axis1 0 1 441 0
+56
+inline LVecBase3f OdeHinge2Joint::get_axis1(void) const;
+
+1057 9 get_axis2 0 4 1297 25 OdeHinge2Joint::get_axis2 0 1 442 0
+56
+inline LVecBase3f OdeHinge2Joint::get_axis2(void) const;
+
+1058 10 get_angle1 0 4 1297 26 OdeHinge2Joint::get_angle1 0 1 443 0
+52
+inline dReal OdeHinge2Joint::get_angle1(void) const;
+
+1059 15 get_angle1_rate 0 4 1297 31 OdeHinge2Joint::get_angle1_rate 0 1 444 0
+57
+inline dReal OdeHinge2Joint::get_angle1_rate(void) const;
+
+1060 15 get_angle2_rate 0 4 1297 31 OdeHinge2Joint::get_angle2_rate 0 1 445 0
+57
+inline dReal OdeHinge2Joint::get_angle2_rate(void) const;
+
+1061 17 set_param_lo_stop 0 4 1297 33 OdeHinge2Joint::set_param_lo_stop 0 1 446 0
+67
+inline void OdeHinge2Joint::set_param_lo_stop(int axis, dReal val);
+
+1062 17 set_param_hi_stop 0 4 1297 33 OdeHinge2Joint::set_param_hi_stop 0 1 447 0
+67
+inline void OdeHinge2Joint::set_param_hi_stop(int axis, dReal val);
+
+1063 13 set_param_vel 0 4 1297 29 OdeHinge2Joint::set_param_vel 0 1 448 0
+63
+inline void OdeHinge2Joint::set_param_vel(int axis, dReal val);
+
+1064 15 set_param_f_max 0 4 1297 31 OdeHinge2Joint::set_param_f_max 0 1 449 0
+65
+inline void OdeHinge2Joint::set_param_f_max(int axis, dReal val);
+
+1065 22 set_param_fudge_factor 0 4 1297 38 OdeHinge2Joint::set_param_fudge_factor 0 1 450 0
+72
+inline void OdeHinge2Joint::set_param_fudge_factor(int axis, dReal val);
+
+1066 16 set_param_bounce 0 4 1297 32 OdeHinge2Joint::set_param_bounce 0 1 451 0
+66
+inline void OdeHinge2Joint::set_param_bounce(int axis, dReal val);
+
+1067 13 set_param_CFM 0 4 1297 29 OdeHinge2Joint::set_param_CFM 0 1 452 0
+63
+inline void OdeHinge2Joint::set_param_CFM(int axis, dReal val);
+
+1068 18 set_param_stop_ERP 0 4 1297 34 OdeHinge2Joint::set_param_stop_ERP 0 1 453 0
+68
+inline void OdeHinge2Joint::set_param_stop_ERP(int axis, dReal val);
+
+1069 18 set_param_stop_CFM 0 4 1297 34 OdeHinge2Joint::set_param_stop_CFM 0 1 454 0
+68
+inline void OdeHinge2Joint::set_param_stop_CFM(int axis, dReal val);
+
+1070 24 set_param_suspension_ERP 0 4 1297 40 OdeHinge2Joint::set_param_suspension_ERP 0 1 455 0
+74
+inline void OdeHinge2Joint::set_param_suspension_ERP(int axis, dReal val);
+
+1071 24 set_param_suspension_CFM 0 4 1297 40 OdeHinge2Joint::set_param_suspension_CFM 0 1 456 0
+74
+inline void OdeHinge2Joint::set_param_suspension_CFM(int axis, dReal val);
+
+1072 17 get_param_lo_stop 0 4 1297 33 OdeHinge2Joint::get_param_lo_stop 0 1 457 0
+63
+inline dReal OdeHinge2Joint::get_param_lo_stop(int axis) const;
+
+1073 17 get_param_hi_stop 0 4 1297 33 OdeHinge2Joint::get_param_hi_stop 0 1 458 0
+63
+inline dReal OdeHinge2Joint::get_param_hi_stop(int axis) const;
+
+1074 13 get_param_vel 0 4 1297 29 OdeHinge2Joint::get_param_vel 0 1 459 0
+59
+inline dReal OdeHinge2Joint::get_param_vel(int axis) const;
+
+1075 15 get_param_f_max 0 4 1297 31 OdeHinge2Joint::get_param_f_max 0 1 460 0
+61
+inline dReal OdeHinge2Joint::get_param_f_max(int axis) const;
+
+1076 22 get_param_fudge_factor 0 4 1297 38 OdeHinge2Joint::get_param_fudge_factor 0 1 461 0
+68
+inline dReal OdeHinge2Joint::get_param_fudge_factor(int axis) const;
+
+1077 16 get_param_bounce 0 4 1297 32 OdeHinge2Joint::get_param_bounce 0 1 462 0
+62
+inline dReal OdeHinge2Joint::get_param_bounce(int axis) const;
+
+1078 13 get_param_CFM 0 4 1297 29 OdeHinge2Joint::get_param_CFM 0 1 463 0
+59
+inline dReal OdeHinge2Joint::get_param_CFM(int axis) const;
+
+1079 18 get_param_stop_ERP 0 4 1297 34 OdeHinge2Joint::get_param_stop_ERP 0 1 464 0
+64
+inline dReal OdeHinge2Joint::get_param_stop_ERP(int axis) const;
+
+1080 18 get_param_stop_CFM 0 4 1297 34 OdeHinge2Joint::get_param_stop_CFM 0 1 465 0
+64
+inline dReal OdeHinge2Joint::get_param_stop_CFM(int axis) const;
+
+1081 24 get_param_suspension_ERP 0 4 1297 40 OdeHinge2Joint::get_param_suspension_ERP 0 1 466 0
+70
+inline dReal OdeHinge2Joint::get_param_suspension_ERP(int axis) const;
+
+1082 24 get_param_suspension_CFM 0 4 1297 40 OdeHinge2Joint::get_param_suspension_CFM 0 1 467 0
+70
+inline dReal OdeHinge2Joint::get_param_suspension_CFM(int axis) const;
+
+1083 14 get_class_type 0 4 1297 30 OdeHinge2Joint::get_class_type 0 1 468 0
+55
+static TypeHandle OdeHinge2Joint::get_class_type(void);
+
+1084 13 OdeHingeJoint 0 4 1298 28 OdeHingeJoint::OdeHingeJoint 0 2 469 470 0
+121
+OdeHingeJoint::OdeHingeJoint(OdeWorld &world);
+OdeHingeJoint::OdeHingeJoint(OdeWorld &world, OdeJointGroup &joint_group);
+
+1085 10 set_anchor 0 4 1298 25 OdeHingeJoint::set_anchor 0 2 471 472 0
+130
+inline void OdeHingeJoint::set_anchor(dReal x, dReal y, dReal z);
+inline void OdeHingeJoint::set_anchor(LVecBase3f const &anchor);
+
+1086 16 set_anchor_delta 0 4 1298 31 OdeHingeJoint::set_anchor_delta 0 2 473 474 0
+195
+inline void OdeHingeJoint::set_anchor_delta(dReal x, dReal y, dReal z, dReal ax, dReal ay, dReal az);
+inline void OdeHingeJoint::set_anchor_delta(LVecBase3f const &anchor, LVecBase3f const &vec);
+
+1087 8 set_axis 0 4 1298 23 OdeHingeJoint::set_axis 0 2 475 476 0
+124
+inline void OdeHingeJoint::set_axis(dReal x, dReal y, dReal z);
+inline void OdeHingeJoint::set_axis(LVecBase3f const &axis);
+
+1088 10 add_torque 0 4 1298 25 OdeHingeJoint::add_torque 0 1 477 0
+52
+inline void OdeHingeJoint::add_torque(dReal torque);
+
+1089 10 get_anchor 0 4 1298 25 OdeHingeJoint::get_anchor 0 1 478 0
+56
+inline LVecBase3f OdeHingeJoint::get_anchor(void) const;
+
+1090 11 get_anchor2 0 4 1298 26 OdeHingeJoint::get_anchor2 0 1 479 0
+57
+inline LVecBase3f OdeHingeJoint::get_anchor2(void) const;
+
+1091 8 get_axis 0 4 1298 23 OdeHingeJoint::get_axis 0 1 480 0
+54
+inline LVecBase3f OdeHingeJoint::get_axis(void) const;
+
+1092 9 get_angle 0 4 1298 24 OdeHingeJoint::get_angle 0 1 481 0
+50
+inline dReal OdeHingeJoint::get_angle(void) const;
+
+1093 14 get_angle_rate 0 4 1298 29 OdeHingeJoint::get_angle_rate 0 1 482 0
+55
+inline dReal OdeHingeJoint::get_angle_rate(void) const;
+
+1094 17 set_param_lo_stop 0 4 1298 32 OdeHingeJoint::set_param_lo_stop 0 1 483 0
+56
+inline void OdeHingeJoint::set_param_lo_stop(dReal val);
+
+1095 17 set_param_hi_stop 0 4 1298 32 OdeHingeJoint::set_param_hi_stop 0 1 484 0
+56
+inline void OdeHingeJoint::set_param_hi_stop(dReal val);
+
+1096 13 set_param_vel 0 4 1298 28 OdeHingeJoint::set_param_vel 0 1 485 0
+52
+inline void OdeHingeJoint::set_param_vel(dReal val);
+
+1097 15 set_param_f_max 0 4 1298 30 OdeHingeJoint::set_param_f_max 0 1 486 0
+54
+inline void OdeHingeJoint::set_param_f_max(dReal val);
+
+1098 22 set_param_fudge_factor 0 4 1298 37 OdeHingeJoint::set_param_fudge_factor 0 1 487 0
+61
+inline void OdeHingeJoint::set_param_fudge_factor(dReal val);
+
+1099 16 set_param_bounce 0 4 1298 31 OdeHingeJoint::set_param_bounce 0 1 488 0
+55
+inline void OdeHingeJoint::set_param_bounce(dReal val);
+
+1100 13 set_param_CFM 0 4 1298 28 OdeHingeJoint::set_param_CFM 0 1 489 0
+52
+inline void OdeHingeJoint::set_param_CFM(dReal val);
+
+1101 18 set_param_stop_ERP 0 4 1298 33 OdeHingeJoint::set_param_stop_ERP 0 1 490 0
+57
+inline void OdeHingeJoint::set_param_stop_ERP(dReal val);
+
+1102 18 set_param_stop_CFM 0 4 1298 33 OdeHingeJoint::set_param_stop_CFM 0 1 491 0
+57
+inline void OdeHingeJoint::set_param_stop_CFM(dReal val);
+
+1103 17 get_param_lo_stop 0 4 1298 32 OdeHingeJoint::get_param_lo_stop 0 1 492 0
+58
+inline dReal OdeHingeJoint::get_param_lo_stop(void) const;
+
+1104 17 get_param_hi_stop 0 4 1298 32 OdeHingeJoint::get_param_hi_stop 0 1 493 0
+58
+inline dReal OdeHingeJoint::get_param_hi_stop(void) const;
+
+1105 13 get_param_vel 0 4 1298 28 OdeHingeJoint::get_param_vel 0 1 494 0
+54
+inline dReal OdeHingeJoint::get_param_vel(void) const;
+
+1106 15 get_param_f_max 0 4 1298 30 OdeHingeJoint::get_param_f_max 0 1 495 0
+56
+inline dReal OdeHingeJoint::get_param_f_max(void) const;
+
+1107 22 get_param_fudge_factor 0 4 1298 37 OdeHingeJoint::get_param_fudge_factor 0 1 496 0
+63
+inline dReal OdeHingeJoint::get_param_fudge_factor(void) const;
+
+1108 16 get_param_bounce 0 4 1298 31 OdeHingeJoint::get_param_bounce 0 1 497 0
+57
+inline dReal OdeHingeJoint::get_param_bounce(void) const;
+
+1109 13 get_param_CFM 0 4 1298 28 OdeHingeJoint::get_param_CFM 0 1 498 0
+54
+inline dReal OdeHingeJoint::get_param_CFM(void) const;
+
+1110 18 get_param_stop_ERP 0 4 1298 33 OdeHingeJoint::get_param_stop_ERP 0 1 499 0
+59
+inline dReal OdeHingeJoint::get_param_stop_ERP(void) const;
+
+1111 18 get_param_stop_CFM 0 4 1298 33 OdeHingeJoint::get_param_stop_CFM 0 1 500 0
+59
+inline dReal OdeHingeJoint::get_param_stop_CFM(void) const;
+
+1112 14 get_class_type 0 4 1298 29 OdeHingeJoint::get_class_type 0 1 501 0
+54
+static TypeHandle OdeHingeJoint::get_class_type(void);
+
+1113 18 OdeJointCollection 0 4 1299 38 OdeJointCollection::OdeJointCollection 0 2 502 503 0
+117
+OdeJointCollection::OdeJointCollection(void);
+OdeJointCollection::OdeJointCollection(OdeJointCollection const &copy);
+
+1114 10 operator = 0 4 1299 30 OdeJointCollection::operator = 0 1 504 0
+68
+void OdeJointCollection::operator =(OdeJointCollection const &copy);
+
+1115 19 ~OdeJointCollection 0 4 1299 39 OdeJointCollection::~OdeJointCollection 0 0 10
+/**
+ *
+ */
+53
+inline OdeJointCollection::~OdeJointCollection(void);
+
+1116 9 add_joint 0 4 1299 29 OdeJointCollection::add_joint 0 1 505 0
+58
+void OdeJointCollection::add_joint(OdeJoint const &joint);
+
+1117 12 remove_joint 0 4 1299 32 OdeJointCollection::remove_joint 0 1 506 0
+61
+bool OdeJointCollection::remove_joint(OdeJoint const &joint);
+
+1118 15 add_joints_from 0 4 1299 35 OdeJointCollection::add_joints_from 0 1 507 0
+74
+void OdeJointCollection::add_joints_from(OdeJointCollection const &other);
+
+1119 18 remove_joints_from 0 4 1299 38 OdeJointCollection::remove_joints_from 0 1 508 0
+77
+void OdeJointCollection::remove_joints_from(OdeJointCollection const &other);
+
+1120 23 remove_duplicate_joints 0 4 1299 43 OdeJointCollection::remove_duplicate_joints 0 1 509 0
+55
+void OdeJointCollection::remove_duplicate_joints(void);
+
+1121 9 has_joint 0 4 1299 29 OdeJointCollection::has_joint 0 1 510 0
+64
+bool OdeJointCollection::has_joint(OdeJoint const &joint) const;
+
+1122 5 clear 0 4 1299 25 OdeJointCollection::clear 0 1 511 0
+37
+void OdeJointCollection::clear(void);
+
+1123 8 is_empty 0 4 1299 28 OdeJointCollection::is_empty 0 1 512 0
+46
+bool OdeJointCollection::is_empty(void) const;
+
+1124 14 get_num_joints 0 4 1299 34 OdeJointCollection::get_num_joints 0 1 513 0
+51
+int OdeJointCollection::get_num_joints(void) const;
+
+1125 9 get_joint 0 4 1299 29 OdeJointCollection::get_joint 0 1 514 0
+56
+OdeJoint OdeJointCollection::get_joint(int index) const;
+
+1126 11 operator [] 0 4 1299 31 OdeJointCollection::operator [] 0 1 515 0
+58
+OdeJoint OdeJointCollection::operator [](int index) const;
+
+1127 4 size 0 4 1299 24 OdeJointCollection::size 0 1 516 106
+/**
+ * Returns the number of joints in the collection.  This is the same thing as
+ * get_num_joints().
+ */
+41
+int OdeJointCollection::size(void) const;
+
+1128 11 operator += 0 4 1299 31 OdeJointCollection::operator += 0 1 517 0
+77
+inline void OdeJointCollection::operator +=(OdeJointCollection const &other);
+
+1129 10 operator + 0 4 1299 30 OdeJointCollection::operator + 0 1 518 0
+96
+inline OdeJointCollection OdeJointCollection::operator +(OdeJointCollection const &other) const;
+
+1130 14 OdeLMotorJoint 0 4 1300 30 OdeLMotorJoint::OdeLMotorJoint 0 2 519 520 0
+125
+OdeLMotorJoint::OdeLMotorJoint(OdeWorld &world);
+OdeLMotorJoint::OdeLMotorJoint(OdeWorld &world, OdeJointGroup &joint_group);
+
+1131 12 set_num_axes 0 4 1300 28 OdeLMotorJoint::set_num_axes 0 1 521 0
+50
+inline void OdeLMotorJoint::set_num_axes(int num);
+
+1132 8 set_axis 0 4 1300 24 OdeLMotorJoint::set_axis 0 2 522 523 0
+164
+inline void OdeLMotorJoint::set_axis(int anum, int rel, dReal x, dReal y, dReal z);
+inline void OdeLMotorJoint::set_axis(int anum, int rel, LVecBase3f const &axis);
+
+1133 9 set_param 0 4 1300 25 OdeLMotorJoint::set_param 0 1 524 0
+66
+inline void OdeLMotorJoint::set_param(int parameter, dReal value);
+
+1134 12 get_num_axes 0 4 1300 28 OdeLMotorJoint::get_num_axes 0 1 525 0
+52
+inline int OdeLMotorJoint::get_num_axes(void) const;
+
+1135 8 get_axis 0 4 1300 24 OdeLMotorJoint::get_axis 0 1 526 0
+59
+inline LVecBase3f OdeLMotorJoint::get_axis(int anum) const;
+
+1136 9 get_param 0 4 1300 25 OdeLMotorJoint::get_param 0 1 527 0
+60
+inline dReal OdeLMotorJoint::get_param(int parameter) const;
+
+1137 14 get_class_type 0 4 1300 30 OdeLMotorJoint::get_class_type 0 1 528 0
+55
+static TypeHandle OdeLMotorJoint::get_class_type(void);
+
+1138 12 OdeNullJoint 0 4 1301 26 OdeNullJoint::OdeNullJoint 0 2 529 530 0
+117
+OdeNullJoint::OdeNullJoint(OdeWorld &world);
+OdeNullJoint::OdeNullJoint(OdeWorld &world, OdeJointGroup &joint_group);
+
+1139 14 get_class_type 0 4 1301 28 OdeNullJoint::get_class_type 0 1 531 0
+53
+static TypeHandle OdeNullJoint::get_class_type(void);
+
+1140 15 OdePlane2dJoint 0 4 1302 32 OdePlane2dJoint::OdePlane2dJoint 0 2 532 533 0
+129
+OdePlane2dJoint::OdePlane2dJoint(OdeWorld &world);
+OdePlane2dJoint::OdePlane2dJoint(OdeWorld &world, OdeJointGroup &joint_group);
+
+1141 11 set_x_param 0 4 1302 28 OdePlane2dJoint::set_x_param 0 1 534 0
+69
+inline void OdePlane2dJoint::set_x_param(int parameter, dReal value);
+
+1142 11 set_y_param 0 4 1302 28 OdePlane2dJoint::set_y_param 0 1 535 0
+69
+inline void OdePlane2dJoint::set_y_param(int parameter, dReal value);
+
+1143 15 set_angle_param 0 4 1302 32 OdePlane2dJoint::set_angle_param 0 1 536 0
+73
+inline void OdePlane2dJoint::set_angle_param(int parameter, dReal value);
+
+1144 14 get_class_type 0 4 1302 31 OdePlane2dJoint::get_class_type 0 1 537 0
+56
+static TypeHandle OdePlane2dJoint::get_class_type(void);
+
+1145 12 OdePlaneGeom 0 4 1303 26 OdePlaneGeom::OdePlaneGeom 0 4 538 539 540 541 0
+269
+OdePlaneGeom::OdePlaneGeom(dReal a, dReal b, dReal c, dReal d);
+OdePlaneGeom::OdePlaneGeom(LVecBase4f const &params);
+OdePlaneGeom::OdePlaneGeom(OdeSpace &space, dReal a, dReal b, dReal c, dReal d);
+OdePlaneGeom::OdePlaneGeom(OdeSpace &space, LVecBase4f const &params);
+
+1146 10 set_params 0 4 1303 24 OdePlaneGeom::set_params 0 2 542 543 0
+137
+inline void OdePlaneGeom::set_params(dReal a, dReal b, dReal c, dReal d);
+inline void OdePlaneGeom::set_params(LVecBase4f const &params);
+
+1147 10 get_params 0 4 1303 24 OdePlaneGeom::get_params 0 1 544 0
+55
+inline LVecBase4f OdePlaneGeom::get_params(void) const;
+
+1148 15 get_point_depth 0 4 1303 29 OdePlaneGeom::get_point_depth 0 2 545 546 0
+145
+inline dReal OdePlaneGeom::get_point_depth(dReal x, dReal y, dReal z) const;
+inline dReal OdePlaneGeom::get_point_depth(LPoint3f const &p) const;
+
+1149 14 get_class_type 0 4 1303 28 OdePlaneGeom::get_class_type 0 1 547 0
+53
+static TypeHandle OdePlaneGeom::get_class_type(void);
+
+1150 16 OdeQuadTreeSpace 0 4 1304 34 OdeQuadTreeSpace::OdeQuadTreeSpace 0 2 548 549 0
+224
+OdeQuadTreeSpace::OdeQuadTreeSpace(LPoint3f const &center, LVecBase3f const &extents, int const depth);
+OdeQuadTreeSpace::OdeQuadTreeSpace(OdeSpace &space, LPoint3f const &center, LVecBase3f const &extents, int const depth);
+
+1151 14 get_class_type 0 4 1304 32 OdeQuadTreeSpace::get_class_type 0 1 550 0
+57
+static TypeHandle OdeQuadTreeSpace::get_class_type(void);
+
+1152 10 OdeRayGeom 0 4 1305 22 OdeRayGeom::OdeRayGeom 0 2 551 552 0
+92
+OdeRayGeom::OdeRayGeom(dReal length);
+OdeRayGeom::OdeRayGeom(OdeSpace &space, dReal length);
+
+1153 10 set_length 0 4 1305 22 OdeRayGeom::set_length 0 1 553 0
+49
+inline void OdeRayGeom::set_length(dReal length);
+
+1154 10 get_length 0 4 1305 22 OdeRayGeom::get_length 0 1 554 0
+42
+inline dReal OdeRayGeom::get_length(void);
+
+1155 3 set 0 4 1305 15 OdeRayGeom::set 0 2 555 556 0
+165
+inline void OdeRayGeom::set(dReal px, dReal py, dReal pz, dReal dx, dReal dy, dReal dz);
+inline void OdeRayGeom::set(LVecBase3f const &start, LVecBase3f const &dir);
+
+1156 3 get 0 4 1305 15 OdeRayGeom::get 0 1 557 0
+70
+inline void OdeRayGeom::get(LVecBase3f &start, LVecBase3f &dir) const;
+
+1157 9 get_start 0 4 1305 21 OdeRayGeom::get_start 0 1 558 0
+52
+inline LVecBase3f OdeRayGeom::get_start(void) const;
+
+1158 13 get_direction 0 4 1305 25 OdeRayGeom::get_direction 0 1 559 0
+56
+inline LVecBase3f OdeRayGeom::get_direction(void) const;
+
+1159 10 set_params 0 4 1305 22 OdeRayGeom::set_params 0 1 560 0
+73
+inline void OdeRayGeom::set_params(int first_contact, int backface_cull);
+
+1160 10 get_params 0 4 1305 22 OdeRayGeom::get_params 0 0 0
+81
+inline void OdeRayGeom::get_params(int &first_contact, int &backface_cull) const;
+
+1161 17 get_first_contact 0 4 1305 29 OdeRayGeom::get_first_contact 0 1 561 0
+53
+inline int OdeRayGeom::get_first_contact(void) const;
+
+1162 17 get_backface_cull 0 4 1305 29 OdeRayGeom::get_backface_cull 0 1 562 0
+53
+inline int OdeRayGeom::get_backface_cull(void) const;
+
+1163 15 set_closest_hit 0 4 1305 27 OdeRayGeom::set_closest_hit 0 1 563 0
+57
+inline void OdeRayGeom::set_closest_hit(int closest_hit);
+
+1164 15 get_closest_hit 0 4 1305 27 OdeRayGeom::get_closest_hit 0 1 564 0
+45
+inline int OdeRayGeom::get_closest_hit(void);
+
+1165 14 get_class_type 0 4 1305 26 OdeRayGeom::get_class_type 0 1 565 0
+51
+static TypeHandle OdeRayGeom::get_class_type(void);
+
+1166 14 OdeSimpleSpace 0 4 1306 30 OdeSimpleSpace::OdeSimpleSpace 0 2 566 567 0
+86
+OdeSimpleSpace::OdeSimpleSpace(void);
+OdeSimpleSpace::OdeSimpleSpace(OdeSpace &space);
+
+1167 14 get_class_type 0 4 1306 30 OdeSimpleSpace::get_class_type 0 1 568 0
+55
+static TypeHandle OdeSimpleSpace::get_class_type(void);
+
+1168 14 OdeSliderJoint 0 4 1307 30 OdeSliderJoint::OdeSliderJoint 0 2 569 570 0
+125
+OdeSliderJoint::OdeSliderJoint(OdeWorld &world);
+OdeSliderJoint::OdeSliderJoint(OdeWorld &world, OdeJointGroup &joint_group);
+
+1169 8 set_axis 0 4 1307 24 OdeSliderJoint::set_axis 0 2 571 572 0
+126
+inline void OdeSliderJoint::set_axis(dReal x, dReal y, dReal z);
+inline void OdeSliderJoint::set_axis(LVecBase3f const &axis);
+
+1170 14 set_axis_delta 0 4 1307 30 OdeSliderJoint::set_axis_delta 0 2 573 574 0
+191
+inline void OdeSliderJoint::set_axis_delta(dReal x, dReal y, dReal z, dReal ax, dReal ay, dReal az);
+inline void OdeSliderJoint::set_axis_delta(LVecBase3f const &axis, LVecBase3f const &vec);
+
+1171 9 add_force 0 4 1307 25 OdeSliderJoint::add_force 0 1 575 0
+51
+inline void OdeSliderJoint::add_force(dReal force);
+
+1172 12 get_position 0 4 1307 28 OdeSliderJoint::get_position 0 1 576 0
+54
+inline dReal OdeSliderJoint::get_position(void) const;
+
+1173 17 get_position_rate 0 4 1307 33 OdeSliderJoint::get_position_rate 0 1 577 0
+59
+inline dReal OdeSliderJoint::get_position_rate(void) const;
+
+1174 8 get_axis 0 4 1307 24 OdeSliderJoint::get_axis 0 1 578 0
+55
+inline LVecBase3f OdeSliderJoint::get_axis(void) const;
+
+1175 17 set_param_lo_stop 0 4 1307 33 OdeSliderJoint::set_param_lo_stop 0 1 579 0
+57
+inline void OdeSliderJoint::set_param_lo_stop(dReal val);
+
+1176 17 set_param_hi_stop 0 4 1307 33 OdeSliderJoint::set_param_hi_stop 0 1 580 0
+57
+inline void OdeSliderJoint::set_param_hi_stop(dReal val);
+
+1177 13 set_param_vel 0 4 1307 29 OdeSliderJoint::set_param_vel 0 1 581 0
+53
+inline void OdeSliderJoint::set_param_vel(dReal val);
+
+1178 15 set_param_f_max 0 4 1307 31 OdeSliderJoint::set_param_f_max 0 1 582 0
+55
+inline void OdeSliderJoint::set_param_f_max(dReal val);
+
+1179 22 set_param_fudge_factor 0 4 1307 38 OdeSliderJoint::set_param_fudge_factor 0 1 583 0
+62
+inline void OdeSliderJoint::set_param_fudge_factor(dReal val);
+
+1180 16 set_param_bounce 0 4 1307 32 OdeSliderJoint::set_param_bounce 0 1 584 0
+56
+inline void OdeSliderJoint::set_param_bounce(dReal val);
+
+1181 13 set_param_CFM 0 4 1307 29 OdeSliderJoint::set_param_CFM 0 1 585 0
+53
+inline void OdeSliderJoint::set_param_CFM(dReal val);
+
+1182 18 set_param_stop_ERP 0 4 1307 34 OdeSliderJoint::set_param_stop_ERP 0 1 586 0
+58
+inline void OdeSliderJoint::set_param_stop_ERP(dReal val);
+
+1183 18 set_param_stop_CFM 0 4 1307 34 OdeSliderJoint::set_param_stop_CFM 0 1 587 0
+58
+inline void OdeSliderJoint::set_param_stop_CFM(dReal val);
+
+1184 17 get_param_lo_stop 0 4 1307 33 OdeSliderJoint::get_param_lo_stop 0 1 588 0
+59
+inline dReal OdeSliderJoint::get_param_lo_stop(void) const;
+
+1185 17 get_param_hi_stop 0 4 1307 33 OdeSliderJoint::get_param_hi_stop 0 1 589 0
+59
+inline dReal OdeSliderJoint::get_param_hi_stop(void) const;
+
+1186 13 get_param_vel 0 4 1307 29 OdeSliderJoint::get_param_vel 0 1 590 0
+55
+inline dReal OdeSliderJoint::get_param_vel(void) const;
+
+1187 15 get_param_f_max 0 4 1307 31 OdeSliderJoint::get_param_f_max 0 1 591 0
+57
+inline dReal OdeSliderJoint::get_param_f_max(void) const;
+
+1188 22 get_param_fudge_factor 0 4 1307 38 OdeSliderJoint::get_param_fudge_factor 0 1 592 0
+64
+inline dReal OdeSliderJoint::get_param_fudge_factor(void) const;
+
+1189 16 get_param_bounce 0 4 1307 32 OdeSliderJoint::get_param_bounce 0 1 593 0
+58
+inline dReal OdeSliderJoint::get_param_bounce(void) const;
+
+1190 13 get_param_CFM 0 4 1307 29 OdeSliderJoint::get_param_CFM 0 1 594 0
+55
+inline dReal OdeSliderJoint::get_param_CFM(void) const;
+
+1191 18 get_param_stop_ERP 0 4 1307 34 OdeSliderJoint::get_param_stop_ERP 0 1 595 0
+60
+inline dReal OdeSliderJoint::get_param_stop_ERP(void) const;
+
+1192 18 get_param_stop_CFM 0 4 1307 34 OdeSliderJoint::get_param_stop_CFM 0 1 596 0
+60
+inline dReal OdeSliderJoint::get_param_stop_CFM(void) const;
+
+1193 14 get_class_type 0 4 1307 30 OdeSliderJoint::get_class_type 0 1 597 0
+55
+static TypeHandle OdeSliderJoint::get_class_type(void);
+
+1194 13 OdeSphereGeom 0 4 1308 28 OdeSphereGeom::OdeSphereGeom 0 3 598 599 600 0
+149
+OdeSphereGeom::OdeSphereGeom(dReal radius);
+OdeSphereGeom::OdeSphereGeom(OdeSpace &space, dReal radius);
+OdeSphereGeom::OdeSphereGeom(OdeGeom &geom);
+
+1195 10 set_radius 0 4 1308 25 OdeSphereGeom::set_radius 0 1 601 0
+52
+inline void OdeSphereGeom::set_radius(dReal radius);
+
+1196 10 get_radius 0 4 1308 25 OdeSphereGeom::get_radius 0 1 602 0
+51
+inline dReal OdeSphereGeom::get_radius(void) const;
+
+1197 15 get_point_depth 0 4 1308 30 OdeSphereGeom::get_point_depth 0 2 603 604 0
+147
+inline dReal OdeSphereGeom::get_point_depth(dReal x, dReal y, dReal z) const;
+inline dReal OdeSphereGeom::get_point_depth(LPoint3f const &p) const;
+
+1198 14 get_class_type 0 4 1308 29 OdeSphereGeom::get_class_type 0 1 605 0
+54
+static TypeHandle OdeSphereGeom::get_class_type(void);
+
+1199 14 OdeTriMeshData 0 4 1309 30 OdeTriMeshData::OdeTriMeshData 0 1 606 63
+// Private copy constructor, shouldn't be copying these objects
+80
+OdeTriMeshData::OdeTriMeshData(NodePath const &model, bool use_normals = false);
+
+1200 7 destroy 0 4 1309 23 OdeTriMeshData::destroy 0 1 607 0
+35
+void OdeTriMeshData::destroy(void);
+
+1201 5 write 0 6 1309 21 OdeTriMeshData::write 0 1 608 0
+99
+virtual void OdeTriMeshData::write(std::ostream &out = ::std::cout, unsigned int indent = 0) const;
+
+1202 11 write_faces 0 4 1309 27 OdeTriMeshData::write_faces 0 1 609 0
+58
+void OdeTriMeshData::write_faces(std::ostream &out) const;
+
+1203 14 get_class_type 0 4 1309 30 OdeTriMeshData::get_class_type 0 1 610 0
+55
+static TypeHandle OdeTriMeshData::get_class_type(void);
+
+1204 14 OdeTriMeshGeom 0 4 1311 30 OdeTriMeshGeom::OdeTriMeshGeom 0 3 611 612 613 162
+/* ODE_API dGeomID dCreateTriMesh(dSpaceID space, dTriMeshDataID Data, dTriCallback* Callback, dTriArrayCallback* ArrayCallback, dTriRayCallback* RayCallback); */
+184
+OdeTriMeshGeom::OdeTriMeshGeom(OdeTriMeshData &data);
+OdeTriMeshGeom::OdeTriMeshGeom(OdeSpace &space, OdeTriMeshData &data);
+OdeTriMeshGeom::OdeTriMeshGeom(OdeTriMeshGeom const &copy);
+
+1205 7 destroy 0 4 1311 23 OdeTriMeshGeom::destroy 0 1 614 0
+35
+void OdeTriMeshGeom::destroy(void);
+
+1206 17 set_tri_mesh_data 0 4 1311 33 OdeTriMeshGeom::set_tri_mesh_data 0 1 615 0
+68
+inline void OdeTriMeshGeom::set_tri_mesh_data(OdeTriMeshData &data);
+
+1207 17 get_tri_mesh_data 0 4 1311 33 OdeTriMeshGeom::get_tri_mesh_data 0 1 616 0
+81
+inline PointerTo< OdeTriMeshData > OdeTriMeshGeom::get_tri_mesh_data(void) const;
+
+1208 8 set_data 0 4 1311 24 OdeTriMeshGeom::set_data 0 1 617 0
+59
+inline void OdeTriMeshGeom::set_data(OdeTriMeshData &data);
+
+1209 8 get_data 0 4 1311 24 OdeTriMeshGeom::get_data 0 1 618 0
+72
+inline PointerTo< OdeTriMeshData > OdeTriMeshGeom::get_data(void) const;
+
+1210 9 enable_TC 0 4 1311 25 OdeTriMeshGeom::enable_TC 0 1 619 0
+66
+inline void OdeTriMeshGeom::enable_TC(int geom_class, int enable);
+
+1211 13 is_TC_enabled 0 4 1311 29 OdeTriMeshGeom::is_TC_enabled 0 1 620 0
+63
+inline int OdeTriMeshGeom::is_TC_enabled(int geom_class) const;
+
+1212 14 clear_TC_cache 0 4 1311 30 OdeTriMeshGeom::clear_TC_cache 0 1 621 0
+64
+inline void OdeTriMeshGeom::clear_TC_cache(OdeGeom const &geom);
+
+1213 12 get_triangle 0 4 1311 28 OdeTriMeshGeom::get_triangle 0 1 622 0
+105
+inline void OdeTriMeshGeom::get_triangle(int face_index, LPoint3f &v0, LPoint3f &v1, LPoint3f &v2) const;
+
+1214 9 get_point 0 4 1311 25 OdeTriMeshGeom::get_point 0 1 623 0
+82
+inline LPoint3f OdeTriMeshGeom::get_point(int face_index, dReal u, dReal v) const;
+
+1215 17 get_num_triangles 0 4 1311 33 OdeTriMeshGeom::get_num_triangles 0 1 624 0
+57
+inline int OdeTriMeshGeom::get_num_triangles(void) const;
+
+1216 14 get_class_type 0 4 1311 30 OdeTriMeshGeom::get_class_type 0 1 625 0
+55
+static TypeHandle OdeTriMeshGeom::get_class_type(void);
+
+1217 17 OdeUniversalJoint 0 4 1312 36 OdeUniversalJoint::OdeUniversalJoint 0 2 626 627 0
+137
+OdeUniversalJoint::OdeUniversalJoint(OdeWorld &world);
+OdeUniversalJoint::OdeUniversalJoint(OdeWorld &world, OdeJointGroup &joint_group);
+
+1218 10 set_anchor 0 4 1312 29 OdeUniversalJoint::set_anchor 0 2 628 629 0
+138
+inline void OdeUniversalJoint::set_anchor(dReal x, dReal y, dReal z);
+inline void OdeUniversalJoint::set_anchor(LVecBase3f const &anchor);
+
+1219 9 set_axis1 0 4 1312 28 OdeUniversalJoint::set_axis1 0 2 630 631 0
+134
+inline void OdeUniversalJoint::set_axis1(dReal x, dReal y, dReal z);
+inline void OdeUniversalJoint::set_axis1(LVecBase3f const &axis);
+
+1220 9 set_axis2 0 4 1312 28 OdeUniversalJoint::set_axis2 0 2 632 633 0
+134
+inline void OdeUniversalJoint::set_axis2(dReal x, dReal y, dReal z);
+inline void OdeUniversalJoint::set_axis2(LVecBase3f const &axis);
+
+1221 11 add_torques 0 4 1312 30 OdeUniversalJoint::add_torques 0 1 634 0
+73
+inline void OdeUniversalJoint::add_torques(dReal torque1, dReal torque2);
+
+1222 10 get_anchor 0 4 1312 29 OdeUniversalJoint::get_anchor 0 1 635 0
+60
+inline LVecBase3f OdeUniversalJoint::get_anchor(void) const;
+
+1223 11 get_anchor2 0 4 1312 30 OdeUniversalJoint::get_anchor2 0 1 636 0
+61
+inline LVecBase3f OdeUniversalJoint::get_anchor2(void) const;
+
+1224 9 get_axis1 0 4 1312 28 OdeUniversalJoint::get_axis1 0 1 637 0
+59
+inline LVecBase3f OdeUniversalJoint::get_axis1(void) const;
+
+1225 9 get_axis2 0 4 1312 28 OdeUniversalJoint::get_axis2 0 1 638 0
+59
+inline LVecBase3f OdeUniversalJoint::get_axis2(void) const;
+
+1226 10 get_angle1 0 4 1312 29 OdeUniversalJoint::get_angle1 0 1 639 0
+55
+inline dReal OdeUniversalJoint::get_angle1(void) const;
+
+1227 10 get_angle2 0 4 1312 29 OdeUniversalJoint::get_angle2 0 1 640 0
+55
+inline dReal OdeUniversalJoint::get_angle2(void) const;
+
+1228 15 get_angle1_rate 0 4 1312 34 OdeUniversalJoint::get_angle1_rate 0 1 641 0
+60
+inline dReal OdeUniversalJoint::get_angle1_rate(void) const;
+
+1229 15 get_angle2_rate 0 4 1312 34 OdeUniversalJoint::get_angle2_rate 0 1 642 0
+60
+inline dReal OdeUniversalJoint::get_angle2_rate(void) const;
+
+1230 17 set_param_lo_stop 0 4 1312 36 OdeUniversalJoint::set_param_lo_stop 0 1 643 0
+70
+inline void OdeUniversalJoint::set_param_lo_stop(int axis, dReal val);
+
+1231 17 set_param_hi_stop 0 4 1312 36 OdeUniversalJoint::set_param_hi_stop 0 1 644 0
+70
+inline void OdeUniversalJoint::set_param_hi_stop(int axis, dReal val);
+
+1232 13 set_param_vel 0 4 1312 32 OdeUniversalJoint::set_param_vel 0 1 645 0
+66
+inline void OdeUniversalJoint::set_param_vel(int axis, dReal val);
+
+1233 15 set_param_f_max 0 4 1312 34 OdeUniversalJoint::set_param_f_max 0 1 646 0
+68
+inline void OdeUniversalJoint::set_param_f_max(int axis, dReal val);
+
+1234 22 set_param_fudge_factor 0 4 1312 41 OdeUniversalJoint::set_param_fudge_factor 0 1 647 0
+75
+inline void OdeUniversalJoint::set_param_fudge_factor(int axis, dReal val);
+
+1235 16 set_param_bounce 0 4 1312 35 OdeUniversalJoint::set_param_bounce 0 1 648 0
+69
+inline void OdeUniversalJoint::set_param_bounce(int axis, dReal val);
+
+1236 13 set_param_CFM 0 4 1312 32 OdeUniversalJoint::set_param_CFM 0 1 649 0
+66
+inline void OdeUniversalJoint::set_param_CFM(int axis, dReal val);
+
+1237 18 set_param_stop_ERP 0 4 1312 37 OdeUniversalJoint::set_param_stop_ERP 0 1 650 0
+71
+inline void OdeUniversalJoint::set_param_stop_ERP(int axis, dReal val);
+
+1238 18 set_param_stop_CFM 0 4 1312 37 OdeUniversalJoint::set_param_stop_CFM 0 1 651 0
+71
+inline void OdeUniversalJoint::set_param_stop_CFM(int axis, dReal val);
+
+1239 17 get_param_lo_stop 0 4 1312 36 OdeUniversalJoint::get_param_lo_stop 0 1 652 0
+66
+inline dReal OdeUniversalJoint::get_param_lo_stop(int axis) const;
+
+1240 17 get_param_hi_stop 0 4 1312 36 OdeUniversalJoint::get_param_hi_stop 0 1 653 0
+66
+inline dReal OdeUniversalJoint::get_param_hi_stop(int axis) const;
+
+1241 13 get_param_vel 0 4 1312 32 OdeUniversalJoint::get_param_vel 0 1 654 0
+62
+inline dReal OdeUniversalJoint::get_param_vel(int axis) const;
+
+1242 15 get_param_f_max 0 4 1312 34 OdeUniversalJoint::get_param_f_max 0 1 655 0
+64
+inline dReal OdeUniversalJoint::get_param_f_max(int axis) const;
+
+1243 22 get_param_fudge_factor 0 4 1312 41 OdeUniversalJoint::get_param_fudge_factor 0 1 656 0
+71
+inline dReal OdeUniversalJoint::get_param_fudge_factor(int axis) const;
+
+1244 16 get_param_bounce 0 4 1312 35 OdeUniversalJoint::get_param_bounce 0 1 657 0
+65
+inline dReal OdeUniversalJoint::get_param_bounce(int axis) const;
+
+1245 13 get_param_CFM 0 4 1312 32 OdeUniversalJoint::get_param_CFM 0 1 658 0
+62
+inline dReal OdeUniversalJoint::get_param_CFM(int axis) const;
+
+1246 18 get_param_stop_ERP 0 4 1312 37 OdeUniversalJoint::get_param_stop_ERP 0 1 659 0
+67
+inline dReal OdeUniversalJoint::get_param_stop_ERP(int axis) const;
+
+1247 18 get_param_stop_CFM 0 4 1312 37 OdeUniversalJoint::get_param_stop_CFM 0 1 660 0
+67
+inline dReal OdeUniversalJoint::get_param_stop_CFM(int axis) const;
+
+1248 14 get_class_type 0 4 1312 33 OdeUniversalJoint::get_class_type 0 1 661 0
+58
+static TypeHandle OdeUniversalJoint::get_class_type(void);
+
+1249 20 get_connecting_joint 0 4 1313 29 OdeUtil::get_connecting_joint 0 1 664 60
+/**
+ * Returns the joint that connects the given bodies.
+ */
+90
+static OdeJoint OdeUtil::get_connecting_joint(OdeBody const &body1, OdeBody const &body2);
+
+1250 25 get_connecting_joint_list 0 4 1313 34 OdeUtil::get_connecting_joint_list 0 1 665 74
+/**
+ * Returns a collection of joints connecting the specified bodies.
+ */
+105
+static OdeJointCollection OdeUtil::get_connecting_joint_list(OdeBody const &body1, OdeBody const &body2);
+
+1251 13 are_connected 0 4 1313 22 OdeUtil::are_connected 0 1 666 90
+/**
+ * Returns 1 if the given bodies are connected by a joint, returns 0
+ * otherwise.
+ */
+78
+static int OdeUtil::are_connected(OdeBody const &body1, OdeBody const &body2);
+
+1252 23 are_connected_excluding 0 4 1313 32 OdeUtil::are_connected_excluding 0 1 667 404
+/**
+ * Returns 1 if the given bodies are connected by a joint that does not match
+ * the given joint_type, returns 0 otherwise.  This is useful for deciding
+ * whether to add contact joints between two bodies: if they are already
+ * connected by non-contact joints then it may not be appropriate to add
+ * contacts, however it is okay to add more contact between bodies that
+ * already have contacts.
+ */
+110
+static int OdeUtil::are_connected_excluding(OdeBody const &body1, OdeBody const &body2, int const joint_type);
+
+1253 7 collide 0 4 1313 16 OdeUtil::collide 0 1 668 152
+/**
+ * Given two geometry objects that potentially touch (geom1 and geom2),
+ * generate contact information for them.  Returns an OdeCollisionEntry.
+ */
+135
+static PointerTo< OdeCollisionEntry > OdeUtil::collide(OdeGeom const &geom1, OdeGeom const &geom2, short int const max_contacts = 150);
+
+1254 8 collide2 0 4 1313 17 OdeUtil::collide2 0 1 669 0
+108
+static int OdeUtil::collide2(OdeGeom const &geom1, OdeGeom const &geom2, PyObject *arg, PyObject *callback);
+
+1255 13 space_to_geom 0 4 1313 22 OdeUtil::space_to_geom 0 1 670 0
+61
+static OdeGeom OdeUtil::space_to_geom(OdeSpace const &space);
+
+1256 12 get_infinity 0 4 1313 21 OdeUtil::get_infinity 0 1 671 73
+// RAU we can't access OC_infinity as constants are not exposed in python
+41
+static dReal OdeUtil::get_infinity(void);
+
+1257 13 rand_get_seed 0 4 1313 22 OdeUtil::rand_get_seed 0 1 672 0
+40
+static int OdeUtil::rand_get_seed(void);
+
+1258 13 rand_set_seed 0 4 1313 22 OdeUtil::rand_set_seed 0 1 673 0
+42
+static void OdeUtil::rand_set_seed(int s);
+
+1259 7 OdeUtil 0 4 1313 16 OdeUtil::OdeUtil 0 2 662 663 0
+92
+inline OdeUtil::OdeUtil(void) = default;
+inline OdeUtil::OdeUtil(OdeUtil const &) = default;
+
+1260 8 ~OdeUtil 0 4 1313 17 OdeUtil::~OdeUtil 0 0 0
+24
+OdeUtil::~OdeUtil(void);
+
+673
+1 0 0 7 10 1314 0 0 0 0 
+2 0 0 7 10 1314 0 0 0 1 4 copy 1 1315  
+3 0 0 4 11 1317 0 0 0 1 4 this 3 1314  
+4 0 0 6 12 1318 0 0 205 /**
+ * Returns true if the ID is 0, meaning the OdeWorld does not point to a valid
+ * world.  It is an error to call a method on an empty world.  Note that an
+ * empty OdeWorld also evaluates to False.
+ */ 1 4 this 3 1315  
+5 0 0 6 13 1319 0 0 43 /**
+ * Returns the underlying dWorldID.
+ */ 1 4 this 3 1315  
+6 0 0 4 14 1317 0 0 0 2 4 this 3 1314  3 vec 1 1321  
+7 0 0 4 14 1317 0 0 0 4 4 this 3 1314  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+8 0 0 4 15 1317 0 0 0 2 4 this 3 1314  3 erp 1 1324  
+9 0 0 4 16 1317 0 0 0 2 4 this 3 1314  3 cfm 1 1324  
+10 0 0 4 17 1317 0 0 0 2 4 this 3 1314  3 num 1 1326  
+11 0 0 4 18 1317 0 0 0 2 4 this 3 1314  15 over_relaxation 1 1324  
+12 0 0 4 19 1317 0 0 0 2 4 this 3 1314  3 vel 1 1324  
+13 0 0 4 20 1317 0 0 0 2 4 this 3 1314  5 depth 1 1324  
+14 0 0 4 21 1317 0 0 0 2 4 this 3 1314  16 linear_threshold 1 1324  
+15 0 0 4 22 1317 0 0 0 2 4 this 3 1314  17 angular_threshold 1 1324  
+16 0 0 4 23 1317 0 0 0 2 4 this 3 1314  5 steps 1 1326  
+17 0 0 4 24 1317 0 0 0 2 4 this 3 1314  4 time 1 1324  
+18 0 0 4 25 1317 0 0 0 2 4 this 3 1314  15 do_auto_disable 1 1326  
+19 0 0 7 26 1327 0 0 0 1 4 this 3 1315  
+20 0 0 6 27 1324 0 0 0 1 4 this 3 1315  
+21 0 0 6 28 1324 0 0 0 1 4 this 3 1315  
+22 0 0 6 29 1326 0 0 0 1 4 this 3 1315  
+23 0 0 6 30 1324 0 0 0 1 4 this 3 1315  
+24 0 0 6 31 1324 0 0 0 1 4 this 3 1315  
+25 0 0 6 32 1324 0 0 0 1 4 this 3 1315  
+26 0 0 6 33 1324 0 0 0 1 4 this 3 1315  
+27 0 0 6 34 1324 0 0 0 1 4 this 3 1315  
+28 0 0 6 35 1326 0 0 0 1 4 this 3 1315  
+29 0 0 6 36 1324 0 0 0 1 4 this 3 1315  
+30 0 0 6 37 1326 0 0 0 1 4 this 3 1315  
+31 0 0 7 38 1327 0 0 0 3 4 this 3 1314  8 stepsize 1 1324  7 impulse 1 1321  
+32 0 0 7 38 1327 0 0 0 5 4 this 3 1314  8 stepsize 1 1324  2 ix 1 1324  2 iy 1 1324  2 iz 1 1324  
+33 0 0 4 39 1317 0 0 0 2 4 this 3 1314  8 stepsize 1 1324  
+34 0 0 4 40 1317 0 0 0 2 4 this 3 1314  8 stepsize 1 1324  
+35 0 0 6 41 1326 0 0 0 2 4 this 3 1315  5 other 1 1315  
+36 0 0 4 42 1317 0 0 0 2 4 this 3 1314  12 num_surfaces 1 1328  
+37 0 0 4 43 1317 0 0 56 // void assign_surface_body(OdeBody& body, int surface); 3 4 this 3 1314  4 body 1 1330  7 surface 1 1326  
+38 0 0 4 44 1317 0 0 0 10 4 this 3 1314  4 pos1 1 1328  4 pos2 1 1328  2 mu 1 1324  6 bounce 1 1324  10 bounce_vel 1 1324  8 soft_erp 1 1324  8 soft_cfm 1 1324  4 slip 1 1324  6 dampen 1 1324  
+39 0 0 6 45 1325 0 0 0 3 4 this 3 1314  2 dt 1 1325  4 body 1 1330  
+40 0 0 7 47 1332 0 0 0 0 
+41 0 0 6 46 1318 0 0 0 1 4 this 3 1315  
+42 0 0 7 49 1333 0 0 0 0 
+43 0 0 4 50 1317 0 0 0 1 4 this 3 1333  
+44 0 0 6 51 1336 0 0 0 1 4 this 3 1334  
+45 0 0 4 52 1317 0 0 0 1 4 this 3 1334  
+46 0 0 6 53 1326 0 0 0 2 4 this 3 1334  5 other 1 1334  
+47 0 0 7 54 1332 0 0 0 0 
+48 0 0 7 61 1338 723 0 0 0 
+49 0 0 7 61 1338 723 0 0 1 6 param0 0 1339  
+50 0 0 7 57 1343 0 0 0 1 4 this 3 1339  
+51 0 0 7 58 1343 0 0 0 1 4 this 3 1339  
+52 0 0 7 59 1343 0 0 0 1 4 this 3 1339  
+53 0 0 7 60 1343 0 0 0 1 4 this 3 1339  
+54 0 0 4 65 1317 0 0 0 1 4 this 3 1344  
+55 0 0 6 66 1318 0 0 205 /**
+ * Returns true if the ID is 0, meaning the OdeJoint does not point to a valid
+ * joint.  It is an error to call a method on an empty joint.  Note that an
+ * empty OdeJoint also evaluates to False.
+ */ 1 4 this 3 1345  
+56 0 0 6 67 1347 0 0 43 /**
+ * Returns the underlying dJointID.
+ */ 1 4 this 3 1345  
+57 0 0 6 68 1326 0 0 30 /* INLINE void *get_data(); */ 1 4 this 3 1345  
+58 0 0 7 69 1330 0 0 0 2 4 this 3 1345  5 index 1 1326  
+59 0 0 4 70 1317 0 0 0 2 4 this 3 1344  6 param0 0 1338  
+60 0 0 4 70 1317 0 0 0 2 4 this 3 1344  4 flag 1 1318  
+61 0 0 6 71 1338 0 0 0 1 4 this 3 1344  
+62 0 0 4 72 1317 0 0 0 3 4 this 3 1344  5 body1 1 1280  5 body2 1 1280  
+63 0 0 4 73 1317 0 0 175 /**
+ * Attaches two OdeBody objects to this joint.  Order is important.  Consider
+ * using the OdeJoint::attach extension function if you're using the Python
+ * interface.
+ */ 3 4 this 3 1344  5 body1 1 1349  5 body2 1 1349  
+64 0 0 4 74 1317 0 0 237 /**
+ * Attaches a single OdeBody to this joint at the specified index (0 or 1).
+ * The other index will be set to the environment (null). Consider using the
+ * OdeJoint::attach extension function if you're using the Python interface.
+ */ 3 4 this 3 1344  4 body 1 1349  5 index 1 1326  
+65 0 0 4 75 1317 0 0 0 1 4 this 3 1344  
+66 0 0 4 76 1317 0 0 0 3 4 this 3 1345  3 out 1 1351  6 indent 1 1353  
+67 0 0 6 77 1326 0 0 0 2 4 this 3 1345  5 other 1 1345  
+68 0 0 6 78 1318 0 0 0 2 4 this 3 1345  5 other 1 1345  
+69 0 0 6 80 1280 0 0 0 1 4 this 3 1345  
+70 0 0 7 81 1354 0 0 0 1 4 this 3 1345  
+71 0 0 7 82 1355 0 0 0 1 4 this 3 1345  
+72 0 0 7 83 1356 0 0 0 1 4 this 3 1345  
+73 0 0 7 84 1357 0 0 0 1 4 this 3 1345  
+74 0 0 7 85 1358 0 0 0 1 4 this 3 1345  
+75 0 0 7 86 1359 0 0 0 1 4 this 3 1345  
+76 0 0 7 87 1360 0 0 0 1 4 this 3 1345  
+77 0 0 7 88 1361 0 0 0 1 4 this 3 1345  
+78 0 0 7 89 1362 0 0 0 1 4 this 3 1345  
+79 0 0 7 90 1363 0 0 0 1 4 this 3 1345  
+80 0 0 7 91 1364 0 0 0 1 4 this 3 1345  
+81 0 0 7 92 1332 0 0 0 0 
+82 0 0 6 79 1318 0 0 0 1 4 this 3 1345  
+83 0 0 7 94 1362 0 0 0 1 5 world 1 1314  
+84 0 0 7 94 1362 0 0 0 2 5 world 1 1314  11 joint_group 1 1333  
+85 0 0 4 95 1317 0 0 0 2 4 this 3 1362  3 num 1 1326  
+86 0 0 4 96 1317 0 0 0 4 4 this 3 1362  4 anum 1 1326  3 rel 1 1326  4 axis 1 1321  
+87 0 0 4 96 1317 0 0 0 6 4 this 3 1362  4 anum 1 1326  3 rel 1 1326  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+88 0 0 4 97 1317 0 0 0 3 4 this 3 1362  4 anum 1 1326  5 angle 1 1324  
+89 0 0 4 98 1317 0 0 0 2 4 this 3 1362  4 mode 1 1326  
+90 0 0 4 99 1317 0 0 0 4 4 this 3 1362  7 torque1 1 1324  7 torque2 1 1324  7 torque3 1 1324  
+91 0 0 6 100 1326 0 0 0 1 4 this 3 1365  
+92 0 0 7 101 1327 0 0 0 2 4 this 3 1365  4 anum 1 1326  
+93 0 0 6 103 1326 0 0 0 2 4 this 3 1365  4 anum 1 1326  
+94 0 0 6 104 1324 0 0 0 2 4 this 3 1365  4 anum 1 1326  
+95 0 0 6 105 1324 0 0 0 2 4 this 3 1365  4 anum 1 1326  
+96 0 0 6 106 1326 0 0 0 1 4 this 3 1365  
+97 0 0 4 107 1317 0 0 0 3 4 this 3 1362  4 axis 1 1326  3 val 1 1324  
+98 0 0 4 108 1317 0 0 0 3 4 this 3 1362  4 axis 1 1326  3 val 1 1324  
+99 0 0 4 109 1317 0 0 0 3 4 this 3 1362  4 axis 1 1326  3 val 1 1324  
+100 0 0 4 110 1317 0 0 0 3 4 this 3 1362  4 axis 1 1326  3 val 1 1324  
+101 0 0 4 111 1317 0 0 0 3 4 this 3 1362  4 axis 1 1326  3 val 1 1324  
+102 0 0 4 112 1317 0 0 0 3 4 this 3 1362  4 axis 1 1326  3 val 1 1324  
+103 0 0 4 113 1317 0 0 0 3 4 this 3 1362  4 axis 1 1326  3 val 1 1324  
+104 0 0 4 114 1317 0 0 0 3 4 this 3 1362  4 axis 1 1326  3 val 1 1324  
+105 0 0 4 115 1317 0 0 0 3 4 this 3 1362  4 axis 1 1326  3 val 1 1324  
+106 0 0 6 116 1324 0 0 0 2 4 this 3 1365  4 axis 1 1326  
+107 0 0 6 117 1324 0 0 0 2 4 this 3 1365  4 axis 1 1326  
+108 0 0 6 118 1324 0 0 0 2 4 this 3 1365  4 axis 1 1326  
+109 0 0 6 119 1324 0 0 0 2 4 this 3 1365  4 axis 1 1326  
+110 0 0 6 120 1324 0 0 0 2 4 this 3 1365  4 axis 1 1326  
+111 0 0 6 121 1324 0 0 0 2 4 this 3 1365  4 axis 1 1326  
+112 0 0 6 122 1324 0 0 0 2 4 this 3 1365  4 axis 1 1326  
+113 0 0 6 123 1324 0 0 0 2 4 this 3 1365  4 axis 1 1326  
+114 0 0 6 124 1324 0 0 0 2 4 this 3 1365  4 axis 1 1326  
+115 0 0 7 125 1332 0 0 0 0 
+116 0 0 7 127 1354 0 0 0 1 5 world 1 1314  
+117 0 0 7 127 1354 0 0 0 2 5 world 1 1314  11 joint_group 1 1333  
+118 0 0 4 128 1317 0 0 0 2 4 this 3 1354  6 anchor 1 1321  
+119 0 0 4 128 1317 0 0 0 4 4 this 3 1354  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+120 0 0 4 129 1317 0 0 0 2 4 this 3 1354  6 anchor 1 1321  
+121 0 0 4 129 1317 0 0 0 4 4 this 3 1354  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+122 0 0 7 130 1327 0 0 0 1 4 this 3 1367  
+123 0 0 7 131 1327 0 0 0 1 4 this 3 1367  
+124 0 0 7 132 1332 0 0 0 0 
+125 0 0 7 135 1369 0 0 0 0 
+126 0 0 7 135 1369 0 0 0 1 4 copy 1 1370  
+127 0 0 6 136 1326 0 0 0 1 4 this 3 1369  
+128 0 0 4 137 1317 0 0 0 1 4 this 3 1369  
+129 0 0 4 138 1317 0 0 0 4 4 this 3 1369  7 themass 1 1324  6 center 1 1321  1 r 1 1372  
+130 0 0 4 138 1317 0 0 0 11 4 this 3 1369  7 themass 1 1324  3 cgx 1 1324  3 cgy 1 1324  3 cgz 1 1324  3 I11 1 1324  3 I22 1 1324  3 I33 1 1324  3 I12 1 1324  3 I13 1 1324  3 I23 1 1324  
+131 0 0 4 139 1317 0 0 0 3 4 this 3 1369  7 density 1 1324  6 radius 1 1324  
+132 0 0 4 140 1317 0 0 0 3 4 this 3 1369  10 total_mass 1 1324  6 radius 1 1324  
+133 0 0 4 141 1317 0 0 0 5 4 this 3 1369  7 density 1 1324  9 direction 1 1326  6 radius 1 1324  6 length 1 1324  
+134 0 0 4 142 1317 0 0 0 5 4 this 3 1369  10 total_mass 1 1324  9 direction 1 1326  6 radius 1 1324  6 length 1 1324  
+135 0 0 4 143 1317 0 0 0 5 4 this 3 1369  7 density 1 1324  9 direction 1 1326  6 radius 1 1324  6 length 1 1324  
+136 0 0 4 144 1317 0 0 0 5 4 this 3 1369  10 total_mass 1 1324  9 direction 1 1326  6 radius 1 1324  6 length 1 1324  
+137 0 0 4 145 1317 0 0 0 3 4 this 3 1369  7 density 1 1324  4 size 1 1321  
+138 0 0 4 145 1317 0 0 0 5 4 this 3 1369  7 density 1 1324  2 lx 1 1324  2 ly 1 1324  2 lz 1 1324  
+139 0 0 4 146 1317 0 0 0 3 4 this 3 1369  10 total_mass 1 1324  4 size 1 1321  
+140 0 0 4 146 1317 0 0 0 5 4 this 3 1369  10 total_mass 1 1324  2 lx 1 1324  2 ly 1 1324  2 lz 1 1324  
+141 0 0 4 147 1317 0 0 0 2 4 this 3 1369  7 newmass 1 1324  
+142 0 0 4 148 1317 0 0 0 2 4 this 3 1369  3 pos 1 1321  
+143 0 0 4 148 1317 0 0 0 4 4 this 3 1369  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+144 0 0 4 149 1317 0 0 0 2 4 this 3 1369  1 r 1 1372  
+145 0 0 4 150 1317 0 0 0 2 4 this 3 1369  5 other 1 1369  
+146 0 0 6 151 1324 0 0 0 1 4 this 3 1370  
+147 0 0 7 152 1376 0 0 0 1 4 this 3 1370  
+148 0 0 7 153 1377 0 0 0 1 4 this 3 1370  
+149 0 0 4 154 1317 0 0 0 3 4 this 3 1370  3 out 1 1351  6 indent 1 1353  
+150 0 0 7 155 1332 0 0 0 0 
+151 0 0 7 157 1330 0 0 0 1 5 world 1 1314  
+152 0 0 4 158 1317 0 0 0 1 4 this 3 1330  
+153 0 0 6 159 1318 0 0 201 /**
+ * Returns true if the ID is 0, meaning the OdeBody does not point to a valid
+ * body.  It is an error to call a method on an empty body.  Note that an
+ * empty OdeBody also evaluates to False.
+ */ 1 4 this 3 1349  
+154 0 0 6 160 1378 0 0 42 /**
+ * Returns the underlying dBodyID.
+ */ 1 4 this 3 1349  
+155 0 0 4 161 1317 0 0 0 2 4 this 3 1330  16 linear_threshold 1 1324  
+156 0 0 4 162 1317 0 0 0 2 4 this 3 1330  17 angular_threshold 1 1324  
+157 0 0 4 163 1317 0 0 0 2 4 this 3 1330  5 steps 1 1326  
+158 0 0 4 164 1317 0 0 0 2 4 this 3 1330  4 time 1 1324  
+159 0 0 4 165 1317 0 0 0 2 4 this 3 1330  15 do_auto_disable 1 1326  
+160 0 0 4 166 1317 0 0 0 1 4 this 3 1330  
+161 0 0 4 167 1317 0 0 0 2 4 this 3 1330  4 data 1 1280  
+162 0 0 4 168 1317 0 0 0 2 4 this 3 1330  3 pos 1 1321  
+163 0 0 4 168 1317 0 0 0 4 4 this 3 1330  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+164 0 0 4 169 1317 0 0 0 2 4 this 3 1330  1 r 1 1372  
+165 0 0 4 170 1317 0 0 0 2 4 this 3 1330  1 q 1 1380  
+166 0 0 4 171 1317 0 0 0 2 4 this 3 1330  3 vel 1 1321  
+167 0 0 4 171 1317 0 0 0 4 4 this 3 1330  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+168 0 0 4 172 1317 0 0 0 2 4 this 3 1330  3 vel 1 1321  
+169 0 0 4 172 1317 0 0 0 4 4 this 3 1330  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+170 0 0 4 173 1317 0 0 0 2 4 this 3 1330  4 mass 1 1369  
+171 0 0 6 174 1324 0 0 0 1 4 this 3 1349  
+172 0 0 6 175 1324 0 0 0 1 4 this 3 1349  
+173 0 0 6 176 1326 0 0 0 1 4 this 3 1349  
+174 0 0 6 177 1324 0 0 0 1 4 this 3 1349  
+175 0 0 6 178 1326 0 0 0 1 4 this 3 1349  
+176 0 0 6 179 1280 0 0 0 1 4 this 3 1349  
+177 0 0 7 180 1327 0 0 0 1 4 this 3 1349  
+178 0 0 7 181 1377 0 0 0 1 4 this 3 1349  
+179 0 0 7 182 1384 0 0 0 1 4 this 3 1349  
+180 0 0 7 183 1327 0 0 0 1 4 this 3 1349  
+181 0 0 7 184 1327 0 0 0 1 4 this 3 1349  
+182 0 0 7 185 1369 0 0 0 1 4 this 3 1349  
+183 0 0 4 186 1317 0 0 0 2 4 this 3 1330  1 f 1 1321  
+184 0 0 4 186 1317 0 0 0 4 4 this 3 1330  2 fx 1 1324  2 fy 1 1324  2 fz 1 1324  
+185 0 0 4 187 1317 0 0 0 2 4 this 3 1330  1 f 1 1321  
+186 0 0 4 187 1317 0 0 0 4 4 this 3 1330  2 fx 1 1324  2 fy 1 1324  2 fz 1 1324  
+187 0 0 4 188 1317 0 0 0 2 4 this 3 1330  1 f 1 1321  
+188 0 0 4 188 1317 0 0 0 4 4 this 3 1330  2 fx 1 1324  2 fy 1 1324  2 fz 1 1324  
+189 0 0 4 189 1317 0 0 0 2 4 this 3 1330  1 f 1 1321  
+190 0 0 4 189 1317 0 0 0 4 4 this 3 1330  2 fx 1 1324  2 fy 1 1324  2 fz 1 1324  
+191 0 0 4 190 1317 0 0 0 3 4 this 3 1330  1 f 1 1321  3 pos 1 1321  
+192 0 0 4 190 1317 0 0 0 7 4 this 3 1330  2 fx 1 1324  2 fy 1 1324  2 fz 1 1324  2 px 1 1324  2 py 1 1324  2 pz 1 1324  
+193 0 0 4 191 1317 0 0 0 3 4 this 3 1330  1 f 1 1321  3 pos 1 1321  
+194 0 0 4 191 1317 0 0 0 7 4 this 3 1330  2 fx 1 1324  2 fy 1 1324  2 fz 1 1324  2 px 1 1324  2 py 1 1324  2 pz 1 1324  
+195 0 0 4 192 1317 0 0 0 3 4 this 3 1330  1 f 1 1321  3 pos 1 1321  
+196 0 0 4 192 1317 0 0 0 7 4 this 3 1330  2 fx 1 1324  2 fy 1 1324  2 fz 1 1324  2 px 1 1324  2 py 1 1324  2 pz 1 1324  
+197 0 0 4 193 1317 0 0 0 3 4 this 3 1330  1 f 1 1321  3 pos 1 1321  
+198 0 0 4 193 1317 0 0 0 7 4 this 3 1330  2 fx 1 1324  2 fy 1 1324  2 fz 1 1324  2 px 1 1324  2 py 1 1324  2 pz 1 1324  
+199 0 0 4 194 1317 0 0 0 2 4 this 3 1330  1 f 1 1321  
+200 0 0 4 194 1317 0 0 0 4 4 this 3 1330  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+201 0 0 4 195 1317 0 0 0 2 4 this 3 1330  1 f 1 1321  
+202 0 0 4 195 1317 0 0 0 4 4 this 3 1330  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+203 0 0 7 196 1376 0 0 0 2 4 this 3 1349  3 pos 1 1321  
+204 0 0 7 196 1376 0 0 0 4 4 this 3 1349  2 px 1 1324  2 py 1 1324  2 pz 1 1324  
+205 0 0 7 197 1376 0 0 0 2 4 this 3 1349  3 pos 1 1321  
+206 0 0 7 197 1376 0 0 0 4 4 this 3 1349  2 px 1 1324  2 py 1 1324  2 pz 1 1324  
+207 0 0 7 198 1376 0 0 0 2 4 this 3 1349  3 pos 1 1321  
+208 0 0 7 198 1376 0 0 0 4 4 this 3 1349  2 px 1 1324  2 py 1 1324  2 pz 1 1324  
+209 0 0 7 199 1376 0 0 0 2 4 this 3 1349  3 pos 1 1321  
+210 0 0 7 199 1376 0 0 0 4 4 this 3 1349  2 px 1 1324  2 py 1 1324  2 pz 1 1324  
+211 0 0 7 200 1327 0 0 0 2 4 this 3 1349  3 pos 1 1321  
+212 0 0 7 200 1327 0 0 0 4 4 this 3 1349  2 px 1 1324  2 py 1 1324  2 pz 1 1324  
+213 0 0 7 201 1327 0 0 0 2 4 this 3 1349  3 pos 1 1321  
+214 0 0 7 201 1327 0 0 0 4 4 this 3 1349  2 px 1 1324  2 py 1 1324  2 pz 1 1324  
+215 0 0 4 202 1317 0 0 0 2 4 this 3 1330  4 mode 1 1326  
+216 0 0 4 203 1317 0 0 0 2 4 this 3 1330  4 axis 1 1321  
+217 0 0 4 203 1317 0 0 0 4 4 this 3 1330  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+218 0 0 6 204 1326 0 0 0 1 4 this 3 1349  
+219 0 0 7 205 1327 0 0 0 1 4 this 3 1349  
+220 0 0 6 206 1326 0 0 0 1 4 this 3 1349  
+221 0 0 7 207 1344 0 0 0 2 4 this 3 1349  5 index 1 1326  
+222 0 0 6 209 1280 0 0 0 2 4 this 3 1349  1 i 1 1326  
+223 0 0 4 214 1317 0 0 0 1 4 this 3 1330  
+224 0 0 4 215 1317 0 0 0 1 4 this 3 1330  
+225 0 0 6 216 1326 0 0 0 1 4 this 3 1349  
+226 0 0 4 217 1317 0 0 0 2 4 this 3 1330  4 mode 1 1326  
+227 0 0 6 218 1326 0 0 0 1 4 this 3 1349  
+228 0 0 4 219 1317 0 0 0 3 4 this 3 1349  3 out 1 1351  6 indent 1 1353  
+229 0 0 6 221 1326 0 0 0 2 4 this 3 1349  5 other 1 1349  
+230 0 0 7 222 1332 0 0 0 0 
+231 0 0 6 220 1318 0 0 0 1 4 this 3 1349  
+232 0 0 4 224 1317 0 0 0 1 4 this 3 1385  
+233 0 0 6 225 1318 0 0 205 /**
+ * Returns true if the ID is 0, meaning the OdeSpace does not point to a valid
+ * space.  It is an error to call a method on an empty space.  Note that an
+ * empty OdeSpace also evaluates to False.
+ */ 1 4 this 3 1386  
+234 0 0 4 226 1317 0 0 0 2 4 this 3 1385  4 mode 1 1326  
+235 0 0 6 227 1326 0 0 0 1 4 this 3 1386  
+236 0 0 6 228 1326 0 0 0 2 4 this 3 1386  4 geom 1 1388  
+237 0 0 6 228 1326 0 0 0 2 4 this 3 1386  5 space 1 1386  
+238 0 0 6 229 1326 0 0 0 1 4 this 3 1386  
+239 0 0 4 230 1317 0 0 0 3 4 this 3 1386  3 min 1 1327  3 max 1 1327  
+240 0 0 6 231 1280 0 0 0 1 4 this 3 1386  
+241 0 0 6 232 1326 0 0 0 1 4 this 3 1385  
+242 0 0 6 233 1326 0 0 0 1 4 this 3 1386  
+243 0 0 4 234 1317 0 0 0 2 4 this 3 1385  4 bits 1 1390  
+244 0 0 4 235 1317 0 0 0 2 4 this 3 1385  4 bits 1 1390  
+245 0 0 7 236 1394 0 0 0 1 4 this 3 1385  
+246 0 0 7 237 1394 0 0 0 1 4 this 3 1385  
+247 0 0 4 238 1317 0 0 0 1 4 this 3 1385  
+248 0 0 4 239 1317 0 0 0 1 4 this 3 1385  
+249 0 0 6 240 1326 0 0 0 1 4 this 3 1385  
+250 0 0 4 241 1317 0 0 0 2 4 this 3 1385  6 param0 0 1314  
+251 0 0 4 242 1317 0 0 0 2 4 this 3 1385  6 param0 0 1333  
+252 0 0 4 243 1317 0 0 0 2 4 this 3 1385  4 geom 1 1395  
+253 0 0 4 243 1317 0 0 0 2 4 this 3 1385  5 space 1 1385  
+254 0 0 4 244 1317 0 0 0 2 4 this 3 1385  4 geom 1 1395  
+255 0 0 4 244 1317 0 0 0 2 4 this 3 1385  5 space 1 1385  
+256 0 0 4 245 1317 0 0 0 1 4 this 3 1385  
+257 0 0 7 246 1395 0 0 0 2 4 this 3 1385  1 i 1 1326  
+258 0 0 7 247 1385 0 0 0 1 4 this 3 1386  
+259 0 0 4 248 1317 0 0 0 3 4 this 3 1386  3 out 1 1351  6 indent 1 1353  
+260 0 0 7 250 1396 0 0 0 1 4 this 3 1386  
+261 0 0 7 251 1397 0 0 0 1 4 this 3 1386  
+262 0 0 7 252 1398 0 0 0 1 4 this 3 1386  
+263 0 0 6 253 1280 0 0 0 1 4 this 3 1386  
+264 0 0 6 254 1280 0 0 0 2 4 this 3 1386  1 i 1 1326  
+265 0 0 6 255 1280 0 0 0 1 4 this 3 1386  
+266 0 0 4 256 1317 0 0 0 1 4 this 3 1385  
+267 0 0 6 257 1326 0 0 0 3 4 this 3 1385  3 arg 1 1280  13 near_callback 1 1280  
+268 0 0 6 258 1326 0 0 0 3 4 this 3 1385  4 geom 1 1395  10 collide_id 1 1326  
+269 0 0 6 258 1326 0 0 0 3 4 this 3 1385  10 collide_id 1 1326  2 id 1 1399  
+270 0 0 4 259 1317 0 0 0 3 4 this 3 1385  4 geom 1 1395  12 surface_type 1 1326  
+271 0 0 4 259 1317 0 0 0 3 4 this 3 1385  12 surface_type 1 1326  2 id 1 1399  
+272 0 0 6 260 1326 0 0 0 2 4 this 3 1385  4 geom 1 1395  
+273 0 0 6 260 1326 0 0 0 2 4 this 3 1385  2 o1 1 1399  
+274 0 0 6 261 1326 0 0 0 2 4 this 3 1385  4 geom 1 1395  
+275 0 0 6 261 1326 0 0 0 2 4 this 3 1385  2 o1 1 1399  
+276 0 0 4 262 1317 0 0 0 2 4 this 3 1385  10 event_name 1 1401  
+277 0 0 6 263 1401 0 0 0 1 4 this 3 1385  
+278 0 0 7 264 1332 0 0 0 0 
+279 0 0 6 249 1318 0 0 0 1 4 this 3 1386  
+280 0 0 4 267 1317 0 0 0 1 4 this 3 1395  
+281 0 0 6 268 1318 0 0 201 /**
+ * Returns true if the ID is 0, meaning the OdeGeom does not point to a valid
+ * geom.  It is an error to call a method on an empty geom.  Note that an
+ * empty OdeGeom also evaluates to False.
+ */ 1 4 this 3 1388  
+282 0 0 6 269 1399 0 0 42 /**
+ * Returns the underlying dGeomID.
+ */ 1 4 this 3 1388  
+283 0 0 4 270 1317 0 0 36 // INLINE void set_data(void* data); 2 4 this 3 1395  4 body 1 1330  
+284 0 0 6 271 1318 0 0 0 1 4 this 3 1388  
+285 0 0 7 272 1330 0 0 0 1 4 this 3 1388  
+286 0 0 4 273 1317 0 0 0 2 4 this 3 1395  3 pos 1 1321  
+287 0 0 4 273 1317 0 0 0 4 4 this 3 1395  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+288 0 0 4 274 1317 0 0 0 2 4 this 3 1395  1 r 1 1372  
+289 0 0 4 275 1317 0 0 0 2 4 this 3 1395  1 q 1 1380  
+290 0 0 7 276 1376 0 0 0 1 4 this 3 1388  
+291 0 0 7 277 1377 0 0 0 1 4 this 3 1388  
+292 0 0 7 278 1402 0 0 0 1 4 this 3 1388  
+293 0 0 4 279 1317 0 0 0 3 4 this 3 1388  3 min 1 1327  3 max 1 1327  
+294 0 0 6 280 1280 0 0 0 1 4 this 3 1388  
+295 0 0 6 281 1326 0 0 0 1 4 this 3 1395  
+296 0 0 6 282 1326 0 0 0 1 4 this 3 1388  
+297 0 0 4 283 1317 0 0 0 2 4 this 3 1395  4 bits 1 1390  
+298 0 0 4 284 1317 0 0 0 2 4 this 3 1395  4 bits 1 1390  
+299 0 0 7 285 1394 0 0 0 1 4 this 3 1395  
+300 0 0 7 286 1394 0 0 0 1 4 this 3 1395  
+301 0 0 4 287 1317 0 0 0 1 4 this 3 1395  
+302 0 0 4 288 1317 0 0 0 1 4 this 3 1395  
+303 0 0 6 289 1326 0 0 0 1 4 this 3 1395  
+304 0 0 4 290 1317 0 0 0 2 4 this 3 1395  3 pos 1 1321  
+305 0 0 4 290 1317 0 0 0 4 4 this 3 1395  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+306 0 0 4 291 1317 0 0 0 2 4 this 3 1395  1 r 1 1372  
+307 0 0 4 292 1317 0 0 0 2 4 this 3 1395  1 q 1 1380  
+308 0 0 4 293 1317 0 0 0 2 4 this 3 1395  3 pos 1 1321  
+309 0 0 4 293 1317 0 0 0 4 4 this 3 1395  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+310 0 0 4 294 1317 0 0 0 2 4 this 3 1395  1 r 1 1372  
+311 0 0 4 295 1317 0 0 0 2 4 this 3 1395  1 q 1 1380  
+312 0 0 4 296 1317 0 0 0 1 4 this 3 1395  
+313 0 0 6 297 1326 0 0 0 1 4 this 3 1395  
+314 0 0 7 298 1376 0 0 0 1 4 this 3 1388  
+315 0 0 7 299 1377 0 0 0 1 4 this 3 1388  
+316 0 0 7 300 1402 0 0 0 1 4 this 3 1388  
+317 0 0 7 301 1385 0 0 0 1 4 this 3 1388  
+318 0 0 6 302 1280 0 0 0 1 4 this 3 1388  
+319 0 0 4 303 1317 0 0 0 3 4 this 3 1388  3 out 1 1351  6 indent 1 1353  
+320 0 0 6 305 1326 0 0 0 2 4 this 3 1388  5 other 1 1388  
+321 0 0 6 306 1280 0 0 0 1 4 this 3 1388  
+322 0 0 7 307 1403 0 0 0 1 4 this 3 1388  
+323 0 0 7 308 1404 0 0 0 1 4 this 3 1388  
+324 0 0 7 309 1405 0 0 43 // OdeConvexGeom convert_to_convex() const; 1 4 this 3 1388  
+325 0 0 7 310 1406 0 0 53 // OdeHeightfieldGeom convert_to_heightfield() const; 1 4 this 3 1388  
+326 0 0 7 311 1407 0 0 0 1 4 this 3 1388  
+327 0 0 7 312 1408 0 0 0 1 4 this 3 1388  
+328 0 0 7 313 1409 0 0 0 1 4 this 3 1388  
+329 0 0 7 314 1396 0 0 0 1 4 this 3 1388  
+330 0 0 7 315 1397 0 0 0 1 4 this 3 1388  
+331 0 0 7 316 1398 0 0 0 1 4 this 3 1388  
+332 0 0 7 317 1332 0 0 0 0 
+333 0 0 6 304 1318 0 0 0 1 4 this 3 1388  
+334 0 0 7 319 1403 0 0 0 2 5 space 1 1385  4 size 1 1321  
+335 0 0 7 319 1403 0 0 0 4 5 space 1 1385  2 lx 1 1324  2 ly 1 1324  2 lz 1 1324  
+336 0 0 7 319 1403 0 0 0 3 2 lx 1 1324  2 ly 1 1324  2 lz 1 1324  
+337 0 0 4 320 1317 0 0 0 2 4 this 3 1403  4 size 1 1321  
+338 0 0 4 320 1317 0 0 0 4 4 this 3 1403  2 lx 1 1324  2 ly 1 1324  2 lz 1 1324  
+339 0 0 7 321 1327 0 0 0 1 4 this 3 1403  
+340 0 0 6 322 1324 0 0 0 2 4 this 3 1403  1 p 1 1410  
+341 0 0 6 322 1324 0 0 0 4 4 this 3 1403  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+342 0 0 7 323 1332 0 0 0 0 
+343 0 0 7 325 1404 0 0 0 3 5 space 1 1385  6 radius 1 1324  6 length 1 1324  
+344 0 0 7 325 1404 0 0 0 2 6 radius 1 1324  6 length 1 1324  
+345 0 0 4 326 1317 0 0 0 3 4 this 3 1404  6 radius 1 1324  6 length 1 1324  
+346 0 0 6 328 1324 0 0 0 1 4 this 3 1412  
+347 0 0 6 329 1324 0 0 0 1 4 this 3 1412  
+348 0 0 6 330 1324 0 0 0 2 4 this 3 1412  1 p 1 1410  
+349 0 0 6 330 1324 0 0 0 4 4 this 3 1412  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+350 0 0 7 331 1332 0 0 0 0 
+351 0 0 7 333 1414 0 0 0 0 
+352 0 0 7 333 1414 0 0 0 1 4 copy 1 1415  
+353 0 0 7 334 1327 0 0 0 1 4 this 3 1415  
+354 0 0 7 335 1327 0 0 0 1 4 this 3 1415  
+355 0 0 6 336 1324 0 0 0 1 4 this 3 1415  
+356 0 0 7 337 1395 0 0 0 1 4 this 3 1415  
+357 0 0 7 338 1395 0 0 0 1 4 this 3 1415  
+358 0 0 6 339 1326 0 0 0 1 4 this 3 1415  
+359 0 0 6 340 1326 0 0 0 1 4 this 3 1415  
+360 0 0 4 341 1317 0 0 0 2 4 this 3 1414  3 pos 1 1321  
+361 0 0 4 342 1317 0 0 0 2 4 this 3 1414  6 normal 1 1321  
+362 0 0 4 343 1317 0 0 0 2 4 this 3 1414  5 depth 1 1417  
+363 0 0 4 344 1317 0 0 0 2 4 this 3 1414  4 geom 1 1388  
+364 0 0 4 345 1317 0 0 0 2 4 this 3 1414  4 geom 1 1388  
+365 0 0 7 346 1332 0 0 0 0 
+366 0 0 7 361 1420 0 0 0 1 6 param0 0 1418  
+367 0 0 7 348 1395 0 0 51 /**
+ * Returns the first geom in the collision.
+ */ 1 4 this 3 1418  
+368 0 0 7 349 1395 0 0 52 /**
+ * Returns the second geom in the collision.
+ */ 1 4 this 3 1418  
+369 0 0 7 350 1330 0 0 51 /**
+ * Returns the first body in the collision.
+ */ 1 4 this 3 1418  
+370 0 0 7 351 1330 0 0 52 /**
+ * Returns the second body in the collision.
+ */ 1 4 this 3 1418  
+371 0 0 6 352 1421 0 0 59 /**
+ * Returns the number of contacts in the collision.
+ */ 1 4 this 3 1418  
+372 0 0 7 353 1376 0 0 123 /**
+ * Returns the nth contact point in the collision.  This does exactly the same
+ * as get_contact_geom(n).get_pos().
+ */ 2 4 this 3 1418  1 n 1 1421  
+373 0 0 7 354 1414 0 0 57 /**
+ * Returns the nth contact geom in the collision.
+ */ 2 4 this 3 1418  1 n 1 1421  
+374 0 0 7 355 1414 0 0 0 2 4 this 3 1418  1 n 1 1421  
+375 0 0 6 359 1318 0 0 55 /**
+ * Returns true if the entry holds no contacts.
+ */ 1 4 this 3 1418  
+376 0 0 7 360 1332 0 0 0 0 
+377 0 0 6 358 1318 0 0 0 1 4 this 3 1418  
+378 0 0 7 364 1423 0 0 0 2 4 mode 1 1326  2 mu 1 1324  
+379 0 0 4 365 1317 0 0 0 2 4 this 3 1423  4 mode 1 1326  
+380 0 0 4 366 1317 0 0 0 2 4 this 3 1423  2 mu 1 1324  
+381 0 0 4 367 1317 0 0 0 2 4 this 3 1423  3 mu2 1 1324  
+382 0 0 4 368 1317 0 0 0 2 4 this 3 1423  6 bounce 1 1324  
+383 0 0 4 369 1317 0 0 0 2 4 this 3 1423  10 bounce_vel 1 1324  
+384 0 0 4 370 1317 0 0 0 2 4 this 3 1423  8 soft_erp 1 1324  
+385 0 0 4 371 1317 0 0 0 2 4 this 3 1423  8 soft_cfm 1 1324  
+386 0 0 4 372 1317 0 0 0 2 4 this 3 1423  6 motion 1 1324  
+387 0 0 4 373 1317 0 0 0 2 4 this 3 1423  6 motion 1 1324  
+388 0 0 4 374 1317 0 0 0 2 4 this 3 1423  4 slip 1 1324  
+389 0 0 4 375 1317 0 0 0 2 4 this 3 1423  4 slip 1 1324  
+390 0 0 6 376 1326 0 0 0 1 4 this 3 1424  
+391 0 0 6 377 1324 0 0 0 1 4 this 3 1424  
+392 0 0 6 378 1324 0 0 0 1 4 this 3 1424  
+393 0 0 6 379 1324 0 0 0 1 4 this 3 1424  
+394 0 0 6 380 1324 0 0 0 1 4 this 3 1424  
+395 0 0 6 381 1324 0 0 0 1 4 this 3 1424  
+396 0 0 6 382 1324 0 0 0 1 4 this 3 1424  
+397 0 0 6 383 1324 0 0 0 1 4 this 3 1424  
+398 0 0 6 384 1324 0 0 0 1 4 this 3 1424  
+399 0 0 6 385 1324 0 0 0 1 4 this 3 1424  
+400 0 0 6 386 1324 0 0 0 1 4 this 3 1424  
+401 0 0 7 387 1332 0 0 0 0 
+402 0 0 7 389 1426 0 0 0 0 
+403 0 0 7 389 1426 0 0 38 // OdeContact(const OdeContact &copy); 1 7 contact 1 1427  
+404 0 0 7 390 1423 0 0 0 1 4 this 3 1430  
+405 0 0 7 391 1414 0 0 0 1 4 this 3 1426  
+406 0 0 7 392 1327 0 0 0 1 4 this 3 1430  
+407 0 0 4 393 1317 0 0 0 2 4 this 3 1426  18 surface_parameters 1 1424  
+408 0 0 4 394 1317 0 0 0 2 4 this 3 1426  12 contact_geom 1 1415  
+409 0 0 4 395 1317 0 0 0 2 4 this 3 1426  5 fdir1 1 1321  
+410 0 0 7 396 1332 0 0 0 0 
+411 0 0 7 398 1357 0 0 0 2 5 world 1 1314  7 contact 1 1430  
+412 0 0 7 398 1357 0 0 0 3 5 world 1 1314  11 joint_group 1 1333  7 contact 1 1430  
+413 0 0 7 399 1332 0 0 0 0 
+414 0 0 7 401 1405 0 0 0 3 5 space 1 1385  6 radius 1 1324  6 length 1 1324  
+415 0 0 7 401 1405 0 0 0 2 6 radius 1 1324  6 length 1 1324  
+416 0 0 4 402 1317 0 0 0 3 4 this 3 1405  6 radius 1 1324  6 length 1 1324  
+417 0 0 6 404 1324 0 0 0 1 4 this 3 1432  
+418 0 0 6 405 1324 0 0 0 1 4 this 3 1432  
+419 0 0 7 406 1332 0 0 0 0 
+420 0 0 7 408 1360 0 0 0 1 5 world 1 1314  
+421 0 0 7 408 1360 0 0 0 2 5 world 1 1314  11 joint_group 1 1333  
+422 0 0 4 409 1317 0 0 0 1 4 this 3 1360  
+423 0 0 7 410 1332 0 0 0 0 
+424 0 0 7 412 1397 0 0 0 0 
+425 0 0 7 412 1397 0 0 0 1 5 space 1 1385  
+426 0 0 4 413 1317 0 0 0 3 4 this 3 1397  8 minlevel 1 1326  8 maxlevel 1 1326  
+427 0 0 6 414 1326 0 0 0 1 4 this 3 1434  
+428 0 0 6 415 1326 0 0 0 1 4 this 3 1434  
+429 0 0 7 416 1332 0 0 0 0 
+430 0 0 7 418 1359 0 0 0 1 5 world 1 1314  
+431 0 0 7 418 1359 0 0 0 2 5 world 1 1314  11 joint_group 1 1333  
+432 0 0 4 419 1317 0 0 0 2 4 this 3 1359  6 anchor 1 1321  
+433 0 0 4 419 1317 0 0 0 4 4 this 3 1359  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+434 0 0 4 420 1317 0 0 0 2 4 this 3 1359  4 axis 1 1321  
+435 0 0 4 420 1317 0 0 0 4 4 this 3 1359  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+436 0 0 4 421 1317 0 0 0 2 4 this 3 1359  4 axis 1 1321  
+437 0 0 4 421 1317 0 0 0 4 4 this 3 1359  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+438 0 0 4 422 1317 0 0 0 3 4 this 3 1359  7 torque1 1 1324  7 torque2 1 1324  
+439 0 0 7 423 1327 0 0 0 1 4 this 3 1436  
+440 0 0 7 424 1327 0 0 0 1 4 this 3 1436  
+441 0 0 7 425 1327 0 0 0 1 4 this 3 1436  
+442 0 0 7 426 1327 0 0 0 1 4 this 3 1436  
+443 0 0 6 427 1324 0 0 0 1 4 this 3 1436  
+444 0 0 6 428 1324 0 0 0 1 4 this 3 1436  
+445 0 0 6 429 1324 0 0 0 1 4 this 3 1436  
+446 0 0 4 430 1317 0 0 0 3 4 this 3 1359  4 axis 1 1326  3 val 1 1324  
+447 0 0 4 431 1317 0 0 0 3 4 this 3 1359  4 axis 1 1326  3 val 1 1324  
+448 0 0 4 432 1317 0 0 0 3 4 this 3 1359  4 axis 1 1326  3 val 1 1324  
+449 0 0 4 433 1317 0 0 0 3 4 this 3 1359  4 axis 1 1326  3 val 1 1324  
+450 0 0 4 434 1317 0 0 0 3 4 this 3 1359  4 axis 1 1326  3 val 1 1324  
+451 0 0 4 435 1317 0 0 0 3 4 this 3 1359  4 axis 1 1326  3 val 1 1324  
+452 0 0 4 436 1317 0 0 0 3 4 this 3 1359  4 axis 1 1326  3 val 1 1324  
+453 0 0 4 437 1317 0 0 0 3 4 this 3 1359  4 axis 1 1326  3 val 1 1324  
+454 0 0 4 438 1317 0 0 0 3 4 this 3 1359  4 axis 1 1326  3 val 1 1324  
+455 0 0 4 439 1317 0 0 0 3 4 this 3 1359  4 axis 1 1326  3 val 1 1324  
+456 0 0 4 440 1317 0 0 0 3 4 this 3 1359  4 axis 1 1326  3 val 1 1324  
+457 0 0 6 441 1324 0 0 0 2 4 this 3 1436  4 axis 1 1326  
+458 0 0 6 442 1324 0 0 0 2 4 this 3 1436  4 axis 1 1326  
+459 0 0 6 443 1324 0 0 0 2 4 this 3 1436  4 axis 1 1326  
+460 0 0 6 444 1324 0 0 0 2 4 this 3 1436  4 axis 1 1326  
+461 0 0 6 445 1324 0 0 0 2 4 this 3 1436  4 axis 1 1326  
+462 0 0 6 446 1324 0 0 0 2 4 this 3 1436  4 axis 1 1326  
+463 0 0 6 447 1324 0 0 0 2 4 this 3 1436  4 axis 1 1326  
+464 0 0 6 448 1324 0 0 0 2 4 this 3 1436  4 axis 1 1326  
+465 0 0 6 449 1324 0 0 0 2 4 this 3 1436  4 axis 1 1326  
+466 0 0 6 450 1324 0 0 0 2 4 this 3 1436  4 axis 1 1326  
+467 0 0 6 451 1324 0 0 0 2 4 this 3 1436  4 axis 1 1326  
+468 0 0 7 452 1332 0 0 0 0 
+469 0 0 7 454 1355 0 0 0 1 5 world 1 1314  
+470 0 0 7 454 1355 0 0 0 2 5 world 1 1314  11 joint_group 1 1333  
+471 0 0 4 455 1317 0 0 0 2 4 this 3 1355  6 anchor 1 1321  
+472 0 0 4 455 1317 0 0 0 4 4 this 3 1355  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+473 0 0 4 456 1317 0 0 0 3 4 this 3 1355  6 anchor 1 1321  3 vec 1 1321  
+474 0 0 4 456 1317 0 0 0 7 4 this 3 1355  1 x 1 1324  1 y 1 1324  1 z 1 1324  2 ax 1 1324  2 ay 1 1324  2 az 1 1324  
+475 0 0 4 457 1317 0 0 0 2 4 this 3 1355  4 axis 1 1321  
+476 0 0 4 457 1317 0 0 0 4 4 this 3 1355  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+477 0 0 4 458 1317 0 0 0 2 4 this 3 1355  6 torque 1 1324  
+478 0 0 7 459 1327 0 0 0 1 4 this 3 1438  
+479 0 0 7 460 1327 0 0 0 1 4 this 3 1438  
+480 0 0 7 461 1327 0 0 0 1 4 this 3 1438  
+481 0 0 6 462 1324 0 0 0 1 4 this 3 1438  
+482 0 0 6 463 1324 0 0 0 1 4 this 3 1438  
+483 0 0 4 464 1317 0 0 0 2 4 this 3 1355  3 val 1 1324  
+484 0 0 4 465 1317 0 0 0 2 4 this 3 1355  3 val 1 1324  
+485 0 0 4 466 1317 0 0 0 2 4 this 3 1355  3 val 1 1324  
+486 0 0 4 467 1317 0 0 0 2 4 this 3 1355  3 val 1 1324  
+487 0 0 4 468 1317 0 0 0 2 4 this 3 1355  3 val 1 1324  
+488 0 0 4 469 1317 0 0 0 2 4 this 3 1355  3 val 1 1324  
+489 0 0 4 470 1317 0 0 0 2 4 this 3 1355  3 val 1 1324  
+490 0 0 4 471 1317 0 0 0 2 4 this 3 1355  3 val 1 1324  
+491 0 0 4 472 1317 0 0 0 2 4 this 3 1355  3 val 1 1324  
+492 0 0 6 473 1324 0 0 0 1 4 this 3 1438  
+493 0 0 6 474 1324 0 0 0 1 4 this 3 1438  
+494 0 0 6 475 1324 0 0 0 1 4 this 3 1438  
+495 0 0 6 476 1324 0 0 0 1 4 this 3 1438  
+496 0 0 6 477 1324 0 0 0 1 4 this 3 1438  
+497 0 0 6 478 1324 0 0 0 1 4 this 3 1438  
+498 0 0 6 479 1324 0 0 0 1 4 this 3 1438  
+499 0 0 6 480 1324 0 0 0 1 4 this 3 1438  
+500 0 0 6 481 1324 0 0 0 1 4 this 3 1438  
+501 0 0 7 482 1332 0 0 0 0 
+502 0 0 7 484 1440 1115 0 0 0 
+503 0 0 7 484 1440 1115 0 0 1 4 copy 1 1441  
+504 0 0 6 485 1440 0 0 0 2 4 this 3 1440  4 copy 1 1441  
+505 0 0 4 487 1317 0 0 0 2 4 this 3 1440  5 joint 1 1345  
+506 0 0 6 488 1318 0 0 0 2 4 this 3 1440  5 joint 1 1345  
+507 0 0 4 489 1317 0 0 0 2 4 this 3 1440  5 other 1 1441  
+508 0 0 4 490 1317 0 0 0 2 4 this 3 1440  5 other 1 1441  
+509 0 0 4 491 1317 0 0 0 1 4 this 3 1440  
+510 0 0 6 492 1318 0 0 0 2 4 this 3 1441  5 joint 1 1345  
+511 0 0 4 493 1317 0 0 0 1 4 this 3 1440  
+512 0 0 6 494 1318 0 0 0 1 4 this 3 1441  
+513 0 0 6 495 1326 0 0 0 1 4 this 3 1441  
+514 0 0 7 496 1344 0 0 0 2 4 this 3 1441  5 index 1 1326  
+515 0 0 7 498 1344 0 0 0 2 4 this 3 1441  5 index 1 1326  
+516 0 0 6 499 1326 0 0 106 /**
+ * Returns the number of joints in the collection.  This is the same thing as
+ * get_num_joints().
+ */ 1 4 this 3 1441  
+517 0 0 6 500 1440 0 0 0 2 4 this 3 1440  5 other 1 1441  
+518 0 0 7 501 1440 1115 0 0 2 4 this 3 1441  5 other 1 1441  
+519 0 0 7 503 1363 0 0 0 1 5 world 1 1314  
+520 0 0 7 503 1363 0 0 0 2 5 world 1 1314  11 joint_group 1 1333  
+521 0 0 4 504 1317 0 0 0 2 4 this 3 1363  3 num 1 1326  
+522 0 0 4 505 1317 0 0 0 4 4 this 3 1363  4 anum 1 1326  3 rel 1 1326  4 axis 1 1321  
+523 0 0 4 505 1317 0 0 0 6 4 this 3 1363  4 anum 1 1326  3 rel 1 1326  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+524 0 0 4 506 1317 0 0 0 3 4 this 3 1363  9 parameter 1 1326  5 value 1 1324  
+525 0 0 6 507 1326 0 0 0 1 4 this 3 1443  
+526 0 0 7 508 1327 0 0 0 2 4 this 3 1443  4 anum 1 1326  
+527 0 0 6 510 1324 0 0 0 2 4 this 3 1443  9 parameter 1 1326  
+528 0 0 7 511 1332 0 0 0 0 
+529 0 0 7 513 1361 0 0 0 1 5 world 1 1314  
+530 0 0 7 513 1361 0 0 0 2 5 world 1 1314  11 joint_group 1 1333  
+531 0 0 7 514 1332 0 0 0 0 
+532 0 0 7 516 1364 0 0 0 1 5 world 1 1314  
+533 0 0 7 516 1364 0 0 0 2 5 world 1 1314  11 joint_group 1 1333  
+534 0 0 4 517 1317 0 0 0 3 4 this 3 1364  9 parameter 1 1326  5 value 1 1324  
+535 0 0 4 518 1317 0 0 0 3 4 this 3 1364  9 parameter 1 1326  5 value 1 1324  
+536 0 0 4 519 1317 0 0 0 3 4 this 3 1364  9 parameter 1 1326  5 value 1 1324  
+537 0 0 7 520 1332 0 0 0 0 
+538 0 0 7 522 1406 0 0 0 1 6 params 1 1445  
+539 0 0 7 522 1406 0 0 0 2 5 space 1 1385  6 params 1 1445  
+540 0 0 7 522 1406 0 0 0 5 5 space 1 1385  1 a 1 1324  1 b 1 1324  1 c 1 1324  1 d 1 1324  
+541 0 0 7 522 1406 0 0 0 4 1 a 1 1324  1 b 1 1324  1 c 1 1324  1 d 1 1324  
+542 0 0 4 523 1317 0 0 0 2 4 this 3 1406  6 params 1 1445  
+543 0 0 4 523 1317 0 0 0 5 4 this 3 1406  1 a 1 1324  1 b 1 1324  1 c 1 1324  1 d 1 1324  
+544 0 0 7 524 1384 0 0 0 1 4 this 3 1447  
+545 0 0 6 525 1324 0 0 0 2 4 this 3 1447  1 p 1 1410  
+546 0 0 6 525 1324 0 0 0 4 4 this 3 1447  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+547 0 0 7 526 1332 0 0 0 0 
+548 0 0 7 528 1398 0 0 0 3 6 center 1 1410  7 extents 1 1321  5 depth 1 1449  
+549 0 0 7 528 1398 0 0 0 4 5 space 1 1385  6 center 1 1410  7 extents 1 1321  5 depth 1 1449  
+550 0 0 7 529 1332 0 0 0 0 
+551 0 0 7 531 1407 0 0 0 2 5 space 1 1385  6 length 1 1324  
+552 0 0 7 531 1407 0 0 0 1 6 length 1 1324  
+553 0 0 4 532 1317 0 0 0 2 4 this 3 1407  6 length 1 1324  
+554 0 0 6 533 1324 0 0 0 1 4 this 3 1407  
+555 0 0 4 534 1317 0 0 0 3 4 this 3 1407  5 start 1 1321  3 dir 1 1321  
+556 0 0 4 534 1317 0 0 0 7 4 this 3 1407  2 px 1 1324  2 py 1 1324  2 pz 1 1324  2 dx 1 1324  2 dy 1 1324  2 dz 1 1324  
+557 0 0 4 535 1317 0 0 0 3 4 this 3 1450  5 start 1 1327  3 dir 1 1327  
+558 0 0 7 536 1327 0 0 0 1 4 this 3 1450  
+559 0 0 7 537 1327 0 0 0 1 4 this 3 1450  
+560 0 0 4 538 1317 0 0 0 3 4 this 3 1407  13 first_contact 1 1326  13 backface_cull 1 1326  
+561 0 0 6 540 1326 0 0 0 1 4 this 3 1450  
+562 0 0 6 541 1326 0 0 0 1 4 this 3 1450  
+563 0 0 4 542 1317 0 0 0 2 4 this 3 1407  11 closest_hit 1 1326  
+564 0 0 6 543 1326 0 0 0 1 4 this 3 1407  
+565 0 0 7 544 1332 0 0 0 0 
+566 0 0 7 546 1396 0 0 0 0 
+567 0 0 7 546 1396 0 0 0 1 5 space 1 1385  
+568 0 0 7 547 1332 0 0 0 0 
+569 0 0 7 549 1356 0 0 0 1 5 world 1 1314  
+570 0 0 7 549 1356 0 0 0 2 5 world 1 1314  11 joint_group 1 1333  
+571 0 0 4 550 1317 0 0 0 2 4 this 3 1356  4 axis 1 1321  
+572 0 0 4 550 1317 0 0 0 4 4 this 3 1356  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+573 0 0 4 551 1317 0 0 0 3 4 this 3 1356  4 axis 1 1321  3 vec 1 1321  
+574 0 0 4 551 1317 0 0 0 7 4 this 3 1356  1 x 1 1324  1 y 1 1324  1 z 1 1324  2 ax 1 1324  2 ay 1 1324  2 az 1 1324  
+575 0 0 4 552 1317 0 0 0 2 4 this 3 1356  5 force 1 1324  
+576 0 0 6 553 1324 0 0 0 1 4 this 3 1452  
+577 0 0 6 554 1324 0 0 0 1 4 this 3 1452  
+578 0 0 7 555 1327 0 0 0 1 4 this 3 1452  
+579 0 0 4 556 1317 0 0 0 2 4 this 3 1356  3 val 1 1324  
+580 0 0 4 557 1317 0 0 0 2 4 this 3 1356  3 val 1 1324  
+581 0 0 4 558 1317 0 0 0 2 4 this 3 1356  3 val 1 1324  
+582 0 0 4 559 1317 0 0 0 2 4 this 3 1356  3 val 1 1324  
+583 0 0 4 560 1317 0 0 0 2 4 this 3 1356  3 val 1 1324  
+584 0 0 4 561 1317 0 0 0 2 4 this 3 1356  3 val 1 1324  
+585 0 0 4 562 1317 0 0 0 2 4 this 3 1356  3 val 1 1324  
+586 0 0 4 563 1317 0 0 0 2 4 this 3 1356  3 val 1 1324  
+587 0 0 4 564 1317 0 0 0 2 4 this 3 1356  3 val 1 1324  
+588 0 0 6 565 1324 0 0 0 1 4 this 3 1452  
+589 0 0 6 566 1324 0 0 0 1 4 this 3 1452  
+590 0 0 6 567 1324 0 0 0 1 4 this 3 1452  
+591 0 0 6 568 1324 0 0 0 1 4 this 3 1452  
+592 0 0 6 569 1324 0 0 0 1 4 this 3 1452  
+593 0 0 6 570 1324 0 0 0 1 4 this 3 1452  
+594 0 0 6 571 1324 0 0 0 1 4 this 3 1452  
+595 0 0 6 572 1324 0 0 0 1 4 this 3 1452  
+596 0 0 6 573 1324 0 0 0 1 4 this 3 1452  
+597 0 0 7 574 1332 0 0 0 0 
+598 0 0 7 576 1408 0 0 0 1 4 geom 1 1395  
+599 0 0 7 576 1408 0 0 0 2 5 space 1 1385  6 radius 1 1324  
+600 0 0 7 576 1408 0 0 0 1 6 radius 1 1324  
+601 0 0 4 577 1317 0 0 0 2 4 this 3 1408  6 radius 1 1324  
+602 0 0 6 578 1324 0 0 0 1 4 this 3 1454  
+603 0 0 6 579 1324 0 0 0 2 4 this 3 1454  1 p 1 1410  
+604 0 0 6 579 1324 0 0 0 4 4 this 3 1454  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+605 0 0 7 580 1332 0 0 0 0 
+606 0 0 7 583 1459 0 0 0 2 5 model 1 1456  11 use_normals 1 1318  
+607 0 0 4 584 1317 0 0 0 1 4 this 3 1459  
+608 0 0 4 585 1317 0 0 0 3 4 this 3 1460  3 out 1 1351  6 indent 1 1353  
+609 0 0 4 586 1317 0 0 0 2 4 this 3 1460  3 out 1 1351  
+610 0 0 7 587 1332 0 0 0 0 
+611 0 0 7 589 1409 0 0 0 2 5 space 1 1385  4 data 1 1459  
+612 0 0 7 589 1409 0 0 162 /* ODE_API dGeomID dCreateTriMesh(dSpaceID space, dTriMeshDataID Data, dTriCallback* Callback, dTriArrayCallback* ArrayCallback, dTriRayCallback* RayCallback); */ 1 4 data 1 1459  
+613 0 0 7 589 1409 0 0 0 1 4 copy 1 1462  
+614 0 0 4 590 1317 0 0 0 1 4 this 3 1409  
+615 0 0 4 591 1317 0 0 0 2 4 this 3 1409  4 data 1 1459  
+616 0 0 7 592 1459 0 0 0 1 4 this 3 1462  
+617 0 0 4 593 1317 0 0 0 2 4 this 3 1409  4 data 1 1459  
+618 0 0 7 594 1459 0 0 0 1 4 this 3 1462  
+619 0 0 4 595 1317 0 0 0 3 4 this 3 1409  10 geom_class 1 1326  6 enable 1 1326  
+620 0 0 6 596 1326 0 0 0 2 4 this 3 1462  10 geom_class 1 1326  
+621 0 0 4 597 1317 0 0 0 2 4 this 3 1409  4 geom 1 1388  
+622 0 0 4 598 1317 0 0 0 5 4 this 3 1462  10 face_index 1 1326  2 v0 1 1376  2 v1 1 1376  2 v2 1 1376  
+623 0 0 7 599 1376 0 0 0 4 4 this 3 1462  10 face_index 1 1326  1 u 1 1324  1 v 1 1324  
+624 0 0 6 600 1326 0 0 0 1 4 this 3 1462  
+625 0 0 7 601 1332 0 0 0 0 
+626 0 0 7 603 1358 0 0 0 1 5 world 1 1314  
+627 0 0 7 603 1358 0 0 0 2 5 world 1 1314  11 joint_group 1 1333  
+628 0 0 4 604 1317 0 0 0 2 4 this 3 1358  6 anchor 1 1321  
+629 0 0 4 604 1317 0 0 0 4 4 this 3 1358  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+630 0 0 4 605 1317 0 0 0 2 4 this 3 1358  4 axis 1 1321  
+631 0 0 4 605 1317 0 0 0 4 4 this 3 1358  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+632 0 0 4 606 1317 0 0 0 2 4 this 3 1358  4 axis 1 1321  
+633 0 0 4 606 1317 0 0 0 4 4 this 3 1358  1 x 1 1324  1 y 1 1324  1 z 1 1324  
+634 0 0 4 607 1317 0 0 0 3 4 this 3 1358  7 torque1 1 1324  7 torque2 1 1324  
+635 0 0 7 608 1327 0 0 0 1 4 this 3 1464  
+636 0 0 7 609 1327 0 0 0 1 4 this 3 1464  
+637 0 0 7 610 1327 0 0 0 1 4 this 3 1464  
+638 0 0 7 611 1327 0 0 0 1 4 this 3 1464  
+639 0 0 6 612 1324 0 0 0 1 4 this 3 1464  
+640 0 0 6 613 1324 0 0 0 1 4 this 3 1464  
+641 0 0 6 614 1324 0 0 0 1 4 this 3 1464  
+642 0 0 6 615 1324 0 0 0 1 4 this 3 1464  
+643 0 0 4 616 1317 0 0 0 3 4 this 3 1358  4 axis 1 1326  3 val 1 1324  
+644 0 0 4 617 1317 0 0 0 3 4 this 3 1358  4 axis 1 1326  3 val 1 1324  
+645 0 0 4 618 1317 0 0 0 3 4 this 3 1358  4 axis 1 1326  3 val 1 1324  
+646 0 0 4 619 1317 0 0 0 3 4 this 3 1358  4 axis 1 1326  3 val 1 1324  
+647 0 0 4 620 1317 0 0 0 3 4 this 3 1358  4 axis 1 1326  3 val 1 1324  
+648 0 0 4 621 1317 0 0 0 3 4 this 3 1358  4 axis 1 1326  3 val 1 1324  
+649 0 0 4 622 1317 0 0 0 3 4 this 3 1358  4 axis 1 1326  3 val 1 1324  
+650 0 0 4 623 1317 0 0 0 3 4 this 3 1358  4 axis 1 1326  3 val 1 1324  
+651 0 0 4 624 1317 0 0 0 3 4 this 3 1358  4 axis 1 1326  3 val 1 1324  
+652 0 0 6 625 1324 0 0 0 2 4 this 3 1464  4 axis 1 1326  
+653 0 0 6 626 1324 0 0 0 2 4 this 3 1464  4 axis 1 1326  
+654 0 0 6 627 1324 0 0 0 2 4 this 3 1464  4 axis 1 1326  
+655 0 0 6 628 1324 0 0 0 2 4 this 3 1464  4 axis 1 1326  
+656 0 0 6 629 1324 0 0 0 2 4 this 3 1464  4 axis 1 1326  
+657 0 0 6 630 1324 0 0 0 2 4 this 3 1464  4 axis 1 1326  
+658 0 0 6 631 1324 0 0 0 2 4 this 3 1464  4 axis 1 1326  
+659 0 0 6 632 1324 0 0 0 2 4 this 3 1464  4 axis 1 1326  
+660 0 0 6 633 1324 0 0 0 2 4 this 3 1464  4 axis 1 1326  
+661 0 0 7 634 1332 0 0 0 0 
+662 0 0 7 646 1466 1260 0 0 0 
+663 0 0 7 646 1466 1260 0 0 1 6 param0 0 1467  
+664 0 0 7 636 1344 0 0 60 /**
+ * Returns the joint that connects the given bodies.
+ */ 2 5 body1 1 1349  5 body2 1 1349  
+665 0 0 7 637 1440 1115 0 74 /**
+ * Returns a collection of joints connecting the specified bodies.
+ */ 2 5 body1 1 1349  5 body2 1 1349  
+666 0 0 6 638 1326 0 0 90 /**
+ * Returns 1 if the given bodies are connected by a joint, returns 0
+ * otherwise.
+ */ 2 5 body1 1 1349  5 body2 1 1349  
+667 0 0 6 639 1326 0 0 404 /**
+ * Returns 1 if the given bodies are connected by a joint that does not match
+ * the given joint_type, returns 0 otherwise.  This is useful for deciding
+ * whether to add contact joints between two bodies: if they are already
+ * connected by non-contact joints then it may not be appropriate to add
+ * contacts, however it is okay to add more contact between bodies that
+ * already have contacts.
+ */ 3 5 body1 1 1349  5 body2 1 1349  10 joint_type 1 1449  
+668 0 0 7 640 1420 0 0 152 /**
+ * Given two geometry objects that potentially touch (geom1 and geom2),
+ * generate contact information for them.  Returns an OdeCollisionEntry.
+ */ 3 5 geom1 1 1388  5 geom2 1 1388  12 max_contacts 1 1469  
+669 0 0 6 641 1326 0 0 0 4 5 geom1 1 1388  5 geom2 1 1388  3 arg 1 1280  8 callback 1 1280  
+670 0 0 7 642 1395 0 0 0 1 5 space 1 1386  
+671 0 0 6 643 1324 0 0 73 // RAU we can't access OC_infinity as constants are not exposed in python 0 
+672 0 0 6 644 1326 0 0 0 0 
+673 0 0 4 645 1317 0 0 0 1 1 s 1 1326  
+210
+1261 6 dxBody 0 1025 6 dxBody 6 dxBody 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+1262 6 dxGeom 0 1025 6 dxGeom 6 dxGeom 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+1263 7 dxJoint 0 1025 7 dxJoint 7 dxJoint 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+1264 12 dxJointGroup 0 1025 12 dxJointGroup 12 dxJointGroup 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+1265 7 dxSpace 0 1025 7 dxSpace 7 dxSpace 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+1266 13 dxTriMeshData 0 1025 13 dxTriMeshData 13 dxTriMeshData 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+1267 7 dxWorld 0 1025 7 dxWorld 7 dxWorld 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+1268 8 OdeWorld 0 75777 8 OdeWorld 8 OdeWorld 0 0 0 1 674 0 0 36 675 676 677 678 679 680 681 682 683 684 685 686 687 688 689 690 691 692 693 694 695 696 697 698 699 700 701 702 703 704 705 706 707 708 709 711 0 1 710 1 0 1269 0 0 0 0 10
+/**
+ *
+ */
+
+1269 11 TypedObject 0 2048 11 TypedObject 11 TypedObject 0 0 0 0 0 0 0 0 0 0 0 0 2508
+/**
+ * This is an abstract class that all classes which use TypeHandle, and also
+ * provide virtual functions to support polymorphism, should inherit from.
+ * Each derived class should define get_type(), which should return the
+ * specific type of the derived class.  Inheriting from this automatically
+ * provides support for is_of_type() and is_exact_type().
+ *
+ * All classes that inherit directly or indirectly from TypedObject should
+ * redefine get_type() and force_init_type(), as shown below.  Some classes
+ * that do not inherit from TypedObject may still declare TypeHandles for
+ * themselves by defining methods called get_class_type() and init_type().
+ * Classes such as these may serve as base classes, but the dynamic type
+ * identification system will be limited.  Classes that do not inherit from
+ * TypedObject need not define the virtual functions get_type() and
+ * force_init_type() (or any other virtual functions).
+ *
+ * There is a specific layout for defining the overrides from this class.
+ * Keeping the definitions formatted just like these examples will allow
+ * someone in the future to use a sed (or similar) script to make global
+ * changes, if necessary.  Avoid rearranging the braces or the order of the
+ * functions unless you're ready to change them in every file all at once.
+ *
+ * What follows are some examples that can be used in new classes that you
+ * create.
+ *
+ * @par In the class definition (.h file):
+ * @code
+ * public:
+ *   static TypeHandle get_class_type() {
+ *     return _type_handle;
+ *   }
+ *   static void init_type() {
+ *     <<<BaseClassOne>>>::init_type();
+ *     <<<BaseClassTwo>>>::init_type();
+ *     <<<BaseClassN>>>::init_type();
+ *     register_type(_type_handle, "<<<ThisClassStringName>>>",
+ *                   <<<BaseClassOne>>>::get_class_type(),
+ *                   <<<BaseClassTwo>>>::get_class_type(),
+ *                   <<<BaseClassN>>>::get_class_type());
+ *   }
+ *   virtual TypeHandle get_type() const {
+ *     return get_class_type();
+ *   }
+ *   virtual TypeHandle force_init_type() {init_type(); return get_class_type();}
+ *
+ * private:
+ *   static TypeHandle _type_handle;
+ * @endcode
+ *
+ * @par In the class .cxx file:
+ * @code
+ * TypeHandle <<<ThisClassStringName>>>::_type_handle;
+ * @endcode
+ *
+ * @par In the class config_<<<PackageName>>>.cxx file:
+ * @code
+ * ConfigureFn(config_<<<PackageName>>>) {
+ *   <<<ClassOne>>>::init_type();
+ *   <<<ClassTwo>>>::init_type();
+ *   <<<ClassN>>>::init_type();
+ * }
+ * @endcode
+ */
+
+1270 13 OdeJointGroup 0 75777 13 OdeJointGroup 13 OdeJointGroup 0 0 0 1 712 0 0 5 713 714 715 716 717 0 0 1 0 1269 0 0 0 0 10
+/**
+ *
+ */
+
+1271 16 OdeJointFeedback 0 141313 16 OdeJointFeedback 16 OdeJointFeedback 0 0 0 1 722 723 0 4 718 719 720 721 0 0 1 0 1272 0 0 0 0 0
+
+1272 14 dJointFeedback 0 1024 14 dJointFeedback 14 dJointFeedback 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+1273 8 OdeJoint 0 75777 8 OdeJoint 8 OdeJoint 0 0 0 0 0 0 27 724 725 726 727 728 729 730 731 732 733 734 735 736 737 739 740 741 742 743 744 745 746 747 748 749 750 751 0 1 738 1 0 1269 0 0 0 1 1274 10
+/**
+ *
+ */
+
+1274 9 JointType 0 794624 19 OdeJoint::JointType 19 OdeJoint::JointType 1273 0 0 0 0 0 0 0 0 0 12 7 JT_none 17 OdeJoint::JT_none 18
+/* or "unknown" */
+0 7 JT_ball 17 OdeJoint::JT_ball 0
+1 8 JT_hinge 18 OdeJoint::JT_hinge 0
+2 9 JT_slider 19 OdeJoint::JT_slider 0
+3 10 JT_contact 20 OdeJoint::JT_contact 0
+4 12 JT_universal 22 OdeJoint::JT_universal 0
+5 9 JT_hinge2 19 OdeJoint::JT_hinge2 0
+6 8 JT_fixed 18 OdeJoint::JT_fixed 0
+7 7 JT_null 17 OdeJoint::JT_null 0
+8 10 JT_a_motor 20 OdeJoint::JT_a_motor 0
+9 10 JT_l_motor 20 OdeJoint::JT_l_motor 0
+10 10 JT_plane2d 20 OdeJoint::JT_plane2d 0
+11 0 18
+/* or "unknown" */
+
+1275 14 OdeAMotorJoint 0 75777 14 OdeAMotorJoint 14 OdeAMotorJoint 0 0 0 1 752 0 0 30 753 754 755 756 757 758 759 760 761 762 763 764 765 766 767 768 769 770 771 772 773 774 775 776 777 778 779 780 781 782 1 1472 0 1 0 1273 0 0 0 0 10
+/**
+ *
+ */
+
+1276 12 OdeBallJoint 0 75777 12 OdeBallJoint 12 OdeBallJoint 0 0 0 1 783 0 0 5 784 785 786 787 788 0 0 1 0 1273 0 0 0 0 10
+/**
+ *
+ */
+
+1277 7 OdeMass 0 75777 7 OdeMass 7 OdeMass 0 0 0 1 789 0 0 20 790 791 792 793 794 795 796 797 798 799 800 801 802 803 804 805 806 807 808 809 0 0 1 0 1278 0 0 0 0 10
+/**
+ *
+ */
+
+1278 19 TypedReferenceCount 0 2048 19 TypedReferenceCount 19 TypedReferenceCount 0 0 0 0 0 0 0 0 0 0 0 0 410
+/**
+ * A base class for things which need to inherit from both TypedObject and
+ * from ReferenceCount.  It's convenient to define this intermediate base
+ * class instead of multiply inheriting from the two classes each time they
+ * are needed, so that we can sensibly pass around pointers to things which
+ * are both TypedObjects and ReferenceCounters.
+ *
+ * See also TypedObject for detailed instructions.
+ */
+
+1279 7 OdeBody 0 75777 7 OdeBody 7 OdeBody 0 0 0 1 810 0 1 1471 59 811 812 813 814 815 816 817 818 819 820 821 822 823 824 825 826 827 828 829 830 831 832 833 834 835 836 837 838 839 840 841 842 843 844 845 846 847 848 849 850 851 852 853 854 855 856 857 858 859 860 861 862 863 864 865 866 867 869 870 1 1473 1 868 1 0 1269 0 0 0 0 10
+/**
+ *
+ */
+
+1280 10 PyObject * 0 8576 10 PyObject * 10 PyObject * 0 0 1281 0 0 0 0 0 0 0 0 0 0
+
+1281 8 PyObject 0 2105344 8 PyObject 8 PyObject 0 0 1282 0 0 0 0 0 0 0 0 0 0
+
+1282 7 _object 0 1024 7 _object 7 _object 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+1283 8 OdeSpace 0 75777 8 OdeSpace 8 OdeSpace 0 0 0 0 0 0 40 871 872 873 874 875 876 877 878 879 880 881 882 883 884 885 886 887 888 889 890 891 892 893 894 895 897 898 899 900 901 902 903 904 905 906 907 908 909 910 911 0 1 896 1 0 1269 0 0 0 0 10
+/**
+ *
+ */
+
+1284 7 OdeGeom 0 75777 7 OdeGeom 7 OdeGeom 0 0 0 0 0 0 50 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926 927 928 929 930 931 932 933 934 935 936 937 938 939 940 941 942 943 944 945 946 947 948 950 951 952 953 954 955 956 957 958 959 960 961 962 0 1 949 1 0 1269 0 0 0 1 1285 10
+/**
+ *
+ */
+
+1285 9 GeomClass 0 794624 18 OdeGeom::GeomClass 18 OdeGeom::GeomClass 1284 0 0 0 0 0 0 0 0 0 10 9 GC_sphere 18 OdeGeom::GC_sphere 0
+0 6 GC_box 15 OdeGeom::GC_box 0
+1 18 GC_capped_cylinder 27 OdeGeom::GC_capped_cylinder 0
+2 11 GC_cylinder 20 OdeGeom::GC_cylinder 0
+3 8 GC_plane 17 OdeGeom::GC_plane 0
+4 6 GC_ray 15 OdeGeom::GC_ray 0
+5 11 GC_tri_mesh 20 OdeGeom::GC_tri_mesh 32
+// GC_convex, GC_geom_transform,
+8 15 GC_simple_space 24 OdeGeom::GC_simple_space 0
+10 13 GC_hash_space 22 OdeGeom::GC_hash_space 0
+11 18 GC_quad_tree_space 27 OdeGeom::GC_quad_tree_space 0
+12 0 0
+
+1286 10 OdeBoxGeom 0 75777 10 OdeBoxGeom 10 OdeBoxGeom 0 0 0 1 963 0 0 4 964 965 966 967 0 0 1 0 1284 0 0 0 0 10
+/**
+ *
+ */
+
+1287 21 OdeCappedCylinderGeom 0 75777 21 OdeCappedCylinderGeom 21 OdeCappedCylinderGeom 0 0 0 1 968 0 0 6 969 970 971 972 973 974 0 0 1 0 1284 0 0 0 0 10
+/**
+ *
+ */
+
+1288 14 OdeContactGeom 0 75777 14 OdeContactGeom 14 OdeContactGeom 0 0 0 1 975 0 0 13 976 977 978 979 980 981 982 983 984 985 986 987 988 0 0 1 0 1278 0 0 0 0 10
+/**
+ *
+ */
+
+1289 17 OdeCollisionEntry 0 75777 17 OdeCollisionEntry 17 OdeCollisionEntry 0 0 0 1 1000 0 0 10 989 990 991 992 993 994 995 996 998 999 2 1474 1475 1 997 1 0 1278 0 0 0 0 80
+/**
+ * A class used to hold information about a collision that has occurred.
+ */
+
+1290 20 OdeSurfaceParameters 0 75777 20 OdeSurfaceParameters 20 OdeSurfaceParameters 0 0 0 1 1001 0 0 23 1002 1003 1004 1005 1006 1007 1008 1009 1010 1011 1012 1013 1014 1015 1016 1017 1018 1019 1020 1021 1022 1023 1024 0 0 1 0 1269 0 0 0 1 1291 10
+/**
+ *
+ */
+
+1291 9 ModeFlags 0 794624 31 OdeSurfaceParameters::ModeFlags 31 OdeSurfaceParameters::ModeFlags 1290 0 0 0 0 0 0 0 0 0 13 14 MF_contact_mu2 36 OdeSurfaceParameters::MF_contact_mu2 0
+1 15 MF_contactFDir1 37 OdeSurfaceParameters::MF_contactFDir1 0
+2 16 MF_contactBounce 38 OdeSurfaceParameters::MF_contactBounce 0
+4 17 MF_contactSoftERP 39 OdeSurfaceParameters::MF_contactSoftERP 0
+8 17 MF_contactSoftCFM 39 OdeSurfaceParameters::MF_contactSoftCFM 0
+16 17 MF_contactMotion1 39 OdeSurfaceParameters::MF_contactMotion1 0
+32 17 MF_contactMotion2 39 OdeSurfaceParameters::MF_contactMotion2 0
+64 15 MF_contactSlip1 37 OdeSurfaceParameters::MF_contactSlip1 0
+128 15 MF_contactSlip2 37 OdeSurfaceParameters::MF_contactSlip2 0
+256 17 MF_contactApprox0 39 OdeSurfaceParameters::MF_contactApprox0 0
+0 19 MF_contactApprox1_1 41 OdeSurfaceParameters::MF_contactApprox1_1 0
+4096 19 MF_contactApprox1_2 41 OdeSurfaceParameters::MF_contactApprox1_2 0
+8192 17 MF_contactApprox1 39 OdeSurfaceParameters::MF_contactApprox1 0
+12288 0 0
+
+1292 10 OdeContact 0 75777 10 OdeContact 10 OdeContact 0 0 0 1 1025 0 0 7 1026 1027 1028 1029 1030 1031 1032 0 0 1 0 1278 0 0 0 0 10
+/**
+ *
+ */
+
+1293 15 OdeContactJoint 0 75777 15 OdeContactJoint 15 OdeContactJoint 0 0 0 1 1033 0 0 1 1034 0 0 1 0 1273 0 0 0 0 10
+/**
+ *
+ */
+
+1294 15 OdeCylinderGeom 0 75777 15 OdeCylinderGeom 15 OdeCylinderGeom 0 0 0 1 1035 0 0 5 1036 1037 1038 1039 1040 0 0 1 0 1284 0 0 0 0 10
+/**
+ *
+ */
+
+1295 13 OdeFixedJoint 0 75777 13 OdeFixedJoint 13 OdeFixedJoint 0 0 0 1 1041 0 0 2 1042 1043 0 0 1 0 1273 0 0 0 0 10
+/**
+ *
+ */
+
+1296 12 OdeHashSpace 0 75777 12 OdeHashSpace 12 OdeHashSpace 0 0 0 1 1044 0 0 4 1045 1046 1047 1048 0 0 1 0 1283 0 0 0 0 10
+/**
+ *
+ */
+
+1297 14 OdeHinge2Joint 0 75777 14 OdeHinge2Joint 14 OdeHinge2Joint 0 0 0 1 1049 0 0 34 1050 1051 1052 1053 1054 1055 1056 1057 1058 1059 1060 1061 1062 1063 1064 1065 1066 1067 1068 1069 1070 1071 1072 1073 1074 1075 1076 1077 1078 1079 1080 1081 1082 1083 0 0 1 0 1273 0 0 0 0 10
+/**
+ *
+ */
+
+1298 13 OdeHingeJoint 0 75777 13 OdeHingeJoint 13 OdeHingeJoint 0 0 0 1 1084 0 0 28 1085 1086 1087 1088 1089 1090 1091 1092 1093 1094 1095 1096 1097 1098 1099 1100 1101 1102 1103 1104 1105 1106 1107 1108 1109 1110 1111 1112 0 0 1 0 1273 0 0 0 0 10
+/**
+ *
+ */
+
+1299 18 OdeJointCollection 0 26625 18 OdeJointCollection 18 OdeJointCollection 0 0 0 1 1113 1115 0 15 1114 1116 1117 1118 1119 1120 1121 1122 1123 1124 1125 1126 1127 1128 1129 1 1476 0 0 0 0 10
+/**
+ *
+ */
+
+1300 14 OdeLMotorJoint 0 75777 14 OdeLMotorJoint 14 OdeLMotorJoint 0 0 0 1 1130 0 0 7 1131 1132 1133 1134 1135 1136 1137 1 1477 0 1 0 1273 0 0 0 0 10
+/**
+ *
+ */
+
+1301 12 OdeNullJoint 0 75777 12 OdeNullJoint 12 OdeNullJoint 0 0 0 1 1138 0 0 1 1139 0 0 1 0 1273 0 0 0 0 10
+/**
+ *
+ */
+
+1302 15 OdePlane2dJoint 0 75777 15 OdePlane2dJoint 15 OdePlane2dJoint 0 0 0 1 1140 0 0 4 1141 1142 1143 1144 0 0 1 0 1273 0 0 0 0 10
+/**
+ *
+ */
+
+1303 12 OdePlaneGeom 0 75777 12 OdePlaneGeom 12 OdePlaneGeom 0 0 0 1 1145 0 0 4 1146 1147 1148 1149 0 0 1 0 1284 0 0 0 0 10
+/**
+ *
+ */
+
+1304 16 OdeQuadTreeSpace 0 75777 16 OdeQuadTreeSpace 16 OdeQuadTreeSpace 0 0 0 1 1150 0 0 1 1151 0 0 1 0 1283 0 0 0 0 10
+/**
+ *
+ */
+
+1305 10 OdeRayGeom 0 75777 10 OdeRayGeom 10 OdeRayGeom 0 0 0 1 1152 0 0 13 1153 1154 1155 1156 1157 1158 1159 1160 1161 1162 1163 1164 1165 0 0 1 0 1284 0 0 0 0 10
+/**
+ *
+ */
+
+1306 14 OdeSimpleSpace 0 75777 14 OdeSimpleSpace 14 OdeSimpleSpace 0 0 0 1 1166 0 0 1 1167 0 0 1 0 1283 0 0 0 0 10
+/**
+ *
+ */
+
+1307 14 OdeSliderJoint 0 75777 14 OdeSliderJoint 14 OdeSliderJoint 0 0 0 1 1168 0 0 25 1169 1170 1171 1172 1173 1174 1175 1176 1177 1178 1179 1180 1181 1182 1183 1184 1185 1186 1187 1188 1189 1190 1191 1192 1193 0 0 1 0 1273 0 0 0 0 10
+/**
+ *
+ */
+
+1308 13 OdeSphereGeom 0 75777 13 OdeSphereGeom 13 OdeSphereGeom 0 0 0 1 1194 0 0 4 1195 1196 1197 1198 0 0 1 0 1284 0 0 0 0 10
+/**
+ *
+ */
+
+1309 14 OdeTriMeshData 0 75777 14 OdeTriMeshData 14 OdeTriMeshData 0 0 0 1 1199 0 0 4 1200 1201 1202 1203 0 0 1 0 1278 0 0 0 1 1310 10
+/**
+ *
+ */
+
+1310 8 DataType 0 794624 24 OdeTriMeshData::DataType 24 OdeTriMeshData::DataType 1309 0 0 0 0 0 0 0 0 0 2 15 DT_face_normals 31 OdeTriMeshData::DT_face_normals 0
+0 22 DT_last_transformation 38 OdeTriMeshData::DT_last_transformation 0
+1 0 0
+
+1311 14 OdeTriMeshGeom 0 75777 14 OdeTriMeshGeom 14 OdeTriMeshGeom 0 0 0 1 1204 0 0 12 1205 1206 1207 1208 1209 1210 1211 1212 1213 1214 1215 1216 0 0 1 0 1284 0 0 0 0 10
+/**
+ *
+ */
+
+1312 17 OdeUniversalJoint 0 75777 17 OdeUniversalJoint 17 OdeUniversalJoint 0 0 0 1 1217 0 0 31 1218 1219 1220 1221 1222 1223 1224 1225 1226 1227 1228 1229 1230 1231 1232 1233 1234 1235 1236 1237 1238 1239 1240 1241 1242 1243 1244 1245 1246 1247 1248 0 0 1 0 1273 0 0 0 0 10
+/**
+ *
+ */
+
+1313 7 OdeUtil 0 141313 7 OdeUtil 7 OdeUtil 0 0 0 1 1259 1260 0 10 1249 1250 1251 1252 1253 1254 1255 1256 1257 1258 0 0 0 0 0 10
+/**
+ *
+ */
+
+1314 10 OdeWorld * 0 8576 10 OdeWorld * 10 OdeWorld * 0 0 1268 0 0 0 0 0 0 0 0 0 0
+
+1315 16 OdeWorld const * 0 8576 16 OdeWorld const * 16 OdeWorld const * 0 0 1316 0 0 0 0 0 0 0 0 0 0
+
+1316 14 OdeWorld const 0 8832 14 OdeWorld const 14 OdeWorld const 0 0 1268 0 0 0 0 0 0 0 0 0 0
+
+1317 4 void 0 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+1318 4 bool 0 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+1319 8 dWorldID 0 2105344 8 dWorldID 8 dWorldID 0 0 1320 0 0 0 0 0 0 0 0 0 0
+
+1320 9 dxWorld * 0 8576 9 dxWorld * 9 dxWorld * 0 0 1267 0 0 0 0 0 0 0 0 0 0
+
+1321 18 LVecBase3f const * 0 8576 18 LVecBase3f const * 18 LVecBase3f const * 0 0 1322 0 0 0 0 0 0 0 0 0 0
+
+1322 16 LVecBase3f const 0 8832 16 LVecBase3f const 16 LVecBase3f const 0 0 1323 0 0 0 0 0 0 0 0 0 0
+
+1323 10 LVecBase3f 0 2048 10 LVecBase3f 10 LVecBase3f 0 0 0 0 0 0 0 0 0 0 0 0 77
+/**
+ * This is the base class for all three-component vectors and points.
+ */
+
+1324 5 dReal 0 2105344 5 dReal 5 dReal 0 0 1325 0 0 0 0 0 0 0 0 0 0
+
+1325 5 float 0 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0 0
+
+1326 3 int 0 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+1327 12 LVecBase3f * 0 8576 12 LVecBase3f * 12 LVecBase3f * 0 0 1323 0 0 0 0 0 0 0 0 0 0
+
+1328 7 uint8_t 0 2105344 7 uint8_t 7 uint8_t 0 0 1329 0 0 0 0 0 0 0 0 0 0
+
+1329 13 unsigned char 0 8198 13 unsigned char 13 unsigned char 0 5 0 0 0 0 0 0 0 0 0 0 0
+
+1330 9 OdeBody * 0 8576 9 OdeBody * 9 OdeBody * 0 0 1279 0 0 0 0 0 0 0 0 0 0
+
+1331 10 TypeHandle 0 16779264 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 732
+/**
+ * TypeHandle is the identifier used to differentiate C++ class types.  Any
+ * C++ classes that inherit from some base class, and must be differentiated
+ * at run time, should store a static TypeHandle object that can be queried
+ * through a static member function named get_class_type().  Most of the time,
+ * it is also desirable to inherit from TypedObject, which provides some
+ * virtual functions to return the TypeHandle for a particular instance.
+ *
+ * At its essence, a TypeHandle is simply a unique identifier that is assigned
+ * by the TypeRegistry.  The TypeRegistry stores a tree of TypeHandles, so
+ * that ancestry of a particular type may be queried, and the type name may be
+ * retrieved for run-time display.
+ */
+
+1332 12 TypeHandle * 0 8576 12 TypeHandle * 12 TypeHandle * 0 0 1331 0 0 0 0 0 0 0 0 0 0
+
+1333 15 OdeJointGroup * 0 8576 15 OdeJointGroup * 15 OdeJointGroup * 0 0 1270 0 0 0 0 0 0 0 0 0 0
+
+1334 21 OdeJointGroup const * 0 8576 21 OdeJointGroup const * 21 OdeJointGroup const * 0 0 1335 0 0 0 0 0 0 0 0 0 0
+
+1335 19 OdeJointGroup const 0 8832 19 OdeJointGroup const 19 OdeJointGroup const 0 0 1270 0 0 0 0 0 0 0 0 0 0
+
+1336 13 dJointGroupID 0 2105344 13 dJointGroupID 13 dJointGroupID 0 0 1337 0 0 0 0 0 0 0 0 0 0
+
+1337 14 dxJointGroup * 0 8576 14 dxJointGroup * 14 dxJointGroup * 0 0 1264 0 0 0 0 0 0 0 0 0 0
+
+1338 18 OdeJointFeedback * 0 8576 18 OdeJointFeedback * 18 OdeJointFeedback * 0 0 1271 0 0 0 0 0 0 0 0 0 0
+
+1339 24 OdeJointFeedback const * 0 8576 24 OdeJointFeedback const * 24 OdeJointFeedback const * 0 0 1340 0 0 0 0 0 0 0 0 0 0
+
+1340 22 OdeJointFeedback const 0 8832 22 OdeJointFeedback const 22 OdeJointFeedback const 0 0 1271 0 0 0 0 0 0 0 0 0 0
+
+1341 15 LVector3f const 0 8832 15 LVector3f const 15 LVector3f const 0 0 1342 0 0 0 0 0 0 0 0 0 0
+
+1342 9 LVector3f 0 2048 9 LVector3f 9 LVector3f 0 0 0 0 0 0 0 0 0 0 0 0 338
+/**
+ * This is a three-component vector distance (as opposed to a three-component
+ * point, which represents a particular point in space).  Some of the methods
+ * are slightly different between LPoint3 and LVector3; in particular,
+ * subtraction of two points yields a vector, while addition of a vector and a
+ * point yields a point.
+ */
+
+1343 17 LVector3f const * 0 8576 17 LVector3f const * 17 LVector3f const * 0 0 1341 0 0 0 0 0 0 0 0 0 0
+
+1344 10 OdeJoint * 0 8576 10 OdeJoint * 10 OdeJoint * 0 0 1273 0 0 0 0 0 0 0 0 0 0
+
+1345 16 OdeJoint const * 0 8576 16 OdeJoint const * 16 OdeJoint const * 0 0 1346 0 0 0 0 0 0 0 0 0 0
+
+1346 14 OdeJoint const 0 8832 14 OdeJoint const 14 OdeJoint const 0 0 1273 0 0 0 0 0 0 0 0 0 0
+
+1347 8 dJointID 0 2105344 8 dJointID 8 dJointID 0 0 1348 0 0 0 0 0 0 0 0 0 0
+
+1348 9 dxJoint * 0 8576 9 dxJoint * 9 dxJoint * 0 0 1263 0 0 0 0 0 0 0 0 0 0
+
+1349 15 OdeBody const * 0 8576 15 OdeBody const * 15 OdeBody const * 0 0 1350 0 0 0 0 0 0 0 0 0 0
+
+1350 13 OdeBody const 0 8832 13 OdeBody const 13 OdeBody const 0 0 1279 0 0 0 0 0 0 0 0 0 0
+
+1351 9 ostream * 0 8576 14 std::ostream * 14 std::ostream * 0 0 1352 0 0 0 0 0 0 0 0 0 0
+
+1352 7 ostream 0 2048 12 std::ostream 12 std::ostream 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+1353 12 unsigned int 0 8198 12 unsigned int 12 unsigned int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+1354 14 OdeBallJoint * 0 8576 14 OdeBallJoint * 14 OdeBallJoint * 0 0 1276 0 0 0 0 0 0 0 0 0 0
+
+1355 15 OdeHingeJoint * 0 8576 15 OdeHingeJoint * 15 OdeHingeJoint * 0 0 1298 0 0 0 0 0 0 0 0 0 0
+
+1356 16 OdeSliderJoint * 0 8576 16 OdeSliderJoint * 16 OdeSliderJoint * 0 0 1307 0 0 0 0 0 0 0 0 0 0
+
+1357 17 OdeContactJoint * 0 8576 17 OdeContactJoint * 17 OdeContactJoint * 0 0 1293 0 0 0 0 0 0 0 0 0 0
+
+1358 19 OdeUniversalJoint * 0 8576 19 OdeUniversalJoint * 19 OdeUniversalJoint * 0 0 1312 0 0 0 0 0 0 0 0 0 0
+
+1359 16 OdeHinge2Joint * 0 8576 16 OdeHinge2Joint * 16 OdeHinge2Joint * 0 0 1297 0 0 0 0 0 0 0 0 0 0
+
+1360 15 OdeFixedJoint * 0 8576 15 OdeFixedJoint * 15 OdeFixedJoint * 0 0 1295 0 0 0 0 0 0 0 0 0 0
+
+1361 14 OdeNullJoint * 0 8576 14 OdeNullJoint * 14 OdeNullJoint * 0 0 1301 0 0 0 0 0 0 0 0 0 0
+
+1362 16 OdeAMotorJoint * 0 8576 16 OdeAMotorJoint * 16 OdeAMotorJoint * 0 0 1275 0 0 0 0 0 0 0 0 0 0
+
+1363 16 OdeLMotorJoint * 0 8576 16 OdeLMotorJoint * 16 OdeLMotorJoint * 0 0 1300 0 0 0 0 0 0 0 0 0 0
+
+1364 17 OdePlane2dJoint * 0 8576 17 OdePlane2dJoint * 17 OdePlane2dJoint * 0 0 1302 0 0 0 0 0 0 0 0 0 0
+
+1365 22 OdeAMotorJoint const * 0 8576 22 OdeAMotorJoint const * 22 OdeAMotorJoint const * 0 0 1366 0 0 0 0 0 0 0 0 0 0
+
+1366 20 OdeAMotorJoint const 0 8832 20 OdeAMotorJoint const 20 OdeAMotorJoint const 0 0 1275 0 0 0 0 0 0 0 0 0 0
+
+1367 20 OdeBallJoint const * 0 8576 20 OdeBallJoint const * 20 OdeBallJoint const * 0 0 1368 0 0 0 0 0 0 0 0 0 0
+
+1368 18 OdeBallJoint const 0 8832 18 OdeBallJoint const 18 OdeBallJoint const 0 0 1276 0 0 0 0 0 0 0 0 0 0
+
+1369 9 OdeMass * 0 8576 9 OdeMass * 9 OdeMass * 0 0 1277 0 0 0 0 0 0 0 0 0 0
+
+1370 15 OdeMass const * 0 8576 15 OdeMass const * 15 OdeMass const * 0 0 1371 0 0 0 0 0 0 0 0 0 0
+
+1371 13 OdeMass const 0 8832 13 OdeMass const 13 OdeMass const 0 0 1277 0 0 0 0 0 0 0 0 0 0
+
+1372 17 LMatrix3f const * 0 8576 17 LMatrix3f const * 17 LMatrix3f const * 0 0 1373 0 0 0 0 0 0 0 0 0 0
+
+1373 15 LMatrix3f const 0 8832 15 LMatrix3f const 15 LMatrix3f const 0 0 1374 0 0 0 0 0 0 0 0 0 0
+
+1374 9 LMatrix3f 0 2048 9 LMatrix3f 9 LMatrix3f 0 0 0 0 0 0 0 0 0 0 0 0 231
+/**
+ * This is a 3-by-3 transform matrix.  It typically will represent either a
+ * rotation-and-scale (no translation) matrix in 3-d, or a full affine matrix
+ * (rotation, scale, translation) in 2-d, e.g.  for a texture matrix.
+ */
+
+1375 8 LPoint3f 0 2048 8 LPoint3f 8 LPoint3f 0 0 0 0 0 0 0 0 0 0 0 0 337
+/**
+ * This is a three-component point in space (as opposed to a three-component
+ * vector, which represents a direction and a distance).  Some of the methods
+ * are slightly different between LPoint3 and LVector3; in particular,
+ * subtraction of two points yields a vector, while addition of a vector and a
+ * point yields a point.
+ */
+
+1376 10 LPoint3f * 0 8576 10 LPoint3f * 10 LPoint3f * 0 0 1375 0 0 0 0 0 0 0 0 0 0
+
+1377 11 LMatrix3f * 0 8576 11 LMatrix3f * 11 LMatrix3f * 0 0 1374 0 0 0 0 0 0 0 0 0 0
+
+1378 7 dBodyID 0 2105344 7 dBodyID 7 dBodyID 0 0 1379 0 0 0 0 0 0 0 0 0 0
+
+1379 8 dxBody * 0 8576 8 dxBody * 8 dxBody * 0 0 1261 0 0 0 0 0 0 0 0 0 0
+
+1380 20 LQuaternionf const * 0 8576 20 LQuaternionf const * 20 LQuaternionf const * 0 0 1381 0 0 0 0 0 0 0 0 0 0
+
+1381 18 LQuaternionf const 0 8832 18 LQuaternionf const 18 LQuaternionf const 0 0 1382 0 0 0 0 0 0 0 0 0 0
+
+1382 12 LQuaternionf 0 2048 12 LQuaternionf 12 LQuaternionf 0 0 0 0 0 0 0 0 0 0 0 0 44
+/**
+ * This is the base quaternion class
+ */
+
+1383 10 LVecBase4f 0 2048 10 LVecBase4f 10 LVecBase4f 0 0 0 0 0 0 0 0 0 0 0 0 77
+/**
+ * This is the base class for all three-component vectors and points.
+ */
+
+1384 12 LVecBase4f * 0 8576 12 LVecBase4f * 12 LVecBase4f * 0 0 1383 0 0 0 0 0 0 0 0 0 0
+
+1385 10 OdeSpace * 0 8576 10 OdeSpace * 10 OdeSpace * 0 0 1283 0 0 0 0 0 0 0 0 0 0
+
+1386 16 OdeSpace const * 0 8576 16 OdeSpace const * 16 OdeSpace const * 0 0 1387 0 0 0 0 0 0 0 0 0 0
+
+1387 14 OdeSpace const 0 8832 14 OdeSpace const 14 OdeSpace const 0 0 1283 0 0 0 0 0 0 0 0 0 0
+
+1388 15 OdeGeom const * 0 8576 15 OdeGeom const * 15 OdeGeom const * 0 0 1389 0 0 0 0 0 0 0 0 0 0
+
+1389 13 OdeGeom const 0 8832 13 OdeGeom const 13 OdeGeom const 0 0 1284 0 0 0 0 0 0 0 0 0 0
+
+1390 17 BitMask32 const * 0 8576 17 BitMask32 const * 17 BitMask32 const * 0 0 1391 0 0 0 0 0 0 0 0 0 0
+
+1391 15 BitMask32 const 0 8832 15 BitMask32 const 15 BitMask32 const 0 0 1392 0 0 0 0 0 0 0 0 0 0
+
+1392 9 BitMask32 0 2105344 9 BitMask32 9 BitMask32 0 0 1393 0 0 0 0 0 0 0 0 0 0
+
+1393 23 BitMask< uint32_t, 32 > 0 2048 23 BitMask< uint32_t, 32 > 23 BitMask< uint32_t, 32 > 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+1394 11 BitMask32 * 0 8576 11 BitMask32 * 11 BitMask32 * 0 0 1392 0 0 0 0 0 0 0 0 0 0
+
+1395 9 OdeGeom * 0 8576 9 OdeGeom * 9 OdeGeom * 0 0 1284 0 0 0 0 0 0 0 0 0 0
+
+1396 16 OdeSimpleSpace * 0 8576 16 OdeSimpleSpace * 16 OdeSimpleSpace * 0 0 1306 0 0 0 0 0 0 0 0 0 0
+
+1397 14 OdeHashSpace * 0 8576 14 OdeHashSpace * 14 OdeHashSpace * 0 0 1296 0 0 0 0 0 0 0 0 0 0
+
+1398 18 OdeQuadTreeSpace * 0 8576 18 OdeQuadTreeSpace * 18 OdeQuadTreeSpace * 0 0 1304 0 0 0 0 0 0 0 0 0 0
+
+1399 7 dGeomID 0 2105344 7 dGeomID 7 dGeomID 0 0 1400 0 0 0 0 0 0 0 0 0 0
+
+1400 8 dxGeom * 0 8576 8 dxGeom * 8 dxGeom * 0 0 1262 0 0 0 0 0 0 0 0 0 0
+
+1401 13 atomic string 0 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+1402 14 LQuaternionf * 0 8576 14 LQuaternionf * 14 LQuaternionf * 0 0 1382 0 0 0 0 0 0 0 0 0 0
+
+1403 12 OdeBoxGeom * 0 8576 12 OdeBoxGeom * 12 OdeBoxGeom * 0 0 1286 0 0 0 0 0 0 0 0 0 0
+
+1404 23 OdeCappedCylinderGeom * 0 8576 23 OdeCappedCylinderGeom * 23 OdeCappedCylinderGeom * 0 0 1287 0 0 0 0 0 0 0 0 0 0
+
+1405 17 OdeCylinderGeom * 0 8576 17 OdeCylinderGeom * 17 OdeCylinderGeom * 0 0 1294 0 0 0 0 0 0 0 0 0 0
+
+1406 14 OdePlaneGeom * 0 8576 14 OdePlaneGeom * 14 OdePlaneGeom * 0 0 1303 0 0 0 0 0 0 0 0 0 0
+
+1407 12 OdeRayGeom * 0 8576 12 OdeRayGeom * 12 OdeRayGeom * 0 0 1305 0 0 0 0 0 0 0 0 0 0
+
+1408 15 OdeSphereGeom * 0 8576 15 OdeSphereGeom * 15 OdeSphereGeom * 0 0 1308 0 0 0 0 0 0 0 0 0 0
+
+1409 16 OdeTriMeshGeom * 0 8576 16 OdeTriMeshGeom * 16 OdeTriMeshGeom * 0 0 1311 0 0 0 0 0 0 0 0 0 0
+
+1410 16 LPoint3f const * 0 8576 16 LPoint3f const * 16 LPoint3f const * 0 0 1411 0 0 0 0 0 0 0 0 0 0
+
+1411 14 LPoint3f const 0 8832 14 LPoint3f const 14 LPoint3f const 0 0 1375 0 0 0 0 0 0 0 0 0 0
+
+1412 29 OdeCappedCylinderGeom const * 0 8576 29 OdeCappedCylinderGeom const * 29 OdeCappedCylinderGeom const * 0 0 1413 0 0 0 0 0 0 0 0 0 0
+
+1413 27 OdeCappedCylinderGeom const 0 8832 27 OdeCappedCylinderGeom const 27 OdeCappedCylinderGeom const 0 0 1287 0 0 0 0 0 0 0 0 0 0
+
+1414 16 OdeContactGeom * 0 8576 16 OdeContactGeom * 16 OdeContactGeom * 0 0 1288 0 0 0 0 0 0 0 0 0 0
+
+1415 22 OdeContactGeom const * 0 8576 22 OdeContactGeom const * 22 OdeContactGeom const * 0 0 1416 0 0 0 0 0 0 0 0 0 0
+
+1416 20 OdeContactGeom const 0 8832 20 OdeContactGeom const 20 OdeContactGeom const 0 0 1288 0 0 0 0 0 0 0 0 0 0
+
+1417 11 dReal const 0 8832 11 dReal const 11 dReal const 0 0 1324 0 0 0 0 0 0 0 0 0 0
+
+1418 25 OdeCollisionEntry const * 0 8576 25 OdeCollisionEntry const * 25 OdeCollisionEntry const * 0 0 1419 0 0 0 0 0 0 0 0 0 0
+
+1419 23 OdeCollisionEntry const 0 8832 23 OdeCollisionEntry const 23 OdeCollisionEntry const 0 0 1289 0 0 0 0 0 0 0 0 0 0
+
+1420 19 OdeCollisionEntry * 0 8576 19 OdeCollisionEntry * 19 OdeCollisionEntry * 0 0 1289 0 0 0 0 0 0 0 0 0 0
+
+1421 6 size_t 0 2105344 11 std::size_t 11 std::size_t 0 0 1422 0 0 0 0 0 0 0 0 0 0
+
+1422 22 unsigned long long int 0 8230 22 unsigned long long int 22 unsigned long long int 0 8 0 0 0 0 0 0 0 0 0 0 0
+
+1423 22 OdeSurfaceParameters * 0 8576 22 OdeSurfaceParameters * 22 OdeSurfaceParameters * 0 0 1290 0 0 0 0 0 0 0 0 0 0
+
+1424 28 OdeSurfaceParameters const * 0 8576 28 OdeSurfaceParameters const * 28 OdeSurfaceParameters const * 0 0 1425 0 0 0 0 0 0 0 0 0 0
+
+1425 26 OdeSurfaceParameters const 0 8832 26 OdeSurfaceParameters const 26 OdeSurfaceParameters const 0 0 1290 0 0 0 0 0 0 0 0 0 0
+
+1426 12 OdeContact * 0 8576 12 OdeContact * 12 OdeContact * 0 0 1292 0 0 0 0 0 0 0 0 0 0
+
+1427 16 dContact const * 0 8576 16 dContact const * 16 dContact const * 0 0 1428 0 0 0 0 0 0 0 0 0 0
+
+1428 14 dContact const 0 8832 14 dContact const 14 dContact const 0 0 1429 0 0 0 0 0 0 0 0 0 0
+
+1429 8 dContact 0 1024 8 dContact 8 dContact 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+1430 18 OdeContact const * 0 8576 18 OdeContact const * 18 OdeContact const * 0 0 1431 0 0 0 0 0 0 0 0 0 0
+
+1431 16 OdeContact const 0 8832 16 OdeContact const 16 OdeContact const 0 0 1292 0 0 0 0 0 0 0 0 0 0
+
+1432 23 OdeCylinderGeom const * 0 8576 23 OdeCylinderGeom const * 23 OdeCylinderGeom const * 0 0 1433 0 0 0 0 0 0 0 0 0 0
+
+1433 21 OdeCylinderGeom const 0 8832 21 OdeCylinderGeom const 21 OdeCylinderGeom const 0 0 1294 0 0 0 0 0 0 0 0 0 0
+
+1434 20 OdeHashSpace const * 0 8576 20 OdeHashSpace const * 20 OdeHashSpace const * 0 0 1435 0 0 0 0 0 0 0 0 0 0
+
+1435 18 OdeHashSpace const 0 8832 18 OdeHashSpace const 18 OdeHashSpace const 0 0 1296 0 0 0 0 0 0 0 0 0 0
+
+1436 22 OdeHinge2Joint const * 0 8576 22 OdeHinge2Joint const * 22 OdeHinge2Joint const * 0 0 1437 0 0 0 0 0 0 0 0 0 0
+
+1437 20 OdeHinge2Joint const 0 8832 20 OdeHinge2Joint const 20 OdeHinge2Joint const 0 0 1297 0 0 0 0 0 0 0 0 0 0
+
+1438 21 OdeHingeJoint const * 0 8576 21 OdeHingeJoint const * 21 OdeHingeJoint const * 0 0 1439 0 0 0 0 0 0 0 0 0 0
+
+1439 19 OdeHingeJoint const 0 8832 19 OdeHingeJoint const 19 OdeHingeJoint const 0 0 1298 0 0 0 0 0 0 0 0 0 0
+
+1440 20 OdeJointCollection * 0 8576 20 OdeJointCollection * 20 OdeJointCollection * 0 0 1299 0 0 0 0 0 0 0 0 0 0
+
+1441 26 OdeJointCollection const * 0 8576 26 OdeJointCollection const * 26 OdeJointCollection const * 0 0 1442 0 0 0 0 0 0 0 0 0 0
+
+1442 24 OdeJointCollection const 0 8832 24 OdeJointCollection const 24 OdeJointCollection const 0 0 1299 0 0 0 0 0 0 0 0 0 0
+
+1443 22 OdeLMotorJoint const * 0 8576 22 OdeLMotorJoint const * 22 OdeLMotorJoint const * 0 0 1444 0 0 0 0 0 0 0 0 0 0
+
+1444 20 OdeLMotorJoint const 0 8832 20 OdeLMotorJoint const 20 OdeLMotorJoint const 0 0 1300 0 0 0 0 0 0 0 0 0 0
+
+1445 18 LVecBase4f const * 0 8576 18 LVecBase4f const * 18 LVecBase4f const * 0 0 1446 0 0 0 0 0 0 0 0 0 0
+
+1446 16 LVecBase4f const 0 8832 16 LVecBase4f const 16 LVecBase4f const 0 0 1383 0 0 0 0 0 0 0 0 0 0
+
+1447 20 OdePlaneGeom const * 0 8576 20 OdePlaneGeom const * 20 OdePlaneGeom const * 0 0 1448 0 0 0 0 0 0 0 0 0 0
+
+1448 18 OdePlaneGeom const 0 8832 18 OdePlaneGeom const 18 OdePlaneGeom const 0 0 1303 0 0 0 0 0 0 0 0 0 0
+
+1449 9 int const 0 8832 9 int const 9 int const 0 0 1326 0 0 0 0 0 0 0 0 0 0
+
+1450 18 OdeRayGeom const * 0 8576 18 OdeRayGeom const * 18 OdeRayGeom const * 0 0 1451 0 0 0 0 0 0 0 0 0 0
+
+1451 16 OdeRayGeom const 0 8832 16 OdeRayGeom const 16 OdeRayGeom const 0 0 1305 0 0 0 0 0 0 0 0 0 0
+
+1452 22 OdeSliderJoint const * 0 8576 22 OdeSliderJoint const * 22 OdeSliderJoint const * 0 0 1453 0 0 0 0 0 0 0 0 0 0
+
+1453 20 OdeSliderJoint const 0 8832 20 OdeSliderJoint const 20 OdeSliderJoint const 0 0 1307 0 0 0 0 0 0 0 0 0 0
+
+1454 21 OdeSphereGeom const * 0 8576 21 OdeSphereGeom const * 21 OdeSphereGeom const * 0 0 1455 0 0 0 0 0 0 0 0 0 0
+
+1455 19 OdeSphereGeom const 0 8832 19 OdeSphereGeom const 19 OdeSphereGeom const 0 0 1308 0 0 0 0 0 0 0 0 0 0
+
+1456 16 NodePath const * 0 8576 16 NodePath const * 16 NodePath const * 0 0 1457 0 0 0 0 0 0 0 0 0 0
+
+1457 14 NodePath const 0 8832 14 NodePath const 14 NodePath const 0 0 1458 0 0 0 0 0 0 0 0 0 0
+
+1458 8 NodePath 0 2048 8 NodePath 8 NodePath 0 0 0 0 0 0 0 0 0 0 0 0 762
+/**
+ * NodePath is the fundamental system for disambiguating instances, and also
+ * provides a higher-level interface for manipulating the scene graph.
+ *
+ * A NodePath is a list of connected nodes from the root of the graph to any
+ * sub-node.  Each NodePath therefore uniquely describes one instance of a
+ * node.
+ *
+ * NodePaths themselves are lightweight objects that may easily be copied and
+ * passed by value.  Their data is stored as a series of NodePathComponents
+ * that are stored on the nodes.  Holding a NodePath will keep a reference
+ * count to all the nodes in the path.  However, if any node in the path is
+ * removed or reparented (perhaps through a different NodePath), the NodePath
+ * will automatically be updated to reflect the changes.
+ */
+
+1459 16 OdeTriMeshData * 0 8576 16 OdeTriMeshData * 16 OdeTriMeshData * 0 0 1309 0 0 0 0 0 0 0 0 0 0
+
+1460 22 OdeTriMeshData const * 0 8576 22 OdeTriMeshData const * 22 OdeTriMeshData const * 0 0 1461 0 0 0 0 0 0 0 0 0 0
+
+1461 20 OdeTriMeshData const 0 8832 20 OdeTriMeshData const 20 OdeTriMeshData const 0 0 1309 0 0 0 0 0 0 0 0 0 0
+
+1462 22 OdeTriMeshGeom const * 0 8576 22 OdeTriMeshGeom const * 22 OdeTriMeshGeom const * 0 0 1463 0 0 0 0 0 0 0 0 0 0
+
+1463 20 OdeTriMeshGeom const 0 8832 20 OdeTriMeshGeom const 20 OdeTriMeshGeom const 0 0 1311 0 0 0 0 0 0 0 0 0 0
+
+1464 25 OdeUniversalJoint const * 0 8576 25 OdeUniversalJoint const * 25 OdeUniversalJoint const * 0 0 1465 0 0 0 0 0 0 0 0 0 0
+
+1465 23 OdeUniversalJoint const 0 8832 23 OdeUniversalJoint const 23 OdeUniversalJoint const 0 0 1312 0 0 0 0 0 0 0 0 0 0
+
+1466 9 OdeUtil * 0 8576 9 OdeUtil * 9 OdeUtil * 0 0 1313 0 0 0 0 0 0 0 0 0 0
+
+1467 15 OdeUtil const * 0 8576 15 OdeUtil const * 15 OdeUtil const * 0 0 1468 0 0 0 0 0 0 0 0 0 0
+
+1468 13 OdeUtil const 0 8832 13 OdeUtil const 13 OdeUtil const 0 0 1313 0 0 0 0 0 0 0 0 0 0
+
+1469 15 short int const 0 8832 15 short int const 15 short int const 0 0 1470 0 0 0 0 0 0 0 0 0 0
+
+1470 9 short int 0 8258 9 short int 9 short int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+0
+1
+1471 6 joints 0 66 1280 861 0 0 0 0 859 0 0 15 OdeBody::joints 0
+
+6
+1472 8 get_axes 0 758 759 24 OdeAMotorJoint::get_axes 0
+
+1473 10 get_joints 0 859 860 19 OdeBody::get_joints 0
+
+1474 18 get_contact_points 0 993 994 37 OdeCollisionEntry::get_contact_points 0
+
+1475 17 get_contact_geoms 0 993 995 36 OdeCollisionEntry::get_contact_geoms 0
+
+1476 10 get_joints 0 1124 1125 30 OdeJointCollection::get_joints 0
+
+1477 8 get_axes 0 1134 1135 24 OdeLMotorJoint::get_axes 0
+

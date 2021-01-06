@@ -9,20 +9,22 @@ from ursina import camera, mouse
 from ursina.prefabs.first_person_controller import FirstPersonController
 
 
-class Game:
+class Game(Entity):
 
     def __init__(self):
+
+        super().__init__()
+
         self.app = Ursina()
+        window.fullscreen = True
         self.word = World()
         self.player = Player()
         self.sky = Sky()
         self.app.run()
 
     def update(self):
-        super().update()
-
         if held_keys['left mouse'] or held_keys['right mouse']:
-            self.player.active()
+            self.player.hand.active()
         else:
             self.player.hand.passive()
 
