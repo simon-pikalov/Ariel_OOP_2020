@@ -1,0 +1,1840 @@
+1608630776
+3 3
+13 libp3pipeline 4 kd_i 12 panda3d.core 
+112
+106 29 upcast_to_TypedReferenceCount 0 12 219 37 Thread::upcast_to_TypedReferenceCount 0 1 31 41
+upcast from Thread to TypedReferenceCount
+65
+TypedReferenceCount *Thread::upcast_to_TypedReferenceCount(void);
+
+107 18 downcast_to_Thread 0 12 220 39 TypedReferenceCount::downcast_to_Thread 0 0 43
+downcast from TypedReferenceCount to Thread
+54
+Thread *TypedReferenceCount::downcast_to_Thread(void);
+
+108 17 upcast_to_Namable 0 12 219 25 Thread::upcast_to_Namable 0 1 32 29
+upcast from Thread to Namable
+41
+Namable *Thread::upcast_to_Namable(void);
+
+109 18 downcast_to_Thread 0 12 221 27 Namable::downcast_to_Thread 0 0 31
+downcast from Namable to Thread
+42
+Thread *Namable::downcast_to_Thread(void);
+
+110 7 ~Thread 0 6 219 15 Thread::~Thread 0 0 10
+/**
+ *
+ */
+30
+virtual Thread::~Thread(void);
+
+111 11 bind_thread 0 4 219 19 Thread::bind_thread 0 1 1 952
+/**
+ * Returns a new Panda Thread object associated with the current thread (which
+ * has been created externally). This can be used to bind a unique Panda
+ * Thread object with an external thread, such as a new Python thread.
+ *
+ * It is particularly useful to bind a Panda Thread object to an external
+ * thread for the purposes of PStats monitoring.  Without this call, each
+ * external thread will be assigned the same global ExternalThread object,
+ * which means they will all appear in the same PStats graph.
+ *
+ * It is the caller's responsibility to save the returned Thread pointer for
+ * the lifetime of the external thread.  It is an error for the Thread pointer
+ * to destruct while the external thread is still in the system.
+ *
+ * It is also an error to call this method from the main thread, or twice
+ * within a given thread, unless it is given the same name each time (in which
+ * case the same pointer will be returned each time).
+ */
+102
+static PointerTo< Thread > Thread::bind_thread(std::string const &name, std::string const &sync_name);
+
+112 13 get_sync_name 0 4 219 21 Thread::get_sync_name 0 1 2 279
+/**
+ * Returns the sync name of the thread.  This name collects threads into "sync
+ * groups", which are expected to run synchronously.  This is mainly used for
+ * the benefit of PStats; threads with the same sync name can be ticked all at
+ * once via the thread_tick() call.
+ */
+60
+inline std::string const &Thread::get_sync_name(void) const;
+
+113 16 get_pstats_index 0 4 219 24 Thread::get_pstats_index 0 1 3 218
+/**
+ * Returns the PStats index associated with this thread, or -1 if no index has
+ * yet been associated with this thread.  This is used internally by the
+ * PStatClient; you should not need to call this directly.
+ */
+48
+inline int Thread::get_pstats_index(void) const;
+
+114 16 get_python_index 0 4 219 24 Thread::get_python_index 0 1 4 233
+/**
+ * Returns the Python index associated with this thread, or -1 if no index has
+ * yet been associated with this thread.  This is used internally by the
+ * direct.stdpy.thread module; you should not need to call this directly.
+ */
+48
+inline int Thread::get_python_index(void) const;
+
+115 13 get_unique_id 0 4 219 21 Thread::get_unique_id 0 1 5 161
+/**
+ * Returns a string that is guaranteed to be unique to this thread, across all
+ * processes on the machine, during at least the lifetime of this process.
+ */
+53
+inline std::string Thread::get_unique_id(void) const;
+
+116 18 get_pipeline_stage 0 4 219 26 Thread::get_pipeline_stage 0 1 6 163
+/**
+ * Returns the Pipeline stage number associated with this thread.  The default
+ * stage is 0 if no stage is specified otherwise.  See set_pipeline_stage().
+ */
+50
+inline int Thread::get_pipeline_stage(void) const;
+
+117 18 set_pipeline_stage 0 4 219 26 Thread::set_pipeline_stage 0 1 7 479
+/**
+ * Specifies the Pipeline stage number associated with this thread.  The
+ * default stage is 0 if no stage is specified otherwise.
+ *
+ * This must be a value in the range [0 .. pipeline->get_num_stages() - 1].
+ * It specifies the values that this thread observes for all pipelined data.
+ * Typically, an application thread will leave this at 0, but a render thread
+ * may set it to 1 or 2 (to operate on the previous frame's data, or the
+ * second previous frame's data).
+ */
+52
+void Thread::set_pipeline_stage(int pipeline_stage);
+
+118 22 set_min_pipeline_stage 0 4 219 30 Thread::set_min_pipeline_stage 0 1 8 143
+/**
+ * Sets this thread's pipeline stage number to at least the indicated value,
+ * unless it is already larger.  See set_pipeline_stage().
+ */
+67
+inline void Thread::set_min_pipeline_stage(int min_pipeline_stage);
+
+119 15 get_main_thread 0 4 219 23 Thread::get_main_thread 0 1 9 111
+/**
+ * Returns a pointer to the "main" Thread object--this is the Thread that
+ * started the whole process.
+ */
+52
+static inline Thread *Thread::get_main_thread(void);
+
+120 19 get_external_thread 0 4 219 27 Thread::get_external_thread 0 1 10 248
+/**
+ * Returns a pointer to the "external" Thread object--this is a special Thread
+ * object that corresponds to any thread spawned outside of Panda's threading
+ * interface.  Note that multiple different threads may share this same
+ * pointer.
+ */
+56
+static inline Thread *Thread::get_external_thread(void);
+
+121 18 get_current_thread 0 4 219 26 Thread::get_current_thread 0 1 11 415
+/**
+ * Returns a pointer to the currently-executing Thread object.  If this is
+ * called from the main thread, this will return the same value as
+ * get_main_thread().
+ *
+ * This will always return some valid Thread pointer.  It will never return
+ * NULL, even if the current thread was spawned outside of Panda's threading
+ * system, although all non-Panda threads will return the exact same Thread
+ * pointer.
+ */
+55
+static inline Thread *Thread::get_current_thread(void);
+
+122 26 get_current_pipeline_stage 0 4 219 34 Thread::get_current_pipeline_stage 0 1 12 208
+/**
+ * Returns the integer pipeline stage associated with the current thread.
+ * This is the same thing as get_current_thread()->get_pipeline_stage(), but
+ * it may be faster to retrieve in some contexts.
+ */
+59
+static inline int Thread::get_current_pipeline_stage(void);
+
+123 22 is_threading_supported 0 4 219 30 Thread::is_threading_supported 0 1 13 159
+/**
+ * Returns true if threading support has been compiled in and enabled, or
+ * false if no threading is available (and Thread::start() will always fail).
+ */
+56
+static inline bool Thread::is_threading_supported(void);
+
+124 15 is_true_threads 0 4 219 23 Thread::is_true_threads 0 1 14 196
+/**
+ * Returns true if a real threading library is available that supports actual
+ * OS-implemented threads, or false if the only threading we can provide is
+ * simulated user-space threading.
+ */
+49
+static inline bool Thread::is_true_threads(void);
+
+125 17 is_simple_threads 0 4 219 25 Thread::is_simple_threads 0 1 15 393
+/**
+ * Returns true if Panda is currently compiled for "simple threads", which is
+ * to say, cooperative context switching only, reducing the need for quite so
+ * many critical section protections.  This is not necessarily the opposite of
+ * "true threads", since one possible implementation of simple threads is via
+ * true threads with mutex protection to ensure only one runs at a time.
+ */
+51
+static inline bool Thread::is_simple_threads(void);
+
+126 5 sleep 0 4 219 13 Thread::sleep 0 1 16 119
+/**
+ * Suspends the current thread for at least the indicated amount of time.  It
+ * might be suspended for longer.
+ */
+49
+static inline void Thread::sleep(double seconds);
+
+127 11 force_yield 0 4 219 19 Thread::force_yield 0 1 17 73
+/**
+ * Suspends the current thread for the rest of the current epoch.
+ */
+45
+static inline void Thread::force_yield(void);
+
+128 14 consider_yield 0 4 219 22 Thread::consider_yield 0 1 18 239
+/**
+ * Possibly suspends the current thread for the rest of the current epoch, if
+ * it has run for enough this epoch.  This is especially important for the
+ * simple thread implementation, which relies on cooperative yields like this.
+ */
+48
+static inline void Thread::consider_yield(void);
+
+129 6 output 0 6 219 14 Thread::output 0 1 19 10
+/**
+ *
+ */
+53
+virtual void Thread::output(std::ostream &out) const;
+
+130 14 output_blocker 0 4 219 22 Thread::output_blocker 0 1 20 184
+/**
+ * Writes a description of the mutex or condition variable that this thread is
+ * blocked on.  Writes nothing if there is no blocker, or if we are not in
+ * DEBUG_THREADS mode.
+ */
+53
+void Thread::output_blocker(std::ostream &out) const;
+
+131 12 write_status 0 4 219 20 Thread::write_status 0 1 21 10
+/**
+ *
+ */
+52
+static void Thread::write_status(std::ostream &out);
+
+132 10 is_started 0 4 219 18 Thread::is_started 0 1 22 117
+/**
+ * Returns true if the thread has been started, false if it has not, or if
+ * join() has already been called.
+ */
+43
+inline bool Thread::is_started(void) const;
+
+133 11 is_joinable 0 4 219 19 Thread::is_joinable 0 1 23 77
+/**
+ * Returns the value of joinable that was passed to the start() call.
+ */
+44
+inline bool Thread::is_joinable(void) const;
+
+134 5 start 0 4 219 13 Thread::start 0 1 24 862
+/**
+ * Starts the thread executing.  It is only valid to call this once.
+ *
+ * The thread will begin executing its thread_main() function, and will
+ * terminate when thread_main() returns.
+ *
+ * priority is intended as a hint to the relative importance of this thread.
+ * This may be ignored by the thread implementation.
+ *
+ * joinable should be set true if you intend to call join() to wait for the
+ * thread to terminate, or false if you don't care and you will never call
+ * join(). Note that the reference count on the Thread object is incremented
+ * while the thread itself is running, so if you just want to fire and forget
+ * a thread, you may pass joinable = false, and never store the Thread object.
+ * It will automatically destruct itself when it finishes.
+ *
+ * The return value is true if the thread is successfully started, false
+ * otherwise.
+ */
+59
+bool Thread::start(ThreadPriority priority, bool joinable);
+
+135 4 join 0 4 219 12 Thread::join 0 1 25 134
+/**
+ * Blocks the calling process until the thread terminates.  If the thread has
+ * already terminated, this returns immediately.
+ */
+31
+inline void Thread::join(void);
+
+136 7 preempt 0 4 219 15 Thread::preempt 0 1 26 183
+/**
+ * Indicates that this thread should run as soon as possible, preemptying any
+ * other threads that may be scheduled to run.  This may not be implemented on
+ * every platform.
+ */
+34
+inline void Thread::preempt(void);
+
+137 16 get_current_task 0 4 219 24 Thread::get_current_task 0 1 27 161
+/**
+ * Returns the task currently executing on this thread (via the
+ * AsyncTaskManager), if any, or NULL if the thread is not currently servicing
+ * a task.
+ */
+65
+inline TypedReferenceCount *Thread::get_current_task(void) const;
+
+138 16 set_python_index 0 4 219 24 Thread::set_python_index 0 1 28 160
+/**
+ * Stores a Python index to be associated with this thread.  This is used
+ * internally by the thread module; you should not need to call this directly.
+ */
+48
+inline void Thread::set_python_index(int index);
+
+139 16 prepare_for_exit 0 4 219 24 Thread::prepare_for_exit 0 1 29 143
+/**
+ * Should be called by the main thread just before exiting the program, this
+ * blocks until any remaining thread cleanup has finished.
+ */
+50
+static inline void Thread::prepare_for_exit(void);
+
+140 14 get_class_type 0 4 219 22 Thread::get_class_type 0 1 30 0
+47
+static TypeHandle Thread::get_class_type(void);
+
+141 7 acquire 0 4 229 20 MutexDirect::acquire 0 1 33 405
+/**
+ * Grabs the mutex if it is available.  If it is not available, blocks until
+ * it becomes available, then grabs it.  In either case, the function does not
+ * return until the mutex is held; you should then call unlock().
+ *
+ * This method is considered const so that you can lock and unlock const
+ * mutexes, mainly to allow thread-safe access to otherwise const data.
+ *
+ * Also see MutexHolder.
+ */
+45
+inline void MutexDirect::acquire(void) const;
+
+142 11 try_acquire 0 4 229 24 MutexDirect::try_acquire 0 1 34 125
+/**
+ * Returns immediately, with a true value indicating the mutex has been
+ * acquired, and false indicating it has not.
+ */
+49
+inline bool MutexDirect::try_acquire(void) const;
+
+143 7 release 0 4 229 20 MutexDirect::release 0 1 35 247
+/**
+ * Releases the mutex.  It is an error to call this if the mutex was not
+ * already locked.
+ *
+ * This method is considered const so that you can lock and unlock const
+ * mutexes, mainly to allow thread-safe access to otherwise const data.
+ */
+45
+inline void MutexDirect::release(void) const;
+
+144 15 debug_is_locked 0 4 229 28 MutexDirect::debug_is_locked 0 1 36 278
+/**
+ * Returns true if the current thread has locked the Mutex, false otherwise.
+ * This method is only intended for use in debugging, hence the method name;
+ * in the MutexDirect case, it always returns true, since there's not a
+ * reliable way to determine this otherwise.
+ */
+53
+inline bool MutexDirect::debug_is_locked(void) const;
+
+145 8 set_name 0 4 229 21 MutexDirect::set_name 0 1 37 79
+/**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */
+59
+inline void MutexDirect::set_name(std::string const &name);
+
+146 10 clear_name 0 4 229 23 MutexDirect::clear_name 0 1 38 79
+/**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */
+42
+inline void MutexDirect::clear_name(void);
+
+147 8 has_name 0 4 229 21 MutexDirect::has_name 0 1 39 79
+/**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */
+46
+inline bool MutexDirect::has_name(void) const;
+
+148 8 get_name 0 4 229 21 MutexDirect::get_name 0 1 40 79
+/**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */
+53
+inline std::string MutexDirect::get_name(void) const;
+
+149 6 output 0 4 229 19 MutexDirect::output 0 1 41 92
+/**
+ * This method is declared virtual in MutexDebug, but non-virtual in
+ * MutexDirect.
+ */
+50
+void MutexDirect::output(std::ostream &out) const;
+
+150 5 Mutex 0 4 230 12 Mutex::Mutex 0 2 42 43 34
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+81
+inline Mutex::Mutex(void);
+inline explicit Mutex::Mutex(std::string const &name);
+
+151 6 ~Mutex 0 4 230 13 Mutex::~Mutex 0 0 0
+30
+Mutex::~Mutex(void) = default;
+
+152 19 ~ConditionVarDirect 0 4 231 39 ConditionVarDirect::~ConditionVarDirect 0 0 0
+56
+ConditionVarDirect::~ConditionVarDirect(void) = default;
+
+153 9 get_mutex 0 4 231 29 ConditionVarDirect::get_mutex 0 1 44 69
+/**
+ * Returns the mutex associated with this condition variable.
+ */
+62
+inline MutexDirect &ConditionVarDirect::get_mutex(void) const;
+
+154 4 wait 0 4 231 24 ConditionVarDirect::wait 0 2 45 46 1192
+/**
+ * Waits on the condition.  The caller must already be holding the lock
+ * associated with the condition variable before calling this function.
+ *
+ * wait() will release the lock, then go to sleep until some other thread
+ * calls notify() on this condition variable.  At that time at least one
+ * thread waiting on the same ConditionVarDirect will grab the lock again, and
+ * then return from wait().
+ *
+ * It is possible that wait() will return even if no one has called notify().
+ * It is the responsibility of the calling process to verify the condition on
+ * return from wait, and possibly loop back to wait again if necessary.
+ *
+ * Note the semantics of a condition variable: the mutex must be held before
+ * wait() is called, and it will still be held when wait() returns.  However,
+ * it will be temporarily released during the wait() call itself.
+ */
+
+/**
+ * Waits on the condition, with a timeout.  The function will return when the
+ * condition variable is notified, or the timeout occurs.  There is no way to
+ * directly tell which happened, and it is possible that neither in fact
+ * happened (spurious wakeups are possible).
+ *
+ * See wait() with no parameters for more.
+ */
+97
+inline void ConditionVarDirect::wait(void);
+inline void ConditionVarDirect::wait(double timeout);
+
+155 6 notify 0 4 231 26 ConditionVarDirect::notify 0 1 47 542
+/**
+ * Informs one of the other threads who are currently blocked on wait() that
+ * the relevant condition has changed.  If multiple threads are currently
+ * waiting, at least one of them will be woken up, although there is no way to
+ * predict which one.  It is possible that more than one thread will be woken
+ * up.
+ *
+ * The caller must be holding the mutex associated with the condition variable
+ * before making this call, which will not release the mutex.
+ *
+ * If no threads are waiting, this is a no-op: the notify event is lost.
+ */
+45
+inline void ConditionVarDirect::notify(void);
+
+156 6 output 0 4 231 26 ConditionVarDirect::output 0 1 48 106
+/**
+ * This method is declared virtual in ConditionVarDebug, but non-virtual in
+ * ConditionVarDirect.
+ */
+57
+void ConditionVarDirect::output(std::ostream &out) const;
+
+157 12 ConditionVar 0 4 232 26 ConditionVar::ConditionVar 0 1 49 278
+/**
+ * You must pass in a Mutex to the condition variable constructor.  This mutex
+ * may be shared by other condition variables, if desired.  It is the caller's
+ * responsibility to ensure the Mutex object does not destruct during the
+ * lifetime of the condition variable.
+ */
+57
+inline explicit ConditionVar::ConditionVar(Mutex &mutex);
+
+158 13 ~ConditionVar 0 4 232 27 ConditionVar::~ConditionVar 0 0 0
+44
+ConditionVar::~ConditionVar(void) = default;
+
+159 9 get_mutex 0 4 232 23 ConditionVar::get_mutex 0 1 50 69
+/**
+ * Returns the mutex associated with this condition variable.
+ */
+50
+inline Mutex &ConditionVar::get_mutex(void) const;
+
+160 23 ~ConditionVarFullDirect 0 4 233 47 ConditionVarFullDirect::~ConditionVarFullDirect 0 0 0
+64
+ConditionVarFullDirect::~ConditionVarFullDirect(void) = default;
+
+161 9 get_mutex 0 4 233 33 ConditionVarFullDirect::get_mutex 0 1 51 69
+/**
+ * Returns the mutex associated with this condition variable.
+ */
+66
+inline MutexDirect &ConditionVarFullDirect::get_mutex(void) const;
+
+162 4 wait 0 4 233 28 ConditionVarFullDirect::wait 0 2 52 53 1196
+/**
+ * Waits on the condition.  The caller must already be holding the lock
+ * associated with the condition variable before calling this function.
+ *
+ * wait() will release the lock, then go to sleep until some other thread
+ * calls notify() on this condition variable.  At that time at least one
+ * thread waiting on the same ConditionVarFullDirect will grab the lock again,
+ * and then return from wait().
+ *
+ * It is possible that wait() will return even if no one has called notify().
+ * It is the responsibility of the calling process to verify the condition on
+ * return from wait, and possibly loop back to wait again if necessary.
+ *
+ * Note the semantics of a condition variable: the mutex must be held before
+ * wait() is called, and it will still be held when wait() returns.  However,
+ * it will be temporarily released during the wait() call itself.
+ */
+
+/**
+ * Waits on the condition, with a timeout.  The function will return when the
+ * condition variable is notified, or the timeout occurs.  There is no way to
+ * directly tell which happened, and it is possible that neither in fact
+ * happened (spurious wakeups are possible).
+ *
+ * See wait() with no parameters for more.
+ */
+105
+inline void ConditionVarFullDirect::wait(void);
+inline void ConditionVarFullDirect::wait(double timeout);
+
+163 6 notify 0 4 233 30 ConditionVarFullDirect::notify 0 1 54 536
+/**
+ * Informs one of the other threads who are currently blocked on wait() that
+ * the relevant condition has changed.  If multiple threads are currently
+ * waiting, at least one of them will be woken up, although there is no way to
+ * predict which one.  It is possible that more than one thread will be woken
+ * up.
+ *
+ * The caller must be holding the mutex associated with the condition variable
+ * before making this call, which will not release the mutex.
+ *
+ * If no threads are waiting, this is a no-op: the notify is lost.
+ */
+49
+inline void ConditionVarFullDirect::notify(void);
+
+164 10 notify_all 0 4 233 34 ConditionVarFullDirect::notify_all 0 1 55 343
+/**
+ * Informs all of the other threads who are currently blocked on wait() that
+ * the relevant condition has changed.
+ *
+ * The caller must be holding the mutex associated with the condition variable
+ * before making this call, which will not release the mutex.
+ *
+ * If no threads are waiting, this is a no-op: the notify event is lost.
+ */
+53
+inline void ConditionVarFullDirect::notify_all(void);
+
+165 6 output 0 4 233 30 ConditionVarFullDirect::output 0 1 56 114
+/**
+ * This method is declared virtual in ConditionVarFullDebug, but non-virtual
+ * in ConditionVarFullDirect.
+ */
+61
+void ConditionVarFullDirect::output(std::ostream &out) const;
+
+166 16 ConditionVarFull 0 4 234 34 ConditionVarFull::ConditionVarFull 0 1 57 278
+/**
+ * You must pass in a Mutex to the condition variable constructor.  This mutex
+ * may be shared by other condition variables, if desired.  It is the caller's
+ * responsibility to ensure the Mutex object does not destruct during the
+ * lifetime of the condition variable.
+ */
+65
+inline explicit ConditionVarFull::ConditionVarFull(Mutex &mutex);
+
+167 17 ~ConditionVarFull 0 4 234 35 ConditionVarFull::~ConditionVarFull 0 0 0
+52
+ConditionVarFull::~ConditionVarFull(void) = default;
+
+168 9 get_mutex 0 4 234 27 ConditionVarFull::get_mutex 0 1 58 69
+/**
+ * Returns the mutex associated with this condition variable.
+ */
+54
+inline Mutex &ConditionVarFull::get_mutex(void) const;
+
+169 7 acquire 0 4 235 22 ReMutexDirect::acquire 0 2 59 60 541
+/**
+ * Grabs the reMutex if it is available.  If it is not available, blocks until
+ * it becomes available, then grabs it.  In either case, the function does not
+ * return until the reMutex is held; you should then call unlock().
+ *
+ * This method is considered const so that you can lock and unlock const
+ * reMutexes, mainly to allow thread-safe access to otherwise const data.
+ *
+ * Also see ReMutexHolder.
+ */
+
+/**
+ * This variant on acquire() accepts the current thread as a parameter, if it
+ * is already known, as an optimization.
+ */
+113
+inline void ReMutexDirect::acquire(void) const;
+inline void ReMutexDirect::acquire(Thread *current_thread) const;
+
+170 11 try_acquire 0 4 235 26 ReMutexDirect::try_acquire 0 2 61 62 252
+/**
+ * Returns immediately, with a true value indicating the mutex has been
+ * acquired, and false indicating it has not.
+ */
+
+/**
+ * Returns immediately, with a true value indicating the mutex has been
+ * acquired, and false indicating it has not.
+ */
+121
+inline bool ReMutexDirect::try_acquire(void) const;
+inline bool ReMutexDirect::try_acquire(Thread *current_thread) const;
+
+171 12 elevate_lock 0 4 235 27 ReMutexDirect::elevate_lock 0 1 63 468
+/**
+ * This method increments the lock count, assuming the calling thread already
+ * holds the lock.  After this call, release() will need to be called one
+ * additional time to release the lock.
+ *
+ * This method really performs the same function as acquire(), but it offers a
+ * potential (slight) performance benefit when the calling thread knows that
+ * it already holds the lock.  It is an error to call this when the calling
+ * thread does not hold the lock.
+ */
+52
+inline void ReMutexDirect::elevate_lock(void) const;
+
+172 7 release 0 4 235 22 ReMutexDirect::release 0 1 64 253
+/**
+ * Releases the reMutex.  It is an error to call this if the reMutex was not
+ * already locked.
+ *
+ * This method is considered const so that you can lock and unlock const
+ * reMutexes, mainly to allow thread-safe access to otherwise const data.
+ */
+47
+inline void ReMutexDirect::release(void) const;
+
+173 15 debug_is_locked 0 4 235 30 ReMutexDirect::debug_is_locked 0 1 65 282
+/**
+ * Returns true if the current thread has locked the ReMutex, false otherwise.
+ * This method is only intended for use in debugging, hence the method name;
+ * in the ReMutexDirect case, it always returns true, since there's not a
+ * reliable way to determine this otherwise.
+ */
+55
+inline bool ReMutexDirect::debug_is_locked(void) const;
+
+174 8 set_name 0 4 235 23 ReMutexDirect::set_name 0 1 66 79
+/**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */
+61
+inline void ReMutexDirect::set_name(std::string const &name);
+
+175 10 clear_name 0 4 235 25 ReMutexDirect::clear_name 0 1 67 79
+/**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */
+44
+inline void ReMutexDirect::clear_name(void);
+
+176 8 has_name 0 4 235 23 ReMutexDirect::has_name 0 1 68 79
+/**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */
+48
+inline bool ReMutexDirect::has_name(void) const;
+
+177 8 get_name 0 4 235 23 ReMutexDirect::get_name 0 1 69 79
+/**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */
+55
+inline std::string ReMutexDirect::get_name(void) const;
+
+178 6 output 0 4 235 21 ReMutexDirect::output 0 1 70 94
+/**
+ * This method is declared virtual in MutexDebug, but non-virtual in
+ * ReMutexDirect.
+ */
+52
+void ReMutexDirect::output(std::ostream &out) const;
+
+179 7 ReMutex 0 4 236 16 ReMutex::ReMutex 0 2 71 72 34
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+89
+inline ReMutex::ReMutex(void);
+inline explicit ReMutex::ReMutex(std::string const &name);
+
+180 8 ~ReMutex 0 4 236 17 ReMutex::~ReMutex 0 0 0
+34
+ReMutex::~ReMutex(void) = default;
+
+181 14 get_class_type 0 4 237 30 ExternalThread::get_class_type 0 1 73 0
+55
+static TypeHandle ExternalThread::get_class_type(void);
+
+182 15 ~ExternalThread 0 4 237 31 ExternalThread::~ExternalThread 0 0 0
+38
+ExternalThread::~ExternalThread(void);
+
+183 7 acquire 0 4 238 25 LightMutexDirect::acquire 0 1 74 428
+/**
+ * Grabs the lightMutex if it is available.  If it is not available, blocks
+ * until it becomes available, then grabs it.  In either case, the function
+ * does not return until the lightMutex is held; you should then call
+ * unlock().
+ *
+ * This method is considered const so that you can lock and unlock const
+ * lightMutexes, mainly to allow thread-safe access to otherwise const data.
+ *
+ * Also see LightMutexHolder.
+ */
+50
+inline void LightMutexDirect::acquire(void) const;
+
+184 7 release 0 4 238 25 LightMutexDirect::release 0 1 75 262
+/**
+ * Releases the lightMutex.  It is an error to call this if the lightMutex was
+ * not already locked.
+ *
+ * This method is considered const so that you can lock and unlock const
+ * lightMutexes, mainly to allow thread-safe access to otherwise const data.
+ */
+50
+inline void LightMutexDirect::release(void) const;
+
+185 15 debug_is_locked 0 4 238 33 LightMutexDirect::debug_is_locked 0 1 76 289
+/**
+ * Returns true if the current thread has locked the LightMutex, false
+ * otherwise.  This method is only intended for use in debugging, hence the
+ * method name; in the LightMutexDirect case, it always returns true, since
+ * there's not a reliable way to determine this otherwise.
+ */
+58
+inline bool LightMutexDirect::debug_is_locked(void) const;
+
+186 8 set_name 0 4 238 26 LightMutexDirect::set_name 0 1 77 84
+/**
+ * The lightMutex name is only defined when compiling in DEBUG_THREADS mode.
+ */
+64
+inline void LightMutexDirect::set_name(std::string const &name);
+
+187 10 clear_name 0 4 238 28 LightMutexDirect::clear_name 0 1 78 84
+/**
+ * The lightMutex name is only defined when compiling in DEBUG_THREADS mode.
+ */
+47
+inline void LightMutexDirect::clear_name(void);
+
+188 8 has_name 0 4 238 26 LightMutexDirect::has_name 0 1 79 84
+/**
+ * The lightMutex name is only defined when compiling in DEBUG_THREADS mode.
+ */
+51
+inline bool LightMutexDirect::has_name(void) const;
+
+189 8 get_name 0 4 238 26 LightMutexDirect::get_name 0 1 80 84
+/**
+ * The lightMutex name is only defined when compiling in DEBUG_THREADS mode.
+ */
+58
+inline std::string LightMutexDirect::get_name(void) const;
+
+190 6 output 0 4 238 24 LightMutexDirect::output 0 1 81 102
+/**
+ * This method is declared virtual in LightMutexDebug, but non-virtual in
+ * LightMutexDirect.
+ */
+55
+void LightMutexDirect::output(std::ostream &out) const;
+
+191 10 LightMutex 0 4 239 22 LightMutex::LightMutex 0 2 82 83 34
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+101
+inline LightMutex::LightMutex(void);
+inline explicit LightMutex::LightMutex(std::string const &name);
+
+192 11 ~LightMutex 0 4 239 23 LightMutex::~LightMutex 0 0 0
+40
+LightMutex::~LightMutex(void) = default;
+
+193 7 acquire 0 4 240 27 LightReMutexDirect::acquire 0 2 84 85 564
+/**
+ * Grabs the lightReMutex if it is available.  If it is not available, blocks
+ * until it becomes available, then grabs it.  In either case, the function
+ * does not return until the lightReMutex is held; you should then call
+ * unlock().
+ *
+ * This method is considered const so that you can lock and unlock const
+ * lightReMutexes, mainly to allow thread-safe access to otherwise const data.
+ *
+ * Also see LightReMutexHolder.
+ */
+
+/**
+ * This variant on acquire() accepts the current thread as a parameter, if it
+ * is already known, as an optimization.
+ */
+123
+inline void LightReMutexDirect::acquire(void) const;
+inline void LightReMutexDirect::acquire(Thread *current_thread) const;
+
+194 12 elevate_lock 0 4 240 32 LightReMutexDirect::elevate_lock 0 1 86 468
+/**
+ * This method increments the lock count, assuming the calling thread already
+ * holds the lock.  After this call, release() will need to be called one
+ * additional time to release the lock.
+ *
+ * This method really performs the same function as acquire(), but it offers a
+ * potential (slight) performance benefit when the calling thread knows that
+ * it already holds the lock.  It is an error to call this when the calling
+ * thread does not hold the lock.
+ */
+57
+inline void LightReMutexDirect::elevate_lock(void) const;
+
+195 7 release 0 4 240 27 LightReMutexDirect::release 0 1 87 268
+/**
+ * Releases the lightReMutex.  It is an error to call this if the lightReMutex
+ * was not already locked.
+ *
+ * This method is considered const so that you can lock and unlock const
+ * lightReMutexes, mainly to allow thread-safe access to otherwise const data.
+ */
+52
+inline void LightReMutexDirect::release(void) const;
+
+196 15 debug_is_locked 0 4 240 35 LightReMutexDirect::debug_is_locked 0 1 88 293
+/**
+ * Returns true if the current thread has locked the LightReMutex, false
+ * otherwise.  This method is only intended for use in debugging, hence the
+ * method name; in the LightReMutexDirect case, it always returns true, since
+ * there's not a reliable way to determine this otherwise.
+ */
+60
+inline bool LightReMutexDirect::debug_is_locked(void) const;
+
+197 8 set_name 0 4 240 28 LightReMutexDirect::set_name 0 1 89 79
+/**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */
+66
+inline void LightReMutexDirect::set_name(std::string const &name);
+
+198 10 clear_name 0 4 240 30 LightReMutexDirect::clear_name 0 1 90 79
+/**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */
+49
+inline void LightReMutexDirect::clear_name(void);
+
+199 8 has_name 0 4 240 28 LightReMutexDirect::has_name 0 1 91 79
+/**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */
+53
+inline bool LightReMutexDirect::has_name(void) const;
+
+200 8 get_name 0 4 240 28 LightReMutexDirect::get_name 0 1 92 79
+/**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */
+60
+inline std::string LightReMutexDirect::get_name(void) const;
+
+201 6 output 0 4 240 26 LightReMutexDirect::output 0 1 93 99
+/**
+ * This method is declared virtual in MutexDebug, but non-virtual in
+ * LightReMutexDirect.
+ */
+57
+void LightReMutexDirect::output(std::ostream &out) const;
+
+202 12 LightReMutex 0 4 241 26 LightReMutex::LightReMutex 0 2 94 95 34
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+109
+inline LightReMutex::LightReMutex(void);
+inline explicit LightReMutex::LightReMutex(std::string const &name);
+
+203 13 ~LightReMutex 0 4 241 27 LightReMutex::~LightReMutex 0 0 0
+44
+LightReMutex::~LightReMutex(void) = default;
+
+204 14 get_class_type 0 4 242 26 MainThread::get_class_type 0 1 96 0
+51
+static TypeHandle MainThread::get_class_type(void);
+
+205 11 ~MainThread 0 4 242 23 MainThread::~MainThread 0 0 0
+30
+MainThread::~MainThread(void);
+
+206 9 Semaphore 0 4 243 20 Semaphore::Semaphore 0 1 97 10
+/**
+ *
+ */
+60
+inline explicit Semaphore::Semaphore(int initial_count = 1);
+
+207 10 ~Semaphore 0 4 243 21 Semaphore::~Semaphore 0 0 0
+38
+Semaphore::~Semaphore(void) = default;
+
+208 7 acquire 0 4 243 18 Semaphore::acquire 0 1 98 134
+/**
+ * Decrements the internal count.  If the count was already at zero, blocks
+ * until the count is nonzero, then decrements it.
+ */
+37
+inline void Semaphore::acquire(void);
+
+209 11 try_acquire 0 4 243 22 Semaphore::try_acquire 0 1 99 117
+/**
+ * If the semaphore can be acquired without blocking, does so and returns
+ * true.  Otherwise, returns false.
+ */
+41
+inline bool Semaphore::try_acquire(void);
+
+210 7 release 0 4 243 18 Semaphore::release 0 1 100 166
+/**
+ * Increments the semaphore's internal count.  This may wake up another thread
+ * blocked on acquire().
+ *
+ * Returns the count of the semaphore upon release.
+ */
+36
+inline int Semaphore::release(void);
+
+211 9 get_count 0 4 243 20 Semaphore::get_count 0 1 101 127
+/**
+ * Returns the current semaphore count.  Note that this call is not thread-
+ * safe (the count may change at any time).
+ */
+44
+inline int Semaphore::get_count(void) const;
+
+212 6 output 0 4 243 17 Semaphore::output 0 1 102 10
+/**
+ *
+ */
+48
+void Semaphore::output(std::ostream &out) const;
+
+213 12 PythonThread 0 4 244 26 PythonThread::PythonThread 0 1 103 0
+127
+explicit PythonThread::PythonThread(PyObject *function, PyObject *args, std::string const &name, std::string const &sync_name);
+
+214 4 join 0 4 244 18 PythonThread::join 0 1 104 0
+35
+PyObject *PythonThread::join(void);
+
+215 8 get_args 0 4 244 22 PythonThread::get_args 0 0 0
+45
+PyObject *PythonThread::get_args(void) const;
+
+216 8 set_args 0 4 244 22 PythonThread::set_args 0 0 0
+40
+void PythonThread::set_args(PyObject *);
+
+217 14 get_class_type 0 4 244 28 PythonThread::get_class_type 0 1 105 0
+53
+static TypeHandle PythonThread::get_class_type(void);
+
+105
+1 0 0 7 10 226 110 0 952 /**
+ * Returns a new Panda Thread object associated with the current thread (which
+ * has been created externally). This can be used to bind a unique Panda
+ * Thread object with an external thread, such as a new Python thread.
+ *
+ * It is particularly useful to bind a Panda Thread object to an external
+ * thread for the purposes of PStats monitoring.  Without this call, each
+ * external thread will be assigned the same global ExternalThread object,
+ * which means they will all appear in the same PStats graph.
+ *
+ * It is the caller's responsibility to save the returned Thread pointer for
+ * the lifetime of the external thread.  It is an error for the Thread pointer
+ * to destruct while the external thread is still in the system.
+ *
+ * It is also an error to call this method from the main thread, or twice
+ * within a given thread, unless it is given the same name each time (in which
+ * case the same pointer will be returned each time).
+ */ 2 4 name 1 248  9 sync_name 1 248  
+2 0 0 6 11 248 0 0 279 /**
+ * Returns the sync name of the thread.  This name collects threads into "sync
+ * groups", which are expected to run synchronously.  This is mainly used for
+ * the benefit of PStats; threads with the same sync name can be ticked all at
+ * once via the thread_tick() call.
+ */ 1 4 this 3 249  
+3 0 0 6 12 225 0 0 218 /**
+ * Returns the PStats index associated with this thread, or -1 if no index has
+ * yet been associated with this thread.  This is used internally by the
+ * PStatClient; you should not need to call this directly.
+ */ 1 4 this 3 249  
+4 0 0 6 13 225 0 0 233 /**
+ * Returns the Python index associated with this thread, or -1 if no index has
+ * yet been associated with this thread.  This is used internally by the
+ * direct.stdpy.thread module; you should not need to call this directly.
+ */ 1 4 this 3 249  
+5 0 0 6 14 248 0 0 161 /**
+ * Returns a string that is guaranteed to be unique to this thread, across all
+ * processes on the machine, during at least the lifetime of this process.
+ */ 1 4 this 3 249  
+6 0 0 6 15 225 0 0 163 /**
+ * Returns the Pipeline stage number associated with this thread.  The default
+ * stage is 0 if no stage is specified otherwise.  See set_pipeline_stage().
+ */ 1 4 this 3 249  
+7 0 0 4 16 251 0 0 479 /**
+ * Specifies the Pipeline stage number associated with this thread.  The
+ * default stage is 0 if no stage is specified otherwise.
+ *
+ * This must be a value in the range [0 .. pipeline->get_num_stages() - 1].
+ * It specifies the values that this thread observes for all pipelined data.
+ * Typically, an application thread will leave this at 0, but a render thread
+ * may set it to 1 or 2 (to operate on the previous frame's data, or the
+ * second previous frame's data).
+ */ 2 4 this 3 226  14 pipeline_stage 1 225  
+8 0 0 4 17 251 0 0 143 /**
+ * Sets this thread's pipeline stage number to at least the indicated value,
+ * unless it is already larger.  See set_pipeline_stage().
+ */ 2 4 this 3 226  18 min_pipeline_stage 1 225  
+9 0 0 7 18 226 110 0 111 /**
+ * Returns a pointer to the "main" Thread object--this is the Thread that
+ * started the whole process.
+ */ 0 
+10 0 0 7 19 226 110 0 248 /**
+ * Returns a pointer to the "external" Thread object--this is a special Thread
+ * object that corresponds to any thread spawned outside of Panda's threading
+ * interface.  Note that multiple different threads may share this same
+ * pointer.
+ */ 0 
+11 0 0 7 20 226 110 0 415 /**
+ * Returns a pointer to the currently-executing Thread object.  If this is
+ * called from the main thread, this will return the same value as
+ * get_main_thread().
+ *
+ * This will always return some valid Thread pointer.  It will never return
+ * NULL, even if the current thread was spawned outside of Panda's threading
+ * system, although all non-Panda threads will return the exact same Thread
+ * pointer.
+ */ 0 
+12 0 0 6 21 225 0 0 208 /**
+ * Returns the integer pipeline stage associated with the current thread.
+ * This is the same thing as get_current_thread()->get_pipeline_stage(), but
+ * it may be faster to retrieve in some contexts.
+ */ 0 
+13 0 0 6 22 227 0 0 159 /**
+ * Returns true if threading support has been compiled in and enabled, or
+ * false if no threading is available (and Thread::start() will always fail).
+ */ 0 
+14 0 0 6 23 227 0 0 196 /**
+ * Returns true if a real threading library is available that supports actual
+ * OS-implemented threads, or false if the only threading we can provide is
+ * simulated user-space threading.
+ */ 0 
+15 0 0 6 24 227 0 0 393 /**
+ * Returns true if Panda is currently compiled for "simple threads", which is
+ * to say, cooperative context switching only, reducing the need for quite so
+ * many critical section protections.  This is not necessarily the opposite of
+ * "true threads", since one possible implementation of simple threads is via
+ * true threads with mutex protection to ensure only one runs at a time.
+ */ 0 
+16 0 0 4 25 251 0 0 119 /**
+ * Suspends the current thread for at least the indicated amount of time.  It
+ * might be suspended for longer.
+ */ 1 7 seconds 1 252  
+17 0 0 4 26 251 0 0 73 /**
+ * Suspends the current thread for the rest of the current epoch.
+ */ 0 
+18 0 0 4 27 251 0 0 239 /**
+ * Possibly suspends the current thread for the rest of the current epoch, if
+ * it has run for enough this epoch.  This is especially important for the
+ * simple thread implementation, which relies on cooperative yields like this.
+ */ 0 
+19 0 0 4 28 251 0 0 10 /**
+ *
+ */ 2 4 this 3 249  3 out 1 253  
+20 0 0 4 29 251 0 0 184 /**
+ * Writes a description of the mutex or condition variable that this thread is
+ * blocked on.  Writes nothing if there is no blocker, or if we are not in
+ * DEBUG_THREADS mode.
+ */ 2 4 this 3 249  3 out 1 253  
+21 0 0 4 30 251 0 0 10 /**
+ *
+ */ 1 3 out 1 253  
+22 0 0 6 31 227 0 0 117 /**
+ * Returns true if the thread has been started, false if it has not, or if
+ * join() has already been called.
+ */ 1 4 this 3 249  
+23 0 0 6 32 227 0 0 77 /**
+ * Returns the value of joinable that was passed to the start() call.
+ */ 1 4 this 3 249  
+24 0 0 6 33 227 0 0 862 /**
+ * Starts the thread executing.  It is only valid to call this once.
+ *
+ * The thread will begin executing its thread_main() function, and will
+ * terminate when thread_main() returns.
+ *
+ * priority is intended as a hint to the relative importance of this thread.
+ * This may be ignored by the thread implementation.
+ *
+ * joinable should be set true if you intend to call join() to wait for the
+ * thread to terminate, or false if you don't care and you will never call
+ * join(). Note that the reference count on the Thread object is incremented
+ * while the thread itself is running, so if you just want to fire and forget
+ * a thread, you may pass joinable = false, and never store the Thread object.
+ * It will automatically destruct itself when it finishes.
+ *
+ * The return value is true if the thread is successfully started, false
+ * otherwise.
+ */ 3 4 this 3 226  8 priority 1 218  8 joinable 1 227  
+25 0 0 4 34 251 0 0 134 /**
+ * Blocks the calling process until the thread terminates.  If the thread has
+ * already terminated, this returns immediately.
+ */ 1 4 this 3 226  
+26 0 0 4 35 251 0 0 183 /**
+ * Indicates that this thread should run as soon as possible, preemptying any
+ * other threads that may be scheduled to run.  This may not be implemented on
+ * every platform.
+ */ 1 4 this 3 226  
+27 0 0 7 36 228 0 0 161 /**
+ * Returns the task currently executing on this thread (via the
+ * AsyncTaskManager), if any, or NULL if the thread is not currently servicing
+ * a task.
+ */ 1 4 this 3 249  
+28 0 0 4 37 251 0 0 160 /**
+ * Stores a Python index to be associated with this thread.  This is used
+ * internally by the thread module; you should not need to call this directly.
+ */ 2 4 this 3 226  5 index 1 225  
+29 0 0 4 38 251 0 0 143 /**
+ * Should be called by the main thread just before exiting the program, this
+ * blocks until any remaining thread cleanup has finished.
+ */ 0 
+30 0 0 7 61 256 0 0 0 0 
+31 0 0 7 4 228 0 0 0 1 4 this 3 226  
+32 0 0 6 7 257 0 0 0 1 4 this 3 226  
+33 0 0 4 63 251 0 0 405 /**
+ * Grabs the mutex if it is available.  If it is not available, blocks until
+ * it becomes available, then grabs it.  In either case, the function does not
+ * return until the mutex is held; you should then call unlock().
+ *
+ * This method is considered const so that you can lock and unlock const
+ * mutexes, mainly to allow thread-safe access to otherwise const data.
+ *
+ * Also see MutexHolder.
+ */ 1 4 this 3 258  
+34 0 0 6 64 227 0 0 125 /**
+ * Returns immediately, with a true value indicating the mutex has been
+ * acquired, and false indicating it has not.
+ */ 1 4 this 3 258  
+35 0 0 4 65 251 0 0 247 /**
+ * Releases the mutex.  It is an error to call this if the mutex was not
+ * already locked.
+ *
+ * This method is considered const so that you can lock and unlock const
+ * mutexes, mainly to allow thread-safe access to otherwise const data.
+ */ 1 4 this 3 258  
+36 0 0 6 66 227 0 0 278 /**
+ * Returns true if the current thread has locked the Mutex, false otherwise.
+ * This method is only intended for use in debugging, hence the method name;
+ * in the MutexDirect case, it always returns true, since there's not a
+ * reliable way to determine this otherwise.
+ */ 1 4 this 3 258  
+37 0 0 4 67 251 0 0 79 /**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */ 2 4 this 3 260  4 name 1 248  
+38 0 0 4 68 251 0 0 79 /**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */ 1 4 this 3 260  
+39 0 0 6 69 227 0 0 79 /**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */ 1 4 this 3 258  
+40 0 0 6 70 248 0 0 79 /**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */ 1 4 this 3 258  
+41 0 0 4 71 251 0 0 92 /**
+ * This method is declared virtual in MutexDebug, but non-virtual in
+ * MutexDirect.
+ */ 2 4 this 3 258  3 out 1 253  
+42 0 0 7 73 261 151 0 10 /**
+ *
+ */ 0 
+43 0 0 7 73 261 151 0 10 /**
+ *
+ */ 1 4 name 1 248  
+44 0 0 6 77 260 0 0 69 /**
+ * Returns the mutex associated with this condition variable.
+ */ 1 4 this 3 262  
+45 0 0 4 78 251 0 0 863 /**
+ * Waits on the condition.  The caller must already be holding the lock
+ * associated with the condition variable before calling this function.
+ *
+ * wait() will release the lock, then go to sleep until some other thread
+ * calls notify() on this condition variable.  At that time at least one
+ * thread waiting on the same ConditionVarDirect will grab the lock again, and
+ * then return from wait().
+ *
+ * It is possible that wait() will return even if no one has called notify().
+ * It is the responsibility of the calling process to verify the condition on
+ * return from wait, and possibly loop back to wait again if necessary.
+ *
+ * Note the semantics of a condition variable: the mutex must be held before
+ * wait() is called, and it will still be held when wait() returns.  However,
+ * it will be temporarily released during the wait() call itself.
+ */ 1 4 this 3 264  
+46 0 0 4 78 251 0 0 327 /**
+ * Waits on the condition, with a timeout.  The function will return when the
+ * condition variable is notified, or the timeout occurs.  There is no way to
+ * directly tell which happened, and it is possible that neither in fact
+ * happened (spurious wakeups are possible).
+ *
+ * See wait() with no parameters for more.
+ */ 2 4 this 3 264  7 timeout 1 252  
+47 0 0 4 79 251 0 0 542 /**
+ * Informs one of the other threads who are currently blocked on wait() that
+ * the relevant condition has changed.  If multiple threads are currently
+ * waiting, at least one of them will be woken up, although there is no way to
+ * predict which one.  It is possible that more than one thread will be woken
+ * up.
+ *
+ * The caller must be holding the mutex associated with the condition variable
+ * before making this call, which will not release the mutex.
+ *
+ * If no threads are waiting, this is a no-op: the notify event is lost.
+ */ 1 4 this 3 264  
+48 0 0 4 80 251 0 0 106 /**
+ * This method is declared virtual in ConditionVarDebug, but non-virtual in
+ * ConditionVarDirect.
+ */ 2 4 this 3 262  3 out 1 253  
+49 0 0 7 82 265 158 0 278 /**
+ * You must pass in a Mutex to the condition variable constructor.  This mutex
+ * may be shared by other condition variables, if desired.  It is the caller's
+ * responsibility to ensure the Mutex object does not destruct during the
+ * lifetime of the condition variable.
+ */ 1 5 mutex 1 261  
+50 0 0 6 84 261 0 0 69 /**
+ * Returns the mutex associated with this condition variable.
+ */ 1 4 this 3 266  
+51 0 0 6 87 260 0 0 69 /**
+ * Returns the mutex associated with this condition variable.
+ */ 1 4 this 3 268  
+52 0 0 4 88 251 0 0 867 /**
+ * Waits on the condition.  The caller must already be holding the lock
+ * associated with the condition variable before calling this function.
+ *
+ * wait() will release the lock, then go to sleep until some other thread
+ * calls notify() on this condition variable.  At that time at least one
+ * thread waiting on the same ConditionVarFullDirect will grab the lock again,
+ * and then return from wait().
+ *
+ * It is possible that wait() will return even if no one has called notify().
+ * It is the responsibility of the calling process to verify the condition on
+ * return from wait, and possibly loop back to wait again if necessary.
+ *
+ * Note the semantics of a condition variable: the mutex must be held before
+ * wait() is called, and it will still be held when wait() returns.  However,
+ * it will be temporarily released during the wait() call itself.
+ */ 1 4 this 3 270  
+53 0 0 4 88 251 0 0 327 /**
+ * Waits on the condition, with a timeout.  The function will return when the
+ * condition variable is notified, or the timeout occurs.  There is no way to
+ * directly tell which happened, and it is possible that neither in fact
+ * happened (spurious wakeups are possible).
+ *
+ * See wait() with no parameters for more.
+ */ 2 4 this 3 270  7 timeout 1 252  
+54 0 0 4 89 251 0 0 536 /**
+ * Informs one of the other threads who are currently blocked on wait() that
+ * the relevant condition has changed.  If multiple threads are currently
+ * waiting, at least one of them will be woken up, although there is no way to
+ * predict which one.  It is possible that more than one thread will be woken
+ * up.
+ *
+ * The caller must be holding the mutex associated with the condition variable
+ * before making this call, which will not release the mutex.
+ *
+ * If no threads are waiting, this is a no-op: the notify is lost.
+ */ 1 4 this 3 270  
+55 0 0 4 90 251 0 0 343 /**
+ * Informs all of the other threads who are currently blocked on wait() that
+ * the relevant condition has changed.
+ *
+ * The caller must be holding the mutex associated with the condition variable
+ * before making this call, which will not release the mutex.
+ *
+ * If no threads are waiting, this is a no-op: the notify event is lost.
+ */ 1 4 this 3 270  
+56 0 0 4 91 251 0 0 114 /**
+ * This method is declared virtual in ConditionVarFullDebug, but non-virtual
+ * in ConditionVarFullDirect.
+ */ 2 4 this 3 268  3 out 1 253  
+57 0 0 7 93 271 167 0 278 /**
+ * You must pass in a Mutex to the condition variable constructor.  This mutex
+ * may be shared by other condition variables, if desired.  It is the caller's
+ * responsibility to ensure the Mutex object does not destruct during the
+ * lifetime of the condition variable.
+ */ 1 5 mutex 1 261  
+58 0 0 6 95 261 0 0 69 /**
+ * Returns the mutex associated with this condition variable.
+ */ 1 4 this 3 272  
+59 0 0 4 97 251 0 0 413 /**
+ * Grabs the reMutex if it is available.  If it is not available, blocks until
+ * it becomes available, then grabs it.  In either case, the function does not
+ * return until the reMutex is held; you should then call unlock().
+ *
+ * This method is considered const so that you can lock and unlock const
+ * reMutexes, mainly to allow thread-safe access to otherwise const data.
+ *
+ * Also see ReMutexHolder.
+ */ 1 4 this 3 274  
+60 0 0 4 97 251 0 0 126 /**
+ * This variant on acquire() accepts the current thread as a parameter, if it
+ * is already known, as an optimization.
+ */ 2 4 this 3 274  14 current_thread 1 226  
+61 0 0 6 98 227 0 0 125 /**
+ * Returns immediately, with a true value indicating the mutex has been
+ * acquired, and false indicating it has not.
+ */ 1 4 this 3 274  
+62 0 0 6 98 227 0 0 125 /**
+ * Returns immediately, with a true value indicating the mutex has been
+ * acquired, and false indicating it has not.
+ */ 2 4 this 3 274  14 current_thread 1 226  
+63 0 0 4 99 251 0 0 468 /**
+ * This method increments the lock count, assuming the calling thread already
+ * holds the lock.  After this call, release() will need to be called one
+ * additional time to release the lock.
+ *
+ * This method really performs the same function as acquire(), but it offers a
+ * potential (slight) performance benefit when the calling thread knows that
+ * it already holds the lock.  It is an error to call this when the calling
+ * thread does not hold the lock.
+ */ 1 4 this 3 274  
+64 0 0 4 100 251 0 0 253 /**
+ * Releases the reMutex.  It is an error to call this if the reMutex was not
+ * already locked.
+ *
+ * This method is considered const so that you can lock and unlock const
+ * reMutexes, mainly to allow thread-safe access to otherwise const data.
+ */ 1 4 this 3 274  
+65 0 0 6 101 227 0 0 282 /**
+ * Returns true if the current thread has locked the ReMutex, false otherwise.
+ * This method is only intended for use in debugging, hence the method name;
+ * in the ReMutexDirect case, it always returns true, since there's not a
+ * reliable way to determine this otherwise.
+ */ 1 4 this 3 274  
+66 0 0 4 102 251 0 0 79 /**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */ 2 4 this 3 276  4 name 1 248  
+67 0 0 4 103 251 0 0 79 /**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */ 1 4 this 3 276  
+68 0 0 6 104 227 0 0 79 /**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */ 1 4 this 3 274  
+69 0 0 6 105 248 0 0 79 /**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */ 1 4 this 3 274  
+70 0 0 4 106 251 0 0 94 /**
+ * This method is declared virtual in MutexDebug, but non-virtual in
+ * ReMutexDirect.
+ */ 2 4 this 3 274  3 out 1 253  
+71 0 0 7 108 277 180 0 10 /**
+ *
+ */ 0 
+72 0 0 7 108 277 180 0 10 /**
+ *
+ */ 1 4 name 1 248  
+73 0 0 7 111 256 0 0 0 0 
+74 0 0 4 114 251 0 0 428 /**
+ * Grabs the lightMutex if it is available.  If it is not available, blocks
+ * until it becomes available, then grabs it.  In either case, the function
+ * does not return until the lightMutex is held; you should then call
+ * unlock().
+ *
+ * This method is considered const so that you can lock and unlock const
+ * lightMutexes, mainly to allow thread-safe access to otherwise const data.
+ *
+ * Also see LightMutexHolder.
+ */ 1 4 this 3 278  
+75 0 0 4 115 251 0 0 262 /**
+ * Releases the lightMutex.  It is an error to call this if the lightMutex was
+ * not already locked.
+ *
+ * This method is considered const so that you can lock and unlock const
+ * lightMutexes, mainly to allow thread-safe access to otherwise const data.
+ */ 1 4 this 3 278  
+76 0 0 6 116 227 0 0 289 /**
+ * Returns true if the current thread has locked the LightMutex, false
+ * otherwise.  This method is only intended for use in debugging, hence the
+ * method name; in the LightMutexDirect case, it always returns true, since
+ * there's not a reliable way to determine this otherwise.
+ */ 1 4 this 3 278  
+77 0 0 4 117 251 0 0 84 /**
+ * The lightMutex name is only defined when compiling in DEBUG_THREADS mode.
+ */ 2 4 this 3 280  4 name 1 248  
+78 0 0 4 118 251 0 0 84 /**
+ * The lightMutex name is only defined when compiling in DEBUG_THREADS mode.
+ */ 1 4 this 3 280  
+79 0 0 6 119 227 0 0 84 /**
+ * The lightMutex name is only defined when compiling in DEBUG_THREADS mode.
+ */ 1 4 this 3 278  
+80 0 0 6 120 248 0 0 84 /**
+ * The lightMutex name is only defined when compiling in DEBUG_THREADS mode.
+ */ 1 4 this 3 278  
+81 0 0 4 121 251 0 0 102 /**
+ * This method is declared virtual in LightMutexDebug, but non-virtual in
+ * LightMutexDirect.
+ */ 2 4 this 3 278  3 out 1 253  
+82 0 0 7 123 281 192 0 10 /**
+ *
+ */ 0 
+83 0 0 7 123 281 192 0 10 /**
+ *
+ */ 1 4 name 1 248  
+84 0 0 4 126 251 0 0 436 /**
+ * Grabs the lightReMutex if it is available.  If it is not available, blocks
+ * until it becomes available, then grabs it.  In either case, the function
+ * does not return until the lightReMutex is held; you should then call
+ * unlock().
+ *
+ * This method is considered const so that you can lock and unlock const
+ * lightReMutexes, mainly to allow thread-safe access to otherwise const data.
+ *
+ * Also see LightReMutexHolder.
+ */ 1 4 this 3 282  
+85 0 0 4 126 251 0 0 126 /**
+ * This variant on acquire() accepts the current thread as a parameter, if it
+ * is already known, as an optimization.
+ */ 2 4 this 3 282  14 current_thread 1 226  
+86 0 0 4 127 251 0 0 468 /**
+ * This method increments the lock count, assuming the calling thread already
+ * holds the lock.  After this call, release() will need to be called one
+ * additional time to release the lock.
+ *
+ * This method really performs the same function as acquire(), but it offers a
+ * potential (slight) performance benefit when the calling thread knows that
+ * it already holds the lock.  It is an error to call this when the calling
+ * thread does not hold the lock.
+ */ 1 4 this 3 282  
+87 0 0 4 128 251 0 0 268 /**
+ * Releases the lightReMutex.  It is an error to call this if the lightReMutex
+ * was not already locked.
+ *
+ * This method is considered const so that you can lock and unlock const
+ * lightReMutexes, mainly to allow thread-safe access to otherwise const data.
+ */ 1 4 this 3 282  
+88 0 0 6 129 227 0 0 293 /**
+ * Returns true if the current thread has locked the LightReMutex, false
+ * otherwise.  This method is only intended for use in debugging, hence the
+ * method name; in the LightReMutexDirect case, it always returns true, since
+ * there's not a reliable way to determine this otherwise.
+ */ 1 4 this 3 282  
+89 0 0 4 130 251 0 0 79 /**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */ 2 4 this 3 284  4 name 1 248  
+90 0 0 4 131 251 0 0 79 /**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */ 1 4 this 3 284  
+91 0 0 6 132 227 0 0 79 /**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */ 1 4 this 3 282  
+92 0 0 6 133 248 0 0 79 /**
+ * The mutex name is only defined when compiling in DEBUG_THREADS mode.
+ */ 1 4 this 3 282  
+93 0 0 4 134 251 0 0 99 /**
+ * This method is declared virtual in MutexDebug, but non-virtual in
+ * LightReMutexDirect.
+ */ 2 4 this 3 282  3 out 1 253  
+94 0 0 7 136 285 203 0 10 /**
+ *
+ */ 0 
+95 0 0 7 136 285 203 0 10 /**
+ *
+ */ 1 4 name 1 248  
+96 0 0 7 139 256 0 0 0 0 
+97 0 0 7 142 286 207 0 10 /**
+ *
+ */ 1 13 initial_count 1 225  
+98 0 0 4 144 251 0 0 134 /**
+ * Decrements the internal count.  If the count was already at zero, blocks
+ * until the count is nonzero, then decrements it.
+ */ 1 4 this 3 286  
+99 0 0 6 145 227 0 0 117 /**
+ * If the semaphore can be acquired without blocking, does so and returns
+ * true.  Otherwise, returns false.
+ */ 1 4 this 3 286  
+100 0 0 6 146 225 0 0 166 /**
+ * Increments the semaphore's internal count.  This may wake up another thread
+ * blocked on acquire().
+ *
+ * Returns the count of the semaphore upon release.
+ */ 1 4 this 3 286  
+101 0 0 6 147 225 0 0 127 /**
+ * Returns the current semaphore count.  Note that this call is not thread-
+ * safe (the count may change at any time).
+ */ 1 4 this 3 287  
+102 0 0 4 148 251 0 0 10 /**
+ *
+ */ 2 4 this 3 287  3 out 1 253  
+103 0 0 7 150 289 110 0 0 4 8 function 1 245  4 args 1 245  4 name 1 248  9 sync_name 1 248  
+104 0 0 6 151 245 0 0 0 1 4 this 3 289  
+105 0 0 7 158 256 0 0 0 0 
+72
+218 14 ThreadPriority 0 532481 14 ThreadPriority 14 ThreadPriority 0 0 0 0 0 0 0 0 0 0 4 6 TP_low 6 TP_low 0
+0 9 TP_normal 9 TP_normal 0
+1 7 TP_high 7 TP_high 0
+2 9 TP_urgent 9 TP_urgent 0
+3 0 105
+// An enumerated type used by Thread to specify a suggested relative priority
+// for a particular thread.
+
+219 6 Thread 0 26625 6 Thread 6 Thread 0 0 0 0 110 15 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 30 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 0 0 2 3 220 106 107 3 221 108 109 0 0 396
+/**
+ * A thread; that is, a lightweight process.  This is an abstract base class;
+ * to use it, you must subclass from it and redefine thread_main().
+ *
+ * The thread itself will keep a reference count on the Thread object while it
+ * is running; when the thread returns from its root function, the Thread
+ * object will automatically be destructed if no other pointers are
+ * referencing it.
+ */
+
+220 19 TypedReferenceCount 0 2048 19 TypedReferenceCount 19 TypedReferenceCount 0 0 0 0 0 0 0 0 0 0 0 0 410
+/**
+ * A base class for things which need to inherit from both TypedObject and
+ * from ReferenceCount.  It's convenient to define this intermediate base
+ * class instead of multiply inheriting from the two classes each time they
+ * are needed, so that we can sensibly pass around pointers to things which
+ * are both TypedObjects and ReferenceCounters.
+ *
+ * See also TypedObject for detailed instructions.
+ */
+
+221 7 Namable 0 2048 7 Namable 7 Namable 0 0 0 0 0 0 0 0 0 0 0 0 125
+/**
+ * A base class for all things which can have a name.  The name is either
+ * empty or nonempty, but it is never NULL.
+ */
+
+222 12 string const 0 8832 17 std::string const 17 std::string const 0 0 223 0 0 0 0 0 0 0 0 0 0
+
+223 6 string 0 2105344 11 std::string 11 std::string 0 0 224 0 0 0 0 0 0 0 0 0 0
+
+224 20 basic_string< char > 0 2048 25 std::basic_string< char > 25 std::basic_string< char > 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+225 3 int 0 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+226 8 Thread * 0 8576 8 Thread * 8 Thread * 0 0 219 0 0 0 0 0 0 0 0 0 0
+
+227 4 bool 0 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+228 21 TypedReferenceCount * 0 8576 21 TypedReferenceCount * 21 TypedReferenceCount * 0 0 220 0 0 0 0 0 0 0 0 0 0
+
+229 11 MutexDirect 0 43009 11 MutexDirect 11 MutexDirect 0 0 0 0 0 0 9 141 142 143 144 145 146 147 148 149 0 0 0 0 0 164
+/**
+ * This class implements a standard mutex by making direct calls to the
+ * underlying implementation layer.  It doesn't perform any debugging
+ * operations.
+ */
+
+230 5 Mutex 0 26625 5 Mutex 5 Mutex 0 0 0 1 150 151 0 0 0 0 1 0 229 0 0 0 0 0
+
+231 18 ConditionVarDirect 0 26625 18 ConditionVarDirect 18 ConditionVarDirect 0 0 0 0 152 0 4 153 154 155 156 0 0 0 0 0 377
+/**
+ * A condition variable, usually used to communicate information about
+ * changing state to a thread that is waiting for something to happen.  A
+ * condition variable can be used to "wake up" a thread when some arbitrary
+ * condition has changed.
+ *
+ * A condition variable is associated with a single mutex, and several
+ * condition variables may share the same mutex.
+ */
+
+232 12 ConditionVar 0 26625 12 ConditionVar 12 ConditionVar 0 0 0 1 157 158 0 1 159 0 0 1 0 231 0 0 0 0 0
+
+233 22 ConditionVarFullDirect 0 26625 22 ConditionVarFullDirect 22 ConditionVarFullDirect 0 0 0 0 160 0 5 161 162 163 164 165 0 0 0 0 0 377
+/**
+ * A condition variable, usually used to communicate information about
+ * changing state to a thread that is waiting for something to happen.  A
+ * condition variable can be used to "wake up" a thread when some arbitrary
+ * condition has changed.
+ *
+ * A condition variable is associated with a single mutex, and several
+ * condition variables may share the same mutex.
+ */
+
+234 16 ConditionVarFull 0 26625 16 ConditionVarFull 16 ConditionVarFull 0 0 0 1 166 167 0 1 168 0 0 1 0 233 0 0 0 0 0
+
+235 13 ReMutexDirect 0 43009 13 ReMutexDirect 13 ReMutexDirect 0 0 0 0 0 0 10 169 170 171 172 173 174 175 176 177 178 0 0 0 0 0 166
+/**
+ * This class implements a standard reMutex by making direct calls to the
+ * underlying implementation layer.  It doesn't perform any debugging
+ * operations.
+ */
+
+236 7 ReMutex 0 26625 7 ReMutex 7 ReMutex 0 0 0 1 179 180 0 0 0 0 1 0 235 0 0 0 0 0
+
+237 14 ExternalThread 0 141313 14 ExternalThread 14 ExternalThread 0 0 0 0 182 0 1 181 0 0 1 0 219 0 0 0 0 149
+/**
+ * The special "external thread" class.  There is one instance of these in the
+ * world, and it is returned by Thread::get_external_thread().
+ */
+
+238 16 LightMutexDirect 0 43009 16 LightMutexDirect 16 LightMutexDirect 0 0 0 0 0 0 8 183 184 185 186 187 188 189 190 0 0 0 0 0 167
+/**
+ * This class implements a lightweight Mutex by making direct calls to the
+ * underlying implementation layer.  It doesn't perform any debugging
+ * operations.
+ */
+
+239 10 LightMutex 0 26625 10 LightMutex 10 LightMutex 0 0 0 1 191 192 0 0 0 0 1 0 238 0 0 0 0 0
+
+240 18 LightReMutexDirect 0 43009 18 LightReMutexDirect 18 LightReMutexDirect 0 0 0 0 0 0 9 193 194 195 196 197 198 199 200 201 0 0 0 0 0 171
+/**
+ * This class implements a standard lightReMutex by making direct calls to the
+ * underlying implementation layer.  It doesn't perform any debugging
+ * operations.
+ */
+
+241 12 LightReMutex 0 26625 12 LightReMutex 12 LightReMutex 0 0 0 1 202 203 0 0 0 0 1 0 240 0 0 0 0 0
+
+242 10 MainThread 0 141313 10 MainThread 10 MainThread 0 0 0 0 205 0 1 204 0 0 1 0 219 0 0 0 0 141
+/**
+ * The special "main thread" class.  There is one instance of these in the
+ * world, and it is returned by Thread::get_main_thread().
+ */
+
+243 9 Semaphore 0 26625 9 Semaphore 9 Semaphore 0 0 0 1 206 207 0 5 208 209 210 211 212 0 0 0 0 0 332
+/**
+ * A classic semaphore synchronization primitive.
+ *
+ * A semaphore manages an internal counter which is decremented by each
+ * acquire() call and incremented by each release() call.  The counter can
+ * never go below zero; when acquire() finds that it is zero, it blocks,
+ * waiting until some other thread calls release().
+ */
+
+244 12 PythonThread 0 75777 12 PythonThread 12 PythonThread 0 0 0 1 213 110 1 305 2 214 217 0 0 1 0 219 0 0 0 0 174
+/**
+ * This class is exposed to Python to allow creation of a Panda thread from
+ * the Python level.  It will spawn a thread that executes an arbitrary Python
+ * functor.
+ */
+
+245 10 PyObject * 0 8576 10 PyObject * 10 PyObject * 0 0 246 0 0 0 0 0 0 0 0 0 0
+
+246 8 PyObject 0 2105344 8 PyObject 8 PyObject 0 0 247 0 0 0 0 0 0 0 0 0 0
+
+247 7 _object 0 1024 7 _object 7 _object 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+248 13 atomic string 0 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+249 14 Thread const * 0 8576 14 Thread const * 14 Thread const * 0 0 250 0 0 0 0 0 0 0 0 0 0
+
+250 12 Thread const 0 8832 12 Thread const 12 Thread const 0 0 219 0 0 0 0 0 0 0 0 0 0
+
+251 4 void 0 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+252 6 double 0 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0 0
+
+253 9 ostream * 0 8576 14 std::ostream * 14 std::ostream * 0 0 254 0 0 0 0 0 0 0 0 0 0
+
+254 7 ostream 0 2048 12 std::ostream 12 std::ostream 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+255 10 TypeHandle 0 16779264 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 732
+/**
+ * TypeHandle is the identifier used to differentiate C++ class types.  Any
+ * C++ classes that inherit from some base class, and must be differentiated
+ * at run time, should store a static TypeHandle object that can be queried
+ * through a static member function named get_class_type().  Most of the time,
+ * it is also desirable to inherit from TypedObject, which provides some
+ * virtual functions to return the TypeHandle for a particular instance.
+ *
+ * At its essence, a TypeHandle is simply a unique identifier that is assigned
+ * by the TypeRegistry.  The TypeRegistry stores a tree of TypeHandles, so
+ * that ancestry of a particular type may be queried, and the type name may be
+ * retrieved for run-time display.
+ */
+
+256 12 TypeHandle * 0 8576 12 TypeHandle * 12 TypeHandle * 0 0 255 0 0 0 0 0 0 0 0 0 0
+
+257 9 Namable * 0 8576 9 Namable * 9 Namable * 0 0 221 0 0 0 0 0 0 0 0 0 0
+
+258 19 MutexDirect const * 0 8576 19 MutexDirect const * 19 MutexDirect const * 0 0 259 0 0 0 0 0 0 0 0 0 0
+
+259 17 MutexDirect const 0 8832 17 MutexDirect const 17 MutexDirect const 0 0 229 0 0 0 0 0 0 0 0 0 0
+
+260 13 MutexDirect * 0 8576 13 MutexDirect * 13 MutexDirect * 0 0 229 0 0 0 0 0 0 0 0 0 0
+
+261 7 Mutex * 0 8576 7 Mutex * 7 Mutex * 0 0 230 0 0 0 0 0 0 0 0 0 0
+
+262 26 ConditionVarDirect const * 0 8576 26 ConditionVarDirect const * 26 ConditionVarDirect const * 0 0 263 0 0 0 0 0 0 0 0 0 0
+
+263 24 ConditionVarDirect const 0 8832 24 ConditionVarDirect const 24 ConditionVarDirect const 0 0 231 0 0 0 0 0 0 0 0 0 0
+
+264 20 ConditionVarDirect * 0 8576 20 ConditionVarDirect * 20 ConditionVarDirect * 0 0 231 0 0 0 0 0 0 0 0 0 0
+
+265 14 ConditionVar * 0 8576 14 ConditionVar * 14 ConditionVar * 0 0 232 0 0 0 0 0 0 0 0 0 0
+
+266 20 ConditionVar const * 0 8576 20 ConditionVar const * 20 ConditionVar const * 0 0 267 0 0 0 0 0 0 0 0 0 0
+
+267 18 ConditionVar const 0 8832 18 ConditionVar const 18 ConditionVar const 0 0 232 0 0 0 0 0 0 0 0 0 0
+
+268 30 ConditionVarFullDirect const * 0 8576 30 ConditionVarFullDirect const * 30 ConditionVarFullDirect const * 0 0 269 0 0 0 0 0 0 0 0 0 0
+
+269 28 ConditionVarFullDirect const 0 8832 28 ConditionVarFullDirect const 28 ConditionVarFullDirect const 0 0 233 0 0 0 0 0 0 0 0 0 0
+
+270 24 ConditionVarFullDirect * 0 8576 24 ConditionVarFullDirect * 24 ConditionVarFullDirect * 0 0 233 0 0 0 0 0 0 0 0 0 0
+
+271 18 ConditionVarFull * 0 8576 18 ConditionVarFull * 18 ConditionVarFull * 0 0 234 0 0 0 0 0 0 0 0 0 0
+
+272 24 ConditionVarFull const * 0 8576 24 ConditionVarFull const * 24 ConditionVarFull const * 0 0 273 0 0 0 0 0 0 0 0 0 0
+
+273 22 ConditionVarFull const 0 8832 22 ConditionVarFull const 22 ConditionVarFull const 0 0 234 0 0 0 0 0 0 0 0 0 0
+
+274 21 ReMutexDirect const * 0 8576 21 ReMutexDirect const * 21 ReMutexDirect const * 0 0 275 0 0 0 0 0 0 0 0 0 0
+
+275 19 ReMutexDirect const 0 8832 19 ReMutexDirect const 19 ReMutexDirect const 0 0 235 0 0 0 0 0 0 0 0 0 0
+
+276 15 ReMutexDirect * 0 8576 15 ReMutexDirect * 15 ReMutexDirect * 0 0 235 0 0 0 0 0 0 0 0 0 0
+
+277 9 ReMutex * 0 8576 9 ReMutex * 9 ReMutex * 0 0 236 0 0 0 0 0 0 0 0 0 0
+
+278 24 LightMutexDirect const * 0 8576 24 LightMutexDirect const * 24 LightMutexDirect const * 0 0 279 0 0 0 0 0 0 0 0 0 0
+
+279 22 LightMutexDirect const 0 8832 22 LightMutexDirect const 22 LightMutexDirect const 0 0 238 0 0 0 0 0 0 0 0 0 0
+
+280 18 LightMutexDirect * 0 8576 18 LightMutexDirect * 18 LightMutexDirect * 0 0 238 0 0 0 0 0 0 0 0 0 0
+
+281 12 LightMutex * 0 8576 12 LightMutex * 12 LightMutex * 0 0 239 0 0 0 0 0 0 0 0 0 0
+
+282 26 LightReMutexDirect const * 0 8576 26 LightReMutexDirect const * 26 LightReMutexDirect const * 0 0 283 0 0 0 0 0 0 0 0 0 0
+
+283 24 LightReMutexDirect const 0 8832 24 LightReMutexDirect const 24 LightReMutexDirect const 0 0 240 0 0 0 0 0 0 0 0 0 0
+
+284 20 LightReMutexDirect * 0 8576 20 LightReMutexDirect * 20 LightReMutexDirect * 0 0 240 0 0 0 0 0 0 0 0 0 0
+
+285 14 LightReMutex * 0 8576 14 LightReMutex * 14 LightReMutex * 0 0 241 0 0 0 0 0 0 0 0 0 0
+
+286 11 Semaphore * 0 8576 11 Semaphore * 11 Semaphore * 0 0 243 0 0 0 0 0 0 0 0 0 0
+
+287 17 Semaphore const * 0 8576 17 Semaphore const * 17 Semaphore const * 0 0 288 0 0 0 0 0 0 0 0 0 0
+
+288 15 Semaphore const 0 8832 15 Semaphore const 15 Semaphore const 0 0 243 0 0 0 0 0 0 0 0 0 0
+
+289 14 PythonThread * 0 8576 14 PythonThread * 14 PythonThread * 0 0 244 0 0 0 0 0 0 0 0 0 0
+
+0
+16
+290 9 sync_name 0 2 222 112 0 0 0 0 0 0 0 17 Thread::sync_name 0
+
+291 12 pstats_index 0 2 225 113 0 0 0 0 0 0 0 20 Thread::pstats_index 0
+
+292 12 python_index 0 2 225 114 0 0 0 0 0 0 0 20 Thread::python_index 0
+
+293 9 unique_id 0 2 223 115 0 0 0 0 0 0 0 17 Thread::unique_id 0
+
+294 14 pipeline_stage 0 6 225 116 117 0 0 0 0 0 0 22 Thread::pipeline_stage 0
+
+295 11 main_thread 0 2 226 119 0 0 0 0 0 0 0 19 Thread::main_thread 0
+
+296 15 external_thread 0 2 226 120 0 0 0 0 0 0 0 23 Thread::external_thread 0
+
+297 14 current_thread 0 2 226 121 0 0 0 0 0 0 0 22 Thread::current_thread 0
+
+298 22 current_pipeline_stage 0 2 225 122 0 0 0 0 0 0 0 30 Thread::current_pipeline_stage 0
+
+299 19 threading_supported 0 2 227 123 0 0 0 0 0 0 0 27 Thread::threading_supported 0
+
+300 12 true_threads 0 2 227 124 0 0 0 0 0 0 0 20 Thread::true_threads 0
+
+301 14 simple_threads 0 2 227 125 0 0 0 0 0 0 0 22 Thread::simple_threads 0
+
+302 7 started 0 2 227 132 0 0 0 0 0 0 0 15 Thread::started 0
+
+303 8 joinable 0 2 227 133 0 0 0 0 0 0 0 16 Thread::joinable 0
+
+304 12 current_task 0 2 228 137 0 0 0 0 0 0 0 20 Thread::current_task 0
+
+305 4 args 0 6 245 215 216 0 0 0 0 0 0 18 PythonThread::args 0
+
+0

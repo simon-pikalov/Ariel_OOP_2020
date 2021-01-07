@@ -1,0 +1,320 @@
+1608998993
+3 3
+11 libp3vision 4 nRMq 14 panda3d.vision 
+15
+15 4 make 0 4 30 15 ARToolKit::make 0 1 2 489
+/**
+ * Create a new ARToolKit instance.
+ *
+ * Camera must be the nodepath of a panda camera object.  The panda camera's
+ * field of view is initialized to match the field of view of the physical
+ * webcam.  Each time you call analyze, all marker nodepaths will be moved
+ * into a position which is relative to this camera.  The marker_size
+ * parameter indicates how large you printed the physical markers.  You should
+ * use the same size units that you wish to use in the panda code.
+ */
+97
+static ARToolKit *ARToolKit::make(NodePath camera, Filename const &paramfile, double markersize);
+
+16 10 ~ARToolKit 0 4 30 21 ARToolKit::~ARToolKit 0 0 10
+/**
+ *
+ */
+28
+ARToolKit::~ARToolKit(void);
+
+17 13 set_threshold 0 4 30 24 ARToolKit::set_threshold 0 1 3 193
+/**
+ * As part of its analysis, the ARToolKit occasionally converts images to
+ * black and white by thresholding them.  The threshold is set to 0.5 by
+ * default, but you can tweak it here.
+ */
+47
+inline void ARToolKit::set_threshold(double n);
+
+18 14 attach_pattern 0 4 30 25 ARToolKit::attach_pattern 0 1 4 213
+/**
+ * Associates the specified glyph with the specified NodePath.  Each time you
+ * call analyze, ARToolKit will update the NodePath's transform.  If the node
+ * is not visible, its scale will be set to zero.
+ */
+71
+void ARToolKit::attach_pattern(Filename const &pattern, NodePath path);
+
+19 15 detach_patterns 0 4 30 26 ARToolKit::detach_patterns 0 1 5 55
+/**
+ * Dissociates all patterns from all NodePaths.
+ */
+38
+void ARToolKit::detach_patterns(void);
+
+20 7 analyze 0 4 30 18 ARToolKit::analyze 0 1 6 334
+/**
+ * Analyzes the non-pad region of the specified texture.  This causes all
+ * attached nodepaths to move.  The parameter do_flip_texture is true by
+ * default, because Panda's representation of textures is upside down from
+ * ARToolKit.  If you already have a texture that's upside-down, however, you
+ * should set it to false.
+ */
+67
+void ARToolKit::analyze(Texture *tex, bool do_flip_texture = true);
+
+21 9 ARToolKit 0 4 30 20 ARToolKit::ARToolKit 0 1 1 54
+/**
+ * Use ARToolKit::make to create an ARToolKit.
+ */
+57
+inline ARToolKit::ARToolKit(ARToolKit const &) = default;
+
+22 15 get_num_options 0 4 31 28 WebcamVideo::get_num_options 0 1 7 198
+/**
+ * Returns the number of webcam options.  An "option" consists of a device
+ * plus a set of configuration parameters.  For example, "Creative Webcam Live
+ * at 640x480, 30 fps" is an option.
+ */
+46
+static int WebcamVideo::get_num_options(void);
+
+23 10 get_option 0 4 31 23 WebcamVideo::get_option 0 1 8 41
+/**
+ * Returns the nth webcam option.
+ */
+63
+static PointerTo< WebcamVideo > WebcamVideo::get_option(int n);
+
+24 10 get_size_x 0 4 31 23 WebcamVideo::get_size_x 0 1 9 39
+/**
+ * Returns the camera's size_x.
+ */
+47
+inline int WebcamVideo::get_size_x(void) const;
+
+25 10 get_size_y 0 4 31 23 WebcamVideo::get_size_y 0 1 10 39
+/**
+ * Returns the camera's size_y.
+ */
+47
+inline int WebcamVideo::get_size_y(void) const;
+
+26 7 get_fps 0 4 31 20 WebcamVideo::get_fps 0 1 11 142
+/**
+ * Returns the camera's framerate.  This is a maximum theoretical: the actual
+ * performance will depend on the speed of the hardware.
+ */
+47
+inline double WebcamVideo::get_fps(void) const;
+
+27 16 get_pixel_format 0 4 31 29 WebcamVideo::get_pixel_format 0 1 12 73
+/**
+ * Returns the camera's pixel format, as a FourCC code, if known.
+ */
+68
+inline std::string const &WebcamVideo::get_pixel_format(void) const;
+
+28 6 output 0 4 31 19 WebcamVideo::output 0 1 13 112
+/**
+ * Outputs the WebcamVideo.  This function simply writes the name, size and
+ * FPS to the output stream.
+ */
+57
+inline void WebcamVideo::output(std::ostream &out) const;
+
+29 14 get_class_type 0 4 31 27 WebcamVideo::get_class_type 0 1 14 0
+52
+static TypeHandle WebcamVideo::get_class_type(void);
+
+14
+1 0 0 7 8 36 16 0 0 1 6 param0 0 34  
+2 0 0 6 2 36 0 0 489 /**
+ * Create a new ARToolKit instance.
+ *
+ * Camera must be the nodepath of a panda camera object.  The panda camera's
+ * field of view is initialized to match the field of view of the physical
+ * webcam.  Each time you call analyze, all marker nodepaths will be moved
+ * into a position which is relative to this camera.  The marker_size
+ * parameter indicates how large you printed the physical markers.  You should
+ * use the same size units that you wish to use in the panda code.
+ */ 3 6 camera 1 37  9 paramfile 1 39  10 markersize 1 42  
+3 0 0 4 4 43 0 0 193 /**
+ * As part of its analysis, the ARToolKit occasionally converts images to
+ * black and white by thresholding them.  The threshold is set to 0.5 by
+ * default, but you can tweak it here.
+ */ 2 4 this 3 36  1 n 1 42  
+4 0 0 4 5 43 0 0 213 /**
+ * Associates the specified glyph with the specified NodePath.  Each time you
+ * call analyze, ARToolKit will update the NodePath's transform.  If the node
+ * is not visible, its scale will be set to zero.
+ */ 3 4 this 3 36  7 pattern 1 39  4 path 1 37  
+5 0 0 4 6 43 0 0 55 /**
+ * Dissociates all patterns from all NodePaths.
+ */ 1 4 this 3 36  
+6 0 0 4 7 43 0 0 334 /**
+ * Analyzes the non-pad region of the specified texture.  This causes all
+ * attached nodepaths to move.  The parameter do_flip_texture is true by
+ * default, because Panda's representation of textures is upside down from
+ * ARToolKit.  If you already have a texture that's upside-down, however, you
+ * should set it to false.
+ */ 3 4 this 3 36  3 tex 1 44  15 do_flip_texture 1 46  
+7 0 0 6 11 47 0 0 198 /**
+ * Returns the number of webcam options.  An "option" consists of a device
+ * plus a set of configuration parameters.  For example, "Creative Webcam Live
+ * at 640x480, 30 fps" is an option.
+ */ 0 
+8 0 0 7 12 48 0 0 41 /**
+ * Returns the nth webcam option.
+ */ 1 1 n 1 47  
+9 0 0 6 16 47 0 0 39 /**
+ * Returns the camera's size_x.
+ */ 1 4 this 3 49  
+10 0 0 6 17 47 0 0 39 /**
+ * Returns the camera's size_y.
+ */ 1 4 this 3 49  
+11 0 0 6 18 42 0 0 142 /**
+ * Returns the camera's framerate.  This is a maximum theoretical: the actual
+ * performance will depend on the speed of the hardware.
+ */ 1 4 this 3 49  
+12 0 0 6 19 51 0 0 73 /**
+ * Returns the camera's pixel format, as a FourCC code, if known.
+ */ 1 4 this 3 49  
+13 0 0 4 20 43 0 0 112 /**
+ * Outputs the WebcamVideo.  This function simply writes the name, size and
+ * FPS to the output stream.
+ */ 2 4 this 3 49  3 out 1 52  
+14 0 0 7 21 55 0 0 0 0 
+26
+30 9 ARToolKit 0 26625 9 ARToolKit 9 ARToolKit 0 0 0 1 21 16 0 5 15 17 18 19 20 0 0 0 0 0 636
+/**
+ * ARToolKit is a software library for building Augmented Reality (AR)
+ * applications.  These are applications that involve the overlay of virtual
+ * imagery on the real world.  It was developed by Dr.  Hirokazu Kato.  Its
+ * ongoing development is being supported by the Human Interface Technology
+ * Laboratory (HIT Lab) at the University of Washington, HIT Lab NZ at the
+ * University of Canterbury, New Zealand, and ARToolworks, Inc, Seattle.  It
+ * is available under a GPL license.  It is also possible to negotiate other
+ * licenses with the copyright holders.
+ *
+ * This class is a wrapper around the ARToolKit library.
+ */
+
+31 11 WebcamVideo 0 75777 11 WebcamVideo 11 WebcamVideo 0 0 0 0 0 1 56 8 22 23 24 25 26 27 28 29 1 57 0 1 0 32 0 0 0 0 90
+/**
+ * Allows you to open a webcam or other video capture device as a video
+ * stream.
+ */
+
+32 10 MovieVideo 0 2048 10 MovieVideo 10 MovieVideo 0 0 0 0 0 0 0 0 0 0 0 0 400
+/**
+ * A MovieVideo is actually any source that provides a sequence of video
+ * frames.  That could include an AVI file, a digital camera, or an internet
+ * TV station.
+ *
+ * The difference between a MovieVideo and a MovieVideoCursor is like the
+ * difference between a filename and a file handle.  The MovieVideo just
+ * indicates a particular movie.  The MovieVideoCursor is what allows access.
+ */
+
+33 24 PointerTo< WebcamVideo > 0 2048 24 PointerTo< WebcamVideo > 24 PointerTo< WebcamVideo > 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+34 17 ARToolKit const * 0 8576 17 ARToolKit const * 17 ARToolKit const * 0 0 35 0 0 0 0 0 0 0 0 0 0
+
+35 15 ARToolKit const 0 8832 15 ARToolKit const 15 ARToolKit const 0 0 30 0 0 0 0 0 0 0 0 0 0
+
+36 11 ARToolKit * 0 8576 11 ARToolKit * 11 ARToolKit * 0 0 30 0 0 0 0 0 0 0 0 0 0
+
+37 10 NodePath * 0 8576 10 NodePath * 10 NodePath * 0 0 38 0 0 0 0 0 0 0 0 0 0
+
+38 8 NodePath 0 2048 8 NodePath 8 NodePath 0 0 0 0 0 0 0 0 0 0 0 0 762
+/**
+ * NodePath is the fundamental system for disambiguating instances, and also
+ * provides a higher-level interface for manipulating the scene graph.
+ *
+ * A NodePath is a list of connected nodes from the root of the graph to any
+ * sub-node.  Each NodePath therefore uniquely describes one instance of a
+ * node.
+ *
+ * NodePaths themselves are lightweight objects that may easily be copied and
+ * passed by value.  Their data is stored as a series of NodePathComponents
+ * that are stored on the nodes.  Holding a NodePath will keep a reference
+ * count to all the nodes in the path.  However, if any node in the path is
+ * removed or reparented (perhaps through a different NodePath), the NodePath
+ * will automatically be updated to reflect the changes.
+ */
+
+39 16 Filename const * 0 8576 16 Filename const * 16 Filename const * 0 0 40 0 0 0 0 0 0 0 0 0 0
+
+40 14 Filename const 0 8832 14 Filename const 14 Filename const 0 0 41 0 0 0 0 0 0 0 0 0 0
+
+41 8 Filename 0 2048 8 Filename 8 Filename 0 0 0 0 0 0 0 0 0 0 0 0 550
+/**
+ * The name of a file, such as a texture file or an Egg file.  Stores the full
+ * pathname, and includes functions for extracting out the directory prefix
+ * part and the file extension and stuff.
+ *
+ * A Filename is also aware of the mapping between the Unix-like filename
+ * convention we use internally, and the local OS's specific filename
+ * convention, and it knows how to perform basic OS-specific I/O, like testing
+ * for file existence and searching a searchpath, as well as the best way to
+ * open an fstream for reading or writing.
+ */
+
+42 6 double 0 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0 0
+
+43 4 void 0 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+44 9 Texture * 0 8576 9 Texture * 9 Texture * 0 0 45 0 0 0 0 0 0 0 0 0 0
+
+45 7 Texture 0 2048 7 Texture 7 Texture 0 0 0 0 0 0 0 0 0 0 0 0 688
+/**
+ * Represents a texture object, which is typically a single 2-d image but may
+ * also represent a 1-d or 3-d texture image, or the six 2-d faces of a cube
+ * map texture.
+ *
+ * A texture's image data might be stored in system RAM (see get_ram_image())
+ * or its image may be represented in texture memory on one or more
+ * GraphicsStateGuardians (see prepare()), or both.  The typical usage pattern
+ * is that a texture is loaded from an image file on disk, which copies its
+ * image data into system RAM; then the first time the texture is rendered its
+ * image data is copied to texture memory (actually, to the graphics API), and
+ * the system RAM image is automatically freed.
+ */
+
+46 4 bool 0 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+47 3 int 0 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+48 13 WebcamVideo * 0 8576 13 WebcamVideo * 13 WebcamVideo * 0 0 31 0 0 0 0 0 0 0 0 0 0
+
+49 19 WebcamVideo const * 0 8576 19 WebcamVideo const * 19 WebcamVideo const * 0 0 50 0 0 0 0 0 0 0 0 0 0
+
+50 17 WebcamVideo const 0 8832 17 WebcamVideo const 17 WebcamVideo const 0 0 31 0 0 0 0 0 0 0 0 0 0
+
+51 13 atomic string 0 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+52 9 ostream * 0 8576 14 std::ostream * 14 std::ostream * 0 0 53 0 0 0 0 0 0 0 0 0 0
+
+53 7 ostream 0 2048 12 std::ostream 12 std::ostream 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+54 10 TypeHandle 0 16779264 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 732
+/**
+ * TypeHandle is the identifier used to differentiate C++ class types.  Any
+ * C++ classes that inherit from some base class, and must be differentiated
+ * at run time, should store a static TypeHandle object that can be queried
+ * through a static member function named get_class_type().  Most of the time,
+ * it is also desirable to inherit from TypedObject, which provides some
+ * virtual functions to return the TypeHandle for a particular instance.
+ *
+ * At its essence, a TypeHandle is simply a unique identifier that is assigned
+ * by the TypeRegistry.  The TypeRegistry stores a tree of TypeHandles, so
+ * that ancestry of a particular type may be queried, and the type name may be
+ * retrieved for run-time display.
+ */
+
+55 12 TypeHandle * 0 8576 12 TypeHandle * 12 TypeHandle * 0 0 54 0 0 0 0 0 0 0 0 0 0
+
+0
+1
+56 7 options 0 66 33 23 0 0 0 0 22 0 0 20 WebcamVideo::options 0
+
+1
+57 11 get_options 0 22 23 24 WebcamVideo::get_options 0
+

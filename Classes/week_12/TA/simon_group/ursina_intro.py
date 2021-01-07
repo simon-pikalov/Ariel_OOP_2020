@@ -1,5 +1,6 @@
 from ursina import *
 
+
 # Test Cube
 class Test_cube(Entity):
 	def __init__(self):
@@ -20,35 +21,24 @@ class Test_button(Button):
 			highlight_color = color.red,
 			pressed_color = color.lime)
 
-	def input(self,key):
-		if self.hovered:
-			if key == 'left mouse down':
-				punch_sound.play()
-
-
 # update is run every frame
 def update():
 	#print('test')
 	if held_keys['a']:
 		cube.x -= 1 * time.dt
+	if held_keys['d']:
+		cube.x += 1 * time.dt
+if __name__ == '__main__':
 
-# basic window
-app = Ursina()
 
-# basic cube
-cube = Entity(model='quad', color=color.orange, scale = (2,5), position = (5,1))
+	app = Ursina()
 
-# quad with texture
-#sans_image = load_texture('Sans.png')
-#sans = Entity(model = 'quad', texture = sans_image)
-#sans = Entity(model = 'quad', texture = 'Sans.png')
+	cube = Entity(model='quad', color=color.orange, scale = (2,5), position = (5,1))
 
-# creating a block properly
-test = Test_cube()
+	test = Test_cube()
 
-# creating a button
-btn = Test_button()
-punch_sound = Audio('assets/punch', loop=False, autoplay=False)
+	btn = Test_button()
 
-app.run()
+
+	app.run()
 

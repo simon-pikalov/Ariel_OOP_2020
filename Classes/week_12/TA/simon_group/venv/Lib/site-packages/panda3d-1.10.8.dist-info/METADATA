@@ -1,0 +1,61 @@
+Metadata-Version: 2.0
+Name: Panda3D
+Version: 1.10.8
+Summary: Panda3D is a framework for 3D rendering and game development for Python and C++ programs.
+License: Modified BSD License
+Home-page: https://www.panda3d.org/
+Project-URL: Source, https://github.com/panda3d/panda3d
+Project-URL: Tracker, https://github.com/panda3d/panda3d/issues
+Project-URL: Documentation, https://www.panda3d.org/manual/
+Project-URL: Funding, https://opencollective.com/panda3d
+Author: Panda3D Team
+Author-email: etc-panda3d@lists.andrew.cmu.edu
+Platform: win_amd64
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: C++
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Games/Entertainment
+Classifier: Topic :: Multimedia
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Multimedia :: Graphics :: 3D Rendering
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+
+The Panda3D free 3D game engine
+===============================
+
+Panda3D is a powerful 3D engine written in C++, with a complete set of Python
+bindings. Unlike other engines, these bindings are automatically generated,
+meaning that they are always up-to-date and complete: all functions of the
+engine can be controlled from Python. All major Panda3D applications have been
+written in Python, this is the intended way of using the engine.
+
+Panda3D now supports automatic shader generation, which now means you can use
+normal maps, gloss maps, glow maps, HDR, cartoon shading, and the like without
+having to write any shaders.
+
+Panda3D is a modern engine supporting advanced features such as shaders,
+stencil, and render-to-texture. Panda3D is unusual in that it emphasizes a
+short learning curve, rapid development, and extreme stability and robustness.
+Panda3D is free software that runs under Windows, Linux, or macOS.
+
+The Panda3D team is very concerned with making the engine accessible to new
+users. We provide a detailed manual, a complete API reference, and a large
+collection of sample programs to help you get started. We have active forums,
+with many helpful users, and the developers are regularly online to answer
+questions.

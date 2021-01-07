@@ -1,0 +1,3618 @@
+1608630939
+3 3
+10 libp3event 4 _0BP 12 panda3d.core 
+261
+253 14 EventParameter 0 4 514 30 EventParameter::EventParameter 0 9 1 2 3 4 5 6 7 8 9 1162
+/**
+ * Defines an EventParameter that stores a pointer to any kind of
+ * TypedWritableReferenceCount object.  This is the most general constructor.
+ *
+ * This accepts a const pointer, even though it stores (and eventually
+ * returns) a non-const pointer.  This is just the simplest way to allow both
+ * const and non-const pointers to be stored, but it does lose the constness.
+ * Be careful.
+ */
+
+/**
+ * Defines an EventParameter that stores a pointer to a TypedReferenceCount
+ * object.  Note that a TypedReferenceCount is not the same kind of pointer as
+ * a TypedWritableReferenceCount, hence we require both constructors.
+ *
+ * This accepts a const pointer, even though it stores (and eventually
+ * returns) a non-const pointer.  This is just the simplest way to allow both
+ * const and non-const pointers to be stored, but it does lose the constness.
+ * Be careful.
+ */
+
+/**
+ * Defines an EventParameter that stores an integer value.
+ */
+
+/**
+ * Defines an EventParameter that stores a floating-point value.
+ */
+
+/**
+ * Defines an EventParameter that stores a string value.
+ */
+
+/**
+ * Defines an EventParameter that stores a wstring value.
+ */
+
+/**
+ *
+ */
+561
+inline EventParameter::EventParameter(void) = default;
+inline EventParameter::EventParameter(std::nullptr_t );
+inline EventParameter::EventParameter(TypedWritableReferenceCount const *ptr);
+inline EventParameter::EventParameter(TypedReferenceCount const *ptr);
+inline EventParameter::EventParameter(int value);
+inline EventParameter::EventParameter(double value);
+inline EventParameter::EventParameter(std::string const &value);
+inline EventParameter::EventParameter(std::wstring const &value);
+inline EventParameter::EventParameter(EventParameter const &copy);
+
+254 10 operator = 0 4 514 26 EventParameter::operator = 0 1 10 10
+/**
+ *
+ */
+67
+inline void EventParameter::operator =(EventParameter const &copy);
+
+255 15 ~EventParameter 0 4 514 31 EventParameter::~EventParameter 0 0 10
+/**
+ *
+ */
+45
+inline EventParameter::~EventParameter(void);
+
+256 8 is_empty 0 4 514 24 EventParameter::is_empty 0 1 11 377
+// These functions are conveniences to easily determine if the
+// EventParameter is one of the predefined parameter types, and retrieve the
+// corresponding value.  Of course, it is possible that the EventParameter
+// is some user-defined type, and is none of these.
+
+/**
+ * Returns true if the EventParameter is the empty parameter, storing nothing,
+ * or false otherwise.
+ */
+49
+inline bool EventParameter::is_empty(void) const;
+
+257 6 is_int 0 4 514 22 EventParameter::is_int 0 1 12 90
+/**
+ * Returns true if the EventParameter stores an integer value, false
+ * otherwise.
+ */
+47
+inline bool EventParameter::is_int(void) const;
+
+258 13 get_int_value 0 4 514 29 EventParameter::get_int_value 0 1 13 133
+/**
+ * Retrieves the value stored in the EventParameter.  It is only valid to call
+ * this if is_int() has already returned true.
+ */
+53
+inline int EventParameter::get_int_value(void) const;
+
+259 9 is_double 0 4 514 25 EventParameter::is_double 0 1 14 103
+/**
+ * Returns true if the EventParameter stores a double floating-point value,
+ * false otherwise.
+ */
+50
+inline bool EventParameter::is_double(void) const;
+
+260 16 get_double_value 0 4 514 32 EventParameter::get_double_value 0 1 15 136
+/**
+ * Retrieves the value stored in the EventParameter.  It is only valid to call
+ * this if is_double() has already returned true.
+ */
+59
+inline double EventParameter::get_double_value(void) const;
+
+261 9 is_string 0 4 514 25 EventParameter::is_string 0 1 16 85
+/**
+ * Returns true if the EventParameter stores a string value, false otherwise.
+ */
+50
+inline bool EventParameter::is_string(void) const;
+
+262 16 get_string_value 0 4 514 32 EventParameter::get_string_value 0 1 17 136
+/**
+ * Retrieves the value stored in the EventParameter.  It is only valid to call
+ * this if is_string() has already returned true.
+ */
+64
+inline std::string EventParameter::get_string_value(void) const;
+
+263 10 is_wstring 0 4 514 26 EventParameter::is_wstring 0 1 18 86
+/**
+ * Returns true if the EventParameter stores a wstring value, false otherwise.
+ */
+51
+inline bool EventParameter::is_wstring(void) const;
+
+264 17 get_wstring_value 0 4 514 33 EventParameter::get_wstring_value 0 1 19 137
+/**
+ * Retrieves the value stored in the EventParameter.  It is only valid to call
+ * this if is_wstring() has already returned true.
+ */
+66
+inline std::wstring EventParameter::get_wstring_value(void) const;
+
+265 18 is_typed_ref_count 0 4 514 34 EventParameter::is_typed_ref_count 0 1 20 255
+/**
+ * Returns true if the EventParameter stores a TypedReferenceCount pointer,
+ * false otherwise.  Note that a TypedReferenceCount is not exactly the same
+ * kind of pointer as a TypedWritableReferenceCount, hence the need for this
+ * separate call.
+ */
+59
+inline bool EventParameter::is_typed_ref_count(void) const;
+
+266 25 get_typed_ref_count_value 0 4 514 41 EventParameter::get_typed_ref_count_value 0 1 21 145
+/**
+ * Retrieves the value stored in the EventParameter.  It is only valid to call
+ * this if is_typed_ref_count() has already returned true.
+ */
+82
+inline TypedReferenceCount *EventParameter::get_typed_ref_count_value(void) const;
+
+267 7 get_ptr 0 4 514 23 EventParameter::get_ptr 0 1 22 281
+/**
+ * Retrieves a pointer to the actual value stored in the parameter.  The
+ * TypeHandle of this pointer may be examined to determine the actual type of
+ * parameter it contains.  This is the only way to retrieve the value when it
+ * is not one of the above predefined types.
+ */
+72
+inline TypedWritableReferenceCount *EventParameter::get_ptr(void) const;
+
+268 6 output 0 4 514 22 EventParameter::output 0 1 23 10
+/**
+ *
+ */
+53
+void EventParameter::output(std::ostream &out) const;
+
+269 11 AsyncFuture 0 4 515 24 AsyncFuture::AsyncFuture 0 2 24 25 55
+/**
+ * Initializes the future in the pending state.
+ */
+102
+inline AsyncFuture::AsyncFuture(void);
+inline AsyncFuture::AsyncFuture(AsyncFuture const &) = default;
+
+270 9 __await__ 0 4 515 22 AsyncFuture::__await__ 0 1 26 0
+56
+static PyObject *AsyncFuture::__await__(PyObject *self);
+
+271 8 __iter__ 0 4 515 21 AsyncFuture::__iter__ 0 1 27 0
+55
+static PyObject *AsyncFuture::__iter__(PyObject *self);
+
+272 4 done 0 4 515 17 AsyncFuture::done 0 1 28 104
+/**
+ * Returns true if the future is done or has been cancelled.  It is always
+ * safe to call this.
+ */
+42
+inline bool AsyncFuture::done(void) const;
+
+273 9 cancelled 0 4 515 22 AsyncFuture::cancelled 0 1 29 85
+/**
+ * Returns true if the future was cancelled.  It is always safe to call this.
+ */
+47
+inline bool AsyncFuture::cancelled(void) const;
+
+274 6 result 0 4 515 19 AsyncFuture::result 0 1 30 0
+78
+PyObject *AsyncFuture::result(PyObject *timeout = (& ::_Py_NoneStruct)) const;
+
+275 6 cancel 0 6 515 19 AsyncFuture::cancel 0 1 31 235
+/**
+ * Cancels the future.  Returns true if it was cancelled, or false if the
+ * future was already done.  Either way, done() will return true after this
+ * call returns.
+ *
+ * In the case of a task, this is equivalent to remove().
+ */
+39
+virtual bool AsyncFuture::cancel(void);
+
+276 14 set_done_event 0 4 515 27 AsyncFuture::set_done_event 0 1 32 212
+/**
+ * Sets the event name that will be triggered when the future finishes.  Will
+ * not be triggered if the future is cancelled, but it will be triggered for
+ * a coroutine task that exits with an exception.
+ */
+71
+inline void AsyncFuture::set_done_event(std::string const &done_event);
+
+277 14 get_done_event 0 4 515 27 AsyncFuture::get_done_event 0 1 33 107
+/**
+ * Returns the event name that will be triggered when the future finishes.
+ * See set_done_event().
+ */
+66
+inline std::string const &AsyncFuture::get_done_event(void) const;
+
+278 17 add_done_callback 0 4 515 30 AsyncFuture::add_done_callback 0 1 34 0
+71
+PyObject *AsyncFuture::add_done_callback(PyObject *self, PyObject *fn);
+
+279 6 gather 0 4 515 19 AsyncFuture::gather 0 1 35 232
+/**
+ * Creates a new future that returns `done()` when all of the contained
+ * futures are done.
+ *
+ * Calling `cancel()` on the returned future will result in all contained
+ * futures that have not yet finished to be cancelled.
+ */
+53
+static PyObject *AsyncFuture::gather(PyObject *args);
+
+280 6 output 0 6 515 19 AsyncFuture::output 0 1 36 10
+/**
+ *
+ */
+58
+virtual void AsyncFuture::output(std::ostream &out) const;
+
+281 4 wait 0 4 515 17 AsyncFuture::wait 0 2 37 38 119
+/**
+ * Waits until the future is done.
+ */
+
+/**
+ * Waits until the future is done, or until the timeout is reached.
+ */
+69
+void AsyncFuture::wait(void);
+void AsyncFuture::wait(double timeout);
+
+282 10 set_result 0 4 515 23 AsyncFuture::set_result 0 5 39 40 41 42 43 439
+/**
+ * Sets this future's result.  Can only be called if done() returns false.
+ */
+
+/**
+ * Sets this future's result.  Can only be done while the future is not done.
+ * Calling this marks the future as done and schedules the done callbacks.
+ *
+ * This variant takes two pointers; the second one is only set if this object
+ * inherits from ReferenceCount, so that a reference can be held.
+ *
+ * Assumes the manager's lock is *not* held.
+ */
+318
+inline void AsyncFuture::set_result(std::nullptr_t );
+inline void AsyncFuture::set_result(TypedObject *result);
+inline void AsyncFuture::set_result(TypedReferenceCount *result);
+inline void AsyncFuture::set_result(TypedWritableReferenceCount *result);
+inline void AsyncFuture::set_result(EventParameter const &result);
+
+283 14 get_class_type 0 4 515 27 AsyncFuture::get_class_type 0 1 44 0
+52
+static TypeHandle AsyncFuture::get_class_type(void);
+
+284 21 upcast_to_AsyncFuture 0 12 520 32 AsyncTask::upcast_to_AsyncFuture 0 1 76 36
+upcast from AsyncTask to AsyncFuture
+52
+AsyncFuture *AsyncTask::upcast_to_AsyncFuture(void);
+
+285 21 downcast_to_AsyncTask 0 12 515 34 AsyncFuture::downcast_to_AsyncTask 0 0 38
+downcast from AsyncFuture to AsyncTask
+52
+AsyncTask *AsyncFuture::downcast_to_AsyncTask(void);
+
+286 17 upcast_to_Namable 0 12 520 28 AsyncTask::upcast_to_Namable 0 1 77 32
+upcast from AsyncTask to Namable
+44
+Namable *AsyncTask::upcast_to_Namable(void);
+
+287 21 downcast_to_AsyncTask 0 12 521 30 Namable::downcast_to_AsyncTask 0 0 34
+downcast from Namable to AsyncTask
+48
+AsyncTask *Namable::downcast_to_AsyncTask(void);
+
+288 10 ~AsyncTask 0 6 520 21 AsyncTask::~AsyncTask 0 0 10
+/**
+ *
+ */
+36
+virtual AsyncTask::~AsyncTask(void);
+
+289 9 get_state 0 4 520 20 AsyncTask::get_state 0 1 46 49
+/**
+ * Returns the current state of the task.
+ */
+57
+inline AsyncTask::State AsyncTask::get_state(void) const;
+
+290 8 is_alive 0 4 520 19 AsyncTask::is_alive 0 1 47 332
+/**
+ * Returns true if the task is currently active or sleeping on some task
+ * chain, meaning that it will be executed in its turn, or false if it is not
+ * active.  If the task has recently been removed while it is in the middle of
+ * execution, this will return false, because the task will not run again once
+ * it finishes.
+ */
+44
+inline bool AsyncTask::is_alive(void) const;
+
+291 11 get_manager 0 4 520 22 AsyncTask::get_manager 0 1 48 118
+/**
+ * Returns the AsyncTaskManager that this task is active on.  This will be
+ * NULL if the state is S_inactive.
+ */
+60
+inline AsyncTaskManager *AsyncTask::get_manager(void) const;
+
+292 6 remove 0 4 520 17 AsyncTask::remove 0 1 49 185
+/**
+ * Removes the task from its active manager, if any, and makes the state
+ * S_inactive (or possible S_servicing_removed).  This is a no-op if the state
+ * is already S_inactive.
+ */
+29
+bool AsyncTask::remove(void);
+
+293 9 set_delay 0 4 520 20 AsyncTask::set_delay 0 1 50 686
+/**
+ * Specifies the amount of time, in seconds, by which this task will be
+ * delayed after it has been added to the AsyncTaskManager.  At least the
+ * specified amount of time (and possibly more) will elapse before the task
+ * begins.
+ *
+ * You may specify a delay of 0.0 to guarantee that the task will run in the
+ * next epoch following the one in which it is added.
+ *
+ * Setting this value after the task has already been added will not affect
+ * the task's wake time; it will only affect the task if it is re-added to the
+ * queue in the future, for instance if the task returns DS_again.  However,
+ * see recalc_wake_time() if you wish to apply the delay effect immediately.
+ */
+47
+inline void AsyncTask::set_delay(double delay);
+
+294 11 clear_delay 0 4 520 22 AsyncTask::clear_delay 0 1 51 216
+/**
+ * Removes any delay specified for the task.  The next time the task is added
+ * to the queue, it will run immediately.  This does not affect the task's
+ * wake time if it has already been added to the queue.
+ */
+41
+inline void AsyncTask::clear_delay(void);
+
+295 9 has_delay 0 4 520 20 AsyncTask::has_delay 0 1 52 101
+/**
+ * Returns true if a delay has been set for this task via set_delay(), or
+ * false otherwise.
+ */
+45
+inline bool AsyncTask::has_delay(void) const;
+
+296 9 get_delay 0 4 520 20 AsyncTask::get_delay 0 1 53 75
+/**
+ * Returns the delay value that has been set via set_delay, if any.
+ */
+47
+inline double AsyncTask::get_delay(void) const;
+
+297 13 get_wake_time 0 4 520 24 AsyncTask::get_wake_time 0 1 54 354
+/**
+ * If this task has been added to an AsyncTaskManager with a delay in effect,
+ * this returns the time at which the task is expected to awaken.  It has no
+ * meaning if the task has not yet been added to a queue, or if there was no
+ * delay in effect at the time the task was added.
+ *
+ * If the task's status is not S_sleeping, this returns 0.0.
+ */
+44
+double AsyncTask::get_wake_time(void) const;
+
+298 16 recalc_wake_time 0 4 520 27 AsyncTask::recalc_wake_time 0 1 55 437
+/**
+ * If the task is currently sleeping on a task chain, this resets its wake
+ * time to the current time + get_delay().  It is as if the task had suddenly
+ * returned DS_again.  The task will sleep for its current delay seconds
+ * before running again.  This method may therefore be used to make the task
+ * wake up sooner or later than it would have otherwise.
+ *
+ * If the task is not already sleeping, this method has no effect.
+ */
+39
+void AsyncTask::recalc_wake_time(void);
+
+299 14 get_start_time 0 4 520 25 AsyncTask::get_start_time 0 1 56 176
+/**
+ * Returns the time at which the task was started, according to the task
+ * manager's clock.
+ *
+ * It is only valid to call this if the task's status is not S_inactive.
+ */
+52
+inline double AsyncTask::get_start_time(void) const;
+
+300 16 get_elapsed_time 0 4 520 27 AsyncTask::get_elapsed_time 0 1 57 200
+/**
+ * Returns the amount of time that has elapsed since the task was started,
+ * according to the task manager's clock.
+ *
+ * It is only valid to call this if the task's status is not S_inactive.
+ */
+47
+double AsyncTask::get_elapsed_time(void) const;
+
+301 15 get_start_frame 0 4 520 26 AsyncTask::get_start_frame 0 1 58 184
+/**
+ * Returns the frame number at which the task was started, according to the
+ * task manager's clock.
+ *
+ * It is only valid to call this if the task's status is not S_inactive.
+ */
+50
+inline int AsyncTask::get_start_frame(void) const;
+
+302 18 get_elapsed_frames 0 4 520 29 AsyncTask::get_elapsed_frames 0 1 59 203
+/**
+ * Returns the number of frames that have elapsed since the task was started,
+ * according to the task manager's clock.
+ *
+ * It is only valid to call this if the task's status is not S_inactive.
+ */
+46
+int AsyncTask::get_elapsed_frames(void) const;
+
+303 8 set_name 0 4 520 19 AsyncTask::set_name 0 1 60 10
+/**
+ *
+ */
+50
+void AsyncTask::set_name(std::string const &name);
+
+304 10 clear_name 0 4 520 21 AsyncTask::clear_name 0 1 61 43
+/**
+ * Resets the task's name to empty.
+ */
+40
+inline void AsyncTask::clear_name(void);
+
+305 15 get_name_prefix 0 4 520 26 AsyncTask::get_name_prefix 0 1 62 129
+/**
+ * Returns the initial part of the name, up to but not including any trailing
+ * digits following a hyphen or underscore.
+ */
+51
+std::string AsyncTask::get_name_prefix(void) const;
+
+306 11 get_task_id 0 4 520 22 AsyncTask::get_task_id 0 1 63 107
+/**
+ * Returns a number guaranteed to be unique for each different AsyncTask
+ * object in the universe.
+ */
+64
+inline AtomicAdjust::Integer AsyncTask::get_task_id(void) const;
+
+307 14 set_task_chain 0 4 520 25 AsyncTask::set_task_chain 0 1 64 135
+/**
+ * Specifies the AsyncTaskChain on which this task will be running.  Each task
+ * chain runs tasks independently of the others.
+ */
+62
+void AsyncTask::set_task_chain(std::string const &chain_name);
+
+308 14 get_task_chain 0 4 520 25 AsyncTask::get_task_chain 0 1 65 133
+/**
+ * Returns the AsyncTaskChain on which this task will be running.  Each task
+ * chain runs tasks independently of the others.
+ */
+64
+inline std::string const &AsyncTask::get_task_chain(void) const;
+
+309 8 set_sort 0 4 520 19 AsyncTask::set_sort 0 1 66 483
+/**
+ * Specifies a sort value for this task.  Within a given AsyncTaskManager, all
+ * of the tasks with a given sort value are guaranteed to be completed before
+ * any tasks with a higher sort value are begun.
+ *
+ * To put it another way, two tasks might execute in parallel with each other
+ * only if they both have the same sort value.  Tasks with a lower sort value
+ * are executed first.
+ *
+ * This is different from the priority, which makes no such exclusion
+ * guarantees.
+ */
+35
+void AsyncTask::set_sort(int sort);
+
+310 8 get_sort 0 4 520 19 AsyncTask::get_sort 0 1 67 66
+/**
+ * Returns the task's current sort value.  See set_sort().
+ */
+43
+inline int AsyncTask::get_sort(void) const;
+
+311 12 set_priority 0 4 520 23 AsyncTask::set_priority 0 1 68 874
+/**
+ * Specifies a priority value for this task.  In general, tasks with a higher
+ * priority value are executed before tasks with a lower priority value (but
+ * only for tasks with the same sort value).
+ *
+ * Unlike the sort value, tasks with different priorities may execute at the
+ * same time, if the AsyncTaskManager has more than one thread servicing
+ * tasks.
+ *
+ * Also see AsyncTaskChain::set_timeslice_priority(), which changes the
+ * meaning of this value.  In the default mode, when the timeslice_priority
+ * flag is false, all tasks always run once per epoch, regardless of their
+ * priority values (that is, the priority controls the order of the task
+ * execution only, not the number of times it runs).  On the other hand, if
+ * you set the timeslice_priority flag to true, then changing a task's
+ * priority has an effect on the number of times it runs.
+ */
+43
+void AsyncTask::set_priority(int priority);
+
+312 12 get_priority 0 4 520 23 AsyncTask::get_priority 0 1 69 74
+/**
+ * Returns the task's current priority value.  See set_priority().
+ */
+47
+inline int AsyncTask::get_priority(void) const;
+
+313 14 set_done_event 0 4 520 25 AsyncTask::set_done_event 0 1 70 257
+/**
+ * Sets the event name that will be triggered when the task finishes.  This
+ * should only be called before the task has been started, or after it has
+ * finished and before it is about to be restarted (i.e.  when get_state()
+ * returns S_inactive).
+ */
+69
+inline void AsyncTask::set_done_event(std::string const &done_event);
+
+314 6 get_dt 0 4 520 17 AsyncTask::get_dt 0 1 71 98
+/**
+ * Returns the amount of time elapsed during the task's previous run cycle, in
+ * seconds.
+ */
+44
+inline double AsyncTask::get_dt(void) const;
+
+315 10 get_max_dt 0 4 520 21 AsyncTask::get_max_dt 0 1 72 118
+/**
+ * Returns the maximum amount of time elapsed during any one of the task's
+ * previous run cycles, in seconds.
+ */
+48
+inline double AsyncTask::get_max_dt(void) const;
+
+316 14 get_average_dt 0 4 520 25 AsyncTask::get_average_dt 0 1 73 115
+/**
+ * Returns the average amount of time elapsed during each of the task's
+ * previous run cycles, in seconds.
+ */
+52
+inline double AsyncTask::get_average_dt(void) const;
+
+317 6 output 0 6 520 17 AsyncTask::output 0 1 74 10
+/**
+ *
+ */
+56
+virtual void AsyncTask::output(std::ostream &out) const;
+
+318 29 upcast_to_TypedReferenceCount 0 12 526 47 AsyncTaskManager::upcast_to_TypedReferenceCount 0 1 107 51
+upcast from AsyncTaskManager to TypedReferenceCount
+75
+TypedReferenceCount *AsyncTaskManager::upcast_to_TypedReferenceCount(void);
+
+319 28 downcast_to_AsyncTaskManager 0 12 516 49 TypedReferenceCount::downcast_to_AsyncTaskManager 0 0 53
+downcast from TypedReferenceCount to AsyncTaskManager
+74
+AsyncTaskManager *TypedReferenceCount::downcast_to_AsyncTaskManager(void);
+
+320 17 upcast_to_Namable 0 12 526 35 AsyncTaskManager::upcast_to_Namable 0 1 108 39
+upcast from AsyncTaskManager to Namable
+51
+Namable *AsyncTaskManager::upcast_to_Namable(void);
+
+321 28 downcast_to_AsyncTaskManager 0 12 521 37 Namable::downcast_to_AsyncTaskManager 0 0 41
+downcast from Namable to AsyncTaskManager
+62
+AsyncTaskManager *Namable::downcast_to_AsyncTaskManager(void);
+
+322 16 AsyncTaskManager 0 4 526 34 AsyncTaskManager::AsyncTaskManager 0 1 78 10
+/**
+ *
+ */
+69
+explicit AsyncTaskManager::AsyncTaskManager(std::string const &name);
+
+323 17 ~AsyncTaskManager 0 6 526 35 AsyncTaskManager::~AsyncTaskManager 0 0 10
+/**
+ *
+ */
+50
+virtual AsyncTaskManager::~AsyncTaskManager(void);
+
+324 7 cleanup 0 4 526 25 AsyncTaskManager::cleanup 0 1 79 118
+/**
+ * Stops all threads and messily empties the task list.  This is intended to
+ * be called on destruction only.
+ */
+37
+void AsyncTaskManager::cleanup(void);
+
+325 9 set_clock 0 4 526 27 AsyncTaskManager::set_clock 0 1 80 286
+/**
+ * Replaces the clock pointer used within the AsyncTaskManager.  This is used
+ * to control when tasks with a set_delay() specified will be scheduled.  It
+ * can also be ticked automatically each epoch, if set_tick_clock() is true.
+ *
+ * The default is the global clock pointer.
+ */
+60
+inline void AsyncTaskManager::set_clock(ClockObject *clock);
+
+326 9 get_clock 0 4 526 27 AsyncTaskManager::get_clock 0 1 81 91
+/**
+ * Returns the clock pointer used within the AsyncTaskManager.  See
+ * set_clock().
+ */
+54
+inline ClockObject *AsyncTaskManager::get_clock(void);
+
+327 19 get_num_task_chains 0 4 526 37 AsyncTaskManager::get_num_task_chains 0 1 82 55
+/**
+ * Returns the number of different task chains.
+ */
+54
+int AsyncTaskManager::get_num_task_chains(void) const;
+
+328 14 get_task_chain 0 4 526 32 AsyncTaskManager::get_task_chain 0 1 83 38
+/**
+ * Returns the nth task chain.
+ */
+62
+AsyncTaskChain *AsyncTaskManager::get_task_chain(int n) const;
+
+329 15 make_task_chain 0 4 526 33 AsyncTaskManager::make_task_chain 0 1 84 178
+/**
+ * Creates a new AsyncTaskChain of the indicated name and stores it within the
+ * AsyncTaskManager.  If a task chain with this name already exists, returns
+ * it instead.
+ */
+75
+AsyncTaskChain *AsyncTaskManager::make_task_chain(std::string const &name);
+
+330 15 find_task_chain 0 4 526 33 AsyncTaskManager::find_task_chain 0 1 85 113
+/**
+ * Searches a new AsyncTaskChain of the indicated name and returns it if it
+ * exists, or NULL otherwise.
+ */
+75
+AsyncTaskChain *AsyncTaskManager::find_task_chain(std::string const &name);
+
+331 17 remove_task_chain 0 4 526 35 AsyncTaskManager::remove_task_chain 0 1 86 211
+/**
+ * Removes the AsyncTaskChain of the indicated name.  If the chain still has
+ * tasks, this will block until all tasks are finished.
+ *
+ * Returns true if successful, or false if the chain did not exist.
+ */
+66
+bool AsyncTaskManager::remove_task_chain(std::string const &name);
+
+332 3 add 0 4 526 21 AsyncTaskManager::add 0 1 87 138
+/**
+ * Adds the indicated task to the active queue.  It is an error if the task is
+ * already added to this or any other active queue.
+ */
+44
+void AsyncTaskManager::add(AsyncTask *task);
+
+333 8 has_task 0 4 526 26 AsyncTaskManager::has_task 0 1 88 106
+/**
+ * Returns true if the indicated task has been added to this AsyncTaskManager,
+ * false otherwise.
+ */
+55
+bool AsyncTaskManager::has_task(AsyncTask *task) const;
+
+334 9 find_task 0 4 526 27 AsyncTaskManager::find_task 0 1 89 210
+/**
+ * Returns the first task found with the indicated name, or NULL if there is
+ * no task with the indicated name.
+ *
+ * If there are multiple tasks with the same name, returns one of them
+ * arbitrarily.
+ */
+70
+AsyncTask *AsyncTaskManager::find_task(std::string const &name) const;
+
+335 10 find_tasks 0 4 526 28 AsyncTaskManager::find_tasks 0 1 90 67
+/**
+ * Returns the list of tasks found with the indicated name.
+ */
+80
+AsyncTaskCollection AsyncTaskManager::find_tasks(std::string const &name) const;
+
+336 19 find_tasks_matching 0 4 526 37 AsyncTaskManager::find_tasks_matching 0 1 91 111
+/**
+ * Returns the list of tasks found whose name matches the indicated glob
+ * pattern, e.g.  "my_task_*".
+ */
+92
+AsyncTaskCollection AsyncTaskManager::find_tasks_matching(GlobPattern const &pattern) const;
+
+337 6 remove 0 4 526 24 AsyncTaskManager::remove 0 2 92 93 249
+/**
+ * Removes the indicated task from the active queue.  Returns true if the task
+ * is successfully removed, or false if it wasn't there.
+ */
+
+/**
+ * Removes all of the tasks in the AsyncTaskCollection.  Returns the number of
+ * tasks removed.
+ */
+119
+bool AsyncTaskManager::remove(AsyncTask *task);
+std::size_t AsyncTaskManager::remove(AsyncTaskCollection const &tasks);
+
+338 14 wait_for_tasks 0 4 526 32 AsyncTaskManager::wait_for_tasks 0 1 94 47
+/**
+ * Blocks until the task list is empty.
+ */
+44
+void AsyncTaskManager::wait_for_tasks(void);
+
+339 12 stop_threads 0 4 526 30 AsyncTaskManager::stop_threads 0 1 95 215
+/**
+ * Stops any threads that are currently running.  If any tasks are still
+ * pending and have not yet been picked up by a thread, they will not be
+ * serviced unless poll() or start_threads() is later called.
+ */
+42
+void AsyncTaskManager::stop_threads(void);
+
+340 13 start_threads 0 4 526 31 AsyncTaskManager::start_threads 0 1 96 171
+/**
+ * Starts any requested threads to service the tasks on the queue.  This is
+ * normally not necessary, since adding a task will start the threads
+ * automatically.
+ */
+43
+void AsyncTaskManager::start_threads(void);
+
+341 13 get_num_tasks 0 4 526 31 AsyncTaskManager::get_num_tasks 0 1 97 104
+/**
+ * Returns the number of tasks that are currently active or sleeping within
+ * the task manager.
+ */
+63
+inline std::size_t AsyncTaskManager::get_num_tasks(void) const;
+
+342 9 get_tasks 0 4 526 27 AsyncTaskManager::get_tasks 0 1 98 112
+/**
+ * Returns the set of tasks that are active or sleeping on the task manager,
+ * at the time of the call.
+ */
+60
+AsyncTaskCollection AsyncTaskManager::get_tasks(void) const;
+
+343 16 get_active_tasks 0 4 526 34 AsyncTaskManager::get_active_tasks 0 1 99 119
+/**
+ * Returns the set of tasks that are active (and not sleeping) on the task
+ * manager, at the time of the call.
+ */
+67
+AsyncTaskCollection AsyncTaskManager::get_active_tasks(void) const;
+
+344 18 get_sleeping_tasks 0 4 526 36 AsyncTaskManager::get_sleeping_tasks 0 1 100 119
+/**
+ * Returns the set of tasks that are sleeping (and not active) on the task
+ * manager, at the time of the call.
+ */
+69
+AsyncTaskCollection AsyncTaskManager::get_sleeping_tasks(void) const;
+
+345 19 AsyncTaskCollection 0 4 529 40 AsyncTaskCollection::AsyncTaskCollection 0 2 109 110 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+122
+AsyncTaskCollection::AsyncTaskCollection(void);
+AsyncTaskCollection::AsyncTaskCollection(AsyncTaskCollection const &copy);
+
+346 10 operator = 0 4 529 31 AsyncTaskCollection::operator = 0 1 111 0
+70
+void AsyncTaskCollection::operator =(AsyncTaskCollection const &copy);
+
+347 20 ~AsyncTaskCollection 0 4 529 41 AsyncTaskCollection::~AsyncTaskCollection 0 0 10
+/**
+ *
+ */
+55
+inline AsyncTaskCollection::~AsyncTaskCollection(void);
+
+348 8 add_task 0 4 529 29 AsyncTaskCollection::add_task 0 1 112 50
+/**
+ * Adds a new AsyncTask to the collection.
+ */
+52
+void AsyncTaskCollection::add_task(AsyncTask *task);
+
+349 11 remove_task 0 4 529 32 AsyncTaskCollection::remove_task 0 2 113 114 212
+/**
+ * Removes the indicated AsyncTask from the collection.  Returns true if the
+ * task was removed, false if it was not a member of the collection.
+ */
+
+/**
+ * Removes the nth AsyncTask from the collection.
+ */
+113
+bool AsyncTaskCollection::remove_task(AsyncTask *task);
+void AsyncTaskCollection::remove_task(std::size_t index);
+
+350 14 add_tasks_from 0 4 529 35 AsyncTaskCollection::add_tasks_from 0 1 115 204
+/**
+ * Adds all the AsyncTasks indicated in the other collection to this task.
+ * The other tasks are simply appended to the end of the tasks in this list;
+ * duplicates are not automatically removed.
+ */
+75
+void AsyncTaskCollection::add_tasks_from(AsyncTaskCollection const &other);
+
+351 17 remove_tasks_from 0 4 529 38 AsyncTaskCollection::remove_tasks_from 0 1 116 96
+/**
+ * Removes from this collection all of the AsyncTasks listed in the other
+ * collection.
+ */
+78
+void AsyncTaskCollection::remove_tasks_from(AsyncTaskCollection const &other);
+
+352 22 remove_duplicate_tasks 0 4 529 43 AsyncTaskCollection::remove_duplicate_tasks 0 1 117 198
+/**
+ * Removes any duplicate entries of the same AsyncTasks on this collection.
+ * If a AsyncTask appears multiple times, the first appearance is retained;
+ * subsequent appearances are removed.
+ */
+55
+void AsyncTaskCollection::remove_duplicate_tasks(void);
+
+353 8 has_task 0 4 529 29 AsyncTaskCollection::has_task 0 1 118 98
+/**
+ * Returns true if the indicated AsyncTask appears in this collection, false
+ * otherwise.
+ */
+58
+bool AsyncTaskCollection::has_task(AsyncTask *task) const;
+
+354 5 clear 0 4 529 26 AsyncTaskCollection::clear 0 1 119 54
+/**
+ * Removes all AsyncTasks from the collection.
+ */
+38
+void AsyncTaskCollection::clear(void);
+
+355 9 find_task 0 4 529 30 AsyncTaskCollection::find_task 0 1 120 115
+/**
+ * Returns the task in the collection with the indicated name, if any, or NULL
+ * if no task has that name.
+ */
+73
+AsyncTask *AsyncTaskCollection::find_task(std::string const &name) const;
+
+356 13 get_num_tasks 0 4 529 34 AsyncTaskCollection::get_num_tasks 0 1 121 62
+/**
+ * Returns the number of AsyncTasks in the collection.
+ */
+59
+std::size_t AsyncTaskCollection::get_num_tasks(void) const;
+
+357 8 get_task 0 4 529 29 AsyncTaskCollection::get_task 0 1 122 55
+/**
+ * Returns the nth AsyncTask in the collection.
+ */
+66
+AsyncTask *AsyncTaskCollection::get_task(std::size_t index) const;
+
+358 11 operator [] 0 4 529 32 AsyncTaskCollection::operator [] 0 1 123 141
+/**
+ * Returns the nth AsyncTask in the collection.  This is the same as
+ * get_task(), but it may be a more convenient way to access it.
+ */
+69
+AsyncTask *AsyncTaskCollection::operator [](std::size_t index) const;
+
+359 4 size 0 4 529 25 AsyncTaskCollection::size 0 1 124 104
+/**
+ * Returns the number of tasks in the collection.  This is the same thing as
+ * get_num_tasks().
+ */
+50
+std::size_t AsyncTaskCollection::size(void) const;
+
+360 11 operator += 0 4 529 32 AsyncTaskCollection::operator += 0 1 125 0
+79
+inline void AsyncTaskCollection::operator +=(AsyncTaskCollection const &other);
+
+361 10 operator + 0 4 529 31 AsyncTaskCollection::operator + 0 1 126 0
+99
+inline AsyncTaskCollection AsyncTaskCollection::operator +(AsyncTaskCollection const &other) const;
+
+362 6 output 0 4 529 27 AsyncTaskCollection::output 0 1 127 108
+/**
+ * Writes a brief one-line description of the AsyncTaskCollection to the
+ * indicated output stream.
+ */
+58
+void AsyncTaskCollection::output(std::ostream &out) const;
+
+363 5 write 0 4 529 26 AsyncTaskCollection::write 0 1 128 113
+/**
+ * Writes a complete multi-line description of the AsyncTaskCollection to the
+ * indicated output stream.
+ */
+79
+void AsyncTaskCollection::write(std::ostream &out, int indent_level = 0) const;
+
+364 4 poll 0 4 526 22 AsyncTaskManager::poll 0 1 101 233
+/**
+ * Runs through all the tasks in the task list, once, if the task manager is
+ * running in single-threaded mode (no threads available).  This method does
+ * nothing in threaded mode, so it may safely be called in either case.
+ */
+34
+void AsyncTaskManager::poll(void);
+
+365 18 get_next_wake_time 0 4 526 36 AsyncTaskManager::get_next_wake_time 0 1 102 169
+/**
+ * Returns the scheduled time (on the manager's clock) of the next sleeping
+ * task, on any task chain, to awaken.  Returns -1 if there are no sleeping
+ * tasks.
+ */
+56
+double AsyncTaskManager::get_next_wake_time(void) const;
+
+366 6 output 0 6 526 24 AsyncTaskManager::output 0 1 103 10
+/**
+ *
+ */
+63
+virtual void AsyncTaskManager::output(std::ostream &out) const;
+
+367 5 write 0 6 526 23 AsyncTaskManager::write 0 1 104 10
+/**
+ *
+ */
+84
+virtual void AsyncTaskManager::write(std::ostream &out, int indent_level = 0) const;
+
+368 14 get_global_ptr 0 4 526 32 AsyncTaskManager::get_global_ptr 0 1 105 152
+/**
+ * Returns a pointer to the global AsyncTaskManager.  This is the
+ * AsyncTaskManager that most code should use for queueing tasks and suchlike.
+ */
+71
+static inline AsyncTaskManager *AsyncTaskManager::get_global_ptr(void);
+
+369 14 get_class_type 0 4 526 32 AsyncTaskManager::get_class_type 0 1 106 0
+57
+static TypeHandle AsyncTaskManager::get_class_type(void);
+
+370 8 get_name 0 4 520 19 AsyncTask::get_name 0 0 0
+58
+inline std::string const &AsyncTask::get_name(void) const;
+
+371 14 get_done_event 0 4 520 25 AsyncTask::get_done_event 0 0 107
+/**
+ * Returns the event name that will be triggered when the future finishes.
+ * See set_done_event().
+ */
+64
+inline std::string const &AsyncTask::get_done_event(void) const;
+
+372 14 get_class_type 0 4 520 25 AsyncTask::get_class_type 0 1 75 0
+50
+static TypeHandle AsyncTask::get_class_type(void);
+
+373 9 AsyncTask 0 4 520 20 AsyncTask::AsyncTask 0 1 45 10
+/**
+ *
+ */
+57
+inline AsyncTask::AsyncTask(AsyncTask const &) = default;
+
+374 29 upcast_to_TypedReferenceCount 0 12 535 45 AsyncTaskChain::upcast_to_TypedReferenceCount 0 1 156 49
+upcast from AsyncTaskChain to TypedReferenceCount
+73
+TypedReferenceCount *AsyncTaskChain::upcast_to_TypedReferenceCount(void);
+
+375 26 downcast_to_AsyncTaskChain 0 12 516 47 TypedReferenceCount::downcast_to_AsyncTaskChain 0 0 51
+downcast from TypedReferenceCount to AsyncTaskChain
+70
+AsyncTaskChain *TypedReferenceCount::downcast_to_AsyncTaskChain(void);
+
+376 17 upcast_to_Namable 0 12 535 33 AsyncTaskChain::upcast_to_Namable 0 1 157 37
+upcast from AsyncTaskChain to Namable
+49
+Namable *AsyncTaskChain::upcast_to_Namable(void);
+
+377 26 downcast_to_AsyncTaskChain 0 12 521 35 Namable::downcast_to_AsyncTaskChain 0 0 39
+downcast from Namable to AsyncTaskChain
+58
+AsyncTaskChain *Namable::downcast_to_AsyncTaskChain(void);
+
+378 15 ~AsyncTaskChain 0 6 535 31 AsyncTaskChain::~AsyncTaskChain 0 0 10
+/**
+ *
+ */
+46
+virtual AsyncTaskChain::~AsyncTaskChain(void);
+
+379 14 set_tick_clock 0 4 535 30 AsyncTaskChain::set_tick_clock 0 1 129 155
+/**
+ * Sets the tick_clock flag.  When this is true, get_clock()->tick() will be
+ * called automatically at each task epoch.  This is false by default.
+ */
+53
+void AsyncTaskChain::set_tick_clock(bool tick_clock);
+
+380 14 get_tick_clock 0 4 535 30 AsyncTaskChain::get_tick_clock 0 1 130 62
+/**
+ * Returns the tick_clock flag.  See set_tick_clock().
+ */
+48
+bool AsyncTaskChain::get_tick_clock(void) const;
+
+381 15 set_num_threads 0 4 535 31 AsyncTaskChain::set_num_threads 0 1 131 132
+/**
+ * Changes the number of threads for this task chain.  This may require
+ * stopping the threads if they are already running.
+ */
+54
+void AsyncTaskChain::set_num_threads(int num_threads);
+
+382 15 get_num_threads 0 4 535 31 AsyncTaskChain::get_num_threads 0 1 132 124
+/**
+ * Returns the number of threads that will be servicing tasks for this chain.
+ * Also see get_num_running_threads().
+ */
+48
+int AsyncTaskChain::get_num_threads(void) const;
+
+383 23 get_num_running_threads 0 4 535 39 AsyncTaskChain::get_num_running_threads 0 1 133 211
+/**
+ * Returns the number of threads that have been created and are actively
+ * running.  This will return 0 before the threads have been started; it will
+ * also return 0 if thread support is not available.
+ */
+56
+int AsyncTaskChain::get_num_running_threads(void) const;
+
+384 19 set_thread_priority 0 4 535 35 AsyncTaskChain::set_thread_priority 0 1 134 153
+/**
+ * Changes the priority associated with threads that serve this task chain.
+ * This may require stopping the threads if they are already running.
+ */
+66
+void AsyncTaskChain::set_thread_priority(ThreadPriority priority);
+
+385 19 get_thread_priority 0 4 535 35 AsyncTaskChain::get_thread_priority 0 1 135 83
+/**
+ * Returns the priority associated with threads that serve this task chain.
+ */
+63
+ThreadPriority AsyncTaskChain::get_thread_priority(void) const;
+
+386 16 set_frame_budget 0 4 535 32 AsyncTaskChain::set_frame_budget 0 1 136 414
+/**
+ * Sets the maximum amount of time per frame the tasks on this chain are
+ * granted for execution.  If this is less than zero, there is no limit; if it
+ * is >= 0, it represents a maximum amount of time (in seconds) that will be
+ * used to execute tasks.  If this time is exceeded in any one frame, the task
+ * chain will stop executing tasks until the next frame, as defined by the
+ * TaskManager's clock.
+ */
+59
+void AsyncTaskChain::set_frame_budget(double frame_budget);
+
+387 16 get_frame_budget 0 4 535 32 AsyncTaskChain::get_frame_budget 0 1 137 134
+/**
+ * Returns the maximum amount of time per frame the tasks on this chain are
+ * granted for execution.  See set_frame_budget().
+ */
+52
+double AsyncTaskChain::get_frame_budget(void) const;
+
+388 14 set_frame_sync 0 4 535 30 AsyncTaskChain::set_frame_sync 0 1 138 638
+/**
+ * Sets the frame_sync flag.  When this flag is true, this task chain will be
+ * forced to sync with the TaskManager's clock.  It will run no faster than
+ * one epoch per clock frame.
+ *
+ * When this flag is false, the default, the task chain will finish all of its
+ * tasks and then immediately start from the first task again, regardless of
+ * the clock frame.  When it is true, the task chain will finish all of its
+ * tasks and then wait for the clock to tick to the next frame before resuming
+ * the first task.
+ *
+ * This only makes sense for threaded task chains.  Non-threaded task chains
+ * are automatically synchronous.
+ */
+53
+void AsyncTaskChain::set_frame_sync(bool frame_sync);
+
+389 14 get_frame_sync 0 4 535 30 AsyncTaskChain::get_frame_sync 0 1 139 62
+/**
+ * Returns the frame_sync flag.  See set_frame_sync().
+ */
+48
+bool AsyncTaskChain::get_frame_sync(void) const;
+
+390 22 set_timeslice_priority 0 4 535 38 AsyncTaskChain::set_timeslice_priority 0 1 140 903
+/**
+ * Sets the timeslice_priority flag.  This changes the interpretation of
+ * priority, and the number of times per epoch each task will run.
+ *
+ * When this flag is true, some tasks might not run in any given epoch.
+ * Instead, tasks with priority higher than 1 will be given precedence, in
+ * proportion to the amount of time they have already used.  This gives
+ * higher-priority tasks more runtime than lower-priority tasks.  Each task
+ * gets the amount of time proportional to its priority value, so a task with
+ * priority 100 will get five times as much processing time as a task with
+ * priority 20.  For these purposes, priority values less than 1 are deemed to
+ * be equal to 1.
+ *
+ * When this flag is false (the default), all tasks are run exactly once each
+ * epoch, round-robin style.  Priority is only used to determine which task
+ * runs first within tasks of the same sort value.
+ */
+69
+void AsyncTaskChain::set_timeslice_priority(bool timeslice_priority);
+
+391 22 get_timeslice_priority 0 4 535 38 AsyncTaskChain::get_timeslice_priority 0 1 141 184
+/**
+ * Returns the timeslice_priority flag.  This changes the interpretation of
+ * priority, and the number of times per epoch each task will run.  See
+ * set_timeslice_priority().
+ */
+56
+bool AsyncTaskChain::get_timeslice_priority(void) const;
+
+392 12 stop_threads 0 4 535 28 AsyncTaskChain::stop_threads 0 1 142 215
+/**
+ * Stops any threads that are currently running.  If any tasks are still
+ * pending and have not yet been picked up by a thread, they will not be
+ * serviced unless poll() or start_threads() is later called.
+ */
+40
+void AsyncTaskChain::stop_threads(void);
+
+393 13 start_threads 0 4 535 29 AsyncTaskChain::start_threads 0 1 143 171
+/**
+ * Starts any requested threads to service the tasks on the queue.  This is
+ * normally not necessary, since adding a task will start the threads
+ * automatically.
+ */
+41
+void AsyncTaskChain::start_threads(void);
+
+394 10 is_started 0 4 535 26 AsyncTaskChain::is_started 0 1 144 212
+/**
+ * Returns true if the thread(s) have been started and are ready to service
+ * requests, false otherwise.  If this is false, the next call to add() or
+ * add_and_do() will automatically start the threads.
+ */
+51
+inline bool AsyncTaskChain::is_started(void) const;
+
+395 8 has_task 0 4 535 24 AsyncTaskChain::has_task 0 1 145 104
+/**
+ * Returns true if the indicated task has been added to this AsyncTaskChain,
+ * false otherwise.
+ */
+53
+bool AsyncTaskChain::has_task(AsyncTask *task) const;
+
+396 14 wait_for_tasks 0 4 535 30 AsyncTaskChain::wait_for_tasks 0 1 146 47
+/**
+ * Blocks until the task list is empty.
+ */
+42
+void AsyncTaskChain::wait_for_tasks(void);
+
+397 13 get_num_tasks 0 4 535 29 AsyncTaskChain::get_num_tasks 0 1 147 102
+/**
+ * Returns the number of tasks that are currently active or sleeping within
+ * the task chain.
+ */
+46
+int AsyncTaskChain::get_num_tasks(void) const;
+
+398 9 get_tasks 0 4 535 25 AsyncTaskChain::get_tasks 0 1 148 110
+/**
+ * Returns the set of tasks that are active or sleeping on the task chain, at
+ * the time of the call.
+ */
+58
+AsyncTaskCollection AsyncTaskChain::get_tasks(void) const;
+
+399 16 get_active_tasks 0 4 535 32 AsyncTaskChain::get_active_tasks 0 1 149 117
+/**
+ * Returns the set of tasks that are active (and not sleeping) on the task
+ * chain, at the time of the call.
+ */
+65
+AsyncTaskCollection AsyncTaskChain::get_active_tasks(void) const;
+
+400 18 get_sleeping_tasks 0 4 535 34 AsyncTaskChain::get_sleeping_tasks 0 1 150 117
+/**
+ * Returns the set of tasks that are sleeping (and not active) on the task
+ * chain, at the time of the call.
+ */
+67
+AsyncTaskCollection AsyncTaskChain::get_sleeping_tasks(void) const;
+
+401 4 poll 0 4 535 20 AsyncTaskChain::poll 0 1 151 381
+/**
+ * Runs through all the tasks in the task list, once, if the task chain is
+ * running in single-threaded mode (no threads available).  This method does
+ * nothing in threaded mode, so it may safely be called in either case.
+ *
+ * Normally, you would not call this function directly; instead, call
+ * AsyncTaskManager::poll(), which polls all of the task chains in sequence.
+ */
+32
+void AsyncTaskChain::poll(void);
+
+402 18 get_next_wake_time 0 4 535 34 AsyncTaskChain::get_next_wake_time 0 1 152 169
+/**
+ * Returns the scheduled time (on the manager's clock) of the next sleeping
+ * task, on any task chain, to awaken.  Returns -1 if there are no sleeping
+ * tasks.
+ */
+54
+double AsyncTaskChain::get_next_wake_time(void) const;
+
+403 6 output 0 6 535 22 AsyncTaskChain::output 0 1 153 10
+/**
+ *
+ */
+61
+virtual void AsyncTaskChain::output(std::ostream &out) const;
+
+404 5 write 0 6 535 21 AsyncTaskChain::write 0 1 154 10
+/**
+ *
+ */
+82
+virtual void AsyncTaskChain::write(std::ostream &out, int indent_level = 0) const;
+
+405 14 get_class_type 0 4 535 30 AsyncTaskChain::get_class_type 0 1 155 0
+55
+static TypeHandle AsyncTaskChain::get_class_type(void);
+
+406 14 AsyncTaskPause 0 4 536 30 AsyncTaskPause::AsyncTaskPause 0 2 158 159 10
+/**
+ *
+ */
+118
+AsyncTaskPause::AsyncTaskPause(double delay);
+inline AsyncTaskPause::AsyncTaskPause(AsyncTaskPause const &) = default;
+
+407 12 operator new 0 4 536 28 AsyncTaskPause::operator new 0 1 160 0
+132
+inline void *AsyncTaskPause::operator new(std::size_t size);
+inline void *AsyncTaskPause::operator new(std::size_t size, void *ptr);
+
+408 15 operator delete 0 4 536 31 AsyncTaskPause::operator delete 0 0 0
+116
+inline void AsyncTaskPause::operator delete(void *ptr);
+inline void AsyncTaskPause::operator delete(void *, void *);
+
+409 12 validate_ptr 0 4 536 28 AsyncTaskPause::validate_ptr 0 0 0
+65
+static inline bool AsyncTaskPause::validate_ptr(void const *ptr);
+
+410 14 get_class_type 0 4 536 30 AsyncTaskPause::get_class_type 0 1 161 0
+55
+static TypeHandle AsyncTaskPause::get_class_type(void);
+
+411 15 ~AsyncTaskPause 0 4 536 31 AsyncTaskPause::~AsyncTaskPause 0 0 0
+38
+AsyncTaskPause::~AsyncTaskPause(void);
+
+412 19 upcast_to_AsyncTask 0 12 537 38 AsyncTaskSequence::upcast_to_AsyncTask 0 1 169 42
+upcast from AsyncTaskSequence to AsyncTask
+56
+AsyncTask *AsyncTaskSequence::upcast_to_AsyncTask(void);
+
+413 29 downcast_to_AsyncTaskSequence 0 12 520 40 AsyncTask::downcast_to_AsyncTaskSequence 0 0 44
+downcast from AsyncTask to AsyncTaskSequence
+66
+AsyncTaskSequence *AsyncTask::downcast_to_AsyncTaskSequence(void);
+
+414 29 upcast_to_AsyncTaskCollection 0 12 537 48 AsyncTaskSequence::upcast_to_AsyncTaskCollection 0 1 170 52
+upcast from AsyncTaskSequence to AsyncTaskCollection
+76
+AsyncTaskCollection *AsyncTaskSequence::upcast_to_AsyncTaskCollection(void);
+
+415 29 downcast_to_AsyncTaskSequence 0 12 529 50 AsyncTaskCollection::downcast_to_AsyncTaskSequence 0 0 54
+downcast from AsyncTaskCollection to AsyncTaskSequence
+76
+AsyncTaskSequence *AsyncTaskCollection::downcast_to_AsyncTaskSequence(void);
+
+416 17 AsyncTaskSequence 0 4 537 36 AsyncTaskSequence::AsyncTaskSequence 0 2 162 163 10
+/**
+ *
+ */
+153
+explicit AsyncTaskSequence::AsyncTaskSequence(std::string const &name);
+inline AsyncTaskSequence::AsyncTaskSequence(AsyncTaskSequence const &) = default;
+
+417 18 ~AsyncTaskSequence 0 6 537 37 AsyncTaskSequence::~AsyncTaskSequence 0 0 10
+/**
+ *
+ */
+52
+virtual AsyncTaskSequence::~AsyncTaskSequence(void);
+
+418 12 operator new 0 4 537 31 AsyncTaskSequence::operator new 0 1 164 0
+138
+inline void *AsyncTaskSequence::operator new(std::size_t size);
+inline void *AsyncTaskSequence::operator new(std::size_t size, void *ptr);
+
+419 15 operator delete 0 4 537 34 AsyncTaskSequence::operator delete 0 0 0
+122
+inline void AsyncTaskSequence::operator delete(void *ptr);
+inline void AsyncTaskSequence::operator delete(void *, void *);
+
+420 12 validate_ptr 0 4 537 31 AsyncTaskSequence::validate_ptr 0 0 0
+68
+static inline bool AsyncTaskSequence::validate_ptr(void const *ptr);
+
+421 16 set_repeat_count 0 4 537 35 AsyncTaskSequence::set_repeat_count 0 1 165 251
+/**
+ * Sets the repeat count of the sequence.  If the count is 0 or 1, the
+ * sequence will run exactly once.  If it is greater than 0, it will run that
+ * number of times.  If it is negative, it will run forever until it is
+ * explicitly removed.
+ */
+66
+inline void AsyncTaskSequence::set_repeat_count(int repeat_count);
+
+422 16 get_repeat_count 0 4 537 35 AsyncTaskSequence::get_repeat_count 0 1 166 77
+/**
+ * Returns the repeat count of the sequence.  See set_repeat_count().
+ */
+59
+inline int AsyncTaskSequence::get_repeat_count(void) const;
+
+423 22 get_current_task_index 0 4 537 41 AsyncTaskSequence::get_current_task_index 0 1 167 142
+/**
+ * Returns the index of the task within the sequence that is currently being
+ * executed (or that will be executed at the next epoch).
+ */
+73
+inline std::size_t AsyncTaskSequence::get_current_task_index(void) const;
+
+424 14 get_class_type 0 4 537 33 AsyncTaskSequence::get_class_type 0 1 168 0
+58
+static TypeHandle AsyncTaskSequence::get_class_type(void);
+
+425 15 ButtonEventList 0 4 538 32 ButtonEventList::ButtonEventList 0 2 171 172 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+116
+inline ButtonEventList::ButtonEventList(void);
+inline ButtonEventList::ButtonEventList(ButtonEventList const &copy);
+
+426 10 operator = 0 4 538 27 ButtonEventList::operator = 0 1 173 0
+69
+inline void ButtonEventList::operator =(ButtonEventList const &copy);
+
+427 9 add_event 0 4 538 26 ButtonEventList::add_event 0 1 174 51
+/**
+ * Adds a new event to the end of the list.
+ */
+58
+inline void ButtonEventList::add_event(ButtonEvent event);
+
+428 14 get_num_events 0 4 538 31 ButtonEventList::get_num_events 0 1 175 52
+/**
+ * Returns the number of events in the list.
+ */
+55
+inline int ButtonEventList::get_num_events(void) const;
+
+429 9 get_event 0 4 538 26 ButtonEventList::get_event 0 1 176 169
+/**
+ * Returns the nth event in the list.  This does not remove the event from the
+ * list; the only way to remove events is to empty the whole list with
+ * clear().
+ */
+66
+inline ButtonEvent const &ButtonEventList::get_event(int n) const;
+
+430 5 clear 0 4 538 22 ButtonEventList::clear 0 1 177 48
+/**
+ * Empties all the events from the list.
+ */
+41
+inline void ButtonEventList::clear(void);
+
+431 10 add_events 0 4 538 27 ButtonEventList::add_events 0 1 178 75
+/**
+ * Appends the events from the other list onto the end of this one.
+ */
+63
+void ButtonEventList::add_events(ButtonEventList const &other);
+
+432 11 update_mods 0 4 538 28 ButtonEventList::update_mods 0 1 179 124
+/**
+ * Updates the indicated ModifierButtons object with all of the button up/down
+ * transitions indicated in the list.
+ */
+63
+void ButtonEventList::update_mods(ModifierButtons &mods) const;
+
+433 5 write 0 4 538 22 ButtonEventList::write 0 1 180 10
+/**
+ *
+ */
+75
+void ButtonEventList::write(std::ostream &out, int indent_level = 0) const;
+
+434 14 get_class_type 0 4 538 31 ButtonEventList::get_class_type 0 1 181 0
+56
+static TypeHandle ButtonEventList::get_class_type(void);
+
+435 16 ~ButtonEventList 0 4 538 33 ButtonEventList::~ButtonEventList 0 0 0
+40
+ButtonEventList::~ButtonEventList(void);
+
+436 5 Event 0 4 540 12 Event::Event 0 2 182 183 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+112
+Event::Event(std::string const &event_name, EventReceiver *receiver = nullptr);
+Event::Event(Event const &copy);
+
+437 10 operator = 0 4 540 17 Event::operator = 0 1 184 0
+42
+void Event::operator =(Event const &copy);
+
+438 8 set_name 0 4 540 15 Event::set_name 0 1 185 10
+/**
+ *
+ */
+53
+inline void Event::set_name(std::string const &name);
+
+439 10 clear_name 0 4 540 17 Event::clear_name 0 1 186 44
+/**
+ * Resets the Event's name to empty.
+ */
+36
+inline void Event::clear_name(void);
+
+440 8 has_name 0 4 540 15 Event::has_name 0 1 187 92
+/**
+ * Returns true if the Event has a nonempty name set, false if the name is
+ * empty.
+ */
+40
+inline bool Event::has_name(void) const;
+
+441 8 get_name 0 4 540 15 Event::get_name 0 1 188 10
+/**
+ *
+ */
+54
+inline std::string const &Event::get_name(void) const;
+
+442 13 add_parameter 0 4 540 20 Event::add_parameter 0 1 189 10
+/**
+ *
+ */
+53
+void Event::add_parameter(EventParameter const &obj);
+
+443 18 get_num_parameters 0 4 540 25 Event::get_num_parameters 0 1 190 10
+/**
+ *
+ */
+42
+int Event::get_num_parameters(void) const;
+
+444 13 get_parameter 0 4 540 20 Event::get_parameter 0 1 191 10
+/**
+ *
+ */
+49
+EventParameter Event::get_parameter(int n) const;
+
+445 12 has_receiver 0 4 540 19 Event::has_receiver 0 1 192 10
+/**
+ *
+ */
+37
+bool Event::has_receiver(void) const;
+
+446 12 get_receiver 0 4 540 19 Event::get_receiver 0 1 193 10
+/**
+ *
+ */
+47
+EventReceiver *Event::get_receiver(void) const;
+
+447 12 set_receiver 0 4 540 19 Event::set_receiver 0 1 194 10
+/**
+ *
+ */
+50
+void Event::set_receiver(EventReceiver *receiver);
+
+448 14 clear_receiver 0 4 540 21 Event::clear_receiver 0 1 195 10
+/**
+ *
+ */
+33
+void Event::clear_receiver(void);
+
+449 6 output 0 4 540 13 Event::output 0 1 196 10
+/**
+ *
+ */
+44
+void Event::output(std::ostream &out) const;
+
+450 14 get_class_type 0 4 540 21 Event::get_class_type 0 1 197 0
+46
+static TypeHandle Event::get_class_type(void);
+
+451 12 EventHandler 0 4 543 26 EventHandler::EventHandler 0 1 198 10
+/**
+ *
+ */
+58
+explicit EventHandler::EventHandler(EventQueue *ev_queue);
+
+452 10 get_future 0 4 543 24 EventHandler::get_future 0 1 199 96
+/**
+ * Returns a pending future that will be marked as done when the event is next
+ * fired.
+ */
+69
+AsyncFuture *EventHandler::get_future(std::string const &event_name);
+
+453 14 process_events 0 4 543 28 EventHandler::process_events 0 1 200 188
+/**
+ * The main processing loop of the EventHandler.  This function must be called
+ * periodically to service events.  Walks through each pending event and calls
+ * its assigned hooks.
+ */
+40
+void EventHandler::process_events(void);
+
+454 14 dispatch_event 0 6 543 28 EventHandler::dispatch_event 0 1 201 66
+/**
+ * Calls the hooks assigned to the indicated single event.
+ */
+62
+virtual void EventHandler::dispatch_event(Event const *event);
+
+455 5 write 0 4 543 19 EventHandler::write 0 1 202 10
+/**
+ *
+ */
+50
+void EventHandler::write(std::ostream &out) const;
+
+456 24 get_global_event_handler 0 4 543 38 EventHandler::get_global_event_handler 0 1 203 139
+/**
+ * Returns a pointer to the one global EventHandler object.  If the global
+ * object has not yet been created, this will create it.
+ */
+96
+static inline EventHandler *EventHandler::get_global_event_handler(EventQueue *queue = nullptr);
+
+457 14 get_class_type 0 4 543 28 EventHandler::get_class_type 0 1 204 0
+53
+static TypeHandle EventHandler::get_class_type(void);
+
+458 10 EventQueue 0 4 545 22 EventQueue::EventQueue 0 1 205 10
+/**
+ *
+ */
+29
+EventQueue::EventQueue(void);
+
+459 11 ~EventQueue 0 4 545 23 EventQueue::~EventQueue 0 0 10
+/**
+ *
+ */
+30
+EventQueue::~EventQueue(void);
+
+460 11 queue_event 0 4 545 23 EventQueue::queue_event 0 1 206 10
+/**
+ *
+ */
+46
+void EventQueue::queue_event(CPT_Event event);
+
+461 5 clear 0 4 545 17 EventQueue::clear 0 1 207 71
+/**
+ * Empties all events on the queue, throwing them on the floor.
+ */
+29
+void EventQueue::clear(void);
+
+462 14 is_queue_empty 0 4 545 26 EventQueue::is_queue_empty 0 1 208 10
+/**
+ *
+ */
+44
+bool EventQueue::is_queue_empty(void) const;
+
+463 13 is_queue_full 0 4 545 25 EventQueue::is_queue_full 0 1 209 73
+/**
+ * @deprecated Always returns false; the queue can never be full.
+ */
+43
+bool EventQueue::is_queue_full(void) const;
+
+464 13 dequeue_event 0 4 545 25 EventQueue::dequeue_event 0 1 210 10
+/**
+ *
+ */
+42
+CPT_Event EventQueue::dequeue_event(void);
+
+465 22 get_global_event_queue 0 4 545 34 EventQueue::get_global_event_queue 0 1 211 137
+/**
+ * Returns a pointer to the one global EventQueue object.  If the global
+ * object has not yet been created, this will create it.
+ */
+67
+static inline EventQueue *EventQueue::get_global_event_queue(void);
+
+466 16 PointerEventList 0 4 546 34 PointerEventList::PointerEventList 0 1 212 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+48
+inline PointerEventList::PointerEventList(void);
+
+467 14 get_num_events 0 4 546 32 PointerEventList::get_num_events 0 1 213 52
+/**
+ * Returns the number of events in the list.
+ */
+64
+inline std::size_t PointerEventList::get_num_events(void) const;
+
+468 13 get_in_window 0 4 546 31 PointerEventList::get_in_window 0 1 214 51
+/**
+ * Get the in-window flag of the nth event.
+ */
+65
+inline bool PointerEventList::get_in_window(std::size_t n) const;
+
+469 8 get_xpos 0 4 546 26 PointerEventList::get_xpos 0 1 215 49
+/**
+ * Get the x-coordinate of the nth event.
+ */
+59
+inline int PointerEventList::get_xpos(std::size_t n) const;
+
+470 8 get_ypos 0 4 546 26 PointerEventList::get_ypos 0 1 216 49
+/**
+ * Get the y-coordinate of the nth event.
+ */
+59
+inline int PointerEventList::get_ypos(std::size_t n) const;
+
+471 6 get_dx 0 4 546 24 PointerEventList::get_dx 0 1 217 44
+/**
+ * Get the x-delta of the nth event.
+ */
+60
+inline double PointerEventList::get_dx(std::size_t n) const;
+
+472 6 get_dy 0 4 546 24 PointerEventList::get_dy 0 1 218 44
+/**
+ * Get the y-delta of the nth event.
+ */
+60
+inline double PointerEventList::get_dy(std::size_t n) const;
+
+473 12 get_sequence 0 4 546 30 PointerEventList::get_sequence 0 1 219 52
+/**
+ * Get the sequence number of the nth event.
+ */
+63
+inline int PointerEventList::get_sequence(std::size_t n) const;
+
+474 10 get_length 0 4 546 28 PointerEventList::get_length 0 1 220 43
+/**
+ * Get the length of the nth event.
+ */
+64
+inline double PointerEventList::get_length(std::size_t n) const;
+
+475 13 get_direction 0 4 546 31 PointerEventList::get_direction 0 1 221 46
+/**
+ * Get the direction of the nth event.
+ */
+67
+inline double PointerEventList::get_direction(std::size_t n) const;
+
+476 12 get_rotation 0 4 546 30 PointerEventList::get_rotation 0 1 222 45
+/**
+ * Get the rotation of the nth event.
+ */
+66
+inline double PointerEventList::get_rotation(std::size_t n) const;
+
+477 8 get_time 0 4 546 26 PointerEventList::get_time 0 1 223 46
+/**
+ * Get the timestamp of the nth event.
+ */
+62
+inline double PointerEventList::get_time(std::size_t n) const;
+
+478 5 clear 0 4 546 23 PointerEventList::clear 0 1 224 48
+/**
+ * Empties all the events from the list.
+ */
+42
+inline void PointerEventList::clear(void);
+
+479 9 pop_front 0 4 546 27 PointerEventList::pop_front 0 1 225 48
+/**
+ * Discards the first event on the list.
+ */
+46
+inline void PointerEventList::pop_front(void);
+
+480 9 add_event 0 4 546 27 PointerEventList::add_event 0 3 226 227 228 304
+/**
+ * Adds a new event from the given PointerData object.
+ */
+
+/**
+ * Adds a new event to the end of the list.  Automatically calculates the dx,
+ * dy, length, direction, and rotation for all but the first event.
+ */
+
+/**
+ * Adds a new event to the end of the list based on the given mouse movement.
+ */
+288
+void PointerEventList::add_event(PointerData const &data, int seq, double time);
+void PointerEventList::add_event(bool in_win, int xpos, int ypos, int seq, double time);
+void PointerEventList::add_event(bool in_win, int xpos, int ypos, double xdelta, double ydelta, int seq, double time);
+
+481 9 encircles 0 4 546 27 PointerEventList::encircles 0 1 229 70
+/**
+ * Returns true if the trail loops around the specified point.
+ */
+53
+bool PointerEventList::encircles(int x, int y) const;
+
+482 11 total_turns 0 4 546 29 PointerEventList::total_turns 0 1 230 279
+/**
+ * returns the total angular deviation that the trail has made in the
+ * specified time period.  A small number means that the trail is moving in a
+ * relatively straight line, a large number means that the trail is zig-
+ * zagging or spinning.  The result is in degrees.
+ */
+55
+double PointerEventList::total_turns(double sec) const;
+
+483 13 match_pattern 0 4 546 31 PointerEventList::match_pattern 0 1 231 540
+/**
+ * This function is not implemented yet.  It is a work in progress.  The
+ * intent is as follows:
+ *
+ * Returns a nonzero value if the mouse movements match the specified pattern.
+ * The higher the value, the better the match.  The pattern is a sequence of
+ * compass directions (ie, "E", "NE", etc) separated by spaces.  If rot is
+ * nonzero, then the pattern is rotated counterclockwise by the specified
+ * amount before testing.  Seglen is the minimum length a mouse movement needs
+ * to be in order to be considered significant.
+ */
+94
+double PointerEventList::match_pattern(std::string const &pattern, double rot, double seglen);
+
+484 14 get_class_type 0 4 546 32 PointerEventList::get_class_type 0 1 232 0
+57
+static TypeHandle PointerEventList::get_class_type(void);
+
+485 17 ~PointerEventList 0 4 546 35 PointerEventList::~PointerEventList 0 0 0
+42
+PointerEventList::~PointerEventList(void);
+
+486 10 PythonTask 0 4 547 22 PythonTask::PythonTask 0 2 233 234 0
+163
+PythonTask::PythonTask(PyObject *function = (& ::_Py_NoneStruct), std::string const &name = string());
+inline PythonTask::PythonTask(PythonTask const &) = default;
+
+487 12 operator new 0 4 547 24 PythonTask::operator new 0 1 235 0
+124
+inline void *PythonTask::operator new(std::size_t size);
+inline void *PythonTask::operator new(std::size_t size, void *ptr);
+
+488 15 operator delete 0 4 547 27 PythonTask::operator delete 0 0 0
+108
+inline void PythonTask::operator delete(void *ptr);
+inline void PythonTask::operator delete(void *, void *);
+
+489 12 validate_ptr 0 4 547 24 PythonTask::validate_ptr 0 0 0
+61
+static inline bool PythonTask::validate_ptr(void const *ptr);
+
+490 12 set_function 0 4 547 24 PythonTask::set_function 0 1 236 0
+50
+void PythonTask::set_function(PyObject *function);
+
+491 12 get_function 0 4 547 24 PythonTask::get_function 0 1 237 66
+/**
+ * Returns the function that is called when the task runs.
+ */
+48
+inline PyObject *PythonTask::get_function(void);
+
+492 8 set_args 0 4 547 20 PythonTask::set_args 0 1 238 0
+60
+void PythonTask::set_args(PyObject *args, bool append_task);
+
+493 8 get_args 0 4 547 20 PythonTask::get_args 0 1 239 0
+37
+PyObject *PythonTask::get_args(void);
+
+494 14 set_upon_death 0 4 547 26 PythonTask::set_upon_death 0 1 240 0
+54
+void PythonTask::set_upon_death(PyObject *upon_death);
+
+495 14 get_upon_death 0 4 547 26 PythonTask::get_upon_death 0 1 241 70
+/**
+ * Returns the function that is called when the task finishes.
+ */
+50
+inline PyObject *PythonTask::get_upon_death(void);
+
+496 9 set_owner 0 4 547 21 PythonTask::set_owner 0 1 242 0
+44
+void PythonTask::set_owner(PyObject *owner);
+
+497 9 get_owner 0 4 547 21 PythonTask::get_owner 0 1 243 56
+/**
+ * Returns the "owner" object.  See set_owner().
+ */
+51
+inline PyObject *PythonTask::get_owner(void) const;
+
+498 10 set_result 0 4 547 22 PythonTask::set_result 0 1 244 172
+/**
+ * Sets the "result" of this task.  This is the value returned from an "await"
+ * expression on this task.
+ * This can only be called while the task is still alive.
+ */
+53
+inline void PythonTask::set_result(PyObject *result);
+
+499 11 __setattr__ 0 4 547 23 PythonTask::__setattr__ 0 1 245 0
+73
+int PythonTask::__setattr__(PyObject *self, PyObject *attr, PyObject *v);
+
+500 11 __delattr__ 0 4 547 23 PythonTask::__delattr__ 0 1 246 0
+60
+int PythonTask::__delattr__(PyObject *self, PyObject *attr);
+
+501 11 __getattr__ 0 4 547 23 PythonTask::__getattr__ 0 1 247 0
+56
+PyObject *PythonTask::__getattr__(PyObject *attr) const;
+
+502 12 __traverse__ 0 4 547 24 PythonTask::__traverse__ 0 1 248 0
+57
+int PythonTask::__traverse__(visitproc visit, void *arg);
+
+503 9 __clear__ 0 4 547 21 PythonTask::__clear__ 0 1 249 0
+32
+int PythonTask::__clear__(void);
+
+504 16 get_elapsed_time 0 4 547 28 PythonTask::get_elapsed_time 0 0 200
+/**
+ * Returns the amount of time that has elapsed since the task was started,
+ * according to the task manager's clock.
+ *
+ * It is only valid to call this if the task's status is not S_inactive.
+ */
+48
+double PythonTask::get_elapsed_time(void) const;
+
+505 13 get_wake_time 0 4 547 25 PythonTask::get_wake_time 0 0 710
+/**
+ * If this task has been added to an AsyncTaskManager with a delay in effect,
+ * this returns the time at which the task is expected to awaken.  It has no
+ * meaning if the task has not yet been added to a queue, or if there was no
+ * delay in effect at the time the task was added.
+ *
+ * If the task's status is not S_sleeping, this returns 0.0.
+ */
+
+/**
+ * If this task has been added to an AsyncTaskManager with a delay in effect,
+ * this returns the time at which the task is expected to awaken.  It has no
+ * meaning if the task has not yet been added to a queue, or if there was no
+ * delay in effect at the time the task was added.
+ *
+ * If the task's status is not S_sleeping, this returns 0.0.
+ */
+45
+double PythonTask::get_wake_time(void) const;
+
+506 9 get_delay 0 4 547 21 PythonTask::get_delay 0 0 152
+/**
+ * Returns the delay value that has been set via set_delay, if any.
+ */
+
+/**
+ * Returns the delay value that has been set via set_delay, if any.
+ */
+48
+inline double PythonTask::get_delay(void) const;
+
+507 9 has_delay 0 4 547 21 PythonTask::has_delay 0 1 251 204
+/**
+ * Returns true if a delay has been set for this task via set_delay(), or
+ * false otherwise.
+ */
+
+/**
+ * Returns true if a delay has been set for this task via set_delay(), or
+ * false otherwise.
+ */
+46
+inline bool PythonTask::has_delay(void) const;
+
+508 9 set_delay 0 4 547 21 PythonTask::set_delay 0 0 1374
+/**
+ * Specifies the amount of time, in seconds, by which this task will be
+ * delayed after it has been added to the AsyncTaskManager.  At least the
+ * specified amount of time (and possibly more) will elapse before the task
+ * begins.
+ *
+ * You may specify a delay of 0.0 to guarantee that the task will run in the
+ * next epoch following the one in which it is added.
+ *
+ * Setting this value after the task has already been added will not affect
+ * the task's wake time; it will only affect the task if it is re-added to the
+ * queue in the future, for instance if the task returns DS_again.  However,
+ * see recalc_wake_time() if you wish to apply the delay effect immediately.
+ */
+
+/**
+ * Specifies the amount of time, in seconds, by which this task will be
+ * delayed after it has been added to the AsyncTaskManager.  At least the
+ * specified amount of time (and possibly more) will elapse before the task
+ * begins.
+ *
+ * You may specify a delay of 0.0 to guarantee that the task will run in the
+ * next epoch following the one in which it is added.
+ *
+ * Setting this value after the task has already been added will not affect
+ * the task's wake time; it will only affect the task if it is re-added to the
+ * queue in the future, for instance if the task returns DS_again.  However,
+ * see recalc_wake_time() if you wish to apply the delay effect immediately.
+ */
+48
+inline void PythonTask::set_delay(double delay);
+
+509 11 clear_delay 0 4 547 23 PythonTask::clear_delay 0 1 252 434
+/**
+ * Removes any delay specified for the task.  The next time the task is added
+ * to the queue, it will run immediately.  This does not affect the task's
+ * wake time if it has already been added to the queue.
+ */
+
+/**
+ * Removes any delay specified for the task.  The next time the task is added
+ * to the queue, it will run immediately.  This does not affect the task's
+ * wake time if it has already been added to the queue.
+ */
+42
+inline void PythonTask::clear_delay(void);
+
+510 18 get_elapsed_frames 0 4 547 30 PythonTask::get_elapsed_frames 0 0 203
+/**
+ * Returns the number of frames that have elapsed since the task was started,
+ * according to the task manager's clock.
+ *
+ * It is only valid to call this if the task's status is not S_inactive.
+ */
+47
+int PythonTask::get_elapsed_frames(void) const;
+
+511 8 get_dict 0 20 547 20 PythonTask::get_dict 0 0 42
+getter for PyObject *PythonTask::__dict__;
+43
+PyObject *PythonTask::get_dict(void) const;
+
+512 8 set_dict 0 36 547 20 PythonTask::set_dict 0 0 42
+setter for PyObject *PythonTask::__dict__;
+43
+void PythonTask::set_dict(PyObject *value);
+
+513 14 get_class_type 0 4 547 26 PythonTask::get_class_type 0 1 250 0
+51
+static TypeHandle PythonTask::get_class_type(void);
+
+252
+1 0 0 7 2 551 255 0 0 0 
+2 0 0 7 2 551 255 0 10 /**
+ *
+ */ 1 4 copy 1 552  
+3 0 0 7 2 551 255 0 477 /**
+ * Defines an EventParameter that stores a pointer to a TypedReferenceCount
+ * object.  Note that a TypedReferenceCount is not the same kind of pointer as
+ * a TypedWritableReferenceCount, hence we require both constructors.
+ *
+ * This accepts a const pointer, even though it stores (and eventually
+ * returns) a non-const pointer.  This is just the simplest way to allow both
+ * const and non-const pointers to be stored, but it does lose the constness.
+ * Be careful.
+ */ 1 3 ptr 1 554  
+4 0 0 7 2 551 255 0 396 /**
+ * Defines an EventParameter that stores a pointer to any kind of
+ * TypedWritableReferenceCount object.  This is the most general constructor.
+ *
+ * This accepts a const pointer, even though it stores (and eventually
+ * returns) a non-const pointer.  This is just the simplest way to allow both
+ * const and non-const pointers to be stored, but it does lose the constness.
+ * Be careful.
+ */ 1 3 ptr 1 556  
+5 0 0 7 2 551 255 0 72 /**
+ * Defines an EventParameter that stores a floating-point value.
+ */ 1 5 value 1 530  
+6 0 0 7 2 551 255 0 66 /**
+ * Defines an EventParameter that stores an integer value.
+ */ 1 5 value 1 534  
+7 0 0 7 2 551 255 0 0 1 6 param0 0 559  
+8 0 0 7 2 551 255 0 64 /**
+ * Defines an EventParameter that stores a string value.
+ */ 1 5 value 1 561  
+9 0 0 7 2 551 255 0 65 /**
+ * Defines an EventParameter that stores a wstring value.
+ */ 1 5 value 1 561  
+10 0 0 6 3 551 0 0 10 /**
+ *
+ */ 2 4 this 3 551  4 copy 1 552  
+11 0 0 6 5 524 0 0 266 // These functions are conveniences to easily determine if the
+// EventParameter is one of the predefined parameter types, and retrieve the
+// corresponding value.  Of course, it is possible that the EventParameter
+// is some user-defined type, and is none of these. 1 4 this 3 552  
+12 0 0 6 6 524 0 0 90 /**
+ * Returns true if the EventParameter stores an integer value, false
+ * otherwise.
+ */ 1 4 this 3 552  
+13 0 0 6 7 534 0 0 133 /**
+ * Retrieves the value stored in the EventParameter.  It is only valid to call
+ * this if is_int() has already returned true.
+ */ 1 4 this 3 552  
+14 0 0 6 8 524 0 0 103 /**
+ * Returns true if the EventParameter stores a double floating-point value,
+ * false otherwise.
+ */ 1 4 this 3 552  
+15 0 0 6 9 530 0 0 136 /**
+ * Retrieves the value stored in the EventParameter.  It is only valid to call
+ * this if is_double() has already returned true.
+ */ 1 4 this 3 552  
+16 0 0 6 10 524 0 0 85 /**
+ * Returns true if the EventParameter stores a string value, false otherwise.
+ */ 1 4 this 3 552  
+17 0 0 6 11 561 0 0 136 /**
+ * Retrieves the value stored in the EventParameter.  It is only valid to call
+ * this if is_string() has already returned true.
+ */ 1 4 this 3 552  
+18 0 0 6 12 524 0 0 86 /**
+ * Returns true if the EventParameter stores a wstring value, false otherwise.
+ */ 1 4 this 3 552  
+19 0 0 6 13 561 0 0 137 /**
+ * Retrieves the value stored in the EventParameter.  It is only valid to call
+ * this if is_wstring() has already returned true.
+ */ 1 4 this 3 552  
+20 0 0 6 14 524 0 0 255 /**
+ * Returns true if the EventParameter stores a TypedReferenceCount pointer,
+ * false otherwise.  Note that a TypedReferenceCount is not exactly the same
+ * kind of pointer as a TypedWritableReferenceCount, hence the need for this
+ * separate call.
+ */ 1 4 this 3 552  
+21 0 0 7 15 562 0 0 145 /**
+ * Retrieves the value stored in the EventParameter.  It is only valid to call
+ * this if is_typed_ref_count() has already returned true.
+ */ 1 4 this 3 552  
+22 0 0 7 16 563 0 0 281 /**
+ * Retrieves a pointer to the actual value stored in the parameter.  The
+ * TypeHandle of this pointer may be examined to determine the actual type of
+ * parameter it contains.  This is the only way to retrieve the value when it
+ * is not one of the above predefined types.
+ */ 1 4 this 3 552  
+23 0 0 4 17 566 0 0 10 /**
+ *
+ */ 2 4 this 3 552  3 out 1 564  
+24 0 0 7 20 567 0 0 55 /**
+ * Initializes the future in the pending state.
+ */ 0 
+25 0 0 7 20 567 0 0 0 1 6 param0 0 568  
+26 0 0 6 21 548 0 0 0 0 
+27 0 0 6 22 548 0 0 0 0 
+28 0 0 6 23 524 0 0 104 /**
+ * Returns true if the future is done or has been cancelled.  It is always
+ * safe to call this.
+ */ 1 4 this 3 568  
+29 0 0 6 24 524 0 0 85 /**
+ * Returns true if the future was cancelled.  It is always safe to call this.
+ */ 1 4 this 3 568  
+30 0 0 6 25 548 0 0 0 2 4 this 3 568  7 timeout 1 548  
+31 0 0 6 26 524 0 0 235 /**
+ * Cancels the future.  Returns true if it was cancelled, or false if the
+ * future was already done.  Either way, done() will return true after this
+ * call returns.
+ *
+ * In the case of a task, this is equivalent to remove().
+ */ 1 4 this 3 567  
+32 0 0 4 27 566 0 0 212 /**
+ * Sets the event name that will be triggered when the future finishes.  Will
+ * not be triggered if the future is cancelled, but it will be triggered for
+ * a coroutine task that exits with an exception.
+ */ 2 4 this 3 567  10 done_event 1 561  
+33 0 0 6 28 561 0 0 107 /**
+ * Returns the event name that will be triggered when the future finishes.
+ * See set_done_event().
+ */ 1 4 this 3 568  
+34 0 0 6 33 548 0 0 0 2 4 this 3 567  2 fn 1 548  
+35 0 0 6 34 548 0 0 0 1 4 args 1 548  
+36 0 0 4 35 566 0 0 10 /**
+ *
+ */ 2 4 this 3 568  3 out 1 564  
+37 0 0 4 36 566 0 0 42 /**
+ * Waits until the future is done.
+ */ 1 4 this 3 567  
+38 0 0 4 36 566 0 0 75 /**
+ * Waits until the future is done, or until the timeout is reached.
+ */ 2 4 this 3 567  7 timeout 1 530  
+39 0 0 4 37 566 0 0 0 2 4 this 3 567  6 result 1 552  
+40 0 0 4 37 566 0 0 0 2 4 this 3 567  6 result 1 570  
+41 0 0 4 37 566 0 0 0 2 4 this 3 567  6 result 1 562  
+42 0 0 4 37 566 0 0 0 2 4 this 3 567  6 result 1 563  
+43 0 0 4 37 566 0 0 82 /**
+ * Sets this future's result.  Can only be called if done() returns false.
+ */ 2 4 this 3 567  6 param0 0 559  
+44 0 0 7 38 572 0 0 0 0 
+45 0 0 7 162 575 288 0 0 1 6 param0 0 573  
+46 0 0 6 48 523 0 0 49 /**
+ * Returns the current state of the task.
+ */ 1 4 this 3 573  
+47 0 0 6 49 524 0 0 332 /**
+ * Returns true if the task is currently active or sleeping on some task
+ * chain, meaning that it will be executed in its turn, or false if it is not
+ * active.  If the task has recently been removed while it is in the middle of
+ * execution, this will return false, because the task will not run again once
+ * it finishes.
+ */ 1 4 this 3 573  
+48 0 0 7 50 525 323 0 118 /**
+ * Returns the AsyncTaskManager that this task is active on.  This will be
+ * NULL if the state is S_inactive.
+ */ 1 4 this 3 573  
+49 0 0 6 51 524 0 0 185 /**
+ * Removes the task from its active manager, if any, and makes the state
+ * S_inactive (or possible S_servicing_removed).  This is a no-op if the state
+ * is already S_inactive.
+ */ 1 4 this 3 575  
+50 0 0 4 52 566 0 0 686 /**
+ * Specifies the amount of time, in seconds, by which this task will be
+ * delayed after it has been added to the AsyncTaskManager.  At least the
+ * specified amount of time (and possibly more) will elapse before the task
+ * begins.
+ *
+ * You may specify a delay of 0.0 to guarantee that the task will run in the
+ * next epoch following the one in which it is added.
+ *
+ * Setting this value after the task has already been added will not affect
+ * the task's wake time; it will only affect the task if it is re-added to the
+ * queue in the future, for instance if the task returns DS_again.  However,
+ * see recalc_wake_time() if you wish to apply the delay effect immediately.
+ */ 2 4 this 3 575  5 delay 1 530  
+51 0 0 4 53 566 0 0 216 /**
+ * Removes any delay specified for the task.  The next time the task is added
+ * to the queue, it will run immediately.  This does not affect the task's
+ * wake time if it has already been added to the queue.
+ */ 1 4 this 3 575  
+52 0 0 6 54 524 0 0 101 /**
+ * Returns true if a delay has been set for this task via set_delay(), or
+ * false otherwise.
+ */ 1 4 this 3 573  
+53 0 0 6 55 530 0 0 75 /**
+ * Returns the delay value that has been set via set_delay, if any.
+ */ 1 4 this 3 573  
+54 0 0 6 56 530 0 0 354 /**
+ * If this task has been added to an AsyncTaskManager with a delay in effect,
+ * this returns the time at which the task is expected to awaken.  It has no
+ * meaning if the task has not yet been added to a queue, or if there was no
+ * delay in effect at the time the task was added.
+ *
+ * If the task's status is not S_sleeping, this returns 0.0.
+ */ 1 4 this 3 573  
+55 0 0 4 57 566 0 0 437 /**
+ * If the task is currently sleeping on a task chain, this resets its wake
+ * time to the current time + get_delay().  It is as if the task had suddenly
+ * returned DS_again.  The task will sleep for its current delay seconds
+ * before running again.  This method may therefore be used to make the task
+ * wake up sooner or later than it would have otherwise.
+ *
+ * If the task is not already sleeping, this method has no effect.
+ */ 1 4 this 3 575  
+56 0 0 6 58 530 0 0 176 /**
+ * Returns the time at which the task was started, according to the task
+ * manager's clock.
+ *
+ * It is only valid to call this if the task's status is not S_inactive.
+ */ 1 4 this 3 573  
+57 0 0 6 59 530 0 0 200 /**
+ * Returns the amount of time that has elapsed since the task was started,
+ * according to the task manager's clock.
+ *
+ * It is only valid to call this if the task's status is not S_inactive.
+ */ 1 4 this 3 573  
+58 0 0 6 60 534 0 0 184 /**
+ * Returns the frame number at which the task was started, according to the
+ * task manager's clock.
+ *
+ * It is only valid to call this if the task's status is not S_inactive.
+ */ 1 4 this 3 573  
+59 0 0 6 61 534 0 0 203 /**
+ * Returns the number of frames that have elapsed since the task was started,
+ * according to the task manager's clock.
+ *
+ * It is only valid to call this if the task's status is not S_inactive.
+ */ 1 4 this 3 573  
+60 0 0 4 62 566 0 0 10 /**
+ *
+ */ 2 4 this 3 575  4 name 1 561  
+61 0 0 4 63 566 0 0 43 /**
+ * Resets the task's name to empty.
+ */ 1 4 this 3 575  
+62 0 0 6 64 561 0 0 129 /**
+ * Returns the initial part of the name, up to but not including any trailing
+ * digits following a hyphen or underscore.
+ */ 1 4 this 3 573  
+63 0 0 6 65 531 0 0 107 /**
+ * Returns a number guaranteed to be unique for each different AsyncTask
+ * object in the universe.
+ */ 1 4 this 3 573  
+64 0 0 4 66 566 0 0 135 /**
+ * Specifies the AsyncTaskChain on which this task will be running.  Each task
+ * chain runs tasks independently of the others.
+ */ 2 4 this 3 575  10 chain_name 1 561  
+65 0 0 6 67 561 0 0 133 /**
+ * Returns the AsyncTaskChain on which this task will be running.  Each task
+ * chain runs tasks independently of the others.
+ */ 1 4 this 3 573  
+66 0 0 4 68 566 0 0 483 /**
+ * Specifies a sort value for this task.  Within a given AsyncTaskManager, all
+ * of the tasks with a given sort value are guaranteed to be completed before
+ * any tasks with a higher sort value are begun.
+ *
+ * To put it another way, two tasks might execute in parallel with each other
+ * only if they both have the same sort value.  Tasks with a lower sort value
+ * are executed first.
+ *
+ * This is different from the priority, which makes no such exclusion
+ * guarantees.
+ */ 2 4 this 3 575  4 sort 1 534  
+67 0 0 6 69 534 0 0 66 /**
+ * Returns the task's current sort value.  See set_sort().
+ */ 1 4 this 3 573  
+68 0 0 4 70 566 0 0 874 /**
+ * Specifies a priority value for this task.  In general, tasks with a higher
+ * priority value are executed before tasks with a lower priority value (but
+ * only for tasks with the same sort value).
+ *
+ * Unlike the sort value, tasks with different priorities may execute at the
+ * same time, if the AsyncTaskManager has more than one thread servicing
+ * tasks.
+ *
+ * Also see AsyncTaskChain::set_timeslice_priority(), which changes the
+ * meaning of this value.  In the default mode, when the timeslice_priority
+ * flag is false, all tasks always run once per epoch, regardless of their
+ * priority values (that is, the priority controls the order of the task
+ * execution only, not the number of times it runs).  On the other hand, if
+ * you set the timeslice_priority flag to true, then changing a task's
+ * priority has an effect on the number of times it runs.
+ */ 2 4 this 3 575  8 priority 1 534  
+69 0 0 6 71 534 0 0 74 /**
+ * Returns the task's current priority value.  See set_priority().
+ */ 1 4 this 3 573  
+70 0 0 4 72 566 0 0 257 /**
+ * Sets the event name that will be triggered when the task finishes.  This
+ * should only be called before the task has been started, or after it has
+ * finished and before it is about to be restarted (i.e.  when get_state()
+ * returns S_inactive).
+ */ 2 4 this 3 575  10 done_event 1 561  
+71 0 0 6 73 530 0 0 98 /**
+ * Returns the amount of time elapsed during the task's previous run cycle, in
+ * seconds.
+ */ 1 4 this 3 573  
+72 0 0 6 74 530 0 0 118 /**
+ * Returns the maximum amount of time elapsed during any one of the task's
+ * previous run cycles, in seconds.
+ */ 1 4 this 3 573  
+73 0 0 6 75 530 0 0 115 /**
+ * Returns the average amount of time elapsed during each of the task's
+ * previous run cycles, in seconds.
+ */ 1 4 this 3 573  
+74 0 0 4 76 566 0 0 10 /**
+ *
+ */ 2 4 this 3 573  3 out 1 564  
+75 0 0 7 161 572 0 0 0 0 
+76 0 0 7 40 567 0 0 0 1 4 this 3 575  
+77 0 0 6 43 576 0 0 0 1 4 this 3 575  
+78 0 0 7 87 525 323 0 10 /**
+ *
+ */ 1 4 name 1 561  
+79 0 0 4 89 566 0 0 118 /**
+ * Stops all threads and messily empties the task list.  This is intended to
+ * be called on destruction only.
+ */ 1 4 this 3 525  
+80 0 0 4 90 566 0 0 286 /**
+ * Replaces the clock pointer used within the AsyncTaskManager.  This is used
+ * to control when tasks with a set_delay() specified will be scheduled.  It
+ * can also be ticked automatically each epoch, if set_tick_clock() is true.
+ *
+ * The default is the global clock pointer.
+ */ 2 4 this 3 525  5 clock 1 527  
+81 0 0 7 91 527 0 0 91 /**
+ * Returns the clock pointer used within the AsyncTaskManager.  See
+ * set_clock().
+ */ 1 4 this 3 525  
+82 0 0 6 95 534 0 0 55 /**
+ * Returns the number of different task chains.
+ */ 1 4 this 3 577  
+83 0 0 7 96 579 378 0 38 /**
+ * Returns the nth task chain.
+ */ 2 4 this 3 577  1 n 1 534  
+84 0 0 7 98 579 378 0 178 /**
+ * Creates a new AsyncTaskChain of the indicated name and stores it within the
+ * AsyncTaskManager.  If a task chain with this name already exists, returns
+ * it instead.
+ */ 2 4 this 3 525  4 name 1 561  
+85 0 0 7 99 579 378 0 113 /**
+ * Searches a new AsyncTaskChain of the indicated name and returns it if it
+ * exists, or NULL otherwise.
+ */ 2 4 this 3 525  4 name 1 561  
+86 0 0 6 100 524 0 0 211 /**
+ * Removes the AsyncTaskChain of the indicated name.  If the chain still has
+ * tasks, this will block until all tasks are finished.
+ *
+ * Returns true if successful, or false if the chain did not exist.
+ */ 2 4 this 3 525  4 name 1 561  
+87 0 0 4 101 566 0 0 138 /**
+ * Adds the indicated task to the active queue.  It is an error if the task is
+ * already added to this or any other active queue.
+ */ 2 4 this 3 525  4 task 1 575  
+88 0 0 6 102 524 0 0 106 /**
+ * Returns true if the indicated task has been added to this AsyncTaskManager,
+ * false otherwise.
+ */ 2 4 this 3 577  4 task 1 575  
+89 0 0 7 103 575 288 0 210 /**
+ * Returns the first task found with the indicated name, or NULL if there is
+ * no task with the indicated name.
+ *
+ * If there are multiple tasks with the same name, returns one of them
+ * arbitrarily.
+ */ 2 4 this 3 577  4 name 1 561  
+90 0 0 7 104 580 347 0 67 /**
+ * Returns the list of tasks found with the indicated name.
+ */ 2 4 this 3 577  4 name 1 561  
+91 0 0 7 105 580 347 0 111 /**
+ * Returns the list of tasks found whose name matches the indicated glob
+ * pattern, e.g.  "my_task_*".
+ */ 2 4 this 3 577  7 pattern 1 581  
+92 0 0 6 106 524 0 0 143 /**
+ * Removes the indicated task from the active queue.  Returns true if the task
+ * is successfully removed, or false if it wasn't there.
+ */ 2 4 this 3 525  4 task 1 575  
+93 0 0 6 106 586 0 0 104 /**
+ * Removes all of the tasks in the AsyncTaskCollection.  Returns the number of
+ * tasks removed.
+ */ 2 4 this 3 525  5 tasks 1 584  
+94 0 0 4 107 566 0 0 47 /**
+ * Blocks until the task list is empty.
+ */ 1 4 this 3 525  
+95 0 0 4 108 566 0 0 215 /**
+ * Stops any threads that are currently running.  If any tasks are still
+ * pending and have not yet been picked up by a thread, they will not be
+ * serviced unless poll() or start_threads() is later called.
+ */ 1 4 this 3 525  
+96 0 0 4 109 566 0 0 171 /**
+ * Starts any requested threads to service the tasks on the queue.  This is
+ * normally not necessary, since adding a task will start the threads
+ * automatically.
+ */ 1 4 this 3 525  
+97 0 0 6 110 586 0 0 104 /**
+ * Returns the number of tasks that are currently active or sleeping within
+ * the task manager.
+ */ 1 4 this 3 577  
+98 0 0 7 111 580 347 0 112 /**
+ * Returns the set of tasks that are active or sleeping on the task manager,
+ * at the time of the call.
+ */ 1 4 this 3 577  
+99 0 0 7 112 580 347 0 119 /**
+ * Returns the set of tasks that are active (and not sleeping) on the task
+ * manager, at the time of the call.
+ */ 1 4 this 3 577  
+100 0 0 7 113 580 347 0 119 /**
+ * Returns the set of tasks that are sleeping (and not active) on the task
+ * manager, at the time of the call.
+ */ 1 4 this 3 577  
+101 0 0 4 138 566 0 0 233 /**
+ * Runs through all the tasks in the task list, once, if the task manager is
+ * running in single-threaded mode (no threads available).  This method does
+ * nothing in threaded mode, so it may safely be called in either case.
+ */ 1 4 this 3 525  
+102 0 0 6 139 530 0 0 169 /**
+ * Returns the scheduled time (on the manager's clock) of the next sleeping
+ * task, on any task chain, to awaken.  Returns -1 if there are no sleeping
+ * tasks.
+ */ 1 4 this 3 577  
+103 0 0 4 142 566 0 0 10 /**
+ *
+ */ 2 4 this 3 577  3 out 1 564  
+104 0 0 4 143 566 0 0 10 /**
+ *
+ */ 3 4 this 3 577  3 out 1 564  12 indent_level 1 534  
+105 0 0 7 144 525 323 0 152 /**
+ * Returns a pointer to the global AsyncTaskManager.  This is the
+ * AsyncTaskManager that most code should use for queueing tasks and suchlike.
+ */ 0 
+106 0 0 7 145 572 0 0 0 0 
+107 0 0 7 83 562 0 0 0 1 4 this 3 525  
+108 0 0 6 85 576 0 0 0 1 4 this 3 525  
+109 0 0 7 116 580 347 0 10 /**
+ *
+ */ 0 
+110 0 0 7 116 580 347 0 10 /**
+ *
+ */ 1 4 copy 1 584  
+111 0 0 6 117 580 0 0 0 2 4 this 3 580  4 copy 1 584  
+112 0 0 4 119 566 0 0 50 /**
+ * Adds a new AsyncTask to the collection.
+ */ 2 4 this 3 580  4 task 1 575  
+113 0 0 6 120 524 0 0 153 /**
+ * Removes the indicated AsyncTask from the collection.  Returns true if the
+ * task was removed, false if it was not a member of the collection.
+ */ 2 4 this 3 580  4 task 1 575  
+114 0 0 4 120 566 0 0 57 /**
+ * Removes the nth AsyncTask from the collection.
+ */ 2 4 this 3 580  5 index 1 586  
+115 0 0 4 121 566 0 0 204 /**
+ * Adds all the AsyncTasks indicated in the other collection to this task.
+ * The other tasks are simply appended to the end of the tasks in this list;
+ * duplicates are not automatically removed.
+ */ 2 4 this 3 580  5 other 1 584  
+116 0 0 4 122 566 0 0 96 /**
+ * Removes from this collection all of the AsyncTasks listed in the other
+ * collection.
+ */ 2 4 this 3 580  5 other 1 584  
+117 0 0 4 123 566 0 0 198 /**
+ * Removes any duplicate entries of the same AsyncTasks on this collection.
+ * If a AsyncTask appears multiple times, the first appearance is retained;
+ * subsequent appearances are removed.
+ */ 1 4 this 3 580  
+118 0 0 6 124 524 0 0 98 /**
+ * Returns true if the indicated AsyncTask appears in this collection, false
+ * otherwise.
+ */ 2 4 this 3 584  4 task 1 575  
+119 0 0 4 125 566 0 0 54 /**
+ * Removes all AsyncTasks from the collection.
+ */ 1 4 this 3 580  
+120 0 0 7 126 575 288 0 115 /**
+ * Returns the task in the collection with the indicated name, if any, or NULL
+ * if no task has that name.
+ */ 2 4 this 3 584  4 name 1 561  
+121 0 0 6 127 586 0 0 62 /**
+ * Returns the number of AsyncTasks in the collection.
+ */ 1 4 this 3 584  
+122 0 0 7 128 575 288 0 55 /**
+ * Returns the nth AsyncTask in the collection.
+ */ 2 4 this 3 584  5 index 1 586  
+123 0 0 7 130 575 288 0 141 /**
+ * Returns the nth AsyncTask in the collection.  This is the same as
+ * get_task(), but it may be a more convenient way to access it.
+ */ 2 4 this 3 584  5 index 1 586  
+124 0 0 6 131 586 0 0 104 /**
+ * Returns the number of tasks in the collection.  This is the same thing as
+ * get_num_tasks().
+ */ 1 4 this 3 584  
+125 0 0 6 132 580 0 0 0 2 4 this 3 580  5 other 1 584  
+126 0 0 7 133 580 347 0 0 2 4 this 3 584  5 other 1 584  
+127 0 0 4 134 566 0 0 108 /**
+ * Writes a brief one-line description of the AsyncTaskCollection to the
+ * indicated output stream.
+ */ 2 4 this 3 584  3 out 1 564  
+128 0 0 4 135 566 0 0 113 /**
+ * Writes a complete multi-line description of the AsyncTaskCollection to the
+ * indicated output stream.
+ */ 3 4 this 3 584  3 out 1 564  12 indent_level 1 534  
+129 0 0 4 169 566 0 0 155 /**
+ * Sets the tick_clock flag.  When this is true, get_clock()->tick() will be
+ * called automatically at each task epoch.  This is false by default.
+ */ 2 4 this 3 579  10 tick_clock 1 524  
+130 0 0 6 170 524 0 0 62 /**
+ * Returns the tick_clock flag.  See set_tick_clock().
+ */ 1 4 this 3 588  
+131 0 0 4 171 566 0 0 132 /**
+ * Changes the number of threads for this task chain.  This may require
+ * stopping the threads if they are already running.
+ */ 2 4 this 3 579  11 num_threads 1 534  
+132 0 0 6 172 534 0 0 124 /**
+ * Returns the number of threads that will be servicing tasks for this chain.
+ * Also see get_num_running_threads().
+ */ 1 4 this 3 588  
+133 0 0 6 173 534 0 0 211 /**
+ * Returns the number of threads that have been created and are actively
+ * running.  This will return 0 before the threads have been started; it will
+ * also return 0 if thread support is not available.
+ */ 1 4 this 3 588  
+134 0 0 4 174 566 0 0 153 /**
+ * Changes the priority associated with threads that serve this task chain.
+ * This may require stopping the threads if they are already running.
+ */ 2 4 this 3 579  8 priority 1 590  
+135 0 0 6 175 590 0 0 83 /**
+ * Returns the priority associated with threads that serve this task chain.
+ */ 1 4 this 3 588  
+136 0 0 4 176 566 0 0 414 /**
+ * Sets the maximum amount of time per frame the tasks on this chain are
+ * granted for execution.  If this is less than zero, there is no limit; if it
+ * is >= 0, it represents a maximum amount of time (in seconds) that will be
+ * used to execute tasks.  If this time is exceeded in any one frame, the task
+ * chain will stop executing tasks until the next frame, as defined by the
+ * TaskManager's clock.
+ */ 2 4 this 3 579  12 frame_budget 1 530  
+137 0 0 6 177 530 0 0 134 /**
+ * Returns the maximum amount of time per frame the tasks on this chain are
+ * granted for execution.  See set_frame_budget().
+ */ 1 4 this 3 588  
+138 0 0 4 178 566 0 0 638 /**
+ * Sets the frame_sync flag.  When this flag is true, this task chain will be
+ * forced to sync with the TaskManager's clock.  It will run no faster than
+ * one epoch per clock frame.
+ *
+ * When this flag is false, the default, the task chain will finish all of its
+ * tasks and then immediately start from the first task again, regardless of
+ * the clock frame.  When it is true, the task chain will finish all of its
+ * tasks and then wait for the clock to tick to the next frame before resuming
+ * the first task.
+ *
+ * This only makes sense for threaded task chains.  Non-threaded task chains
+ * are automatically synchronous.
+ */ 2 4 this 3 579  10 frame_sync 1 524  
+139 0 0 6 179 524 0 0 62 /**
+ * Returns the frame_sync flag.  See set_frame_sync().
+ */ 1 4 this 3 588  
+140 0 0 4 180 566 0 0 903 /**
+ * Sets the timeslice_priority flag.  This changes the interpretation of
+ * priority, and the number of times per epoch each task will run.
+ *
+ * When this flag is true, some tasks might not run in any given epoch.
+ * Instead, tasks with priority higher than 1 will be given precedence, in
+ * proportion to the amount of time they have already used.  This gives
+ * higher-priority tasks more runtime than lower-priority tasks.  Each task
+ * gets the amount of time proportional to its priority value, so a task with
+ * priority 100 will get five times as much processing time as a task with
+ * priority 20.  For these purposes, priority values less than 1 are deemed to
+ * be equal to 1.
+ *
+ * When this flag is false (the default), all tasks are run exactly once each
+ * epoch, round-robin style.  Priority is only used to determine which task
+ * runs first within tasks of the same sort value.
+ */ 2 4 this 3 579  18 timeslice_priority 1 524  
+141 0 0 6 181 524 0 0 184 /**
+ * Returns the timeslice_priority flag.  This changes the interpretation of
+ * priority, and the number of times per epoch each task will run.  See
+ * set_timeslice_priority().
+ */ 1 4 this 3 588  
+142 0 0 4 182 566 0 0 215 /**
+ * Stops any threads that are currently running.  If any tasks are still
+ * pending and have not yet been picked up by a thread, they will not be
+ * serviced unless poll() or start_threads() is later called.
+ */ 1 4 this 3 579  
+143 0 0 4 183 566 0 0 171 /**
+ * Starts any requested threads to service the tasks on the queue.  This is
+ * normally not necessary, since adding a task will start the threads
+ * automatically.
+ */ 1 4 this 3 579  
+144 0 0 6 184 524 0 0 212 /**
+ * Returns true if the thread(s) have been started and are ready to service
+ * requests, false otherwise.  If this is false, the next call to add() or
+ * add_and_do() will automatically start the threads.
+ */ 1 4 this 3 588  
+145 0 0 6 185 524 0 0 104 /**
+ * Returns true if the indicated task has been added to this AsyncTaskChain,
+ * false otherwise.
+ */ 2 4 this 3 588  4 task 1 575  
+146 0 0 4 186 566 0 0 47 /**
+ * Blocks until the task list is empty.
+ */ 1 4 this 3 579  
+147 0 0 6 187 534 0 0 102 /**
+ * Returns the number of tasks that are currently active or sleeping within
+ * the task chain.
+ */ 1 4 this 3 588  
+148 0 0 7 188 580 347 0 110 /**
+ * Returns the set of tasks that are active or sleeping on the task chain, at
+ * the time of the call.
+ */ 1 4 this 3 588  
+149 0 0 7 189 580 347 0 117 /**
+ * Returns the set of tasks that are active (and not sleeping) on the task
+ * chain, at the time of the call.
+ */ 1 4 this 3 588  
+150 0 0 7 190 580 347 0 117 /**
+ * Returns the set of tasks that are sleeping (and not active) on the task
+ * chain, at the time of the call.
+ */ 1 4 this 3 588  
+151 0 0 4 191 566 0 0 381 /**
+ * Runs through all the tasks in the task list, once, if the task chain is
+ * running in single-threaded mode (no threads available).  This method does
+ * nothing in threaded mode, so it may safely be called in either case.
+ *
+ * Normally, you would not call this function directly; instead, call
+ * AsyncTaskManager::poll(), which polls all of the task chains in sequence.
+ */ 1 4 this 3 579  
+152 0 0 6 192 530 0 0 169 /**
+ * Returns the scheduled time (on the manager's clock) of the next sleeping
+ * task, on any task chain, to awaken.  Returns -1 if there are no sleeping
+ * tasks.
+ */ 1 4 this 3 588  
+153 0 0 4 193 566 0 0 10 /**
+ *
+ */ 2 4 this 3 588  3 out 1 564  
+154 0 0 4 194 566 0 0 10 /**
+ *
+ */ 3 4 this 3 588  3 out 1 564  12 indent_level 1 534  
+155 0 0 7 195 572 0 0 0 0 
+156 0 0 7 164 562 0 0 0 1 4 this 3 579  
+157 0 0 6 166 576 0 0 0 1 4 this 3 579  
+158 0 0 7 197 593 411 0 0 1 6 param0 0 591  
+159 0 0 7 197 593 411 0 10 /**
+ *
+ */ 1 5 delay 1 530  
+160 0 0 4 198 566 0 0 0 2 4 this 3 593  4 size 1 586  
+161 0 0 7 201 572 0 0 0 0 
+162 0 0 7 208 596 417 0 0 1 6 param0 0 594  
+163 0 0 7 208 596 417 0 10 /**
+ *
+ */ 1 4 name 1 561  
+164 0 0 4 210 566 0 0 0 2 4 this 3 596  4 size 1 586  
+165 0 0 4 213 566 0 0 251 /**
+ * Sets the repeat count of the sequence.  If the count is 0 or 1, the
+ * sequence will run exactly once.  If it is greater than 0, it will run that
+ * number of times.  If it is negative, it will run forever until it is
+ * explicitly removed.
+ */ 2 4 this 3 596  12 repeat_count 1 534  
+166 0 0 6 214 534 0 0 77 /**
+ * Returns the repeat count of the sequence.  See set_repeat_count().
+ */ 1 4 this 3 594  
+167 0 0 6 215 586 0 0 142 /**
+ * Returns the index of the task within the sequence that is currently being
+ * executed (or that will be executed at the next epoch).
+ */ 1 4 this 3 594  
+168 0 0 7 216 572 0 0 0 0 
+169 0 0 7 204 575 288 0 0 1 4 this 3 596  
+170 0 0 6 206 580 0 0 0 1 4 this 3 596  
+171 0 0 7 219 597 435 0 10 /**
+ *
+ */ 0 
+172 0 0 7 219 597 435 0 10 /**
+ *
+ */ 1 4 copy 1 598  
+173 0 0 7 220 597 435 0 0 2 4 this 3 597  4 copy 1 598  
+174 0 0 4 221 566 0 0 51 /**
+ * Adds a new event to the end of the list.
+ */ 2 4 this 3 597  5 event 1 600  
+175 0 0 6 222 534 0 0 52 /**
+ * Returns the number of events in the list.
+ */ 1 4 this 3 598  
+176 0 0 6 223 602 0 0 169 /**
+ * Returns the nth event in the list.  This does not remove the event from the
+ * list; the only way to remove events is to empty the whole list with
+ * clear().
+ */ 2 4 this 3 598  1 n 1 534  
+177 0 0 4 224 566 0 0 48 /**
+ * Empties all the events from the list.
+ */ 1 4 this 3 597  
+178 0 0 4 225 566 0 0 75 /**
+ * Appends the events from the other list onto the end of this one.
+ */ 2 4 this 3 597  5 other 1 598  
+179 0 0 4 226 566 0 0 124 /**
+ * Updates the indicated ModifierButtons object with all of the button up/down
+ * transitions indicated in the list.
+ */ 2 4 this 3 598  4 mods 1 604  
+180 0 0 4 227 566 0 0 10 /**
+ *
+ */ 3 4 this 3 598  3 out 1 564  12 indent_level 1 534  
+181 0 0 7 228 572 0 0 0 0 
+182 0 0 7 231 608 0 0 10 /**
+ *
+ */ 1 4 copy 1 606  
+183 0 0 7 231 608 0 0 10 /**
+ *
+ */ 2 10 event_name 1 561  8 receiver 1 541  
+184 0 0 7 232 608 0 0 0 2 4 this 3 608  4 copy 1 606  
+185 0 0 4 233 566 0 0 10 /**
+ *
+ */ 2 4 this 3 608  4 name 1 561  
+186 0 0 4 234 566 0 0 44 /**
+ * Resets the Event's name to empty.
+ */ 1 4 this 3 608  
+187 0 0 6 235 524 0 0 92 /**
+ * Returns true if the Event has a nonempty name set, false if the name is
+ * empty.
+ */ 1 4 this 3 606  
+188 0 0 6 236 561 0 0 10 /**
+ *
+ */ 1 4 this 3 606  
+189 0 0 4 237 566 0 0 10 /**
+ *
+ */ 2 4 this 3 608  3 obj 1 552  
+190 0 0 6 238 534 0 0 10 /**
+ *
+ */ 1 4 this 3 606  
+191 0 0 7 239 551 255 0 10 /**
+ *
+ */ 2 4 this 3 606  1 n 1 534  
+192 0 0 6 241 524 0 0 10 /**
+ *
+ */ 1 4 this 3 606  
+193 0 0 6 242 541 0 0 10 /**
+ *
+ */ 1 4 this 3 606  
+194 0 0 4 243 566 0 0 10 /**
+ *
+ */ 2 4 this 3 608  8 receiver 1 541  
+195 0 0 4 244 566 0 0 10 /**
+ *
+ */ 1 4 this 3 608  
+196 0 0 4 245 566 0 0 10 /**
+ *
+ */ 2 4 this 3 606  3 out 1 564  
+197 0 0 7 251 572 0 0 0 0 
+198 0 0 7 254 610 0 0 10 /**
+ *
+ */ 1 8 ev_queue 1 609  
+199 0 0 7 255 567 0 0 96 /**
+ * Returns a pending future that will be marked as done when the event is next
+ * fired.
+ */ 2 4 this 3 610  10 event_name 1 561  
+200 0 0 4 256 566 0 0 188 /**
+ * The main processing loop of the EventHandler.  This function must be called
+ * periodically to service events.  Walks through each pending event and calls
+ * its assigned hooks.
+ */ 1 4 this 3 610  
+201 0 0 4 257 566 0 0 66 /**
+ * Calls the hooks assigned to the indicated single event.
+ */ 2 4 this 3 610  5 event 1 606  
+202 0 0 4 258 566 0 0 10 /**
+ *
+ */ 2 4 this 3 611  3 out 1 564  
+203 0 0 6 259 610 0 0 139 /**
+ * Returns a pointer to the one global EventHandler object.  If the global
+ * object has not yet been created, this will create it.
+ */ 1 5 queue 1 609  
+204 0 0 7 260 572 0 0 0 0 
+205 0 0 7 262 609 459 0 10 /**
+ *
+ */ 0 
+206 0 0 4 264 566 0 0 10 /**
+ *
+ */ 2 4 this 3 609  5 event 1 606  
+207 0 0 4 265 566 0 0 71 /**
+ * Empties all events on the queue, throwing them on the floor.
+ */ 1 4 this 3 609  
+208 0 0 6 266 524 0 0 10 /**
+ *
+ */ 1 4 this 3 613  
+209 0 0 6 267 524 0 0 73 /**
+ * @deprecated Always returns false; the queue can never be full.
+ */ 1 4 this 3 613  
+210 0 0 7 268 606 0 0 10 /**
+ *
+ */ 1 4 this 3 609  
+211 0 0 6 269 609 0 0 137 /**
+ * Returns a pointer to the one global EventQueue object.  If the global
+ * object has not yet been created, this will create it.
+ */ 0 
+212 0 0 7 271 615 485 0 10 /**
+ *
+ */ 0 
+213 0 0 6 272 586 0 0 52 /**
+ * Returns the number of events in the list.
+ */ 1 4 this 3 616  
+214 0 0 6 273 524 0 0 51 /**
+ * Get the in-window flag of the nth event.
+ */ 2 4 this 3 616  1 n 1 586  
+215 0 0 6 274 534 0 0 49 /**
+ * Get the x-coordinate of the nth event.
+ */ 2 4 this 3 616  1 n 1 586  
+216 0 0 6 275 534 0 0 49 /**
+ * Get the y-coordinate of the nth event.
+ */ 2 4 this 3 616  1 n 1 586  
+217 0 0 6 276 530 0 0 44 /**
+ * Get the x-delta of the nth event.
+ */ 2 4 this 3 616  1 n 1 586  
+218 0 0 6 277 530 0 0 44 /**
+ * Get the y-delta of the nth event.
+ */ 2 4 this 3 616  1 n 1 586  
+219 0 0 6 278 534 0 0 52 /**
+ * Get the sequence number of the nth event.
+ */ 2 4 this 3 616  1 n 1 586  
+220 0 0 6 279 530 0 0 43 /**
+ * Get the length of the nth event.
+ */ 2 4 this 3 616  1 n 1 586  
+221 0 0 6 280 530 0 0 46 /**
+ * Get the direction of the nth event.
+ */ 2 4 this 3 616  1 n 1 586  
+222 0 0 6 281 530 0 0 45 /**
+ * Get the rotation of the nth event.
+ */ 2 4 this 3 616  1 n 1 586  
+223 0 0 6 282 530 0 0 46 /**
+ * Get the timestamp of the nth event.
+ */ 2 4 this 3 616  1 n 1 586  
+224 0 0 4 283 566 0 0 48 /**
+ * Empties all the events from the list.
+ */ 1 4 this 3 615  
+225 0 0 4 284 566 0 0 48 /**
+ * Discards the first event on the list.
+ */ 1 4 this 3 615  
+226 0 0 4 285 566 0 0 62 /**
+ * Adds a new event from the given PointerData object.
+ */ 4 4 this 3 615  4 data 1 618  3 seq 1 534  4 time 1 530  
+227 0 0 4 285 566 0 0 85 /**
+ * Adds a new event to the end of the list based on the given mouse movement.
+ */ 8 4 this 3 615  6 in_win 1 524  4 xpos 1 534  4 ypos 1 534  6 xdelta 1 530  6 ydelta 1 530  3 seq 1 534  4 time 1 530  
+228 0 0 4 285 566 0 0 153 /**
+ * Adds a new event to the end of the list.  Automatically calculates the dx,
+ * dy, length, direction, and rotation for all but the first event.
+ */ 6 4 this 3 615  6 in_win 1 524  4 xpos 1 534  4 ypos 1 534  3 seq 1 534  4 time 1 530  
+229 0 0 6 286 524 0 0 70 /**
+ * Returns true if the trail loops around the specified point.
+ */ 3 4 this 3 616  1 x 1 534  1 y 1 534  
+230 0 0 6 287 530 0 0 279 /**
+ * returns the total angular deviation that the trail has made in the
+ * specified time period.  A small number means that the trail is moving in a
+ * relatively straight line, a large number means that the trail is zig-
+ * zagging or spinning.  The result is in degrees.
+ */ 2 4 this 3 616  3 sec 1 530  
+231 0 0 6 288 530 0 0 540 /**
+ * This function is not implemented yet.  It is a work in progress.  The
+ * intent is as follows:
+ *
+ * Returns a nonzero value if the mouse movements match the specified pattern.
+ * The higher the value, the better the match.  The pattern is a sequence of
+ * compass directions (ie, "E", "NE", etc) separated by spaces.  If rot is
+ * nonzero, then the pattern is rotated counterclockwise by the specified
+ * amount before testing.  Seglen is the minimum length a mouse movement needs
+ * to be in order to be considered significant.
+ */ 4 4 this 3 615  7 pattern 1 561  3 rot 1 530  6 seglen 1 530  
+232 0 0 7 289 572 0 0 0 0 
+233 0 0 7 292 621 288 0 0 2 8 function 1 548  4 name 1 561  
+234 0 0 7 292 621 288 0 0 1 6 param0 0 622  
+235 0 0 4 293 566 0 0 0 2 4 this 3 621  4 size 1 586  
+236 0 0 4 296 566 0 0 0 2 4 this 3 621  8 function 1 548  
+237 0 0 6 297 548 0 0 66 /**
+ * Returns the function that is called when the task runs.
+ */ 1 4 this 3 621  
+238 0 0 4 298 566 0 0 0 3 4 this 3 621  4 args 1 548  11 append_task 1 524  
+239 0 0 6 299 548 0 0 0 1 4 this 3 621  
+240 0 0 4 300 566 0 0 0 2 4 this 3 621  10 upon_death 1 548  
+241 0 0 6 301 548 0 0 70 /**
+ * Returns the function that is called when the task finishes.
+ */ 1 4 this 3 621  
+242 0 0 4 302 566 0 0 0 2 4 this 3 621  5 owner 1 548  
+243 0 0 6 303 548 0 0 56 /**
+ * Returns the "owner" object.  See set_owner().
+ */ 1 4 this 3 622  
+244 0 0 4 304 566 0 0 172 /**
+ * Sets the "result" of this task.  This is the value returned from an "await"
+ * expression on this task.
+ * This can only be called while the task is still alive.
+ */ 2 4 this 3 621  6 result 1 548  
+245 0 0 6 305 534 0 0 0 3 4 this 3 621  4 attr 1 548  1 v 1 548  
+246 0 0 6 306 534 0 0 0 2 4 this 3 621  4 attr 1 548  
+247 0 0 6 307 548 0 0 0 2 4 this 3 622  4 attr 1 548  
+248 0 0 6 308 534 0 0 0 3 4 this 3 621  5 visit 1 624  3 arg 1 625  
+249 0 0 6 309 534 0 0 0 1 4 this 3 621  
+250 0 0 7 329 572 0 0 0 0 
+251 0 0 6 317 524 0 0 101 /**
+ * Returns true if a delay has been set for this task via set_delay(), or
+ * false otherwise.
+ */ 1 4 this 3 622  
+252 0 0 4 319 566 0 0 216 /**
+ * Removes any delay specified for the task.  The next time the task is added
+ * to the queue, it will run immediately.  This does not affect the task's
+ * wake time if it has already been added to the queue.
+ */ 1 4 this 3 621  
+112
+514 14 EventParameter 0 26625 14 EventParameter 14 EventParameter 0 0 0 1 253 255 0 14 254 256 257 258 259 260 261 262 263 264 265 266 267 268 0 0 0 0 0 389
+/**
+ * An optional parameter associated with an event.  Each event may have zero
+ * or more of these.  Each parameter stores a pointer to a
+ * TypedWritableReferenceCount object, which of course could be pretty much
+ * anything.  To store a simple value like a double or a string, the
+ * EventParameter constructors transparently use the ParamValue template class
+ * from paramValue.h.
+ */
+
+515 11 AsyncFuture 0 75777 11 AsyncFuture 11 AsyncFuture 0 0 0 1 269 0 1 626 14 270 271 272 273 274 275 276 277 278 279 280 281 282 283 0 0 1 0 516 0 0 0 0 1711
+/**
+ * This class represents a thread-safe handle to a promised future result of
+ * an asynchronous operation, providing methods to query its status and result
+ * as well as register callbacks for this future's completion.
+ *
+ * An AsyncFuture can be awaited from within a coroutine or task.  It keeps
+ * track of tasks waiting for this future and automatically reactivates them
+ * upon this future's completion.
+ *
+ * A task itself is also a subclass of AsyncFuture.  Other subclasses are
+ * not generally necessary, except to override the function of `cancel()`.
+ *
+ * Until the future is done, it is "owned" by the resolver thread, though it's
+ * still legal for other threads to query its state.  When the resolver thread
+ * resolves this future using `set_result()`, or any thread calls `cancel()`,
+ * it instantly enters the "done" state, after which the result becomes a
+ * read-only field that all threads can access.
+ *
+ * When the future returns true for done(), a thread can use cancelled() to
+ * determine whether the future was cancelled or get_result() to access the
+ * result of the operation.  Not all operations define a meaningful result
+ * value, so some will always return nullptr.
+ *
+ * In Python, the `cancelled()`, `wait()` and `get_result()` methods are
+ * wrapped up into a single `result()` method which waits for the future to
+ * complete before either returning the result or throwing an exception if the
+ * future was cancelled.
+ * However, it is preferable to use the `await` keyword when running from a
+ * coroutine, which only suspends the current task and not the entire thread.
+ *
+ * This API aims to mirror and be compatible with Python's Future class.
+ *
+ * @since 1.10.0
+ */
+
+516 19 TypedReferenceCount 0 2048 19 TypedReferenceCount 19 TypedReferenceCount 0 0 0 0 0 0 0 0 0 0 0 0 410
+/**
+ * A base class for things which need to inherit from both TypedObject and
+ * from ReferenceCount.  It's convenient to define this intermediate base
+ * class instead of multiply inheriting from the two classes each time they
+ * are needed, so that we can sensibly pass around pointers to things which
+ * are both TypedObjects and ReferenceCounters.
+ *
+ * See also TypedObject for detailed instructions.
+ */
+
+517 12 string const 0 8832 17 std::string const 17 std::string const 0 0 518 0 0 0 0 0 0 0 0 0 0
+
+518 6 string 0 2105344 11 std::string 11 std::string 0 0 519 0 0 0 0 0 0 0 0 0 0
+
+519 20 basic_string< char > 0 2048 25 std::basic_string< char > 25 std::basic_string< char > 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+520 9 AsyncTask 0 26625 9 AsyncTask 9 AsyncTask 0 0 0 1 373 288 12 627 628 629 635 636 637 638 639 640 641 642 643 30 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 372 0 0 2 3 515 284 285 3 521 286 287 0 2 522 523 217
+/**
+ * This class represents a concrete task performed by an AsyncManager.
+ * Normally, you would subclass from this class, and override do_task(), to
+ * define the functionality you wish to have the task perform.
+ */
+
+521 7 Namable 0 2048 7 Namable 7 Namable 0 0 0 0 0 0 0 0 0 0 0 0 125
+/**
+ * A base class for all things which can have a name.  The name is either
+ * empty or nonempty, but it is never NULL.
+ */
+
+522 10 DoneStatus 0 794624 21 AsyncTask::DoneStatus 21 AsyncTask::DoneStatus 520 0 0 0 0 0 0 0 0 0 8 7 DS_done 18 AsyncTask::DS_done 25
+// normal task completion
+0 7 DS_cont 18 AsyncTask::DS_cont 28
+// run task again next epoch
+1 8 DS_again 19 AsyncTask::DS_again 41
+// start the task over from the beginning
+2 9 DS_pickup 20 AsyncTask::DS_pickup 52
+// run task again this frame, if frame budget allows
+3 7 DS_exit 18 AsyncTask::DS_exit 30
+// stop the enclosing sequence
+4 8 DS_pause 19 AsyncTask::DS_pause 46
+// pause, then exit (useful within a sequence)
+5 12 DS_interrupt 23 AsyncTask::DS_interrupt 49
+// interrupt the task manager, but run task again
+6 8 DS_await 19 AsyncTask::DS_await 38
+// await a different task's completion
+7 0 0
+
+523 5 State 0 794624 16 AsyncTask::State 16 AsyncTask::State 520 0 0 0 0 0 0 0 0 0 7 10 S_inactive 21 AsyncTask::S_inactive 0
+0 8 S_active 19 AsyncTask::S_active 0
+1 11 S_servicing 22 AsyncTask::S_servicing 0
+2 19 S_servicing_removed 30 AsyncTask::S_servicing_removed 51
+// Still servicing, but wants removal from manager.
+3 10 S_sleeping 21 AsyncTask::S_sleeping 0
+4 15 S_active_nested 26 AsyncTask::S_active_nested 28
+// active within a sequence.
+5 10 S_awaiting 21 AsyncTask::S_awaiting 43
+// Waiting for a dependent task to complete
+6 0 0
+
+524 4 bool 0 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+525 18 AsyncTaskManager * 0 8576 18 AsyncTaskManager * 18 AsyncTaskManager * 0 0 526 0 0 0 0 0 0 0 0 0 0
+
+526 16 AsyncTaskManager 0 26625 16 AsyncTaskManager 16 AsyncTaskManager 0 0 0 1 322 323 5 630 631 632 633 634 27 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 364 365 366 367 368 369 1 654 0 2 3 516 318 319 3 521 320 321 0 0 674
+/**
+ * A class to manage a loose queue of isolated tasks, which can be performed
+ * either synchronously (in the foreground thread) or asynchronously (by a
+ * background thread).
+ *
+ * The AsyncTaskManager is actually a collection of AsyncTaskChains, each of
+ * which maintains a list of tasks.  Each chain can be either foreground or
+ * background (it may run only in the main thread, or it may be serviced by
+ * one or more background threads). See AsyncTaskChain for more information.
+ *
+ * If you do not require background processing, it is perfectly acceptable to
+ * create only one AsyncTaskChain, which runs in the main thread.  This is a
+ * common configuration.
+ */
+
+527 13 ClockObject * 0 8576 13 ClockObject * 13 ClockObject * 0 0 528 0 0 0 0 0 0 0 0 0 0
+
+528 11 ClockObject 0 2048 11 ClockObject 11 ClockObject 0 0 0 0 0 0 0 0 0 0 0 0 1000
+/**
+ * A ClockObject keeps track of elapsed real time and discrete time.  In
+ * normal mode, get_frame_time() returns the time as of the last time tick()
+ * was called.  This is the "discrete" time, and is usually used to get the
+ * time as of, for instance, the beginning of the current frame.
+ *
+ * In other modes, as set by set_mode() or the clock-mode config variable,
+ * get_frame_time() may return other values to simulate different timing
+ * effects, for instance to perform non-real-time animation.  See set_mode().
+ *
+ * In all modes, get_real_time() always returns the elapsed real time in
+ * seconds since the ClockObject was constructed, or since it was last reset.
+ *
+ * You can create your own ClockObject whenever you want to have your own
+ * local timer.  There is also a default, global ClockObject intended to
+ * represent global time for the application; this is normally set up to tick
+ * every frame so that its get_frame_time() will return the time for the
+ * current frame.
+ */
+
+529 19 AsyncTaskCollection 0 26625 19 AsyncTaskCollection 19 AsyncTaskCollection 0 0 0 1 345 347 0 17 346 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 1 655 0 0 0 0 199
+/**
+ * A list of tasks, for instance as returned by some of the AsyncTaskManager
+ * query functions.  This also serves to define an AsyncTaskSequence.
+ *
+ * TODO: None of this is thread-safe yet.
+ */
+
+530 6 double 0 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0 0
+
+531 7 Integer 0 2367488 21 AtomicAdjust::Integer 21 AtomicAdjust::Integer 532 0 533 0 0 0 0 0 0 0 0 0 0
+
+532 12 AtomicAdjust 0 1024 12 AtomicAdjust 12 AtomicAdjust 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+533 8 long int 0 8210 8 long int 8 long int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+534 3 int 0 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+535 14 AsyncTaskChain 0 26625 14 AsyncTaskChain 14 AsyncTaskChain 0 0 0 0 378 0 27 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401 402 403 404 405 0 0 2 3 516 374 375 3 521 376 377 0 0 1007
+/**
+ * The AsyncTaskChain is a subset of the AsyncTaskManager.  Each chain
+ * maintains a separate list of tasks, and will execute them with its own set
+ * of threads.  Each chain may thereby operate independently of the other
+ * chains.
+ *
+ * The AsyncTaskChain will spawn a specified number of threads (possibly 0) to
+ * serve the tasks.  If there are no threads, you must call poll() from time
+ * to time to serve the tasks in the main thread.  Normally this is done by
+ * calling AsyncTaskManager::poll().
+ *
+ * Each task will run exactly once each epoch.  Beyond that, the tasks' sort
+ * and priority values control the order in which they are run: tasks are run
+ * in increasing order by sort value, and within the same sort value, they are
+ * run roughly in decreasing order by priority value, with some exceptions for
+ * parallelism.  Tasks with different sort values are never run in parallel
+ * together, but tasks with different priority values might be (if there is
+ * more than one thread).
+ */
+
+536 14 AsyncTaskPause 0 141313 14 AsyncTaskPause 14 AsyncTaskPause 0 0 0 1 406 411 0 4 407 408 409 410 0 0 1 0 520 0 0 0 0 184
+/**
+ * A special kind of task that simple returns DS_pause, to pause for a
+ * specified number of seconds and then finish.  It's intended to be used
+ * within an AsyncTaskSequence.
+ */
+
+537 17 AsyncTaskSequence 0 26625 17 AsyncTaskSequence 17 AsyncTaskSequence 0 0 0 1 416 417 0 7 418 419 420 421 422 423 424 0 0 2 3 520 412 413 3 529 414 415 0 0 400
+/**
+ * A special kind of task that serves as a list of tasks internally.  Each
+ * task on the list is executed in sequence, one per epoch.
+ *
+ * This is similar to a Sequence interval, though it has some slightly
+ * different abilities.  For instance, although you can't start at any
+ * arbitrary point in the sequence, you can construct a task sequence whose
+ * duration changes during playback.
+ */
+
+538 15 ButtonEventList 0 141313 15 ButtonEventList 15 ButtonEventList 0 0 0 1 425 435 0 9 426 427 428 429 430 431 432 433 434 0 0 1 0 539 0 0 0 0 225
+/**
+ * Records a set of button events that happened recently.  This class is
+ * usually used only in the data graph, to transmit the recent button presses,
+ * but it may be used anywhere a list of ButtonEvents is desired.
+ */
+
+539 14 ParamValueBase 0 2048 14 ParamValueBase 14 ParamValueBase 0 0 0 0 0 0 0 0 0 0 0 0 141
+/**
+ * A non-template base class of ParamValue (below), which serves mainly to
+ * define the placeholder for the virtual output function.
+ */
+
+540 5 Event 0 75777 5 Event 5 Event 0 0 0 1 436 0 3 644 645 646 14 437 438 439 440 441 442 443 444 445 446 447 448 449 450 1 656 0 1 0 516 0 0 0 0 391
+/**
+ * A named event, possibly with parameters.  Anyone in any thread may throw an
+ * event at any time; there will be one process responsible for reading and
+ * dispacting on the events (but not necessarily immediately).
+ *
+ * This function use to inherit from Namable, but that makes it too expensive
+ * to get its name the Python code.  Now it just copies the Namable interface
+ * in.
+ */
+
+541 15 EventReceiver * 0 8576 15 EventReceiver * 15 EventReceiver * 0 0 542 0 0 0 0 0 0 0 0 0 0
+
+542 13 EventReceiver 0 1050624 13 EventReceiver 13 EventReceiver 0 0 0 0 0 0 0 0 0 0 0 0 225
+/**
+ * An abstract base class for anything that might care about receiving events.
+ * An object that might receive an event should inherit from this class; each
+ * event may be sent with an optional EventReceiver pointer.
+ */
+
+543 12 EventHandler 0 75777 12 EventHandler 12 EventHandler 0 0 0 1 451 0 0 6 452 453 454 455 456 457 0 0 1 0 544 0 0 0 0 384
+/**
+ * A class to monitor events from the C++ side of things.  It maintains a set
+ * of "hooks", function pointers assigned to event names, and calls the
+ * appropriate hooks when the matching event is detected.
+ *
+ * This class is not necessary when the hooks are detected and processed
+ * entirely by the scripting language, e.g.  via Scheme hooks or the messenger
+ * in Python.
+ */
+
+544 11 TypedObject 0 2048 11 TypedObject 11 TypedObject 0 0 0 0 0 0 0 0 0 0 0 0 2508
+/**
+ * This is an abstract class that all classes which use TypeHandle, and also
+ * provide virtual functions to support polymorphism, should inherit from.
+ * Each derived class should define get_type(), which should return the
+ * specific type of the derived class.  Inheriting from this automatically
+ * provides support for is_of_type() and is_exact_type().
+ *
+ * All classes that inherit directly or indirectly from TypedObject should
+ * redefine get_type() and force_init_type(), as shown below.  Some classes
+ * that do not inherit from TypedObject may still declare TypeHandles for
+ * themselves by defining methods called get_class_type() and init_type().
+ * Classes such as these may serve as base classes, but the dynamic type
+ * identification system will be limited.  Classes that do not inherit from
+ * TypedObject need not define the virtual functions get_type() and
+ * force_init_type() (or any other virtual functions).
+ *
+ * There is a specific layout for defining the overrides from this class.
+ * Keeping the definitions formatted just like these examples will allow
+ * someone in the future to use a sed (or similar) script to make global
+ * changes, if necessary.  Avoid rearranging the braces or the order of the
+ * functions unless you're ready to change them in every file all at once.
+ *
+ * What follows are some examples that can be used in new classes that you
+ * create.
+ *
+ * @par In the class definition (.h file):
+ * @code
+ * public:
+ *   static TypeHandle get_class_type() {
+ *     return _type_handle;
+ *   }
+ *   static void init_type() {
+ *     <<<BaseClassOne>>>::init_type();
+ *     <<<BaseClassTwo>>>::init_type();
+ *     <<<BaseClassN>>>::init_type();
+ *     register_type(_type_handle, "<<<ThisClassStringName>>>",
+ *                   <<<BaseClassOne>>>::get_class_type(),
+ *                   <<<BaseClassTwo>>>::get_class_type(),
+ *                   <<<BaseClassN>>>::get_class_type());
+ *   }
+ *   virtual TypeHandle get_type() const {
+ *     return get_class_type();
+ *   }
+ *   virtual TypeHandle force_init_type() {init_type(); return get_class_type();}
+ *
+ * private:
+ *   static TypeHandle _type_handle;
+ * @endcode
+ *
+ * @par In the class .cxx file:
+ * @code
+ * TypeHandle <<<ThisClassStringName>>>::_type_handle;
+ * @endcode
+ *
+ * @par In the class config_<<<PackageName>>>.cxx file:
+ * @code
+ * ConfigureFn(config_<<<PackageName>>>) {
+ *   <<<ClassOne>>>::init_type();
+ *   <<<ClassTwo>>>::init_type();
+ *   <<<ClassN>>>::init_type();
+ * }
+ * @endcode
+ */
+
+545 10 EventQueue 0 26625 10 EventQueue 10 EventQueue 0 0 0 1 458 459 0 6 460 461 462 463 464 465 0 0 0 0 0 175
+/**
+ * A queue of pending events.  As events are thrown, they are added to this
+ * queue; eventually, they will be extracted out again by an EventHandler and
+ * processed.
+ */
+
+546 16 PointerEventList 0 141313 16 PointerEventList 16 PointerEventList 0 0 0 1 466 485 0 18 467 468 469 470 471 472 473 474 475 476 477 478 479 480 481 482 483 484 0 0 1 0 539 0 0 0 0 228
+/**
+ * Records a set of pointer events that happened recently.  This class is
+ * usually used only in the data graph, to transmit the recent pointer
+ * presses, but it may be used anywhere a list of PointerEvents is desired.
+ */
+
+547 10 PythonTask 0 16852993 10 PythonTask 10 PythonTask 0 0 0 1 486 288 7 647 648 649 650 651 652 653 18 487 488 489 490 491 492 493 494 495 496 497 498 499 500 501 502 503 513 0 0 1 0 520 0 0 0 0 113
+/**
+ * This class exists to allow association of a Python function or coroutine
+ * with the AsyncTaskManager.
+ */
+
+548 10 PyObject * 0 8576 10 PyObject * 10 PyObject * 0 0 549 0 0 0 0 0 0 0 0 0 0
+
+549 8 PyObject 0 2105344 8 PyObject 8 PyObject 0 0 550 0 0 0 0 0 0 0 0 0 0
+
+550 7 _object 0 1024 7 _object 7 _object 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+551 16 EventParameter * 0 8576 16 EventParameter * 16 EventParameter * 0 0 514 0 0 0 0 0 0 0 0 0 0
+
+552 22 EventParameter const * 0 8576 22 EventParameter const * 22 EventParameter const * 0 0 553 0 0 0 0 0 0 0 0 0 0
+
+553 20 EventParameter const 0 8832 20 EventParameter const 20 EventParameter const 0 0 514 0 0 0 0 0 0 0 0 0 0
+
+554 27 TypedReferenceCount const * 0 8576 27 TypedReferenceCount const * 27 TypedReferenceCount const * 0 0 555 0 0 0 0 0 0 0 0 0 0
+
+555 25 TypedReferenceCount const 0 8832 25 TypedReferenceCount const 25 TypedReferenceCount const 0 0 516 0 0 0 0 0 0 0 0 0 0
+
+556 35 TypedWritableReferenceCount const * 0 8576 35 TypedWritableReferenceCount const * 35 TypedWritableReferenceCount const * 0 0 557 0 0 0 0 0 0 0 0 0 0
+
+557 33 TypedWritableReferenceCount const 0 8832 33 TypedWritableReferenceCount const 33 TypedWritableReferenceCount const 0 0 558 0 0 0 0 0 0 0 0 0 0
+
+558 27 TypedWritableReferenceCount 0 2048 27 TypedWritableReferenceCount 27 TypedWritableReferenceCount 0 0 0 0 0 0 0 0 0 0 0 0 414
+/**
+ * A base class for things which need to inherit from both TypedWritable and
+ * from ReferenceCount.  It's convenient to define this intermediate base
+ * class instead of multiply inheriting from the two classes each time they
+ * are needed, so that we can sensibly pass around pointers to things which
+ * are both TypedWritables and ReferenceCounters.
+ *
+ * See also TypedObject for detailed instructions.
+ */
+
+559 9 nullptr_t 0 2105344 14 std::nullptr_t 14 std::nullptr_t 0 0 560 0 0 0 0 0 0 0 0 0 0
+
+560 17 decltype(nullptr) 0 8194 17 decltype(nullptr) 17 decltype(nullptr) 0 9 0 0 0 0 0 0 0 0 0 0 0
+
+561 13 atomic string 0 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+562 21 TypedReferenceCount * 0 8576 21 TypedReferenceCount * 21 TypedReferenceCount * 0 0 516 0 0 0 0 0 0 0 0 0 0
+
+563 29 TypedWritableReferenceCount * 0 8576 29 TypedWritableReferenceCount * 29 TypedWritableReferenceCount * 0 0 558 0 0 0 0 0 0 0 0 0 0
+
+564 9 ostream * 0 8576 14 std::ostream * 14 std::ostream * 0 0 565 0 0 0 0 0 0 0 0 0 0
+
+565 7 ostream 0 2048 12 std::ostream 12 std::ostream 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+566 4 void 0 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+567 13 AsyncFuture * 0 8576 13 AsyncFuture * 13 AsyncFuture * 0 0 515 0 0 0 0 0 0 0 0 0 0
+
+568 19 AsyncFuture const * 0 8576 19 AsyncFuture const * 19 AsyncFuture const * 0 0 569 0 0 0 0 0 0 0 0 0 0
+
+569 17 AsyncFuture const 0 8832 17 AsyncFuture const 17 AsyncFuture const 0 0 515 0 0 0 0 0 0 0 0 0 0
+
+570 13 TypedObject * 0 8576 13 TypedObject * 13 TypedObject * 0 0 544 0 0 0 0 0 0 0 0 0 0
+
+571 10 TypeHandle 0 16779264 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 732
+/**
+ * TypeHandle is the identifier used to differentiate C++ class types.  Any
+ * C++ classes that inherit from some base class, and must be differentiated
+ * at run time, should store a static TypeHandle object that can be queried
+ * through a static member function named get_class_type().  Most of the time,
+ * it is also desirable to inherit from TypedObject, which provides some
+ * virtual functions to return the TypeHandle for a particular instance.
+ *
+ * At its essence, a TypeHandle is simply a unique identifier that is assigned
+ * by the TypeRegistry.  The TypeRegistry stores a tree of TypeHandles, so
+ * that ancestry of a particular type may be queried, and the type name may be
+ * retrieved for run-time display.
+ */
+
+572 12 TypeHandle * 0 8576 12 TypeHandle * 12 TypeHandle * 0 0 571 0 0 0 0 0 0 0 0 0 0
+
+573 17 AsyncTask const * 0 8576 17 AsyncTask const * 17 AsyncTask const * 0 0 574 0 0 0 0 0 0 0 0 0 0
+
+574 15 AsyncTask const 0 8832 15 AsyncTask const 15 AsyncTask const 0 0 520 0 0 0 0 0 0 0 0 0 0
+
+575 11 AsyncTask * 0 8576 11 AsyncTask * 11 AsyncTask * 0 0 520 0 0 0 0 0 0 0 0 0 0
+
+576 9 Namable * 0 8576 9 Namable * 9 Namable * 0 0 521 0 0 0 0 0 0 0 0 0 0
+
+577 24 AsyncTaskManager const * 0 8576 24 AsyncTaskManager const * 24 AsyncTaskManager const * 0 0 578 0 0 0 0 0 0 0 0 0 0
+
+578 22 AsyncTaskManager const 0 8832 22 AsyncTaskManager const 22 AsyncTaskManager const 0 0 526 0 0 0 0 0 0 0 0 0 0
+
+579 16 AsyncTaskChain * 0 8576 16 AsyncTaskChain * 16 AsyncTaskChain * 0 0 535 0 0 0 0 0 0 0 0 0 0
+
+580 21 AsyncTaskCollection * 0 8576 21 AsyncTaskCollection * 21 AsyncTaskCollection * 0 0 529 0 0 0 0 0 0 0 0 0 0
+
+581 19 GlobPattern const * 0 8576 19 GlobPattern const * 19 GlobPattern const * 0 0 582 0 0 0 0 0 0 0 0 0 0
+
+582 17 GlobPattern const 0 8832 17 GlobPattern const 17 GlobPattern const 0 0 583 0 0 0 0 0 0 0 0 0 0
+
+583 11 GlobPattern 0 2048 11 GlobPattern 11 GlobPattern 0 0 0 0 0 0 0 0 0 0 0 0 538
+/**
+ * This class can be used to test for string matches against standard Unix-
+ * shell filename globbing conventions.  It serves as a portable standin for
+ * the Posix fnmatch() call.
+ *
+ * A GlobPattern is given a pattern string, which can contain operators like
+ * *, ?, and [].  Then it can be tested against any number of candidate
+ * strings; for each candidate, it will indicate whether the string matches
+ * the pattern or not.  It can be used, for example, to scan a directory for
+ * all files matching a particular pattern.
+ */
+
+584 27 AsyncTaskCollection const * 0 8576 27 AsyncTaskCollection const * 27 AsyncTaskCollection const * 0 0 585 0 0 0 0 0 0 0 0 0 0
+
+585 25 AsyncTaskCollection const 0 8832 25 AsyncTaskCollection const 25 AsyncTaskCollection const 0 0 529 0 0 0 0 0 0 0 0 0 0
+
+586 6 size_t 0 2105344 11 std::size_t 11 std::size_t 0 0 587 0 0 0 0 0 0 0 0 0 0
+
+587 22 unsigned long long int 0 8230 22 unsigned long long int 22 unsigned long long int 0 8 0 0 0 0 0 0 0 0 0 0 0
+
+588 22 AsyncTaskChain const * 0 8576 22 AsyncTaskChain const * 22 AsyncTaskChain const * 0 0 589 0 0 0 0 0 0 0 0 0 0
+
+589 20 AsyncTaskChain const 0 8832 20 AsyncTaskChain const 20 AsyncTaskChain const 0 0 535 0 0 0 0 0 0 0 0 0 0
+
+590 14 ThreadPriority 0 532480 14 ThreadPriority 14 ThreadPriority 0 0 0 0 0 0 0 0 0 0 4 6 TP_low 6 TP_low 0
+0 9 TP_normal 9 TP_normal 0
+1 7 TP_high 7 TP_high 0
+2 9 TP_urgent 9 TP_urgent 0
+3 0 105
+// An enumerated type used by Thread to specify a suggested relative priority
+// for a particular thread.
+
+591 22 AsyncTaskPause const * 0 8576 22 AsyncTaskPause const * 22 AsyncTaskPause const * 0 0 592 0 0 0 0 0 0 0 0 0 0
+
+592 20 AsyncTaskPause const 0 8832 20 AsyncTaskPause const 20 AsyncTaskPause const 0 0 536 0 0 0 0 0 0 0 0 0 0
+
+593 16 AsyncTaskPause * 0 8576 16 AsyncTaskPause * 16 AsyncTaskPause * 0 0 536 0 0 0 0 0 0 0 0 0 0
+
+594 25 AsyncTaskSequence const * 0 8576 25 AsyncTaskSequence const * 25 AsyncTaskSequence const * 0 0 595 0 0 0 0 0 0 0 0 0 0
+
+595 23 AsyncTaskSequence const 0 8832 23 AsyncTaskSequence const 23 AsyncTaskSequence const 0 0 537 0 0 0 0 0 0 0 0 0 0
+
+596 19 AsyncTaskSequence * 0 8576 19 AsyncTaskSequence * 19 AsyncTaskSequence * 0 0 537 0 0 0 0 0 0 0 0 0 0
+
+597 17 ButtonEventList * 0 8576 17 ButtonEventList * 17 ButtonEventList * 0 0 538 0 0 0 0 0 0 0 0 0 0
+
+598 23 ButtonEventList const * 0 8576 23 ButtonEventList const * 23 ButtonEventList const * 0 0 599 0 0 0 0 0 0 0 0 0 0
+
+599 21 ButtonEventList const 0 8832 21 ButtonEventList const 21 ButtonEventList const 0 0 538 0 0 0 0 0 0 0 0 0 0
+
+600 13 ButtonEvent * 0 8576 13 ButtonEvent * 13 ButtonEvent * 0 0 601 0 0 0 0 0 0 0 0 0 0
+
+601 11 ButtonEvent 0 1050624 11 ButtonEvent 11 ButtonEvent 0 0 0 0 0 0 0 0 0 0 0 0 984
+/**
+ * Records a button event of some kind.  This is either a keyboard or mouse
+ * button (or some other kind of button) changing state from up to down, or
+ * vice-versa, or it is a single "keystroke".
+ *
+ * A keystroke is different than a button event in that (a) it does not
+ * necessarily correspond to a physical button on a keyboard, but might be the
+ * result of a combination of buttons (e.g.  "A" is the result of shift +
+ * "a"); and (b) it does not manage separate "up" and "down" events, but is
+ * itself an instantaneous event.
+ *
+ * Normal up/down button events can be used to track the state of a particular
+ * button on the keyboard, while keystroke events are best used to monitor
+ * what a user is attempting to type.
+ *
+ * Button up/down events are defined across all the physical keys on the
+ * keyboard (and other buttons for which there is a corresponding ButtonHandle
+ * object), while keystroke events are defined across the entire Unicode
+ * character set.
+ */
+
+602 19 ButtonEvent const * 0 8576 19 ButtonEvent const * 19 ButtonEvent const * 0 0 603 0 0 0 0 0 0 0 0 0 0
+
+603 17 ButtonEvent const 0 8832 17 ButtonEvent const 17 ButtonEvent const 0 0 601 0 0 0 0 0 0 0 0 0 0
+
+604 17 ModifierButtons * 0 8576 17 ModifierButtons * 17 ModifierButtons * 0 0 605 0 0 0 0 0 0 0 0 0 0
+
+605 15 ModifierButtons 0 2048 15 ModifierButtons 15 ModifierButtons 0 0 0 0 0 0 0 0 0 0 0 0 135
+/**
+ * This class monitors the state of a number of individual buttons and tracks
+ * whether each button is known to be down or up.
+ */
+
+606 13 Event const * 0 8576 13 Event const * 13 Event const * 0 0 607 0 0 0 0 0 0 0 0 0 0
+
+607 11 Event const 0 8832 11 Event const 11 Event const 0 0 540 0 0 0 0 0 0 0 0 0 0
+
+608 7 Event * 0 8576 7 Event * 7 Event * 0 0 540 0 0 0 0 0 0 0 0 0 0
+
+609 12 EventQueue * 0 8576 12 EventQueue * 12 EventQueue * 0 0 545 0 0 0 0 0 0 0 0 0 0
+
+610 14 EventHandler * 0 8576 14 EventHandler * 14 EventHandler * 0 0 543 0 0 0 0 0 0 0 0 0 0
+
+611 20 EventHandler const * 0 8576 20 EventHandler const * 20 EventHandler const * 0 0 612 0 0 0 0 0 0 0 0 0 0
+
+612 18 EventHandler const 0 8832 18 EventHandler const 18 EventHandler const 0 0 543 0 0 0 0 0 0 0 0 0 0
+
+613 18 EventQueue const * 0 8576 18 EventQueue const * 18 EventQueue const * 0 0 614 0 0 0 0 0 0 0 0 0 0
+
+614 16 EventQueue const 0 8832 16 EventQueue const 16 EventQueue const 0 0 545 0 0 0 0 0 0 0 0 0 0
+
+615 18 PointerEventList * 0 8576 18 PointerEventList * 18 PointerEventList * 0 0 546 0 0 0 0 0 0 0 0 0 0
+
+616 24 PointerEventList const * 0 8576 24 PointerEventList const * 24 PointerEventList const * 0 0 617 0 0 0 0 0 0 0 0 0 0
+
+617 22 PointerEventList const 0 8832 22 PointerEventList const 22 PointerEventList const 0 0 546 0 0 0 0 0 0 0 0 0 0
+
+618 19 PointerData const * 0 8576 19 PointerData const * 19 PointerData const * 0 0 619 0 0 0 0 0 0 0 0 0 0
+
+619 17 PointerData const 0 8832 17 PointerData const 17 PointerData const 0 0 620 0 0 0 0 0 0 0 0 0 0
+
+620 11 PointerData 0 2048 11 PointerData 11 PointerData 0 0 0 0 0 0 0 0 0 0 0 0 124
+/**
+ * Holds the data that might be generated by a 2-d pointer input device, such
+ * as the mouse in the GraphicsWindow.
+ */
+
+621 12 PythonTask * 0 8576 12 PythonTask * 12 PythonTask * 0 0 547 0 0 0 0 0 0 0 0 0 0
+
+622 18 PythonTask const * 0 8576 18 PythonTask const * 18 PythonTask const * 0 0 623 0 0 0 0 0 0 0 0 0 0
+
+623 16 PythonTask const 0 8832 16 PythonTask const 16 PythonTask const 0 0 547 0 0 0 0 0 0 0 0 0 0
+
+624 9 visitproc 0 2105344 9 visitproc 9 visitproc 0 0 625 0 0 0 0 0 0 0 0 0 0
+
+625 6 void * 0 8576 6 void * 6 void * 0 0 566 0 0 0 0 0 0 0 0 0 0
+
+0
+28
+626 10 done_event 0 6 517 277 276 0 0 0 0 0 0 23 AsyncFuture::done_event 0
+
+627 5 state 0 2 523 289 0 0 0 0 0 0 0 16 AsyncTask::state 0
+
+628 5 alive 0 2 524 290 0 0 0 0 0 0 0 16 AsyncTask::alive 0
+
+629 7 manager 0 2 525 291 0 0 0 0 0 0 0 18 AsyncTask::manager 0
+
+630 5 clock 0 6 527 326 325 0 0 0 0 0 0 23 AsyncTaskManager::clock 0
+
+631 5 tasks 0 2 529 342 0 0 0 0 0 0 0 23 AsyncTaskManager::tasks 0
+
+632 12 active_tasks 0 2 529 343 0 0 0 0 0 0 0 30 AsyncTaskManager::active_tasks 0
+
+633 14 sleeping_tasks 0 2 529 344 0 0 0 0 0 0 0 32 AsyncTaskManager::sleeping_tasks 0
+
+634 14 next_wake_time 0 2 530 365 0 0 0 0 0 0 0 32 AsyncTaskManager::next_wake_time 0
+
+635 4 name 0 6 517 370 303 0 0 0 0 0 0 15 AsyncTask::name 25
+// The name of this task.
+
+636 2 id 0 2 531 306 0 0 0 0 0 0 0 13 AsyncTask::id 99
+// This is a number guaranteed to be unique for each different AsyncTask
+// object in the universe.
+
+637 10 task_chain 0 6 517 308 307 0 0 0 0 0 0 21 AsyncTask::task_chain 0
+
+638 4 sort 0 6 534 310 309 0 0 0 0 0 0 15 AsyncTask::sort 0
+
+639 8 priority 0 6 534 312 311 0 0 0 0 0 0 19 AsyncTask::priority 0
+
+640 10 done_event 0 6 517 371 313 0 0 0 0 0 0 21 AsyncTask::done_event 107
+/**
+ * Returns the event name that will be triggered when the future finishes.
+ * See set_done_event().
+ */
+
+641 2 dt 0 2 530 314 0 0 0 0 0 0 0 13 AsyncTask::dt 0
+
+642 6 max_dt 0 2 530 315 0 0 0 0 0 0 0 17 AsyncTask::max_dt 0
+
+643 10 average_dt 0 2 530 316 0 0 0 0 0 0 0 21 AsyncTask::average_dt 0
+
+644 4 name 0 6 517 441 438 0 0 0 0 0 0 11 Event::name 0
+
+645 10 parameters 0 66 514 444 0 0 0 0 443 0 0 17 Event::parameters 0
+
+646 8 receiver 0 30 541 446 447 445 448 0 0 0 0 15 Event::receiver 0
+
+647 4 time 0 2 530 504 0 0 0 0 0 0 0 16 PythonTask::time 112
+// The amount of seconds that have elapsed since the task was started,
+// according to the task manager's clock.
+
+648 9 wake_time 0 2 530 505 0 0 0 0 0 0 0 21 PythonTask::wake_time 345
+// If this task has been added to an AsyncTaskManager with a delay in
+// effect, this contains the time at which the task is expected to awaken.
+// It has no meaning of the task has not yet been added to a queue, or if
+// there was no delay in effect at the time the task was added.  If the
+// task's status is not S_sleeping, this contains 0.0.
+
+649 8 wakeTime 0 2 530 505 0 0 0 0 0 0 0 20 PythonTask::wakeTime 22
+// Alias of wake_time.
+
+650 10 delay_time 0 30 530 506 508 507 509 0 0 0 0 22 PythonTask::delay_time 67
+// The delay value that has been set on this task, if any, or None.
+
+651 9 delayTime 0 30 530 506 508 507 509 0 0 0 0 21 PythonTask::delayTime 23
+// Alias of delay_time.
+
+652 5 frame 0 2 534 510 0 0 0 0 0 0 0 17 PythonTask::frame 111
+// The number of frames that have elapsed since the task was started,
+// according to the task manager's clock.
+
+653 8 __dict__ 0 6 548 511 512 0 0 0 0 0 0 20 PythonTask::__dict__ 105
+// This is a special variable to hold the instance dictionary in which
+// custom variables may be stored.
+
+3
+654 15 get_task_chains 0 327 328 33 AsyncTaskManager::get_task_chains 0
+
+655 9 get_tasks 0 356 357 30 AsyncTaskCollection::get_tasks 0
+
+656 14 get_parameters 0 443 444 21 Event::get_parameters 0
+

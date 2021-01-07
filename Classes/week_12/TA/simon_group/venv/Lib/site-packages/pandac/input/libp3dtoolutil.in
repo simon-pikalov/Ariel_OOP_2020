@@ -1,0 +1,3995 @@
+1609066448
+3 3
+14 libp3dtoolutil 4 3LYc 12 panda3d.core 
+274
+294 9 ~ios_base 0 4 569 24 std::ios_base::~ios_base 0 0 0
+31
+std::ios_base::~ios_base(void);
+
+295 4 good 0 4 568 28 std::basic_ios< char >::good 0 1 1 0
+46
+bool std::basic_ios< char >::good(void) const;
+
+296 3 eof 0 4 568 27 std::basic_ios< char >::eof 0 1 2 0
+45
+bool std::basic_ios< char >::eof(void) const;
+
+297 4 fail 0 4 568 28 std::basic_ios< char >::fail 0 1 3 0
+46
+bool std::basic_ios< char >::fail(void) const;
+
+298 3 bad 0 4 568 27 std::basic_ios< char >::bad 0 1 4 0
+45
+bool std::basic_ios< char >::bad(void) const;
+
+299 5 clear 0 4 568 29 std::basic_ios< char >::clear 0 1 5 0
+41
+void std::basic_ios< char >::clear(void);
+
+300 10 ~basic_ios 0 4 568 34 std::basic_ios< char >::~basic_ios 0 0 0
+41
+std::basic_ios< char >::~basic_ios(void);
+
+301 24 upcast_to_basic_ios_char 0 12 575 38 std::istream::upcast_to_basic_ios_char 0 1 15 40
+upcast from istream to basic_ios< char >
+69
+std::basic_ios< char > *std::istream::upcast_to_basic_ios_char(void);
+
+302 3 get 0 4 575 17 std::istream::get 0 1 11 0
+28
+int std::istream::get(void);
+
+303 5 tellg 0 4 575 19 std::istream::tellg 0 1 12 0
+41
+std::streamoff std::istream::tellg(void);
+
+304 5 seekg 0 4 575 19 std::istream::seekg 0 2 13 14 0
+119
+void std::istream::seekg(std::streamoff pos);
+void std::istream::seekg(std::streamoff off, std::ios_base::seekdir dir);
+
+305 8 ~istream 0 4 575 22 std::istream::~istream 0 0 0
+29
+std::istream::~istream(void);
+
+306 17 upcast_to_istream 0 12 574 32 std::iostream::upcast_to_istream 0 1 9 31
+upcast from iostream to istream
+53
+std::istream *std::iostream::upcast_to_istream(void);
+
+307 20 downcast_to_iostream 0 12 575 34 std::istream::downcast_to_iostream 0 0 33
+downcast from istream to iostream
+56
+std::iostream *std::istream::downcast_to_iostream(void);
+
+308 24 upcast_to_basic_ios_char 0 12 576 38 std::ostream::upcast_to_basic_ios_char 0 1 21 40
+upcast from ostream to basic_ios< char >
+69
+std::basic_ios< char > *std::ostream::upcast_to_basic_ios_char(void);
+
+309 3 put 0 4 576 17 std::ostream::put 0 1 16 0
+31
+void std::ostream::put(char c);
+
+310 5 flush 0 4 576 19 std::ostream::flush 0 1 17 0
+31
+void std::ostream::flush(void);
+
+311 5 tellp 0 4 576 19 std::ostream::tellp 0 1 18 0
+41
+std::streamoff std::ostream::tellp(void);
+
+312 5 seekp 0 4 576 19 std::ostream::seekp 0 2 19 20 0
+119
+void std::ostream::seekp(std::streamoff pos);
+void std::ostream::seekp(std::streamoff off, std::ios_base::seekdir dir);
+
+313 8 ~ostream 0 4 576 22 std::ostream::~ostream 0 0 0
+29
+std::ostream::~ostream(void);
+
+314 17 upcast_to_ostream 0 12 574 32 std::iostream::upcast_to_ostream 0 1 10 31
+upcast from iostream to ostream
+53
+std::ostream *std::iostream::upcast_to_ostream(void);
+
+315 20 downcast_to_iostream 0 12 576 34 std::ostream::downcast_to_iostream 0 0 33
+downcast from ostream to iostream
+56
+std::iostream *std::ostream::downcast_to_iostream(void);
+
+316 5 flush 0 4 574 20 std::iostream::flush 0 1 8 0
+32
+void std::iostream::flush(void);
+
+317 9 ~iostream 0 4 574 24 std::iostream::~iostream 0 0 0
+31
+std::iostream::~iostream(void);
+
+318 7 fstream 0 4 573 21 std::fstream::fstream 0 1 6 0
+28
+std::fstream::fstream(void);
+
+319 5 close 0 4 573 19 std::fstream::close 0 1 7 0
+31
+void std::fstream::close(void);
+
+320 8 ~fstream 0 4 573 22 std::fstream::~fstream 0 0 0
+29
+std::fstream::~fstream(void);
+
+321 8 ifstream 0 4 577 23 std::ifstream::ifstream 0 1 22 0
+30
+std::ifstream::ifstream(void);
+
+322 5 close 0 4 577 20 std::ifstream::close 0 1 23 0
+32
+void std::ifstream::close(void);
+
+323 9 ~ifstream 0 4 577 24 std::ifstream::~ifstream 0 0 0
+31
+std::ifstream::~ifstream(void);
+
+324 8 ofstream 0 4 579 23 std::ofstream::ofstream 0 1 24 0
+30
+std::ofstream::ofstream(void);
+
+325 5 close 0 4 579 20 std::ofstream::close 0 1 25 0
+32
+void std::ofstream::close(void);
+
+326 9 ~ofstream 0 4 579 24 std::ofstream::~ofstream 0 0 0
+31
+std::ofstream::~ofstream(void);
+
+327 11 IFileStream 0 4 580 24 IFileStream::IFileStream 0 2 26 27 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+154
+inline IFileStream::IFileStream(void);
+inline explicit IFileStream::IFileStream(char const *filename, std::ios_base::openmode mode = ::std::ios_base::in);
+
+328 12 ~IFileStream 0 4 580 25 IFileStream::~IFileStream 0 0 10
+/**
+ *
+ */
+39
+inline IFileStream::~IFileStream(void);
+
+329 4 open 0 4 580 17 IFileStream::open 0 1 28 10
+/**
+ *
+ */
+104
+inline void IFileStream::open(char const *filename, std::ios_base::openmode mode = ::std::ios_base::in);
+
+330 5 close 0 4 580 18 IFileStream::close 0 1 29 10
+/**
+ *
+ */
+37
+inline void IFileStream::close(void);
+
+331 11 OFileStream 0 4 581 24 OFileStream::OFileStream 0 2 30 31 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+155
+inline OFileStream::OFileStream(void);
+inline explicit OFileStream::OFileStream(char const *filename, std::ios_base::openmode mode = ::std::ios_base::out);
+
+332 12 ~OFileStream 0 4 581 25 OFileStream::~OFileStream 0 0 10
+/**
+ *
+ */
+39
+inline OFileStream::~OFileStream(void);
+
+333 4 open 0 4 581 17 OFileStream::open 0 1 32 10
+/**
+ *
+ */
+105
+inline void OFileStream::open(char const *filename, std::ios_base::openmode mode = ::std::ios_base::out);
+
+334 5 close 0 4 581 18 OFileStream::close 0 1 33 10
+/**
+ *
+ */
+37
+inline void OFileStream::close(void);
+
+335 10 FileStream 0 4 582 22 FileStream::FileStream 0 2 34 35 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+150
+inline FileStream::FileStream(void);
+inline explicit FileStream::FileStream(char const *filename, std::ios_base::openmode mode = ::std::ios_base::in);
+
+336 11 ~FileStream 0 4 582 23 FileStream::~FileStream 0 0 10
+/**
+ *
+ */
+37
+inline FileStream::~FileStream(void);
+
+337 4 open 0 4 582 16 FileStream::open 0 1 36 10
+/**
+ *
+ */
+103
+inline void FileStream::open(char const *filename, std::ios_base::openmode mode = ::std::ios_base::in);
+
+338 5 close 0 4 582 17 FileStream::close 0 1 37 10
+/**
+ *
+ */
+36
+inline void FileStream::close(void);
+
+339 11 TextEncoder 0 4 586 24 TextEncoder::TextEncoder 0 2 38 39 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+96
+inline TextEncoder::TextEncoder(void);
+inline TextEncoder::TextEncoder(TextEncoder const &copy);
+
+340 12 ~TextEncoder 0 6 586 25 TextEncoder::~TextEncoder 0 0 0
+50
+virtual TextEncoder::~TextEncoder(void) = default;
+
+341 12 set_encoding 0 4 586 25 TextEncoder::set_encoding 0 1 40 374
+/**
+ * Specifies how the string set via set_text() is to be interpreted.  The
+ * default, E_iso8859, means a standard string with one-byte characters (i.e.
+ * ASCII).  Other encodings are possible to take advantage of character sets
+ * with more than 256 characters.
+ *
+ * This affects only future calls to set_text(); it does not change text that
+ * was set previously.
+ */
+70
+inline void TextEncoder::set_encoding(TextEncoder::Encoding encoding);
+
+342 12 get_encoding 0 4 586 25 TextEncoder::get_encoding 0 1 41 116
+/**
+ * Returns the encoding by which the string set via set_text() is to be
+ * interpreted.  See set_encoding().
+ */
+67
+inline TextEncoder::Encoding TextEncoder::get_encoding(void) const;
+
+343 20 set_default_encoding 0 4 586 33 TextEncoder::set_default_encoding 0 1 42 126
+/**
+ * Specifies the default encoding to be used for all subsequently created
+ * TextEncoder objects.  See set_encoding().
+ */
+85
+static inline void TextEncoder::set_default_encoding(TextEncoder::Encoding encoding);
+
+344 20 get_default_encoding 0 4 586 33 TextEncoder::get_default_encoding 0 1 43 126
+/**
+ * Specifies the default encoding to be used for all subsequently created
+ * TextEncoder objects.  See set_encoding().
+ */
+76
+static inline TextEncoder::Encoding TextEncoder::get_default_encoding(void);
+
+345 8 set_text 0 4 586 21 TextEncoder::set_text 0 2 44 45 562
+/**
+ * Changes the text that is stored in the encoder.  The text should be encoded
+ * according to the method indicated by set_encoding().  Subsequent calls to
+ * get_text() will return this same string, while get_wtext() will return the
+ * decoded version of the string.
+ */
+
+/**
+ * The two-parameter version of set_text() accepts an explicit encoding; the
+ * text is immediately decoded and stored as a wide-character string.
+ * Subsequent calls to get_text() will return the same text re-encoded using
+ * whichever encoding is specified by set_encoding().
+ */
+119
+void TextEncoder::set_text(PyObject *text);
+void TextEncoder::set_text(PyObject *text, TextEncoder::Encoding encoding);
+
+346 10 clear_text 0 4 586 23 TextEncoder::clear_text 0 1 46 49
+/**
+ * Removes the text from the TextEncoder.
+ */
+42
+inline void TextEncoder::clear_text(void);
+
+347 8 has_text 0 4 586 21 TextEncoder::has_text 0 1 47 10
+/**
+ *
+ */
+46
+inline bool TextEncoder::has_text(void) const;
+
+348 10 make_upper 0 4 586 23 TextEncoder::make_upper 0 1 48 118
+/**
+ * Adjusts the text stored within the encoder to all uppercase letters
+ * (preserving accent marks correctly).
+ */
+35
+void TextEncoder::make_upper(void);
+
+349 10 make_lower 0 4 586 23 TextEncoder::make_lower 0 1 49 118
+/**
+ * Adjusts the text stored within the encoder to all lowercase letters
+ * (preserving accent marks correctly).
+ */
+35
+void TextEncoder::make_lower(void);
+
+350 8 get_text 0 4 586 21 TextEncoder::get_text 0 2 50 51 164
+/**
+ * Returns the current text, as encoded via the current encoding system.
+ */
+
+/**
+ * Returns the current text, as encoded via the indicated encoding system.
+ */
+115
+PyObject *TextEncoder::get_text(void) const;
+PyObject *TextEncoder::get_text(TextEncoder::Encoding encoding) const;
+
+351 11 append_text 0 4 586 24 TextEncoder::append_text 0 1 52 70
+/**
+ * Appends the indicates string to the end of the stored text.
+ */
+46
+void TextEncoder::append_text(PyObject *text);
+
+352 19 append_unicode_char 0 4 586 32 TextEncoder::append_unicode_char 0 1 53 128
+/**
+ * Appends a single character to the end of the stored text.  This may be a
+ * wide character, up to 16 bits in Unicode.
+ */
+65
+inline void TextEncoder::append_unicode_char(char32_t character);
+
+353 13 get_num_chars 0 4 586 26 TextEncoder::get_num_chars 0 1 54 169
+/**
+ * Returns the number of characters in the stored text.  This is a count of
+ * wide characters, after the string has been decoded according to
+ * set_encoding().
+ */
+58
+inline std::size_t TextEncoder::get_num_chars(void) const;
+
+354 16 get_unicode_char 0 4 586 29 TextEncoder::get_unicode_char 0 1 55 196
+/**
+ * Returns the Unicode value of the nth character in the stored text.  This
+ * may be a wide character (greater than 255), after the string has been
+ * decoded according to set_encoding().
+ */
+66
+inline int TextEncoder::get_unicode_char(std::size_t index) const;
+
+355 16 set_unicode_char 0 4 586 29 TextEncoder::set_unicode_char 0 1 56 193
+/**
+ * Sets the Unicode value of the nth character in the stored text.  This may
+ * be a wide character (greater than 255), after the string has been decoded
+ * according to set_encoding().
+ */
+81
+inline void TextEncoder::set_unicode_char(std::size_t index, char32_t character);
+
+356 16 get_encoded_char 0 4 586 29 TextEncoder::get_encoded_char 0 2 57 58 204
+/**
+ * Returns the nth char of the stored text, as a one-, two-, or three-byte
+ * encoded string.
+ */
+
+/**
+ * Returns the nth char of the stored text, as a one-, two-, or three-byte
+ * encoded string.
+ */
+181
+inline std::string TextEncoder::get_encoded_char(std::size_t index) const;
+inline std::string TextEncoder::get_encoded_char(std::size_t index, TextEncoder::Encoding encoding) const;
+
+357 17 get_text_as_ascii 0 4 586 30 TextEncoder::get_text_as_ascii 0 1 59 723
+/**
+ * Returns the text associated with the node, converted as nearly as possible
+ * to a fully-ASCII representation.  This means replacing accented letters
+ * with their unaccented ASCII equivalents.
+ *
+ * It is possible that some characters in the string cannot be converted to
+ * ASCII.  (The string may involve symbols like the copyright symbol, for
+ * instance, or it might involve letters in some other alphabet such as Greek
+ * or Cyrillic, or even Latin letters like thorn or eth that are not part of
+ * the ASCII character set.)  In this case, as much of the string as possible
+ * will be converted to ASCII, and the nonconvertible characters will remain
+ * encoded in the encoding specified by set_encoding().
+ */
+62
+inline std::string TextEncoder::get_text_as_ascii(void) const;
+
+358 13 reencode_text 0 4 586 26 TextEncoder::reencode_text 0 1 60 277
+/**
+ * Given the indicated text string, which is assumed to be encoded via the
+ * encoding "from", decodes it and then reencodes it into the encoding "to",
+ * and returns the newly encoded string.  This does not change or affect any
+ * properties on the TextEncoder itself.
+ */
+132
+static inline std::string TextEncoder::reencode_text(std::string const &text, TextEncoder::Encoding from, TextEncoder::Encoding to);
+
+359 15 unicode_isalpha 0 4 586 28 TextEncoder::unicode_isalpha 0 1 61 152
+/**
+ * Returns true if the indicated character is an alphabetic letter, false
+ * otherwise.  This is akin to ctype's isalpha(), extended to Unicode.
+ */
+68
+static inline bool TextEncoder::unicode_isalpha(char32_t character);
+
+360 15 unicode_isdigit 0 4 586 28 TextEncoder::unicode_isdigit 0 1 62 147
+/**
+ * Returns true if the indicated character is a numeric digit, false
+ * otherwise.  This is akin to ctype's isdigit(), extended to Unicode.
+ */
+68
+static inline bool TextEncoder::unicode_isdigit(char32_t character);
+
+361 15 unicode_ispunct 0 4 586 28 TextEncoder::unicode_ispunct 0 1 63 150
+/**
+ * Returns true if the indicated character is a punctuation mark, false
+ * otherwise.  This is akin to ctype's ispunct(), extended to Unicode.
+ */
+68
+static inline bool TextEncoder::unicode_ispunct(char32_t character);
+
+362 15 unicode_islower 0 4 586 28 TextEncoder::unicode_islower 0 1 64 150
+/**
+ * Returns true if the indicated character is a lowercase letter, false
+ * otherwise.  This is akin to ctype's islower(), extended to Unicode.
+ */
+68
+static inline bool TextEncoder::unicode_islower(char32_t character);
+
+363 15 unicode_isupper 0 4 586 28 TextEncoder::unicode_isupper 0 1 65 151
+/**
+ * Returns true if the indicated character is an uppercase letter, false
+ * otherwise.  This is akin to ctype's isupper(), extended to Unicode.
+ */
+68
+static inline bool TextEncoder::unicode_isupper(char32_t character);
+
+364 15 unicode_isspace 0 4 586 28 TextEncoder::unicode_isspace 0 1 66 151
+/**
+ * Returns true if the indicated character is a whitespace letter, false
+ * otherwise.  This is akin to ctype's isspace(), extended to Unicode.
+ */
+68
+static inline bool TextEncoder::unicode_isspace(char32_t character);
+
+365 15 unicode_toupper 0 4 586 28 TextEncoder::unicode_toupper 0 1 67 135
+/**
+ * Returns the uppercase equivalent of the given Unicode character.  This is
+ * akin to ctype's toupper(), extended to Unicode.
+ */
+67
+static inline int TextEncoder::unicode_toupper(char32_t character);
+
+366 15 unicode_tolower 0 4 586 28 TextEncoder::unicode_tolower 0 1 68 135
+/**
+ * Returns the uppercase equivalent of the given Unicode character.  This is
+ * akin to ctype's tolower(), extended to Unicode.
+ */
+67
+static inline int TextEncoder::unicode_tolower(char32_t character);
+
+367 5 upper 0 4 586 18 TextEncoder::upper 0 2 69 70 210
+/**
+ * Converts the string to uppercase, assuming the string is encoded in the
+ * default encoding.
+ */
+
+/**
+ * Converts the string to uppercase, assuming the string is encoded in the
+ * indicated encoding.
+ */
+177
+static inline std::string TextEncoder::upper(std::string const &source);
+static inline std::string TextEncoder::upper(std::string const &source, TextEncoder::Encoding encoding);
+
+368 5 lower 0 4 586 18 TextEncoder::lower 0 2 71 72 210
+/**
+ * Converts the string to lowercase, assuming the string is encoded in the
+ * default encoding.
+ */
+
+/**
+ * Converts the string to lowercase, assuming the string is encoded in the
+ * indicated encoding.
+ */
+177
+static inline std::string TextEncoder::lower(std::string const &source);
+static inline std::string TextEncoder::lower(std::string const &source, TextEncoder::Encoding encoding);
+
+369 9 set_wtext 0 4 586 22 TextEncoder::set_wtext 0 1 73 303
+// Direct support for wide-character strings.  Now publishable with the new
+// wstring support in interrogate.
+
+/**
+ * Changes the text that is stored in the encoder.  Subsequent calls to
+ * get_wtext() will return this same string, while get_text() will return the
+ * encoded version of the string.
+ */
+62
+inline void TextEncoder::set_wtext(std::wstring const &wtext);
+
+370 9 get_wtext 0 4 586 22 TextEncoder::get_wtext 0 1 74 91
+/**
+ * Returns the text associated with the TextEncoder, as a wide-character
+ * string.
+ */
+62
+inline std::wstring const &TextEncoder::get_wtext(void) const;
+
+371 12 append_wtext 0 4 586 25 TextEncoder::append_wtext 0 1 75 85
+/**
+ * Appends the indicates string to the end of the stored wide-character text.
+ */
+64
+inline void TextEncoder::append_wtext(std::wstring const &text);
+
+372 18 get_wtext_as_ascii 0 4 586 31 TextEncoder::get_wtext_as_ascii 0 1 76 694
+/**
+ * Returns the text associated with the node, converted as nearly as possible
+ * to a fully-ASCII representation.  This means replacing accented letters
+ * with their unaccented ASCII equivalents.
+ *
+ * It is possible that some characters in the string cannot be converted to
+ * ASCII.  (The string may involve symbols like the copyright symbol, for
+ * instance, or it might involve letters in some other alphabet such as Greek
+ * or Cyrillic, or even Latin letters like thorn or eth that are not part of
+ * the ASCII character set.)  In this case, as much of the string as possible
+ * will be converted to ASCII, and the nonconvertible characters will remain
+ * in their original form.
+ */
+57
+std::wstring TextEncoder::get_wtext_as_ascii(void) const;
+
+373 8 is_wtext 0 4 586 21 TextEncoder::is_wtext 0 1 77 211
+/**
+ * Returns true if any of the characters in the string returned by get_wtext()
+ * are out of the range of an ASCII character (and, therefore, get_wtext()
+ * should be called in preference to get_text()).
+ */
+39
+bool TextEncoder::is_wtext(void) const;
+
+374 12 encode_wchar 0 4 586 25 TextEncoder::encode_wchar 0 1 78 136
+/**
+ * Encodes a single Unicode character into a one-, two-, three-, or four-byte
+ * string, according to the given encoding system.
+ */
+88
+static PyObject *TextEncoder::encode_wchar(char32_t ch, TextEncoder::Encoding encoding);
+
+375 12 encode_wtext 0 4 586 25 TextEncoder::encode_wtext 0 2 79 80 204
+/**
+ * Encodes a wide-text string into a single-char string, according to the
+ * current encoding.
+ */
+
+/**
+ * Encodes a wide-text string into a single-char string, according to the
+ * given encoding.
+ */
+179
+inline PyObject *TextEncoder::encode_wtext(std::wstring const &wtext) const;
+static PyObject *TextEncoder::encode_wtext(std::wstring const &wtext, TextEncoder::Encoding encoding);
+
+376 11 decode_text 0 4 586 24 TextEncoder::decode_text 0 2 81 82 210
+/**
+ * Returns the given wstring decoded to a single-byte string, via the current
+ * encoding system.
+ */
+
+/**
+ * Returns the given wstring decoded to a single-byte string, via the given
+ * encoding system.
+ */
+155
+inline PyObject *TextEncoder::decode_text(PyObject *text) const;
+static PyObject *TextEncoder::decode_text(PyObject *text, TextEncoder::Encoding encoding);
+
+377 8 Filename 0 4 591 18 Filename::Filename 0 3 83 84 85 257
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ * Creates an empty Filename.
+ */
+
+/**
+ * This constructor composes the filename out of a directory part and a
+ * basename part.  It will insert an intervening '/' if necessary.
+ */
+139
+inline Filename::Filename(void);
+Filename::Filename(Filename const &dirname, Filename const &basename);
+Filename::Filename(PyObject *path);
+
+378 10 __reduce__ 0 4 591 20 Filename::__reduce__ 0 1 86 0
+53
+PyObject *Filename::__reduce__(PyObject *self) const;
+
+379 13 text_filename 0 4 591 23 Filename::text_filename 0 2 87 88 192
+// Static constructors to explicitly create a filename that refers to a text
+// or binary file.  This is in lieu of calling set_text() or set_binary() or
+// set_type().
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+150
+static inline Filename Filename::text_filename(Filename const &filename);
+static inline Filename Filename::text_filename(std::string const &filename);
+
+380 15 binary_filename 0 4 591 25 Filename::binary_filename 0 2 89 90 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+154
+static inline Filename Filename::binary_filename(Filename const &filename);
+static inline Filename Filename::binary_filename(std::string const &filename);
+
+381 12 dso_filename 0 4 591 22 Filename::dso_filename 0 1 91 10
+/**
+ *
+ */
+75
+static inline Filename Filename::dso_filename(std::string const &filename);
+
+382 19 executable_filename 0 4 591 29 Filename::executable_filename 0 1 92 10
+/**
+ *
+ */
+82
+static inline Filename Filename::executable_filename(std::string const &filename);
+
+383 16 pattern_filename 0 4 591 26 Filename::pattern_filename 0 1 93 101
+/**
+ * Constructs a filename that represents a sequence of numbered files.  See
+ * set_pattern().
+ */
+79
+static inline Filename Filename::pattern_filename(std::string const &filename);
+
+384 16 from_os_specific 0 4 591 26 Filename::from_os_specific 0 1 94 693
+/**
+ * This named constructor returns a Panda-style filename (that is, using
+ * forward slashes, and no drive letter) based on the supplied filename string
+ * that describes a filename in the local system conventions (for instance, on
+ * Windows, it may use backslashes or begin with a drive letter and a colon).
+ *
+ * Use this function to create a Filename from an externally-given filename
+ * string.  Use to_os_specific() again later to reconvert it back to the local
+ * operating system's conventions.
+ *
+ * This function will do the right thing even if the filename is partially
+ * local conventions and partially Panda conventions; e.g.  some backslashes
+ * and some forward slashes.
+ */
+120
+static Filename Filename::from_os_specific(std::string const &os_specific, Filename::Type type = ::Filename::T_general);
+
+385 18 from_os_specific_w 0 4 591 28 Filename::from_os_specific_w 0 1 95 137
+/**
+ * The wide-string variant of from_os_specific(). Returns a new Filename,
+ * converted from an os-specific wide-character string.
+ */
+123
+static Filename Filename::from_os_specific_w(std::wstring const &os_specific, Filename::Type type = ::Filename::T_general);
+
+386 11 expand_from 0 4 591 21 Filename::expand_from 0 1 96 221
+/**
+ * Returns the same thing as from_os_specific(), but embedded environment
+ * variable references (e.g.  "$DMODELS/foo.txt") are expanded out.  It also
+ * automatically elevates the file to its true case if needed.
+ */
+115
+static Filename Filename::expand_from(std::string const &user_string, Filename::Type type = ::Filename::T_general);
+
+387 9 temporary 0 4 591 19 Filename::temporary 0 1 97 398
+/**
+ * Generates a temporary filename within the indicated directory, using the
+ * indicated prefix.  If the directory is empty, a system-defined directory is
+ * chosen instead.
+ *
+ * The generated filename did not exist when the Filename checked, but since
+ * it does not specifically create the file, it is possible that another
+ * process could simultaneously create a file by the same name.
+ */
+174
+static Filename Filename::temporary(std::string const &dirname, std::string const &prefix, std::string const &suffix = string(), Filename::Type type = ::Filename::T_general);
+
+388 18 get_home_directory 0 4 591 28 Filename::get_home_directory 0 1 98 200
+/**
+ * Returns a path to the user's home directory, if such a thing makes sense in
+ * the current OS, or to the nearest equivalent.  This may or may not be
+ * directly writable by the application.
+ */
+58
+static Filename const &Filename::get_home_directory(void);
+
+389 18 get_temp_directory 0 4 591 28 Filename::get_temp_directory 0 1 99 66
+/**
+ * Returns a path to a system-defined temporary directory.
+ */
+58
+static Filename const &Filename::get_temp_directory(void);
+
+390 26 get_user_appdata_directory 0 4 591 36 Filename::get_user_appdata_directory 0 1 100 170
+/**
+ * Returns a path to a system-defined directory appropriate for creating a
+ * subdirectory for storing application-specific data, specific to the current
+ * user.
+ */
+66
+static Filename const &Filename::get_user_appdata_directory(void);
+
+391 28 get_common_appdata_directory 0 4 591 38 Filename::get_common_appdata_directory 0 1 101 158
+/**
+ * Returns a path to a system-defined directory appropriate for creating a
+ * subdirectory for storing application-specific data, common to all users.
+ */
+68
+static Filename const &Filename::get_common_appdata_directory(void);
+
+392 10 operator = 0 4 591 20 Filename::operator = 0 5 102 103 104 105 106 108
+// Assignment is via the = operator.
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+365
+inline void Filename::operator =(std::string const &filename);
+inline void Filename::operator =(std::wstring const &filename);
+inline void Filename::operator =(char const *filename);
+inline void Filename::operator =(Filename const &copy);
+inline void Filename::operator =(std::string &&filename) noexcept;
+inline void Filename::operator =(Filename &&from) noexcept;
+
+393 17 operator typecast 0 132 591 27 Filename::operator typecast 0 1 199 60
+// And retrieval is by any of the classic string operations.
+48
+inline operator std::string const &(void) const;
+
+394 5 c_str 0 4 591 15 Filename::c_str 0 1 107 10
+/**
+ *
+ */
+47
+inline char const *Filename::c_str(void) const;
+
+395 5 empty 0 4 591 15 Filename::empty 0 1 108 10
+/**
+ *
+ */
+40
+inline bool Filename::empty(void) const;
+
+396 6 length 0 4 591 16 Filename::length 0 1 109 10
+/**
+ *
+ */
+48
+inline std::size_t Filename::length(void) const;
+
+397 11 operator [] 0 4 591 21 Filename::operator [] 0 1 110 0
+55
+inline char Filename::operator [](std::size_t n) const;
+
+398 8 __repr__ 0 4 591 18 Filename::__repr__ 0 1 111 0
+41
+PyObject *Filename::__repr__(void) const;
+
+399 10 __fspath__ 0 4 591 20 Filename::__fspath__ 0 1 112 0
+43
+PyObject *Filename::__fspath__(void) const;
+
+400 6 substr 0 4 591 16 Filename::substr 0 2 113 114 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+140
+inline std::string Filename::substr(std::size_t begin) const;
+inline std::string Filename::substr(std::size_t begin, std::size_t end) const;
+
+401 11 operator += 0 4 591 21 Filename::operator += 0 1 115 0
+60
+inline void Filename::operator +=(std::string const &other);
+
+402 10 operator + 0 4 591 20 Filename::operator + 0 1 116 0
+69
+inline Filename Filename::operator +(std::string const &other) const;
+
+403 10 operator / 0 4 591 20 Filename::operator / 0 1 117 0
+66
+inline Filename Filename::operator /(Filename const &other) const;
+
+404 12 get_fullpath 0 4 591 22 Filename::get_fullpath 0 1 118 174
+// Or, you can use any of these.
+
+/**
+ * Returns the entire filename: directory, basename, extension.  This is the
+ * same thing returned by the string typecast operator.
+ */
+54
+inline std::string Filename::get_fullpath(void) const;
+
+405 14 get_fullpath_w 0 4 591 24 Filename::get_fullpath_w 0 1 119 66
+/**
+ * Returns the entire filename as a wide-character string.
+ */
+57
+inline std::wstring Filename::get_fullpath_w(void) const;
+
+406 11 get_dirname 0 4 591 21 Filename::get_dirname 0 1 120 139
+/**
+ * Returns the directory part of the filename.  This is everything in the
+ * filename up to, but not including the rightmost slash.
+ */
+53
+inline std::string Filename::get_dirname(void) const;
+
+407 12 get_basename 0 4 591 22 Filename::get_basename 0 1 121 145
+/**
+ * Returns the basename part of the filename.  This is everything in the
+ * filename after the rightmost slash, including any extensions.
+ */
+54
+inline std::string Filename::get_basename(void) const;
+
+408 25 get_fullpath_wo_extension 0 4 591 35 Filename::get_fullpath_wo_extension 0 1 122 96
+/**
+ * Returns the full filename--directory and basename parts--except for the
+ * extension.
+ */
+67
+inline std::string Filename::get_fullpath_wo_extension(void) const;
+
+409 25 get_basename_wo_extension 0 4 591 35 Filename::get_basename_wo_extension 0 1 123 81
+/**
+ * Returns the basename part of the filename, without the file extension.
+ */
+67
+inline std::string Filename::get_basename_wo_extension(void) const;
+
+410 13 get_extension 0 4 591 23 Filename::get_extension 0 1 124 140
+/**
+ * Returns the file extension.  This is everything after the rightmost dot, if
+ * there is one, or the empty string if there is not.
+ */
+55
+inline std::string Filename::get_extension(void) const;
+
+411 12 set_fullpath 0 4 591 22 Filename::set_fullpath 0 1 125 202
+// You can also use any of these to reassign pieces of the filename.
+
+/**
+ * Replaces the entire filename: directory, basename, extension.  This can
+ * also be achieved with the assignment operator.
+ */
+50
+void Filename::set_fullpath(std::string const &s);
+
+412 11 set_dirname 0 4 591 21 Filename::set_dirname 0 1 126 140
+/**
+ * Replaces the directory part of the filename.  This is everything in the
+ * filename up to, but not including the rightmost slash.
+ */
+49
+void Filename::set_dirname(std::string const &s);
+
+413 12 set_basename 0 4 591 22 Filename::set_basename 0 1 127 146
+/**
+ * Replaces the basename part of the filename.  This is everything in the
+ * filename after the rightmost slash, including any extensions.
+ */
+50
+void Filename::set_basename(std::string const &s);
+
+414 25 set_fullpath_wo_extension 0 4 591 35 Filename::set_fullpath_wo_extension 0 1 128 97
+/**
+ * Replaces the full filename--directory and basename parts--except for the
+ * extension.
+ */
+63
+void Filename::set_fullpath_wo_extension(std::string const &s);
+
+415 25 set_basename_wo_extension 0 4 591 35 Filename::set_basename_wo_extension 0 1 129 82
+/**
+ * Replaces the basename part of the filename, without the file extension.
+ */
+63
+void Filename::set_basename_wo_extension(std::string const &s);
+
+416 13 set_extension 0 4 591 23 Filename::set_extension 0 1 130 141
+/**
+ * Replaces the file extension.  This is everything after the rightmost dot,
+ * if there is one, or the empty string if there is not.
+ */
+51
+void Filename::set_extension(std::string const &s);
+
+417 10 set_binary 0 4 591 20 Filename::set_binary 0 1 131 429
+// Setting these flags appropriately is helpful when opening or searching
+// for a file; it helps the Filename resolve OS-specific conventions (for
+// instance, that dynamic library names should perhaps be changed from .so
+// to .dll).
+
+/**
+ * Indicates that the filename represents a binary file.  This is primarily
+ * relevant to the read_file() and write_file() methods, so they can set the
+ * appropriate flags to the OS.
+ */
+39
+inline void Filename::set_binary(void);
+
+418 8 set_text 0 4 591 18 Filename::set_text 0 1 132 190
+/**
+ * Indicates that the filename represents a text file.  This is primarily
+ * relevant to the read_file() and write_file() methods, so they can set the
+ * appropriate flags to the OS.
+ */
+37
+inline void Filename::set_text(void);
+
+419 9 is_binary 0 4 591 19 Filename::is_binary 0 1 133 256
+/**
+ * Returns true if the Filename has been indicated to represent a binary file
+ * via a previous call to set_binary().  It is possible that neither
+ * is_binary() nor is_text() will be true, if neither set_binary() nor
+ * set_text() was ever called.
+ */
+44
+inline bool Filename::is_binary(void) const;
+
+420 7 is_text 0 4 591 17 Filename::is_text 0 1 134 252
+/**
+ * Returns true if the Filename has been indicated to represent a text file
+ * via a previous call to set_text().  It is possible that neither is_binary()
+ * nor is_text() will be true, if neither set_binary() nor set_text() was ever
+ * called.
+ */
+42
+inline bool Filename::is_text(void) const;
+
+421 17 is_binary_or_text 0 4 591 27 Filename::is_binary_or_text 0 1 135 198
+/**
+ * Returns true either is_binary() or is_text() is true; that is, that the
+ * filename has been specified as either binary or text.  If this is false,
+ * the filename has not been specified.
+ */
+52
+inline bool Filename::is_binary_or_text(void) const;
+
+422 8 set_type 0 4 591 18 Filename::set_type 0 1 136 350
+/**
+ * Sets the type of the file represented by the filename.  This is useful for
+ * to_os_specific(), resolve_filename(), test_existence(), and all such real-
+ * world access functions.  It helps the Filename know how to map the internal
+ * filename to the OS-specific filename (for instance, maybe executables
+ * should have an .exe extension).
+ */
+52
+inline void Filename::set_type(Filename::Type type);
+
+423 8 get_type 0 4 591 18 Filename::get_type 0 1 137 104
+/**
+ * Returns the type of the file represented by the filename, as previously set
+ * by set_type().
+ */
+53
+inline Filename::Type Filename::get_type(void) const;
+
+424 11 set_pattern 0 4 591 21 Filename::set_pattern 0 1 138 688
+/**
+ * Sets the flag indicating whether this is a filename pattern.  When this is
+ * true, the filename is understood to be a placeholder for a numbered
+ * sequence of filename, such as an image sequence.  In this case, a sequence
+ * of one or more hash characters ("#") should appear in the filename string;
+ * these characters will be filled in with the corresponding number (or more)
+ * of digits representing the sequence number.  Sequence numbers always begin
+ * counting at 0.
+ *
+ * When this is true, methods like has_hash() and get_hash_to_end() and
+ * get_filename_index() may be called.  Methods like is_exists() will
+ * implicitly test for existance of filename sequence 0.
+ */
+48
+inline void Filename::set_pattern(bool pattern);
+
+425 11 get_pattern 0 4 591 21 Filename::get_pattern 0 1 139 97
+/**
+ * Returns the flag indicating whether this is a filename pattern.  See
+ * set_pattern().
+ */
+46
+inline bool Filename::get_pattern(void) const;
+
+426 8 has_hash 0 4 591 18 Filename::has_hash 0 1 140 354
+/**
+ * Returns true if the filename is indicated to be a filename pattern (that
+ * is, set_pattern(true) was called), and the filename pattern did include a
+ * sequence of hash marks, or false if it was not a filename pattern or did
+ * not include hash marks.  If this is true, then get_filename_index() will
+ * return a different filename each time.
+ */
+43
+inline bool Filename::has_hash(void) const;
+
+427 18 get_filename_index 0 4 591 28 Filename::get_filename_index 0 1 141 388
+/**
+ * If the pattern flag is set for this Filename and the filename string
+ * actually includes a sequence of hash marks, then this returns a new
+ * Filename with the sequence of hash marks replaced by the indicated index
+ * number.
+ *
+ * If the pattern flag is not set for this Filename or it does not contain a
+ * sequence of hash marks, this quietly returns the original filename.
+ */
+55
+Filename Filename::get_filename_index(int index) const;
+
+428 15 get_hash_to_end 0 4 591 25 Filename::get_hash_to_end 0 1 142 130
+/**
+ * Returns the part of the filename beginning at the hash sequence (if any),
+ * and continuing to the end of the filename.
+ */
+57
+inline std::string Filename::get_hash_to_end(void) const;
+
+429 15 set_hash_to_end 0 4 591 25 Filename::set_hash_to_end 0 1 143 115
+/**
+ * Replaces the part of the filename from the beginning of the hash sequence
+ * to the end of the filename.
+ */
+53
+void Filename::set_hash_to_end(std::string const &s);
+
+430 18 extract_components 0 4 591 28 Filename::extract_components 0 1 144 329
+/**
+ * Extracts out the individual directory components of the path into a series
+ * of strings.  get_basename() will be the last component stored in the
+ * vector.  Note that no distinction is made by this method between a leading
+ * slash and no leading slash, but you can call is_local() to differentiate
+ * the two cases.
+ */
+67
+void Filename::extract_components(vector_string &components) const;
+
+431 11 standardize 0 4 591 21 Filename::standardize 0 1 145 216
+/**
+ * Converts the filename to standard form by replacing consecutive slashes
+ * with a single slash, removing a trailing slash if present, and backing up
+ * over .. sequences within the filename where possible.
+ */
+33
+void Filename::standardize(void);
+
+432 8 is_local 0 4 591 18 Filename::is_local 0 1 146 146
+/**
+ * Returns true if the filename is local, e.g.  does not begin with a slash,
+ * or false if the filename is fully specified from the root.
+ */
+43
+inline bool Filename::is_local(void) const;
+
+433 18 is_fully_qualified 0 4 591 28 Filename::is_fully_qualified 0 1 147 444
+/**
+ * Returns true if the filename is fully qualified, e.g.  begins with a slash.
+ * This is almost, but not quite, the same thing as !is_local().  It's not
+ * exactly the same because a special case is made for filenames that begin
+ * with a single dot followed by a slash--these are considered to be fully
+ * qualified (they are explicitly relative to the current directory, and do
+ * not refer to a filename on a search path somewhere).
+ */
+53
+inline bool Filename::is_fully_qualified(void) const;
+
+434 13 make_absolute 0 4 591 23 Filename::make_absolute 0 2 148 149 794
+/**
+ * Converts the filename to a fully-qualified pathname from the root (if it is
+ * a relative pathname), and then standardizes it (see standardize()).
+ *
+ * This is sometimes a little problematic, since it may convert the file to
+ * its 'true' absolute pathname, which could be an ugly NFS-named file,
+ * irrespective of symbolic links (e.g.
+ * /.automount/dimbo/root/usr2/fit/people/drose instead of /fit/people/drose);
+ * besides being ugly, filenames like this may not be consistent across
+ * multiple different platforms.
+ */
+
+/**
+ * Converts the filename to a fully-qualified filename from the root (if it is
+ * a relative filename), and then standardizes it (see standardize()).  This
+ * flavor accepts a specific starting directory that the filename is known to
+ * be relative to.
+ */
+98
+void Filename::make_absolute(void);
+void Filename::make_absolute(Filename const &start_directory);
+
+435 14 make_canonical 0 4 591 24 Filename::make_canonical 0 1 150 906
+/**
+ * Converts this filename to a canonical name by replacing the directory part
+ * with the fully-qualified directory part.  This is done by changing to that
+ * directory and calling getcwd().
+ *
+ * This has the effect of (a) converting relative paths to absolute paths (but
+ * see make_absolute() if this is the only effect you want), and (b) always
+ * resolving a given directory name to the same string, even if different
+ * symbolic links are traversed, and (c) changing nice symbolic-link paths
+ * like fit/people/drose to ugly NFS automounter names like
+ * hosts/dimbo/usr2/fit/people/drose.  This can be troubling, but sometimes
+ * this is exactly what you want, particularly if you're about to call
+ * make_relative_to() between two filenames.
+ *
+ * The return value is true if successful, or false on failure (usually
+ * because the directory name does not exist or cannot be chdir'ed into).
+ */
+36
+bool Filename::make_canonical(void);
+
+436 14 make_true_case 0 4 591 24 Filename::make_true_case 0 1 151 486
+/**
+ * On a case-insensitive operating system (e.g.  Windows), this method looks
+ * up the file in the file system and resets the Filename to represent the
+ * actual case of the file as it exists on the disk.  The return value is true
+ * if the file exists and the conversion can be made, or false if there is
+ * some error.
+ *
+ * On a case-sensitive operating system, this method does nothing and always
+ * returns true.
+ *
+ * An empty filename is considered to exist in this case.
+ */
+36
+bool Filename::make_true_case(void);
+
+437 14 to_os_specific 0 4 591 24 Filename::to_os_specific 0 1 152 408
+/**
+ * Converts the filename from our generic Unix-like convention (forward
+ * slashes starting with the root at '/') to the corresponding filename in the
+ * local operating system (slashes in the appropriate direction, starting with
+ * the root at C:\, for instance).  Returns the string representing the
+ * converted filename, but does not change the Filename itself.
+ *
+ * See also from_os_specific().
+ */
+49
+std::string Filename::to_os_specific(void) const;
+
+438 16 to_os_specific_w 0 4 591 26 Filename::to_os_specific_w 0 1 153 55
+/**
+ * The wide-string variant on to_os_specific().
+ */
+52
+std::wstring Filename::to_os_specific_w(void) const;
+
+439 13 to_os_generic 0 4 591 23 Filename::to_os_generic 0 1 154 499
+/**
+ * This is similar to to_os_specific(), but it is designed to generate a
+ * filename that can be understood on as many platforms as possible.  Since
+ * Windows can usually understand a forward-slash-delimited filename, this
+ * means it does the same thing as to_os_specific(), but it uses forward
+ * slashes instead of backslashes.
+ *
+ * This method has a pretty limited use; it should generally be used for
+ * writing file references to a file that might be read on any operating
+ * system.
+ */
+48
+std::string Filename::to_os_generic(void) const;
+
+440 16 to_os_short_name 0 4 591 26 Filename::to_os_short_name 0 1 155 404
+/**
+ * This works like to_os_generic(), but it returns the "short name" version of
+ * the filename, if it exists, or the original filename otherwise.
+ *
+ * On Windows platforms, this returns the 8.3 filename version of the given
+ * filename, if the file exists, and the same thing as to_os_specific()
+ * otherwise.  On non-Windows platforms, this always returns the same thing as
+ * to_os_specific().
+ */
+51
+std::string Filename::to_os_short_name(void) const;
+
+441 15 to_os_long_name 0 4 591 25 Filename::to_os_long_name 0 1 156 204
+/**
+ * This is the opposite of to_os_short_name(): it returns the "long name" of
+ * the filename, if the filename exists.  On non-Windows platforms, this
+ * returns the same thing as to_os_specific().
+ */
+50
+std::string Filename::to_os_long_name(void) const;
+
+442 6 exists 0 4 591 16 Filename::exists 0 1 157 180
+/**
+ * Returns true if the filename exists on the disk, false otherwise.  If the
+ * type is indicated to be executable, this also tests that the file has
+ * execute permission.
+ */
+34
+bool Filename::exists(void) const;
+
+443 15 is_regular_file 0 4 591 25 Filename::is_regular_file 0 1 158 134
+/**
+ * Returns true if the filename exists and is the name of a regular file (i.e.
+ * not a directory or device), false otherwise.
+ */
+43
+bool Filename::is_regular_file(void) const;
+
+444 11 is_writable 0 4 591 21 Filename::is_writable 0 1 159 137
+/**
+ * Returns true if the filename exists and is either a directory or a regular
+ * file that can be written to, or false otherwise.
+ */
+39
+bool Filename::is_writable(void) const;
+
+445 12 is_directory 0 4 591 22 Filename::is_directory 0 1 160 91
+/**
+ * Returns true if the filename exists and is a directory name, false
+ * otherwise.
+ */
+40
+bool Filename::is_directory(void) const;
+
+446 13 is_executable 0 4 591 23 Filename::is_executable 0 1 161 64
+/**
+ * Returns true if the filename exists and is executable
+ */
+41
+bool Filename::is_executable(void) const;
+
+447 18 compare_timestamps 0 4 591 28 Filename::compare_timestamps 0 1 162 449
+/**
+ * Returns a number less than zero if the file named by this object is older
+ * than the given file, zero if they have the same timestamp, or greater than
+ * zero if this one is newer.
+ *
+ * If this_missing_is_old is true, it indicates that a missing file will be
+ * treated as if it were older than any other file; otherwise, a missing file
+ * will be treated as if it were newer than any other file.  Similarly for
+ * other_missing_is_old.
+ */
+129
+int Filename::compare_timestamps(Filename const &other, bool this_missing_is_old = true, bool other_missing_is_old = true) const;
+
+448 13 get_timestamp 0 4 591 23 Filename::get_timestamp 0 1 163 434
+/**
+ * Returns a time_t value that represents the time the file was last modified,
+ * to within whatever precision the operating system records this information
+ * (on a Windows95 system, for instance, this may only be accurate to within 2
+ * seconds).
+ *
+ * If the timestamp cannot be determined, either because it is not supported
+ * by the operating system or because there is some error (such as file not
+ * found), returns 0.
+ */
+43
+time_t Filename::get_timestamp(void) const;
+
+449 20 get_access_timestamp 0 4 591 30 Filename::get_access_timestamp 0 1 164 195
+/**
+ * Returns a time_t value that represents the time the file was last accessed,
+ * if this information is available.  See also get_timestamp(), which returns
+ * the last modification time.
+ */
+50
+time_t Filename::get_access_timestamp(void) const;
+
+450 13 get_file_size 0 4 591 23 Filename::get_file_size 0 1 165 76
+/**
+ * Returns the size of the file in bytes, or 0 if there is an error.
+ */
+52
+std::streamsize Filename::get_file_size(void) const;
+
+451 16 resolve_filename 0 4 591 26 Filename::resolve_filename 0 1 166 174
+/**
+ * Searches the given search path for the filename.  If it is found, updates
+ * the filename to the full pathname found and returns true; otherwise,
+ * returns false.
+ */
+112
+bool Filename::resolve_filename(DSearchPath const &searchpath, std::string const &default_extension = string());
+
+452 16 make_relative_to 0 4 591 26 Filename::make_relative_to 0 1 167 867
+/**
+ * Adjusts this filename, which must be a fully-specified pathname beginning
+ * with a slash, to make it a relative filename, relative to the fully-
+ * specified directory indicated (which must also begin with, and may or may
+ * not end with, a slash--a terminating slash is ignored).
+ *
+ * This only performs a string comparsion, so it may be wise to call
+ * make_canonical() on both filenames before calling make_relative_to().
+ *
+ * If allow_backups is false, the filename will only be adjusted to be made
+ * relative if it is already somewhere within or below the indicated
+ * directory.  If allow_backups is true, it will be adjusted in all cases,
+ * even if this requires putting a series of .. characters before the filename
+ * --unless it would have to back all the way up to the root.
+ *
+ * Returns true if the file was adjusted, false if it was not.
+ */
+79
+bool Filename::make_relative_to(Filename directory, bool allow_backups = true);
+
+453 18 find_on_searchpath 0 4 591 28 Filename::find_on_searchpath 0 1 168 455
+/**
+ * Performs the reverse of the resolve_filename() operation: assuming that the
+ * current filename is fully-specified pathname (i.e.  beginning with '/'),
+ * look on the indicated search path for a directory under which the file can
+ * be found.  When found, adjust the Filename to be relative to the indicated
+ * directory name.
+ *
+ * Returns the index of the directory on the searchpath at which the file was
+ * found, or -1 if it was not found.
+ */
+64
+int Filename::find_on_searchpath(DSearchPath const &searchpath);
+
+454 14 scan_directory 0 4 591 24 Filename::scan_directory 0 2 169 170 481
+/**
+ * Attempts to open the named filename as if it were a directory and looks for
+ * the non-hidden files within the directory.  Fills the given vector up with
+ * the sorted list of filenames that are local to this directory.
+ *
+ * It is the user's responsibility to ensure that the contents vector is empty
+ * before making this call; otherwise, the new files will be appended to it.
+ *
+ * Returns true on success, false if the directory could not be read for some
+ * reason.
+ */
+109
+bool Filename::scan_directory(vector_string &contents) const;
+PyObject *Filename::scan_directory(void) const;
+
+455 9 open_read 0 4 591 19 Filename::open_read 0 2 171 172 669
+/**
+ * Opens the indicated ifstream for reading the file, if possible.  Returns
+ * true if successful, false otherwise.  This requires the setting of the
+ * set_text()/set_binary() flags to open the file appropriately as indicated;
+ * it is an error to call open_read() without first calling one of set_text()
+ * or set_binary().
+ */
+
+/**
+ * Opens the indicated pifstream for reading the file, if possible.  Returns
+ * true if successful, false otherwise.  This requires the setting of the
+ * set_text()/set_binary() flags to open the file appropriately as indicated;
+ * it is an error to call open_read() without first calling one of set_text()
+ * or set_binary().
+ */
+105
+bool Filename::open_read(std::ifstream &stream) const;
+bool Filename::open_read(pifstream &stream) const;
+
+456 10 open_write 0 4 591 20 Filename::open_write 0 2 173 174 987
+/**
+ * Opens the indicated ifstream for writing the file, if possible.  Returns
+ * true if successful, false otherwise.  This requires the setting of the
+ * set_text()/set_binary() flags to open the file appropriately as indicated;
+ * it is an error to call open_read() without first calling one of set_text()
+ * or set_binary().
+ *
+ * If truncate is true, the file is truncated to zero length upon opening it,
+ * if it already exists.  Otherwise, the file is kept at its original length.
+ */
+
+/**
+ * Opens the indicated pifstream for writing the file, if possible.  Returns
+ * true if successful, false otherwise.  This requires the setting of the
+ * set_text()/set_binary() flags to open the file appropriately as indicated;
+ * it is an error to call open_read() without first calling one of set_text()
+ * or set_binary().
+ *
+ * If truncate is true, the file is truncated to zero length upon opening it,
+ * if it already exists.  Otherwise, the file is kept at its original length.
+ */
+151
+bool Filename::open_write(std::ofstream &stream, bool truncate = true) const;
+bool Filename::open_write(pofstream &stream, bool truncate = true) const;
+
+457 11 open_append 0 4 591 21 Filename::open_append 0 2 175 176 669
+/**
+ * Opens the indicated ofstream for writing the file, if possible.  Returns
+ * true if successful, false otherwise.  This requires the setting of the
+ * set_text()/set_binary() flags to open the file appropriately as indicated;
+ * it is an error to call open_read() without first calling one of set_text()
+ * or set_binary().
+ */
+
+/**
+ * Opens the indicated pifstream for writing the file, if possible.  Returns
+ * true if successful, false otherwise.  This requires the setting of the
+ * set_text()/set_binary() flags to open the file appropriately as indicated;
+ * it is an error to call open_read() without first calling one of set_text()
+ * or set_binary().
+ */
+109
+bool Filename::open_append(std::ofstream &stream) const;
+bool Filename::open_append(pofstream &stream) const;
+
+458 15 open_read_write 0 4 591 25 Filename::open_read_write 0 2 177 178 702
+/**
+ * Opens the indicated fstream for read/write access to the file, if possible.
+ * Returns true if successful, false otherwise.  This requires the setting of
+ * the set_text()/set_binary() flags to open the file appropriately as
+ * indicated; it is an error to call open_read_write() without first calling
+ * one of set_text() or set_binary().
+ */
+
+/**
+ * Opens the indicated fstream for read/write access to the file, if possible.
+ * Returns true if successful, false otherwise.  This requires the setting of
+ * the set_text()/set_binary() flags to open the file appropriately as
+ * indicated; it is an error to call open_read_write() without first calling
+ * one of set_text() or set_binary().
+ */
+161
+bool Filename::open_read_write(std::fstream &stream, bool truncate = false) const;
+bool Filename::open_read_write(pfstream &stream, bool truncate = false) const;
+
+459 16 open_read_append 0 4 591 26 Filename::open_read_append 0 2 179 180 780
+/**
+ * Opens the indicated ifstream for reading and writing the file, if possible;
+ * writes are appended to the end of the file.  Returns true if successful,
+ * false otherwise.  This requires the setting of the set_text()/set_binary()
+ * flags to open the file appropriately as indicated; it is an error to call
+ * open_read() without first calling one of set_text() or set_binary().
+ */
+
+/**
+ * Opens the indicated pfstream for reading and writing the file, if possible;
+ * writes are appended to the end of the file.  Returns true if successful,
+ * false otherwise.  This requires the setting of the set_text()/set_binary()
+ * flags to open the file appropriately as indicated; it is an error to call
+ * open_read() without first calling one of set_text() or set_binary().
+ */
+117
+bool Filename::open_read_append(std::fstream &stream) const;
+bool Filename::open_read_append(pfstream &stream) const;
+
+460 5 chdir 0 4 591 15 Filename::chdir 0 1 181 105
+/**
+ * Changes directory to the specified location.  Returns true if successful,
+ * false if failure.
+ */
+33
+bool Filename::chdir(void) const;
+
+461 5 touch 0 4 591 15 Filename::touch 0 1 182 193
+/**
+ * Updates the modification time of the file to the current time.  If the file
+ * does not already exist, it will be created.  Returns true if successful,
+ * false if there is an error.
+ */
+33
+bool Filename::touch(void) const;
+
+462 6 unlink 0 4 591 16 Filename::unlink 0 1 183 221
+/**
+ * Permanently deletes the file associated with the filename, if possible.
+ * Returns true if successful, false if failure (for instance, because the
+ * file did not exist, or because permissions were inadequate).
+ */
+34
+bool Filename::unlink(void) const;
+
+463 9 rename_to 0 4 591 19 Filename::rename_to 0 1 184 187
+/**
+ * Renames the file to the indicated new filename.  If the new filename is in
+ * a different directory, this will perform a move.  Returns true if
+ * successful, false on failure.
+ */
+54
+bool Filename::rename_to(Filename const &other) const;
+
+464 7 copy_to 0 4 591 17 Filename::copy_to 0 1 185 230
+/**
+ * Copies the file to the indicated new filename, by reading the contents and
+ * writing it to the new file.  Returns true if successful, false on failure.
+ * The copy is always binary, regardless of the filename settings.
+ */
+52
+bool Filename::copy_to(Filename const &other) const;
+
+465 8 make_dir 0 4 591 18 Filename::make_dir 0 1 186 409
+/**
+ * Creates all the directories in the path to the file specified in the
+ * filename, except for the basename itself.  This assumes that the Filename
+ * contains the name of a file, not a directory name; it ensures that the
+ * directory containing the file exists.
+ *
+ * However, if the filename ends in a slash, it assumes the Filename
+ * represents the name of a directory, and creates all the paths.
+ */
+36
+bool Filename::make_dir(void) const;
+
+466 5 mkdir 0 4 591 15 Filename::mkdir 0 1 187 265
+/**
+ * Creates the directory named by this filename.  Unlike make_dir(), this
+ * assumes that the Filename contains the directory name itself.  Also, parent
+ * directories are not automatically created; this function fails if any
+ * parent directory is missing.
+ */
+33
+bool Filename::mkdir(void) const;
+
+467 5 rmdir 0 4 591 15 Filename::rmdir 0 1 188 118
+/**
+ * The inverse of mkdir(): this removes the directory named by this Filename,
+ * if it is in fact a directory.
+ */
+33
+bool Filename::rmdir(void) const;
+
+468 11 operator == 0 4 591 21 Filename::operator == 0 1 189 34
+// Comparison operators are handy.
+66
+inline bool Filename::operator ==(std::string const &other) const;
+
+469 11 operator != 0 4 591 21 Filename::operator != 0 1 190 0
+66
+inline bool Filename::operator !=(std::string const &other) const;
+
+470 10 operator < 0 4 591 20 Filename::operator < 0 1 191 0
+65
+inline bool Filename::operator <(std::string const &other) const;
+
+471 10 compare_to 0 4 591 20 Filename::compare_to 0 1 192 10
+/**
+ *
+ */
+61
+inline int Filename::compare_to(Filename const &other) const;
+
+472 11 __nonzero__ 0 4 591 21 Filename::__nonzero__ 0 1 193 349
+/**
+ * Returns true if the Filename is valid (not empty), or false if it is an
+ * empty string.
+ *
+ * This implements the Python equivalent to operator bool.  Defining an actual
+ * operator bool method for C++ use would work too, but it seems to cause too
+ * many ambiguities for the C++ compiler, so we use this Python-only approach
+ * instead.
+ */
+46
+inline bool Filename::__nonzero__(void) const;
+
+473 8 get_hash 0 4 591 18 Filename::get_hash 0 1 194 92
+/**
+ * Returns a hash code that attempts to be mostly unique for different
+ * Filenames.
+ */
+35
+int Filename::get_hash(void) const;
+
+474 6 output 0 4 591 16 Filename::output 0 1 195 10
+/**
+ *
+ */
+54
+inline void Filename::output(std::ostream &out) const;
+
+475 23 set_filesystem_encoding 0 4 591 33 Filename::set_filesystem_encoding 0 1 196 266
+/**
+ * Specifies the default encoding to be used for all subsequent Filenames.
+ * This is used to represent wide-character (Unicode) filenames internally.
+ * On non-Windows-based systems, the encoded filename is also passed to the
+ * underlying operating system.
+ */
+85
+static inline void Filename::set_filesystem_encoding(TextEncoder::Encoding encoding);
+
+476 23 get_filesystem_encoding 0 4 591 33 Filename::get_filesystem_encoding 0 1 197 125
+/**
+ * Specifies the default encoding to be used for all subsequent Filenames
+ * objects.  See set_filesystem_encoding().
+ */
+76
+static inline TextEncoder::Encoding Filename::get_filesystem_encoding(void);
+
+477 14 get_class_type 0 4 591 24 Filename::get_class_type 0 1 198 0
+49
+static TypeHandle Filename::get_class_type(void);
+
+478 9 ~Filename 0 4 591 19 Filename::~Filename 0 0 0
+26
+Filename::~Filename(void);
+
+479 18 get_version_string 0 4 593 31 PandaSystem::get_version_string 0 1 200 184
+/**
+ * Returns the current version of Panda, expressed as a string, e.g.  "1.0.0".
+ * The string will end in the letter "c" if this build does not represent an
+ * official version.
+ */
+57
+static std::string PandaSystem::get_version_string(void);
+
+480 26 get_package_version_string 0 4 593 39 PandaSystem::get_package_version_string 0 1 201 836
+/**
+ * Returns the version of the Panda3D distributable package that provides this
+ * build of Panda.
+ *
+ * When the currently-executing version of Panda was loaded from a
+ * distributable package, such as via the browser plugin, then this string
+ * will be nonempty and will contain the corresponding version string.  You
+ * can build applications that use this particular version of Panda by
+ * requesting it in the pdef file, using "panda3d", this version string, and
+ * the download host provided by get_package_host_url().
+ *
+ * If this string is empty, then the currently-executing Panda was built
+ * independently, and is not part of a distributable package.
+ *
+ * This string is set explicitly at compilation time.  Normally, it should be
+ * set to a nonempty string only when building a Panda3D package for
+ * distribution.
+ */
+65
+static std::string PandaSystem::get_package_version_string(void);
+
+481 20 get_package_host_url 0 4 593 33 PandaSystem::get_package_host_url 0 1 202 503
+/**
+ * Returns the URL of the download server that provides the Panda3D
+ * distributable package currently running.  This can be used, along with the
+ * get_package_version_string(), to uniquely identify the running version of
+ * Panda among distributable Panda versions.
+ *
+ * See get_package_version_string() for more information.
+ *
+ * This string is set explicitly at compilation time.  Normally, it should be
+ * set to a nonempty string only when building a Panda3D package for
+ * distribution.
+ */
+59
+static std::string PandaSystem::get_package_host_url(void);
+
+482 30 get_p3d_coreapi_version_string 0 4 593 43 PandaSystem::get_p3d_coreapi_version_string 0 1 203 549
+/**
+ * Returns the current version of Panda's Core API, expressed as a string of
+ * dot-delimited integers.  There are usually four integers in this version,
+ * but this is not guaranteed.
+ *
+ * The Core API is used during the runtime (plugin) environment only.  This
+ * may be the empty string if the current version of Panda is not built to
+ * provide a particular Core API, which will be the normal case in a
+ * development SDK.  However, you should not use this method to determine
+ * whether you are running in a runtime environment or not.
+ */
+69
+static std::string PandaSystem::get_p3d_coreapi_version_string(void);
+
+483 17 get_major_version 0 4 593 30 PandaSystem::get_major_version 0 1 204 188
+/**
+ * Returns the major version number of the current version of Panda.  This is
+ * the first number of the dotted triple returned by get_version_string().  It
+ * changes very rarely.
+ */
+48
+static int PandaSystem::get_major_version(void);
+
+484 17 get_minor_version 0 4 593 30 PandaSystem::get_minor_version 0 1 205 223
+/**
+ * Returns the minor version number of the current version of Panda.  This is
+ * the second number of the dotted triple returned by get_version_string().
+ * It changes with each release that introduces new features.
+ */
+48
+static int PandaSystem::get_minor_version(void);
+
+485 20 get_sequence_version 0 4 593 33 PandaSystem::get_sequence_version 0 1 206 229
+/**
+ * Returns the sequence version number of the current version of Panda.  This
+ * is the third number of the dotted triple returned by get_version_string().
+ * It changes with bugfix updates and very minor feature updates.
+ */
+51
+static int PandaSystem::get_sequence_version(void);
+
+486 19 is_official_version 0 4 593 32 PandaSystem::is_official_version 0 1 207 391
+/**
+ * Returns true if current version of Panda claims to be an "official"
+ * version, that is, one that was compiled by an official distributor of Panda
+ * using a specific version of the panda source tree.  If this is true, there
+ * will not be a "c" at the end of the version string returned by
+ * get_version_string().
+ *
+ * Note that we must take the distributor's word for it here.
+ */
+51
+static bool PandaSystem::is_official_version(void);
+
+487 20 get_memory_alignment 0 4 593 33 PandaSystem::get_memory_alignment 0 1 208 74
+/**
+ * Returns the memory alignment that Panda's allocators are using.
+ */
+51
+static int PandaSystem::get_memory_alignment(void);
+
+488 15 get_distributor 0 4 593 28 PandaSystem::get_distributor 0 1 209 213
+/**
+ * Returns the string defined by the distributor of this version of Panda, or
+ * "homebuilt" if this version was built directly from the sources by the end-
+ * user.  This is a completely arbitrary string.
+ */
+54
+static std::string PandaSystem::get_distributor(void);
+
+489 12 get_compiler 0 4 593 25 PandaSystem::get_compiler 0 1 210 152
+/**
+ * Returns a string representing the compiler that was used to generate this
+ * version of Panda, if it is available, or "unknown" if it is not.
+ */
+51
+static std::string PandaSystem::get_compiler(void);
+
+490 14 get_build_date 0 4 593 27 PandaSystem::get_build_date 0 1 211 140
+/**
+ * Returns a string representing the date and time at which this version of
+ * Panda (or at least dtool) was compiled, if available.
+ */
+53
+static std::string PandaSystem::get_build_date(void);
+
+491 14 get_git_commit 0 4 593 27 PandaSystem::get_git_commit 0 1 212 162
+/**
+ * Returns a string representing the git commit hash that this source tree is
+ * based on, or the empty string if it has not been specified at build time.
+ */
+53
+static std::string PandaSystem::get_git_commit(void);
+
+492 12 get_platform 0 4 593 25 PandaSystem::get_platform 0 1 213 170
+/**
+ * Returns a string representing the runtime platform that we are currently
+ * running on.  This will be something like "win32" or "osx_i386" or
+ * "linux_amd64".
+ */
+51
+static std::string PandaSystem::get_platform(void);
+
+493 10 has_system 0 4 593 23 PandaSystem::has_system 0 1 214 188
+/**
+ * Returns true if the current version of Panda claims to have the indicated
+ * subsystem installed, false otherwise.  The set of available subsystems is
+ * implementation defined.
+ */
+62
+bool PandaSystem::has_system(std::string const &system) const;
+
+494 15 get_num_systems 0 4 593 28 PandaSystem::get_num_systems 0 1 215 189
+/**
+ * Returns the number of Panda subsystems that have registered themselves.
+ * This can be used with get_system() to iterate through the entire list of
+ * available Panda subsystems.
+ */
+53
+std::size_t PandaSystem::get_num_systems(void) const;
+
+495 10 get_system 0 4 593 23 PandaSystem::get_system 0 1 216 122
+/**
+ * Returns the nth Panda subsystem that has registered itself.  This list will
+ * be sorted in alphabetical order.
+ */
+57
+std::string PandaSystem::get_system(std::size_t n) const;
+
+496 14 get_system_tag 0 4 593 27 PandaSystem::get_system_tag 0 1 217 368
+/**
+ * Returns the value associated with the indicated tag for the given system.
+ * This provides a standard way to query each subsystem's advertised
+ * capabilities.  The set of tags and values are per-system and
+ * implementation-defined.
+ *
+ * The return value is the empty string if the indicated system is undefined
+ * or if does not define the indicated tag.
+ */
+97
+std::string PandaSystem::get_system_tag(std::string const &system, std::string const &tag) const;
+
+497 10 add_system 0 4 593 23 PandaSystem::add_system 0 1 218 76
+/**
+ * Intended for use by each subsystem to register itself at startup.
+ */
+56
+void PandaSystem::add_system(std::string const &system);
+
+498 14 set_system_tag 0 4 593 27 PandaSystem::set_system_tag 0 1 219 96
+/**
+ * Intended for use by each subsystem to register its set of capabilities at
+ * startup.
+ */
+110
+void PandaSystem::set_system_tag(std::string const &system, std::string const &tag, std::string const &value);
+
+499 9 heap_trim 0 4 593 22 PandaSystem::heap_trim 0 1 220 414
+/**
+ * Attempts to release memory back to the system, if possible.  The pad
+ * argument is the minimum amount of unused memory to keep in the heap
+ * (against future allocations).  Any memory above that may be released to the
+ * system, reducing the memory size of this process.  There is no guarantee
+ * that any memory may be released.
+ *
+ * Returns true if any memory was actually released, false otherwise.
+ */
+45
+bool PandaSystem::heap_trim(std::size_t pad);
+
+500 6 output 0 4 593 19 PandaSystem::output 0 1 221 10
+/**
+ *
+ */
+50
+void PandaSystem::output(std::ostream &out) const;
+
+501 5 write 0 4 593 18 PandaSystem::write 0 1 222 10
+/**
+ *
+ */
+49
+void PandaSystem::write(std::ostream &out) const;
+
+502 14 get_global_ptr 0 4 593 27 PandaSystem::get_global_ptr 0 1 223 49
+/**
+ * Returns the global PandaSystem object.
+ */
+54
+static PandaSystem *PandaSystem::get_global_ptr(void);
+
+503 14 get_class_type 0 4 593 27 PandaSystem::get_class_type 0 1 224 0
+52
+static TypeHandle PandaSystem::get_class_type(void);
+
+504 7 Results 0 4 599 29 DSearchPath::Results::Results 0 2 247 248 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+101
+DSearchPath::Results::Results(void);
+DSearchPath::Results::Results(DSearchPath::Results const &copy);
+
+505 10 operator = 0 4 599 32 DSearchPath::Results::operator = 0 1 249 0
+72
+void DSearchPath::Results::operator =(DSearchPath::Results const &copy);
+
+506 8 ~Results 0 4 599 30 DSearchPath::Results::~Results 0 0 10
+/**
+ *
+ */
+37
+DSearchPath::Results::~Results(void);
+
+507 5 clear 0 4 599 27 DSearchPath::Results::clear 0 1 250 47
+/**
+ * Removes all the files from the list.
+ */
+39
+void DSearchPath::Results::clear(void);
+
+508 13 get_num_files 0 4 599 35 DSearchPath::Results::get_num_files 0 1 251 58
+/**
+ * Returns the number of files on the result list.
+ */
+60
+std::size_t DSearchPath::Results::get_num_files(void) const;
+
+509 8 get_file 0 4 599 30 DSearchPath::Results::get_file 0 1 252 51
+/**
+ * Returns the nth file on the result list.
+ */
+68
+Filename const &DSearchPath::Results::get_file(std::size_t n) const;
+
+510 11 operator [] 0 4 599 33 DSearchPath::Results::operator [] 0 1 253 0
+71
+inline Filename DSearchPath::Results::operator [](std::size_t n) const;
+
+511 4 size 0 4 599 26 DSearchPath::Results::size 0 1 254 136
+/**
+ * Returns the num of filenames in the set.  This method is defined to make
+ * the Results object appear to be a list in Python.
+ */
+58
+inline std::size_t DSearchPath::Results::size(void) const;
+
+512 6 output 0 4 599 28 DSearchPath::Results::output 0 1 255 10
+/**
+ *
+ */
+59
+void DSearchPath::Results::output(std::ostream &out) const;
+
+513 5 write 0 4 599 27 DSearchPath::Results::write 0 1 256 10
+/**
+ *
+ */
+80
+void DSearchPath::Results::write(std::ostream &out, int indent_level = 0) const;
+
+514 11 DSearchPath 0 4 598 24 DSearchPath::DSearchPath 0 5 225 226 227 228 229 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+303
+DSearchPath::DSearchPath(void) = default;
+DSearchPath::DSearchPath(std::string const &path, std::string const &separator = string());
+DSearchPath::DSearchPath(Filename const &directory);
+DSearchPath::DSearchPath(DSearchPath const &copy) = default;
+DSearchPath::DSearchPath(DSearchPath &&from) = default;
+
+515 12 ~DSearchPath 0 4 598 25 DSearchPath::~DSearchPath 0 0 0
+42
+DSearchPath::~DSearchPath(void) = default;
+
+516 10 operator = 0 4 598 23 DSearchPath::operator = 0 2 230 231 0
+124
+void DSearchPath::operator =(DSearchPath const &copy) = default;
+void DSearchPath::operator =(DSearchPath &&from) = default;
+
+517 5 clear 0 4 598 18 DSearchPath::clear 0 1 232 60
+/**
+ * Removes all the directories from the search list.
+ */
+30
+void DSearchPath::clear(void);
+
+518 16 append_directory 0 4 598 29 DSearchPath::append_directory 0 1 233 62
+/**
+ * Adds a new directory to the end of the search list.
+ */
+62
+void DSearchPath::append_directory(Filename const &directory);
+
+519 17 prepend_directory 0 4 598 30 DSearchPath::prepend_directory 0 1 234 64
+/**
+ * Adds a new directory to the front of the search list.
+ */
+63
+void DSearchPath::prepend_directory(Filename const &directory);
+
+520 11 append_path 0 4 598 24 DSearchPath::append_path 0 2 235 236 198
+/**
+ * Adds all of the directories listed in the search path to the end of the
+ * search list.
+ */
+
+/**
+ * Adds all of the directories listed in the search path to the end of the
+ * search list.
+ */
+152
+void DSearchPath::append_path(std::string const &path, std::string const &separator = string());
+void DSearchPath::append_path(DSearchPath const &path);
+
+521 12 prepend_path 0 4 598 25 DSearchPath::prepend_path 0 1 237 104
+/**
+ * Adds all of the directories listed in the search path to the beginning of
+ * the search list.
+ */
+56
+void DSearchPath::prepend_path(DSearchPath const &path);
+
+522 8 is_empty 0 4 598 21 DSearchPath::is_empty 0 1 238 69
+/**
+ * Returns true if the search list is empty, false otherwise.
+ */
+39
+bool DSearchPath::is_empty(void) const;
+
+523 19 get_num_directories 0 4 598 32 DSearchPath::get_num_directories 0 1 239 64
+/**
+ * Returns the number of directories on the search list.
+ */
+57
+std::size_t DSearchPath::get_num_directories(void) const;
+
+524 13 get_directory 0 4 598 26 DSearchPath::get_directory 0 1 240 56
+/**
+ * Returns the nth directory on the search list.
+ */
+64
+Filename const &DSearchPath::get_directory(std::size_t n) const;
+
+525 9 find_file 0 4 598 22 DSearchPath::find_file 0 1 241 197
+/**
+ * Searches all the directories in the search list for the indicated file, in
+ * order.  Returns the full matching pathname of the first match if found, or
+ * the empty string if not found.
+ */
+64
+Filename DSearchPath::find_file(Filename const &filename) const;
+
+526 14 find_all_files 0 4 598 27 DSearchPath::find_all_files 0 2 242 243 549
+/**
+ * This variant of find_all_files() returns the new Results object, instead of
+ * filling on in on the parameter list.  This is a little more convenient to
+ * call from Python.
+ */
+
+/**
+ * Searches all the directories in the search list for the indicated file, in
+ * order.  Fills up the results list with *all* of the matching filenames
+ * found, if any.  Returns the number of matches found.
+ *
+ * It is the responsibility of the the caller to clear the results list first;
+ * otherwise, the newly-found files will be appended to the list.
+ */
+192
+std::size_t DSearchPath::find_all_files(Filename const &filename, DSearchPath::Results &results) const;
+inline DSearchPath::Results DSearchPath::find_all_files(Filename const &filename) const;
+
+527 11 search_path 0 4 598 24 DSearchPath::search_path 0 1 244 251
+/**
+ * A quick-and-easy way to search a searchpath for a file when you don't feel
+ * like building or keeping around a DSearchPath object.  This simply
+ * constructs a temporary DSearchPath based on the indicated path string, and
+ * searches that.
+ */
+140
+static inline Filename DSearchPath::search_path(Filename const &filename, std::string const &path, std::string const &separator = string());
+
+528 6 output 0 4 598 19 DSearchPath::output 0 1 245 10
+/**
+ *
+ */
+91
+void DSearchPath::output(std::ostream &out, std::string const &separator = string()) const;
+
+529 5 write 0 4 598 18 DSearchPath::write 0 1 246 10
+/**
+ *
+ */
+71
+void DSearchPath::write(std::ostream &out, int indent_level = 0) const;
+
+530 24 has_environment_variable 0 4 601 46 ExecutionEnvironment::has_environment_variable 0 1 258 73
+/**
+ * Returns true if the indicated environment variable is defined.
+ */
+90
+static inline bool ExecutionEnvironment::has_environment_variable(std::string const &var);
+
+531 24 get_environment_variable 0 4 601 46 ExecutionEnvironment::get_environment_variable 0 1 259 125
+/**
+ * Returns the definition of the indicated environment variable, or the empty
+ * string if the variable is undefined.
+ */
+97
+static inline std::string ExecutionEnvironment::get_environment_variable(std::string const &var);
+
+532 24 set_environment_variable 0 4 601 46 ExecutionEnvironment::set_environment_variable 0 1 260 72
+/**
+ * Changes the definition of the indicated environment variable.
+ */
+116
+static inline void ExecutionEnvironment::set_environment_variable(std::string const &var, std::string const &value);
+
+533 27 shadow_environment_variable 0 4 601 49 ExecutionEnvironment::shadow_environment_variable 0 1 261 269
+/**
+ * Changes the apparent definition of the indicated environment variable by
+ * masking it within this class with a new value.  This does not change the
+ * actual environment variable, but future calls to get_environment_variable()
+ * will return this new value.
+ */
+119
+static inline void ExecutionEnvironment::shadow_environment_variable(std::string const &var, std::string const &value);
+
+534 12 clear_shadow 0 4 601 34 ExecutionEnvironment::clear_shadow 0 1 262 140
+/**
+ * Removes a value set by a previous call to shadow_environment_variable(),
+ * and lets the actual value of the variable show again.
+ */
+78
+static inline void ExecutionEnvironment::clear_shadow(std::string const &var);
+
+535 13 expand_string 0 4 601 35 ExecutionEnvironment::expand_string 0 1 263 220
+/**
+ * Reads the string, looking for environment variable names marked by a $.
+ * Expands all such variable names.  A repeated dollar sign ($$) is mapped to
+ * a single dollar sign.
+ *
+ * Returns the expanded string.
+ */
+79
+static std::string ExecutionEnvironment::expand_string(std::string const &str);
+
+536 12 get_num_args 0 4 601 34 ExecutionEnvironment::get_num_args 0 1 264 106
+/**
+ * Returns the number of command-line arguments available, not counting arg 0,
+ * the binary name.
+ */
+67
+static inline std::size_t ExecutionEnvironment::get_num_args(void);
+
+537 7 get_arg 0 4 601 29 ExecutionEnvironment::get_arg 0 1 265 194
+/**
+ * Returns the nth command-line argument.  The index n must be in the range [0
+ * .. get_num_args()).  The first parameter, n == 0, is the first actual
+ * parameter, not the binary name.
+ */
+71
+static inline std::string ExecutionEnvironment::get_arg(std::size_t n);
+
+538 15 get_binary_name 0 4 601 37 ExecutionEnvironment::get_binary_name 0 1 266 107
+/**
+ * Returns the name of the binary executable that started this program, if it
+ * can be determined.
+ */
+70
+static inline std::string ExecutionEnvironment::get_binary_name(void);
+
+539 14 get_dtool_name 0 4 601 36 ExecutionEnvironment::get_dtool_name 0 1 267 105
+/**
+ * Returns the name of the libdtool DLL that is used in this program, if it
+ * can be determined.
+ */
+69
+static inline std::string ExecutionEnvironment::get_dtool_name(void);
+
+540 15 set_binary_name 0 4 601 37 ExecutionEnvironment::set_binary_name 0 1 268 22
+/**
+ * Do not use.
+ */
+82
+static inline void ExecutionEnvironment::set_binary_name(std::string const &name);
+
+541 14 set_dtool_name 0 4 601 36 ExecutionEnvironment::set_dtool_name 0 1 269 22
+/**
+ * Do not use.
+ */
+81
+static inline void ExecutionEnvironment::set_dtool_name(std::string const &name);
+
+542 7 get_cwd 0 4 601 29 ExecutionEnvironment::get_cwd 0 1 270 61
+/**
+ * Returns the name of the current working directory.
+ */
+52
+static Filename ExecutionEnvironment::get_cwd(void);
+
+543 20 ExecutionEnvironment 0 4 601 42 ExecutionEnvironment::ExecutionEnvironment 0 1 257 102
+/**
+ * You shouldn't need to construct one of these; there's only one and it
+ * constructs itself.
+ */
+90
+inline ExecutionEnvironment::ExecutionEnvironment(ExecutionEnvironment const &) = default;
+
+544 21 ~ExecutionEnvironment 0 4 601 43 ExecutionEnvironment::~ExecutionEnvironment 0 0 0
+50
+ExecutionEnvironment::~ExecutionEnvironment(void);
+
+545 11 GlobPattern 0 4 602 24 GlobPattern::GlobPattern 0 2 271 272 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+129
+inline GlobPattern::GlobPattern(std::string const &pattern = string());
+inline GlobPattern::GlobPattern(GlobPattern const &copy);
+
+546 10 operator = 0 4 602 23 GlobPattern::operator = 0 1 273 0
+61
+inline void GlobPattern::operator =(GlobPattern const &copy);
+
+547 11 operator == 0 4 602 24 GlobPattern::operator == 0 1 274 0
+69
+inline bool GlobPattern::operator ==(GlobPattern const &other) const;
+
+548 11 operator != 0 4 602 24 GlobPattern::operator != 0 1 275 0
+69
+inline bool GlobPattern::operator !=(GlobPattern const &other) const;
+
+549 10 operator < 0 4 602 23 GlobPattern::operator < 0 1 276 0
+68
+inline bool GlobPattern::operator <(GlobPattern const &other) const;
+
+550 11 set_pattern 0 4 602 24 GlobPattern::set_pattern 0 1 277 74
+/**
+ * Changes the pattern string that the GlobPattern object matches.
+ */
+65
+inline void GlobPattern::set_pattern(std::string const &pattern);
+
+551 11 get_pattern 0 4 602 24 GlobPattern::get_pattern 0 1 278 74
+/**
+ * Returns the pattern string that the GlobPattern object matches.
+ */
+63
+inline std::string const &GlobPattern::get_pattern(void) const;
+
+552 18 set_case_sensitive 0 4 602 31 GlobPattern::set_case_sensitive 0 1 279 122
+/**
+ * Sets whether the match is case sensitive (true) or case insensitive
+ * (false).  The default is case sensitive.
+ */
+65
+inline void GlobPattern::set_case_sensitive(bool case_sensitive);
+
+553 18 get_case_sensitive 0 4 602 31 GlobPattern::get_case_sensitive 0 1 280 125
+/**
+ * Returns whether the match is case sensitive (true) or case insensitive
+ * (false).  The default is case sensitive.
+ */
+56
+inline bool GlobPattern::get_case_sensitive(void) const;
+
+554 17 set_nomatch_chars 0 4 602 30 GlobPattern::set_nomatch_chars 0 1 281 72
+/**
+ * Specifies a set of characters that are not matched by * or ?.
+ */
+77
+inline void GlobPattern::set_nomatch_chars(std::string const &nomatch_chars);
+
+555 17 get_nomatch_chars 0 4 602 30 GlobPattern::get_nomatch_chars 0 1 282 72
+/**
+ * Returns the set of characters that are not matched by * or ?.
+ */
+69
+inline std::string const &GlobPattern::get_nomatch_chars(void) const;
+
+556 7 matches 0 4 602 20 GlobPattern::matches 0 1 283 85
+/**
+ * Returns true if the candidate string matches the pattern, false otherwise.
+ */
+69
+inline bool GlobPattern::matches(std::string const &candidate) const;
+
+557 12 matches_file 0 4 602 25 GlobPattern::matches_file 0 1 284 273
+/**
+ * Treats the GlobPattern as a filename pattern, and returns true if the given
+ * filename matches the pattern.  Unlike matches(), this will not match slash
+ * characters for single asterisk characters, and it will ignore path
+ * components that only contain a dot.
+ */
+57
+bool GlobPattern::matches_file(Filename candidate) const;
+
+558 6 output 0 4 602 19 GlobPattern::output 0 1 285 10
+/**
+ *
+ */
+57
+inline void GlobPattern::output(std::ostream &out) const;
+
+559 19 has_glob_characters 0 4 602 32 GlobPattern::has_glob_characters 0 1 286 124
+/**
+ * Returns true if the pattern includes any special globbing characters, or
+ * false if it is just a literal string.
+ */
+50
+bool GlobPattern::has_glob_characters(void) const;
+
+560 16 get_const_prefix 0 4 602 29 GlobPattern::get_const_prefix 0 1 287 265
+/**
+ * Returns the initial part of the pattern before the first glob character.
+ * Since many glob patterns begin with a sequence of static characters and end
+ * with one or more glob characters, this can be used to optimized searches
+ * through sorted indices.
+ */
+54
+std::string GlobPattern::get_const_prefix(void) const;
+
+561 11 match_files 0 4 602 24 GlobPattern::match_files 0 2 288 289 547
+/**
+ * Treats the GlobPattern as a filename pattern, and returns a list of any
+ * actual files that match the pattern.  This is the behavior of the standard
+ * Posix glob() function.  Any part of the filename may contain glob
+ * characters, including intermediate directory names.
+ *
+ * If cwd is specified, it is the directory that relative filenames are taken
+ * to be relative to; otherwise, the actual current working directory is
+ * assumed.
+ *
+ * The return value is the number of files matched, which are added to the
+ * results vector.
+ */
+169
+int GlobPattern::match_files(vector_string &results, Filename const &cwd = Filename()) const;
+PyObject *GlobPattern::match_files(Filename const &cwd = Filename()) const;
+
+562 12 ~GlobPattern 0 4 602 25 GlobPattern::~GlobPattern 0 0 0
+32
+GlobPattern::~GlobPattern(void);
+
+563 10 LineStream 0 4 604 22 LineStream::LineStream 0 1 290 10
+/**
+ *
+ */
+36
+inline LineStream::LineStream(void);
+
+564 17 is_text_available 0 4 604 29 LineStream::is_text_available 0 1 291 198
+/**
+ * Returns true if there is at least one line of text (or even a partial line)
+ * available in the LineStream object.  If this returns true, the line may
+ * then be retrieved via get_line().
+ */
+54
+inline bool LineStream::is_text_available(void) const;
+
+565 8 get_line 0 4 604 20 LineStream::get_line 0 1 292 275
+/**
+ * Extracts and returns the next line (or partial line) of text available in
+ * the LineStream object.  Once the line has been extracted, you may call
+ * has_newline() to determine whether or not there was an explicit newline
+ * character written following this line.
+ */
+46
+inline std::string LineStream::get_line(void);
+
+566 11 has_newline 0 4 604 23 LineStream::has_newline 0 1 293 206
+/**
+ * Returns true if the line of text most recently returned by get_line() was
+ * written out with a terminating newline, or false if a newline character has
+ * not yet been written to the LineStream.
+ */
+48
+inline bool LineStream::has_newline(void) const;
+
+567 11 ~LineStream 0 4 604 23 LineStream::~LineStream 0 0 0
+30
+LineStream::~LineStream(void);
+
+293
+1 0 0 6 7 597 0 0 0 1 4 this 3 605  
+2 0 0 6 8 597 0 0 0 1 4 this 3 605  
+3 0 0 6 9 597 0 0 0 1 4 this 3 605  
+4 0 0 6 10 597 0 0 0 1 4 this 3 605  
+5 0 0 4 11 608 0 0 0 1 4 this 3 607  
+6 0 0 7 34 609 320 0 0 0 
+7 0 0 4 35 608 0 0 0 1 4 this 3 609  
+8 0 0 4 32 608 0 0 0 1 4 this 3 610  
+9 0 0 6 21 611 0 0 0 1 4 this 3 610  
+10 0 0 6 30 612 0 0 0 1 4 this 3 610  
+11 0 0 6 17 596 0 0 0 1 4 this 3 611  
+12 0 0 6 18 613 0 0 0 1 4 this 3 611  
+13 0 0 4 19 608 0 0 0 2 4 this 3 611  3 pos 1 613  
+14 0 0 4 19 608 0 0 0 3 4 this 3 611  3 off 1 613  3 dir 1 570  
+15 0 0 6 16 607 0 0 0 1 4 this 3 611  
+16 0 0 4 25 608 0 0 0 2 4 this 3 612  1 c 1 615  
+17 0 0 4 26 608 0 0 0 1 4 this 3 612  
+18 0 0 6 27 613 0 0 0 1 4 this 3 612  
+19 0 0 4 28 608 0 0 0 2 4 this 3 612  3 pos 1 613  
+20 0 0 4 28 608 0 0 0 3 4 this 3 612  3 off 1 613  3 dir 1 570  
+21 0 0 6 24 607 0 0 0 1 4 this 3 612  
+22 0 0 7 38 616 323 0 0 0 
+23 0 0 4 39 608 0 0 0 1 4 this 3 616  
+24 0 0 7 43 617 326 0 0 0 
+25 0 0 4 44 608 0 0 0 1 4 this 3 617  
+26 0 0 7 47 618 328 0 10 /**
+ *
+ */ 0 
+27 0 0 7 47 618 328 0 10 /**
+ *
+ */ 2 8 filename 1 619  4 mode 1 571  
+28 0 0 4 49 608 0 0 10 /**
+ *
+ */ 3 4 this 3 618  8 filename 1 619  4 mode 1 571  
+29 0 0 4 50 608 0 0 10 /**
+ *
+ */ 1 4 this 3 618  
+30 0 0 7 52 620 332 0 10 /**
+ *
+ */ 0 
+31 0 0 7 52 620 332 0 10 /**
+ *
+ */ 2 8 filename 1 619  4 mode 1 571  
+32 0 0 4 54 608 0 0 10 /**
+ *
+ */ 3 4 this 3 620  8 filename 1 619  4 mode 1 571  
+33 0 0 4 55 608 0 0 10 /**
+ *
+ */ 1 4 this 3 620  
+34 0 0 7 57 621 336 0 10 /**
+ *
+ */ 0 
+35 0 0 7 57 621 336 0 10 /**
+ *
+ */ 2 8 filename 1 619  4 mode 1 571  
+36 0 0 4 59 608 0 0 10 /**
+ *
+ */ 3 4 this 3 621  8 filename 1 619  4 mode 1 571  
+37 0 0 4 60 608 0 0 10 /**
+ *
+ */ 1 4 this 3 621  
+38 0 0 7 66 622 340 0 10 /**
+ *
+ */ 0 
+39 0 0 7 66 622 340 0 10 /**
+ *
+ */ 1 4 copy 1 623  
+40 0 0 4 68 608 0 0 374 /**
+ * Specifies how the string set via set_text() is to be interpreted.  The
+ * default, E_iso8859, means a standard string with one-byte characters (i.e.
+ * ASCII).  Other encodings are possible to take advantage of character sets
+ * with more than 256 characters.
+ *
+ * This affects only future calls to set_text(); it does not change text that
+ * was set previously.
+ */ 2 4 this 3 622  8 encoding 1 587  
+41 0 0 6 69 587 0 0 116 /**
+ * Returns the encoding by which the string set via set_text() is to be
+ * interpreted.  See set_encoding().
+ */ 1 4 this 3 623  
+42 0 0 4 70 608 0 0 126 /**
+ * Specifies the default encoding to be used for all subsequently created
+ * TextEncoder objects.  See set_encoding().
+ */ 1 8 encoding 1 587  
+43 0 0 6 71 587 0 0 126 /**
+ * Specifies the default encoding to be used for all subsequently created
+ * TextEncoder objects.  See set_encoding().
+ */ 0 
+44 0 0 4 73 608 0 0 0 2 4 this 3 622  4 text 1 588  
+45 0 0 4 73 608 0 0 0 3 4 this 3 622  4 text 1 588  8 encoding 1 587  
+46 0 0 4 74 608 0 0 49 /**
+ * Removes the text from the TextEncoder.
+ */ 1 4 this 3 622  
+47 0 0 6 75 597 0 0 10 /**
+ *
+ */ 1 4 this 3 623  
+48 0 0 4 76 608 0 0 118 /**
+ * Adjusts the text stored within the encoder to all uppercase letters
+ * (preserving accent marks correctly).
+ */ 1 4 this 3 622  
+49 0 0 4 77 608 0 0 118 /**
+ * Adjusts the text stored within the encoder to all lowercase letters
+ * (preserving accent marks correctly).
+ */ 1 4 this 3 622  
+50 0 0 6 78 588 0 0 80 /**
+ * Returns the current text, as encoded via the current encoding system.
+ */ 1 4 this 3 623  
+51 0 0 6 78 588 0 0 82 /**
+ * Returns the current text, as encoded via the indicated encoding system.
+ */ 2 4 this 3 623  8 encoding 1 587  
+52 0 0 4 79 608 0 0 0 2 4 this 3 622  4 text 1 588  
+53 0 0 4 80 608 0 0 128 /**
+ * Appends a single character to the end of the stored text.  This may be a
+ * wide character, up to 16 bits in Unicode.
+ */ 2 4 this 3 622  9 character 1 625  
+54 0 0 6 81 626 0 0 169 /**
+ * Returns the number of characters in the stored text.  This is a count of
+ * wide characters, after the string has been decoded according to
+ * set_encoding().
+ */ 1 4 this 3 623  
+55 0 0 6 82 596 0 0 196 /**
+ * Returns the Unicode value of the nth character in the stored text.  This
+ * may be a wide character (greater than 255), after the string has been
+ * decoded according to set_encoding().
+ */ 2 4 this 3 623  5 index 1 626  
+56 0 0 4 83 608 0 0 193 /**
+ * Sets the Unicode value of the nth character in the stored text.  This may
+ * be a wide character (greater than 255), after the string has been decoded
+ * according to set_encoding().
+ */ 3 4 this 3 622  5 index 1 626  9 character 1 625  
+57 0 0 6 84 619 0 0 101 /**
+ * Returns the nth char of the stored text, as a one-, two-, or three-byte
+ * encoded string.
+ */ 2 4 this 3 623  5 index 1 626  
+58 0 0 6 84 619 0 0 101 /**
+ * Returns the nth char of the stored text, as a one-, two-, or three-byte
+ * encoded string.
+ */ 3 4 this 3 623  5 index 1 626  8 encoding 1 587  
+59 0 0 6 85 619 0 0 723 /**
+ * Returns the text associated with the node, converted as nearly as possible
+ * to a fully-ASCII representation.  This means replacing accented letters
+ * with their unaccented ASCII equivalents.
+ *
+ * It is possible that some characters in the string cannot be converted to
+ * ASCII.  (The string may involve symbols like the copyright symbol, for
+ * instance, or it might involve letters in some other alphabet such as Greek
+ * or Cyrillic, or even Latin letters like thorn or eth that are not part of
+ * the ASCII character set.)  In this case, as much of the string as possible
+ * will be converted to ASCII, and the nonconvertible characters will remain
+ * encoded in the encoding specified by set_encoding().
+ */ 1 4 this 3 623  
+60 0 0 6 86 619 0 0 277 /**
+ * Given the indicated text string, which is assumed to be encoded via the
+ * encoding "from", decodes it and then reencodes it into the encoding "to",
+ * and returns the newly encoded string.  This does not change or affect any
+ * properties on the TextEncoder itself.
+ */ 3 4 text 1 619  4 from 1 587  2 to 1 587  
+61 0 0 6 87 597 0 0 152 /**
+ * Returns true if the indicated character is an alphabetic letter, false
+ * otherwise.  This is akin to ctype's isalpha(), extended to Unicode.
+ */ 1 9 character 1 625  
+62 0 0 6 88 597 0 0 147 /**
+ * Returns true if the indicated character is a numeric digit, false
+ * otherwise.  This is akin to ctype's isdigit(), extended to Unicode.
+ */ 1 9 character 1 625  
+63 0 0 6 89 597 0 0 150 /**
+ * Returns true if the indicated character is a punctuation mark, false
+ * otherwise.  This is akin to ctype's ispunct(), extended to Unicode.
+ */ 1 9 character 1 625  
+64 0 0 6 90 597 0 0 150 /**
+ * Returns true if the indicated character is a lowercase letter, false
+ * otherwise.  This is akin to ctype's islower(), extended to Unicode.
+ */ 1 9 character 1 625  
+65 0 0 6 91 597 0 0 151 /**
+ * Returns true if the indicated character is an uppercase letter, false
+ * otherwise.  This is akin to ctype's isupper(), extended to Unicode.
+ */ 1 9 character 1 625  
+66 0 0 6 92 597 0 0 151 /**
+ * Returns true if the indicated character is a whitespace letter, false
+ * otherwise.  This is akin to ctype's isspace(), extended to Unicode.
+ */ 1 9 character 1 625  
+67 0 0 6 93 596 0 0 135 /**
+ * Returns the uppercase equivalent of the given Unicode character.  This is
+ * akin to ctype's toupper(), extended to Unicode.
+ */ 1 9 character 1 625  
+68 0 0 6 94 596 0 0 135 /**
+ * Returns the uppercase equivalent of the given Unicode character.  This is
+ * akin to ctype's tolower(), extended to Unicode.
+ */ 1 9 character 1 625  
+69 0 0 6 95 619 0 0 103 /**
+ * Converts the string to uppercase, assuming the string is encoded in the
+ * default encoding.
+ */ 1 6 source 1 619  
+70 0 0 6 95 619 0 0 105 /**
+ * Converts the string to uppercase, assuming the string is encoded in the
+ * indicated encoding.
+ */ 2 6 source 1 619  8 encoding 1 587  
+71 0 0 6 96 619 0 0 103 /**
+ * Converts the string to lowercase, assuming the string is encoded in the
+ * default encoding.
+ */ 1 6 source 1 619  
+72 0 0 6 96 619 0 0 105 /**
+ * Converts the string to lowercase, assuming the string is encoded in the
+ * indicated encoding.
+ */ 2 6 source 1 619  8 encoding 1 587  
+73 0 0 4 97 608 0 0 191 /**
+ * Changes the text that is stored in the encoder.  Subsequent calls to
+ * get_wtext() will return this same string, while get_text() will return the
+ * encoded version of the string.
+ */ 2 4 this 3 622  5 wtext 1 619  
+74 0 0 6 98 619 0 0 91 /**
+ * Returns the text associated with the TextEncoder, as a wide-character
+ * string.
+ */ 1 4 this 3 623  
+75 0 0 4 99 608 0 0 85 /**
+ * Appends the indicates string to the end of the stored wide-character text.
+ */ 2 4 this 3 622  4 text 1 619  
+76 0 0 6 100 619 0 0 694 /**
+ * Returns the text associated with the node, converted as nearly as possible
+ * to a fully-ASCII representation.  This means replacing accented letters
+ * with their unaccented ASCII equivalents.
+ *
+ * It is possible that some characters in the string cannot be converted to
+ * ASCII.  (The string may involve symbols like the copyright symbol, for
+ * instance, or it might involve letters in some other alphabet such as Greek
+ * or Cyrillic, or even Latin letters like thorn or eth that are not part of
+ * the ASCII character set.)  In this case, as much of the string as possible
+ * will be converted to ASCII, and the nonconvertible characters will remain
+ * in their original form.
+ */ 1 4 this 3 623  
+77 0 0 6 101 597 0 0 211 /**
+ * Returns true if any of the characters in the string returned by get_wtext()
+ * are out of the range of an ASCII character (and, therefore, get_wtext()
+ * should be called in preference to get_text()).
+ */ 1 4 this 3 623  
+78 0 0 6 102 588 0 0 136 /**
+ * Encodes a single Unicode character into a one-, two-, three-, or four-byte
+ * string, according to the given encoding system.
+ */ 2 2 ch 1 625  8 encoding 1 587  
+79 0 0 6 103 588 0 0 102 /**
+ * Encodes a wide-text string into a single-char string, according to the
+ * current encoding.
+ */ 2 4 this 3 623  5 wtext 1 619  
+80 0 0 6 103 588 0 0 100 /**
+ * Encodes a wide-text string into a single-char string, according to the
+ * given encoding.
+ */ 2 5 wtext 1 619  8 encoding 1 587  
+81 0 0 6 104 588 0 0 0 2 4 this 3 623  4 text 1 588  
+82 0 0 6 104 588 0 0 0 2 4 text 1 588  8 encoding 1 587  
+83 0 0 7 111 628 478 0 37 /**
+ * Creates an empty Filename.
+ */ 0 
+84 0 0 7 111 628 478 0 146 /**
+ * This constructor composes the filename out of a directory part and a
+ * basename part.  It will insert an intervening '/' if necessary.
+ */ 2 7 dirname 1 629  8 basename 1 629  
+85 0 0 7 111 628 478 0 0 1 4 path 1 588  
+86 0 0 6 112 588 0 0 0 1 4 this 3 629  
+87 0 0 7 113 628 478 0 168 // Static constructors to explicitly create a filename that refers to a text
+// or binary file.  This is in lieu of calling set_text() or set_binary() or
+// set_type(). 1 8 filename 1 629  
+88 0 0 7 113 628 478 0 10 /**
+ *
+ */ 1 8 filename 1 619  
+89 0 0 7 114 628 478 0 10 /**
+ *
+ */ 1 8 filename 1 629  
+90 0 0 7 114 628 478 0 10 /**
+ *
+ */ 1 8 filename 1 619  
+91 0 0 7 115 628 478 0 10 /**
+ *
+ */ 1 8 filename 1 619  
+92 0 0 7 116 628 478 0 10 /**
+ *
+ */ 1 8 filename 1 619  
+93 0 0 7 117 628 478 0 101 /**
+ * Constructs a filename that represents a sequence of numbered files.  See
+ * set_pattern().
+ */ 1 8 filename 1 619  
+94 0 0 7 118 628 478 0 693 /**
+ * This named constructor returns a Panda-style filename (that is, using
+ * forward slashes, and no drive letter) based on the supplied filename string
+ * that describes a filename in the local system conventions (for instance, on
+ * Windows, it may use backslashes or begin with a drive letter and a colon).
+ *
+ * Use this function to create a Filename from an externally-given filename
+ * string.  Use to_os_specific() again later to reconvert it back to the local
+ * operating system's conventions.
+ *
+ * This function will do the right thing even if the filename is partially
+ * local conventions and partially Panda conventions; e.g.  some backslashes
+ * and some forward slashes.
+ */ 2 11 os_specific 1 619  4 type 1 592  
+95 0 0 7 119 628 478 0 137 /**
+ * The wide-string variant of from_os_specific(). Returns a new Filename,
+ * converted from an os-specific wide-character string.
+ */ 2 11 os_specific 1 619  4 type 1 592  
+96 0 0 7 120 628 478 0 221 /**
+ * Returns the same thing as from_os_specific(), but embedded environment
+ * variable references (e.g.  "$DMODELS/foo.txt") are expanded out.  It also
+ * automatically elevates the file to its true case if needed.
+ */ 2 11 user_string 1 619  4 type 1 592  
+97 0 0 7 121 628 478 0 398 /**
+ * Generates a temporary filename within the indicated directory, using the
+ * indicated prefix.  If the directory is empty, a system-defined directory is
+ * chosen instead.
+ *
+ * The generated filename did not exist when the Filename checked, but since
+ * it does not specifically create the file, it is possible that another
+ * process could simultaneously create a file by the same name.
+ */ 4 7 dirname 1 619  6 prefix 1 619  6 suffix 1 619  4 type 1 592  
+98 0 0 6 122 629 0 0 200 /**
+ * Returns a path to the user's home directory, if such a thing makes sense in
+ * the current OS, or to the nearest equivalent.  This may or may not be
+ * directly writable by the application.
+ */ 0 
+99 0 0 6 123 629 0 0 66 /**
+ * Returns a path to a system-defined temporary directory.
+ */ 0 
+100 0 0 6 124 629 0 0 170 /**
+ * Returns a path to a system-defined directory appropriate for creating a
+ * subdirectory for storing application-specific data, specific to the current
+ * user.
+ */ 0 
+101 0 0 6 125 629 0 0 158 /**
+ * Returns a path to a system-defined directory appropriate for creating a
+ * subdirectory for storing application-specific data, common to all users.
+ */ 0 
+102 0 0 6 126 628 0 0 10 /**
+ *
+ */ 2 4 this 3 628  4 from 1 628  
+103 0 0 6 126 628 0 0 10 /**
+ *
+ */ 2 4 this 3 628  4 copy 1 629  
+104 0 0 6 126 628 0 0 10 /**
+ *
+ */ 2 4 this 3 628  8 filename 1 619  
+105 0 0 6 126 628 0 0 36 // Assignment is via the = operator. 2 4 this 3 628  8 filename 1 619  
+106 0 0 6 126 628 0 0 10 /**
+ *
+ */ 2 4 this 3 628  8 filename 1 619  
+107 0 0 6 128 619 0 0 10 /**
+ *
+ */ 1 4 this 3 629  
+108 0 0 6 129 597 0 0 10 /**
+ *
+ */ 1 4 this 3 629  
+109 0 0 6 130 626 0 0 10 /**
+ *
+ */ 1 4 this 3 629  
+110 0 0 6 131 615 0 0 0 2 4 this 3 629  1 n 1 626  
+111 0 0 6 132 588 0 0 0 1 4 this 3 629  
+112 0 0 6 133 588 0 0 0 1 4 this 3 629  
+113 0 0 6 134 619 0 0 10 /**
+ *
+ */ 2 4 this 3 629  5 begin 1 626  
+114 0 0 6 134 619 0 0 10 /**
+ *
+ */ 3 4 this 3 629  5 begin 1 626  3 end 1 626  
+115 0 0 6 135 628 0 0 0 2 4 this 3 628  5 other 1 619  
+116 0 0 7 136 628 478 0 0 2 4 this 3 629  5 other 1 619  
+117 0 0 7 137 628 478 0 0 2 4 this 3 629  5 other 1 629  
+118 0 0 6 138 619 0 0 140 /**
+ * Returns the entire filename: directory, basename, extension.  This is the
+ * same thing returned by the string typecast operator.
+ */ 1 4 this 3 629  
+119 0 0 6 139 619 0 0 66 /**
+ * Returns the entire filename as a wide-character string.
+ */ 1 4 this 3 629  
+120 0 0 6 140 619 0 0 139 /**
+ * Returns the directory part of the filename.  This is everything in the
+ * filename up to, but not including the rightmost slash.
+ */ 1 4 this 3 629  
+121 0 0 6 141 619 0 0 145 /**
+ * Returns the basename part of the filename.  This is everything in the
+ * filename after the rightmost slash, including any extensions.
+ */ 1 4 this 3 629  
+122 0 0 6 142 619 0 0 96 /**
+ * Returns the full filename--directory and basename parts--except for the
+ * extension.
+ */ 1 4 this 3 629  
+123 0 0 6 143 619 0 0 81 /**
+ * Returns the basename part of the filename, without the file extension.
+ */ 1 4 this 3 629  
+124 0 0 6 144 619 0 0 140 /**
+ * Returns the file extension.  This is everything after the rightmost dot, if
+ * there is one, or the empty string if there is not.
+ */ 1 4 this 3 629  
+125 0 0 4 145 608 0 0 132 /**
+ * Replaces the entire filename: directory, basename, extension.  This can
+ * also be achieved with the assignment operator.
+ */ 2 4 this 3 628  1 s 1 619  
+126 0 0 4 146 608 0 0 140 /**
+ * Replaces the directory part of the filename.  This is everything in the
+ * filename up to, but not including the rightmost slash.
+ */ 2 4 this 3 628  1 s 1 619  
+127 0 0 4 147 608 0 0 146 /**
+ * Replaces the basename part of the filename.  This is everything in the
+ * filename after the rightmost slash, including any extensions.
+ */ 2 4 this 3 628  1 s 1 619  
+128 0 0 4 148 608 0 0 97 /**
+ * Replaces the full filename--directory and basename parts--except for the
+ * extension.
+ */ 2 4 this 3 628  1 s 1 619  
+129 0 0 4 149 608 0 0 82 /**
+ * Replaces the basename part of the filename, without the file extension.
+ */ 2 4 this 3 628  1 s 1 619  
+130 0 0 4 150 608 0 0 141 /**
+ * Replaces the file extension.  This is everything after the rightmost dot,
+ * if there is one, or the empty string if there is not.
+ */ 2 4 this 3 628  1 s 1 619  
+131 0 0 4 151 608 0 0 235 // Setting these flags appropriately is helpful when opening or searching
+// for a file; it helps the Filename resolve OS-specific conventions (for
+// instance, that dynamic library names should perhaps be changed from .so
+// to .dll). 1 4 this 3 628  
+132 0 0 4 152 608 0 0 190 /**
+ * Indicates that the filename represents a text file.  This is primarily
+ * relevant to the read_file() and write_file() methods, so they can set the
+ * appropriate flags to the OS.
+ */ 1 4 this 3 628  
+133 0 0 6 153 597 0 0 256 /**
+ * Returns true if the Filename has been indicated to represent a binary file
+ * via a previous call to set_binary().  It is possible that neither
+ * is_binary() nor is_text() will be true, if neither set_binary() nor
+ * set_text() was ever called.
+ */ 1 4 this 3 629  
+134 0 0 6 154 597 0 0 252 /**
+ * Returns true if the Filename has been indicated to represent a text file
+ * via a previous call to set_text().  It is possible that neither is_binary()
+ * nor is_text() will be true, if neither set_binary() nor set_text() was ever
+ * called.
+ */ 1 4 this 3 629  
+135 0 0 6 155 597 0 0 198 /**
+ * Returns true either is_binary() or is_text() is true; that is, that the
+ * filename has been specified as either binary or text.  If this is false,
+ * the filename has not been specified.
+ */ 1 4 this 3 629  
+136 0 0 4 156 608 0 0 350 /**
+ * Sets the type of the file represented by the filename.  This is useful for
+ * to_os_specific(), resolve_filename(), test_existence(), and all such real-
+ * world access functions.  It helps the Filename know how to map the internal
+ * filename to the OS-specific filename (for instance, maybe executables
+ * should have an .exe extension).
+ */ 2 4 this 3 628  4 type 1 592  
+137 0 0 6 157 592 0 0 104 /**
+ * Returns the type of the file represented by the filename, as previously set
+ * by set_type().
+ */ 1 4 this 3 629  
+138 0 0 4 158 608 0 0 688 /**
+ * Sets the flag indicating whether this is a filename pattern.  When this is
+ * true, the filename is understood to be a placeholder for a numbered
+ * sequence of filename, such as an image sequence.  In this case, a sequence
+ * of one or more hash characters ("#") should appear in the filename string;
+ * these characters will be filled in with the corresponding number (or more)
+ * of digits representing the sequence number.  Sequence numbers always begin
+ * counting at 0.
+ *
+ * When this is true, methods like has_hash() and get_hash_to_end() and
+ * get_filename_index() may be called.  Methods like is_exists() will
+ * implicitly test for existance of filename sequence 0.
+ */ 2 4 this 3 628  7 pattern 1 597  
+139 0 0 6 159 597 0 0 97 /**
+ * Returns the flag indicating whether this is a filename pattern.  See
+ * set_pattern().
+ */ 1 4 this 3 629  
+140 0 0 6 160 597 0 0 354 /**
+ * Returns true if the filename is indicated to be a filename pattern (that
+ * is, set_pattern(true) was called), and the filename pattern did include a
+ * sequence of hash marks, or false if it was not a filename pattern or did
+ * not include hash marks.  If this is true, then get_filename_index() will
+ * return a different filename each time.
+ */ 1 4 this 3 629  
+141 0 0 7 161 628 478 0 388 /**
+ * If the pattern flag is set for this Filename and the filename string
+ * actually includes a sequence of hash marks, then this returns a new
+ * Filename with the sequence of hash marks replaced by the indicated index
+ * number.
+ *
+ * If the pattern flag is not set for this Filename or it does not contain a
+ * sequence of hash marks, this quietly returns the original filename.
+ */ 2 4 this 3 629  5 index 1 596  
+142 0 0 6 162 619 0 0 130 /**
+ * Returns the part of the filename beginning at the hash sequence (if any),
+ * and continuing to the end of the filename.
+ */ 1 4 this 3 629  
+143 0 0 4 163 608 0 0 115 /**
+ * Replaces the part of the filename from the beginning of the hash sequence
+ * to the end of the filename.
+ */ 2 4 this 3 628  1 s 1 619  
+144 0 0 4 164 608 0 0 329 /**
+ * Extracts out the individual directory components of the path into a series
+ * of strings.  get_basename() will be the last component stored in the
+ * vector.  Note that no distinction is made by this method between a leading
+ * slash and no leading slash, but you can call is_local() to differentiate
+ * the two cases.
+ */ 2 4 this 3 629  10 components 1 630  
+145 0 0 4 165 608 0 0 216 /**
+ * Converts the filename to standard form by replacing consecutive slashes
+ * with a single slash, removing a trailing slash if present, and backing up
+ * over .. sequences within the filename where possible.
+ */ 1 4 this 3 628  
+146 0 0 6 166 597 0 0 146 /**
+ * Returns true if the filename is local, e.g.  does not begin with a slash,
+ * or false if the filename is fully specified from the root.
+ */ 1 4 this 3 629  
+147 0 0 6 167 597 0 0 444 /**
+ * Returns true if the filename is fully qualified, e.g.  begins with a slash.
+ * This is almost, but not quite, the same thing as !is_local().  It's not
+ * exactly the same because a special case is made for filenames that begin
+ * with a single dot followed by a slash--these are considered to be fully
+ * qualified (they are explicitly relative to the current directory, and do
+ * not refer to a filename on a search path somewhere).
+ */ 1 4 this 3 629  
+148 0 0 4 168 608 0 0 532 /**
+ * Converts the filename to a fully-qualified pathname from the root (if it is
+ * a relative pathname), and then standardizes it (see standardize()).
+ *
+ * This is sometimes a little problematic, since it may convert the file to
+ * its 'true' absolute pathname, which could be an ugly NFS-named file,
+ * irrespective of symbolic links (e.g.
+ * /.automount/dimbo/root/usr2/fit/people/drose instead of /fit/people/drose);
+ * besides being ugly, filenames like this may not be consistent across
+ * multiple different platforms.
+ */ 1 4 this 3 628  
+149 0 0 4 168 608 0 0 260 /**
+ * Converts the filename to a fully-qualified filename from the root (if it is
+ * a relative filename), and then standardizes it (see standardize()).  This
+ * flavor accepts a specific starting directory that the filename is known to
+ * be relative to.
+ */ 2 4 this 3 628  15 start_directory 1 629  
+150 0 0 6 169 597 0 0 906 /**
+ * Converts this filename to a canonical name by replacing the directory part
+ * with the fully-qualified directory part.  This is done by changing to that
+ * directory and calling getcwd().
+ *
+ * This has the effect of (a) converting relative paths to absolute paths (but
+ * see make_absolute() if this is the only effect you want), and (b) always
+ * resolving a given directory name to the same string, even if different
+ * symbolic links are traversed, and (c) changing nice symbolic-link paths
+ * like fit/people/drose to ugly NFS automounter names like
+ * hosts/dimbo/usr2/fit/people/drose.  This can be troubling, but sometimes
+ * this is exactly what you want, particularly if you're about to call
+ * make_relative_to() between two filenames.
+ *
+ * The return value is true if successful, or false on failure (usually
+ * because the directory name does not exist or cannot be chdir'ed into).
+ */ 1 4 this 3 628  
+151 0 0 6 170 597 0 0 486 /**
+ * On a case-insensitive operating system (e.g.  Windows), this method looks
+ * up the file in the file system and resets the Filename to represent the
+ * actual case of the file as it exists on the disk.  The return value is true
+ * if the file exists and the conversion can be made, or false if there is
+ * some error.
+ *
+ * On a case-sensitive operating system, this method does nothing and always
+ * returns true.
+ *
+ * An empty filename is considered to exist in this case.
+ */ 1 4 this 3 628  
+152 0 0 6 171 619 0 0 408 /**
+ * Converts the filename from our generic Unix-like convention (forward
+ * slashes starting with the root at '/') to the corresponding filename in the
+ * local operating system (slashes in the appropriate direction, starting with
+ * the root at C:\, for instance).  Returns the string representing the
+ * converted filename, but does not change the Filename itself.
+ *
+ * See also from_os_specific().
+ */ 1 4 this 3 629  
+153 0 0 6 172 619 0 0 55 /**
+ * The wide-string variant on to_os_specific().
+ */ 1 4 this 3 629  
+154 0 0 6 173 619 0 0 499 /**
+ * This is similar to to_os_specific(), but it is designed to generate a
+ * filename that can be understood on as many platforms as possible.  Since
+ * Windows can usually understand a forward-slash-delimited filename, this
+ * means it does the same thing as to_os_specific(), but it uses forward
+ * slashes instead of backslashes.
+ *
+ * This method has a pretty limited use; it should generally be used for
+ * writing file references to a file that might be read on any operating
+ * system.
+ */ 1 4 this 3 629  
+155 0 0 6 174 619 0 0 404 /**
+ * This works like to_os_generic(), but it returns the "short name" version of
+ * the filename, if it exists, or the original filename otherwise.
+ *
+ * On Windows platforms, this returns the 8.3 filename version of the given
+ * filename, if the file exists, and the same thing as to_os_specific()
+ * otherwise.  On non-Windows platforms, this always returns the same thing as
+ * to_os_specific().
+ */ 1 4 this 3 629  
+156 0 0 6 175 619 0 0 204 /**
+ * This is the opposite of to_os_short_name(): it returns the "long name" of
+ * the filename, if the filename exists.  On non-Windows platforms, this
+ * returns the same thing as to_os_specific().
+ */ 1 4 this 3 629  
+157 0 0 6 176 597 0 0 180 /**
+ * Returns true if the filename exists on the disk, false otherwise.  If the
+ * type is indicated to be executable, this also tests that the file has
+ * execute permission.
+ */ 1 4 this 3 629  
+158 0 0 6 177 597 0 0 134 /**
+ * Returns true if the filename exists and is the name of a regular file (i.e.
+ * not a directory or device), false otherwise.
+ */ 1 4 this 3 629  
+159 0 0 6 178 597 0 0 137 /**
+ * Returns true if the filename exists and is either a directory or a regular
+ * file that can be written to, or false otherwise.
+ */ 1 4 this 3 629  
+160 0 0 6 179 597 0 0 91 /**
+ * Returns true if the filename exists and is a directory name, false
+ * otherwise.
+ */ 1 4 this 3 629  
+161 0 0 6 180 597 0 0 64 /**
+ * Returns true if the filename exists and is executable
+ */ 1 4 this 3 629  
+162 0 0 6 181 596 0 0 449 /**
+ * Returns a number less than zero if the file named by this object is older
+ * than the given file, zero if they have the same timestamp, or greater than
+ * zero if this one is newer.
+ *
+ * If this_missing_is_old is true, it indicates that a missing file will be
+ * treated as if it were older than any other file; otherwise, a missing file
+ * will be treated as if it were newer than any other file.  Similarly for
+ * other_missing_is_old.
+ */ 4 4 this 3 629  5 other 1 629  19 this_missing_is_old 1 597  20 other_missing_is_old 1 597  
+163 0 0 6 182 633 0 0 434 /**
+ * Returns a time_t value that represents the time the file was last modified,
+ * to within whatever precision the operating system records this information
+ * (on a Windows95 system, for instance, this may only be accurate to within 2
+ * seconds).
+ *
+ * If the timestamp cannot be determined, either because it is not supported
+ * by the operating system or because there is some error (such as file not
+ * found), returns 0.
+ */ 1 4 this 3 629  
+164 0 0 6 183 633 0 0 195 /**
+ * Returns a time_t value that represents the time the file was last accessed,
+ * if this information is available.  See also get_timestamp(), which returns
+ * the last modification time.
+ */ 1 4 this 3 629  
+165 0 0 6 184 635 0 0 76 /**
+ * Returns the size of the file in bytes, or 0 if there is an error.
+ */ 1 4 this 3 629  
+166 0 0 6 185 597 0 0 174 /**
+ * Searches the given search path for the filename.  If it is found, updates
+ * the filename to the full pathname found and returns true; otherwise,
+ * returns false.
+ */ 3 4 this 3 628  10 searchpath 1 636  17 default_extension 1 619  
+167 0 0 6 186 597 0 0 867 /**
+ * Adjusts this filename, which must be a fully-specified pathname beginning
+ * with a slash, to make it a relative filename, relative to the fully-
+ * specified directory indicated (which must also begin with, and may or may
+ * not end with, a slash--a terminating slash is ignored).
+ *
+ * This only performs a string comparsion, so it may be wise to call
+ * make_canonical() on both filenames before calling make_relative_to().
+ *
+ * If allow_backups is false, the filename will only be adjusted to be made
+ * relative if it is already somewhere within or below the indicated
+ * directory.  If allow_backups is true, it will be adjusted in all cases,
+ * even if this requires putting a series of .. characters before the filename
+ * --unless it would have to back all the way up to the root.
+ *
+ * Returns true if the file was adjusted, false if it was not.
+ */ 3 4 this 3 628  9 directory 1 628  13 allow_backups 1 597  
+168 0 0 6 187 596 0 0 455 /**
+ * Performs the reverse of the resolve_filename() operation: assuming that the
+ * current filename is fully-specified pathname (i.e.  beginning with '/'),
+ * look on the indicated search path for a directory under which the file can
+ * be found.  When found, adjust the Filename to be relative to the indicated
+ * directory name.
+ *
+ * Returns the index of the directory on the searchpath at which the file was
+ * found, or -1 if it was not found.
+ */ 2 4 this 3 628  10 searchpath 1 636  
+169 0 0 6 188 588 0 0 0 1 4 this 3 629  
+170 0 0 6 188 597 0 0 481 /**
+ * Attempts to open the named filename as if it were a directory and looks for
+ * the non-hidden files within the directory.  Fills the given vector up with
+ * the sorted list of filenames that are local to this directory.
+ *
+ * It is the user's responsibility to ensure that the contents vector is empty
+ * before making this call; otherwise, the new files will be appended to it.
+ *
+ * Returns true on success, false if the directory could not be read for some
+ * reason.
+ */ 2 4 this 3 629  8 contents 1 630  
+171 0 0 6 189 597 0 0 334 /**
+ * Opens the indicated pifstream for reading the file, if possible.  Returns
+ * true if successful, false otherwise.  This requires the setting of the
+ * set_text()/set_binary() flags to open the file appropriately as indicated;
+ * it is an error to call open_read() without first calling one of set_text()
+ * or set_binary().
+ */ 2 4 this 3 629  6 stream 1 638  
+172 0 0 6 189 597 0 0 333 /**
+ * Opens the indicated ifstream for reading the file, if possible.  Returns
+ * true if successful, false otherwise.  This requires the setting of the
+ * set_text()/set_binary() flags to open the file appropriately as indicated;
+ * it is an error to call open_read() without first calling one of set_text()
+ * or set_binary().
+ */ 2 4 this 3 629  6 stream 1 616  
+173 0 0 6 190 597 0 0 493 /**
+ * Opens the indicated pifstream for writing the file, if possible.  Returns
+ * true if successful, false otherwise.  This requires the setting of the
+ * set_text()/set_binary() flags to open the file appropriately as indicated;
+ * it is an error to call open_read() without first calling one of set_text()
+ * or set_binary().
+ *
+ * If truncate is true, the file is truncated to zero length upon opening it,
+ * if it already exists.  Otherwise, the file is kept at its original length.
+ */ 3 4 this 3 629  6 stream 1 639  8 truncate 1 597  
+174 0 0 6 190 597 0 0 492 /**
+ * Opens the indicated ifstream for writing the file, if possible.  Returns
+ * true if successful, false otherwise.  This requires the setting of the
+ * set_text()/set_binary() flags to open the file appropriately as indicated;
+ * it is an error to call open_read() without first calling one of set_text()
+ * or set_binary().
+ *
+ * If truncate is true, the file is truncated to zero length upon opening it,
+ * if it already exists.  Otherwise, the file is kept at its original length.
+ */ 3 4 this 3 629  6 stream 1 617  8 truncate 1 597  
+175 0 0 6 191 597 0 0 334 /**
+ * Opens the indicated pifstream for writing the file, if possible.  Returns
+ * true if successful, false otherwise.  This requires the setting of the
+ * set_text()/set_binary() flags to open the file appropriately as indicated;
+ * it is an error to call open_read() without first calling one of set_text()
+ * or set_binary().
+ */ 2 4 this 3 629  6 stream 1 639  
+176 0 0 6 191 597 0 0 333 /**
+ * Opens the indicated ofstream for writing the file, if possible.  Returns
+ * true if successful, false otherwise.  This requires the setting of the
+ * set_text()/set_binary() flags to open the file appropriately as indicated;
+ * it is an error to call open_read() without first calling one of set_text()
+ * or set_binary().
+ */ 2 4 this 3 629  6 stream 1 617  
+177 0 0 6 192 597 0 0 350 /**
+ * Opens the indicated fstream for read/write access to the file, if possible.
+ * Returns true if successful, false otherwise.  This requires the setting of
+ * the set_text()/set_binary() flags to open the file appropriately as
+ * indicated; it is an error to call open_read_write() without first calling
+ * one of set_text() or set_binary().
+ */ 3 4 this 3 629  6 stream 1 640  8 truncate 1 597  
+178 0 0 6 192 597 0 0 350 /**
+ * Opens the indicated fstream for read/write access to the file, if possible.
+ * Returns true if successful, false otherwise.  This requires the setting of
+ * the set_text()/set_binary() flags to open the file appropriately as
+ * indicated; it is an error to call open_read_write() without first calling
+ * one of set_text() or set_binary().
+ */ 3 4 this 3 629  6 stream 1 609  8 truncate 1 597  
+179 0 0 6 193 597 0 0 389 /**
+ * Opens the indicated pfstream for reading and writing the file, if possible;
+ * writes are appended to the end of the file.  Returns true if successful,
+ * false otherwise.  This requires the setting of the set_text()/set_binary()
+ * flags to open the file appropriately as indicated; it is an error to call
+ * open_read() without first calling one of set_text() or set_binary().
+ */ 2 4 this 3 629  6 stream 1 640  
+180 0 0 6 193 597 0 0 389 /**
+ * Opens the indicated ifstream for reading and writing the file, if possible;
+ * writes are appended to the end of the file.  Returns true if successful,
+ * false otherwise.  This requires the setting of the set_text()/set_binary()
+ * flags to open the file appropriately as indicated; it is an error to call
+ * open_read() without first calling one of set_text() or set_binary().
+ */ 2 4 this 3 629  6 stream 1 609  
+181 0 0 6 194 597 0 0 105 /**
+ * Changes directory to the specified location.  Returns true if successful,
+ * false if failure.
+ */ 1 4 this 3 629  
+182 0 0 6 195 597 0 0 193 /**
+ * Updates the modification time of the file to the current time.  If the file
+ * does not already exist, it will be created.  Returns true if successful,
+ * false if there is an error.
+ */ 1 4 this 3 629  
+183 0 0 6 196 597 0 0 221 /**
+ * Permanently deletes the file associated with the filename, if possible.
+ * Returns true if successful, false if failure (for instance, because the
+ * file did not exist, or because permissions were inadequate).
+ */ 1 4 this 3 629  
+184 0 0 6 197 597 0 0 187 /**
+ * Renames the file to the indicated new filename.  If the new filename is in
+ * a different directory, this will perform a move.  Returns true if
+ * successful, false on failure.
+ */ 2 4 this 3 629  5 other 1 629  
+185 0 0 6 198 597 0 0 230 /**
+ * Copies the file to the indicated new filename, by reading the contents and
+ * writing it to the new file.  Returns true if successful, false on failure.
+ * The copy is always binary, regardless of the filename settings.
+ */ 2 4 this 3 629  5 other 1 629  
+186 0 0 6 199 597 0 0 409 /**
+ * Creates all the directories in the path to the file specified in the
+ * filename, except for the basename itself.  This assumes that the Filename
+ * contains the name of a file, not a directory name; it ensures that the
+ * directory containing the file exists.
+ *
+ * However, if the filename ends in a slash, it assumes the Filename
+ * represents the name of a directory, and creates all the paths.
+ */ 1 4 this 3 629  
+187 0 0 6 200 597 0 0 265 /**
+ * Creates the directory named by this filename.  Unlike make_dir(), this
+ * assumes that the Filename contains the directory name itself.  Also, parent
+ * directories are not automatically created; this function fails if any
+ * parent directory is missing.
+ */ 1 4 this 3 629  
+188 0 0 6 201 597 0 0 118 /**
+ * The inverse of mkdir(): this removes the directory named by this Filename,
+ * if it is in fact a directory.
+ */ 1 4 this 3 629  
+189 0 0 6 202 597 0 0 34 // Comparison operators are handy. 2 4 this 3 629  5 other 1 619  
+190 0 0 6 203 597 0 0 0 2 4 this 3 629  5 other 1 619  
+191 0 0 6 204 597 0 0 0 2 4 this 3 629  5 other 1 619  
+192 0 0 6 205 596 0 0 10 /**
+ *
+ */ 2 4 this 3 629  5 other 1 629  
+193 0 0 6 206 597 0 0 349 /**
+ * Returns true if the Filename is valid (not empty), or false if it is an
+ * empty string.
+ *
+ * This implements the Python equivalent to operator bool.  Defining an actual
+ * operator bool method for C++ use would work too, but it seems to cause too
+ * many ambiguities for the C++ compiler, so we use this Python-only approach
+ * instead.
+ */ 1 4 this 3 629  
+194 0 0 6 207 596 0 0 92 /**
+ * Returns a hash code that attempts to be mostly unique for different
+ * Filenames.
+ */ 1 4 this 3 629  
+195 0 0 4 208 608 0 0 10 /**
+ *
+ */ 2 4 this 3 629  3 out 1 612  
+196 0 0 4 209 608 0 0 266 /**
+ * Specifies the default encoding to be used for all subsequent Filenames.
+ * This is used to represent wide-character (Unicode) filenames internally.
+ * On non-Windows-based systems, the encoded filename is also passed to the
+ * underlying operating system.
+ */ 1 8 encoding 1 587  
+197 0 0 6 210 587 0 0 125 /**
+ * Specifies the default encoding to be used for all subsequent Filenames
+ * objects.  See set_filesystem_encoding().
+ */ 0 
+198 0 0 7 211 642 0 0 0 0 
+199 0 0 6 127 619 0 0 60 // And retrieval is by any of the classic string operations. 1 4 this 3 629  
+200 0 0 6 214 619 0 0 184 /**
+ * Returns the current version of Panda, expressed as a string, e.g.  "1.0.0".
+ * The string will end in the letter "c" if this build does not represent an
+ * official version.
+ */ 0 
+201 0 0 6 215 619 0 0 836 /**
+ * Returns the version of the Panda3D distributable package that provides this
+ * build of Panda.
+ *
+ * When the currently-executing version of Panda was loaded from a
+ * distributable package, such as via the browser plugin, then this string
+ * will be nonempty and will contain the corresponding version string.  You
+ * can build applications that use this particular version of Panda by
+ * requesting it in the pdef file, using "panda3d", this version string, and
+ * the download host provided by get_package_host_url().
+ *
+ * If this string is empty, then the currently-executing Panda was built
+ * independently, and is not part of a distributable package.
+ *
+ * This string is set explicitly at compilation time.  Normally, it should be
+ * set to a nonempty string only when building a Panda3D package for
+ * distribution.
+ */ 0 
+202 0 0 6 216 619 0 0 503 /**
+ * Returns the URL of the download server that provides the Panda3D
+ * distributable package currently running.  This can be used, along with the
+ * get_package_version_string(), to uniquely identify the running version of
+ * Panda among distributable Panda versions.
+ *
+ * See get_package_version_string() for more information.
+ *
+ * This string is set explicitly at compilation time.  Normally, it should be
+ * set to a nonempty string only when building a Panda3D package for
+ * distribution.
+ */ 0 
+203 0 0 6 217 619 0 0 549 /**
+ * Returns the current version of Panda's Core API, expressed as a string of
+ * dot-delimited integers.  There are usually four integers in this version,
+ * but this is not guaranteed.
+ *
+ * The Core API is used during the runtime (plugin) environment only.  This
+ * may be the empty string if the current version of Panda is not built to
+ * provide a particular Core API, which will be the normal case in a
+ * development SDK.  However, you should not use this method to determine
+ * whether you are running in a runtime environment or not.
+ */ 0 
+204 0 0 6 218 596 0 0 188 /**
+ * Returns the major version number of the current version of Panda.  This is
+ * the first number of the dotted triple returned by get_version_string().  It
+ * changes very rarely.
+ */ 0 
+205 0 0 6 219 596 0 0 223 /**
+ * Returns the minor version number of the current version of Panda.  This is
+ * the second number of the dotted triple returned by get_version_string().
+ * It changes with each release that introduces new features.
+ */ 0 
+206 0 0 6 220 596 0 0 229 /**
+ * Returns the sequence version number of the current version of Panda.  This
+ * is the third number of the dotted triple returned by get_version_string().
+ * It changes with bugfix updates and very minor feature updates.
+ */ 0 
+207 0 0 6 221 597 0 0 391 /**
+ * Returns true if current version of Panda claims to be an "official"
+ * version, that is, one that was compiled by an official distributor of Panda
+ * using a specific version of the panda source tree.  If this is true, there
+ * will not be a "c" at the end of the version string returned by
+ * get_version_string().
+ *
+ * Note that we must take the distributor's word for it here.
+ */ 0 
+208 0 0 6 222 596 0 0 74 /**
+ * Returns the memory alignment that Panda's allocators are using.
+ */ 0 
+209 0 0 6 223 619 0 0 213 /**
+ * Returns the string defined by the distributor of this version of Panda, or
+ * "homebuilt" if this version was built directly from the sources by the end-
+ * user.  This is a completely arbitrary string.
+ */ 0 
+210 0 0 6 224 619 0 0 152 /**
+ * Returns a string representing the compiler that was used to generate this
+ * version of Panda, if it is available, or "unknown" if it is not.
+ */ 0 
+211 0 0 6 225 619 0 0 140 /**
+ * Returns a string representing the date and time at which this version of
+ * Panda (or at least dtool) was compiled, if available.
+ */ 0 
+212 0 0 6 226 619 0 0 162 /**
+ * Returns a string representing the git commit hash that this source tree is
+ * based on, or the empty string if it has not been specified at build time.
+ */ 0 
+213 0 0 6 227 619 0 0 170 /**
+ * Returns a string representing the runtime platform that we are currently
+ * running on.  This will be something like "win32" or "osx_i386" or
+ * "linux_amd64".
+ */ 0 
+214 0 0 6 243 597 0 0 188 /**
+ * Returns true if the current version of Panda claims to have the indicated
+ * subsystem installed, false otherwise.  The set of available subsystems is
+ * implementation defined.
+ */ 2 4 this 3 643  6 system 1 619  
+215 0 0 6 244 626 0 0 189 /**
+ * Returns the number of Panda subsystems that have registered themselves.
+ * This can be used with get_system() to iterate through the entire list of
+ * available Panda subsystems.
+ */ 1 4 this 3 643  
+216 0 0 6 245 619 0 0 122 /**
+ * Returns the nth Panda subsystem that has registered itself.  This list will
+ * be sorted in alphabetical order.
+ */ 2 4 this 3 643  1 n 1 626  
+217 0 0 6 248 619 0 0 368 /**
+ * Returns the value associated with the indicated tag for the given system.
+ * This provides a standard way to query each subsystem's advertised
+ * capabilities.  The set of tags and values are per-system and
+ * implementation-defined.
+ *
+ * The return value is the empty string if the indicated system is undefined
+ * or if does not define the indicated tag.
+ */ 3 4 this 3 643  6 system 1 619  3 tag 1 619  
+218 0 0 4 249 608 0 0 76 /**
+ * Intended for use by each subsystem to register itself at startup.
+ */ 2 4 this 3 645  6 system 1 619  
+219 0 0 4 250 608 0 0 96 /**
+ * Intended for use by each subsystem to register its set of capabilities at
+ * startup.
+ */ 4 4 this 3 645  6 system 1 619  3 tag 1 619  5 value 1 619  
+220 0 0 6 251 597 0 0 414 /**
+ * Attempts to release memory back to the system, if possible.  The pad
+ * argument is the minimum amount of unused memory to keep in the heap
+ * (against future allocations).  Any memory above that may be released to the
+ * system, reducing the memory size of this process.  There is no guarantee
+ * that any memory may be released.
+ *
+ * Returns true if any memory was actually released, false otherwise.
+ */ 2 4 this 3 645  3 pad 1 626  
+221 0 0 4 252 608 0 0 10 /**
+ *
+ */ 2 4 this 3 643  3 out 1 612  
+222 0 0 4 253 608 0 0 10 /**
+ *
+ */ 2 4 this 3 643  3 out 1 612  
+223 0 0 6 254 645 0 0 49 /**
+ * Returns the global PandaSystem object.
+ */ 0 
+224 0 0 7 255 642 0 0 0 0 
+225 0 0 7 268 646 515 0 0 0 
+226 0 0 7 268 646 515 0 0 1 4 from 1 646  
+227 0 0 7 268 646 515 0 0 1 4 copy 1 636  
+228 0 0 7 268 646 515 0 10 /**
+ *
+ */ 1 9 directory 1 629  
+229 0 0 7 268 646 515 0 10 /**
+ *
+ */ 2 4 path 1 619  9 separator 1 619  
+230 0 0 6 270 646 0 0 0 2 4 this 3 646  4 from 1 646  
+231 0 0 6 270 646 0 0 0 2 4 this 3 646  4 copy 1 636  
+232 0 0 4 271 608 0 0 60 /**
+ * Removes all the directories from the search list.
+ */ 1 4 this 3 646  
+233 0 0 4 272 608 0 0 62 /**
+ * Adds a new directory to the end of the search list.
+ */ 2 4 this 3 646  9 directory 1 629  
+234 0 0 4 273 608 0 0 64 /**
+ * Adds a new directory to the front of the search list.
+ */ 2 4 this 3 646  9 directory 1 629  
+235 0 0 4 274 608 0 0 98 /**
+ * Adds all of the directories listed in the search path to the end of the
+ * search list.
+ */ 2 4 this 3 646  4 path 1 636  
+236 0 0 4 274 608 0 0 98 /**
+ * Adds all of the directories listed in the search path to the end of the
+ * search list.
+ */ 3 4 this 3 646  4 path 1 619  9 separator 1 619  
+237 0 0 4 275 608 0 0 104 /**
+ * Adds all of the directories listed in the search path to the beginning of
+ * the search list.
+ */ 2 4 this 3 646  4 path 1 636  
+238 0 0 6 276 597 0 0 69 /**
+ * Returns true if the search list is empty, false otherwise.
+ */ 1 4 this 3 636  
+239 0 0 6 277 626 0 0 64 /**
+ * Returns the number of directories on the search list.
+ */ 1 4 this 3 636  
+240 0 0 6 278 629 0 0 56 /**
+ * Returns the nth directory on the search list.
+ */ 2 4 this 3 636  1 n 1 626  
+241 0 0 7 282 628 478 0 197 /**
+ * Searches all the directories in the search list for the indicated file, in
+ * order.  Returns the full matching pathname of the first match if found, or
+ * the empty string if not found.
+ */ 2 4 this 3 636  8 filename 1 629  
+242 0 0 7 283 647 506 0 184 /**
+ * This variant of find_all_files() returns the new Results object, instead of
+ * filling on in on the parameter list.  This is a little more convenient to
+ * call from Python.
+ */ 2 4 this 3 636  8 filename 1 629  
+243 0 0 6 283 626 0 0 363 /**
+ * Searches all the directories in the search list for the indicated file, in
+ * order.  Fills up the results list with *all* of the matching filenames
+ * found, if any.  Returns the number of matches found.
+ *
+ * It is the responsibility of the the caller to clear the results list first;
+ * otherwise, the newly-found files will be appended to the list.
+ */ 3 4 this 3 636  8 filename 1 629  7 results 1 647  
+244 0 0 7 284 628 478 0 251 /**
+ * A quick-and-easy way to search a searchpath for a file when you don't feel
+ * like building or keeping around a DSearchPath object.  This simply
+ * constructs a temporary DSearchPath based on the indicated path string, and
+ * searches that.
+ */ 3 8 filename 1 629  4 path 1 619  9 separator 1 619  
+245 0 0 4 285 608 0 0 10 /**
+ *
+ */ 3 4 this 3 636  3 out 1 612  9 separator 1 619  
+246 0 0 4 286 608 0 0 10 /**
+ *
+ */ 3 4 this 3 636  3 out 1 612  12 indent_level 1 596  
+247 0 0 7 258 647 506 0 10 /**
+ *
+ */ 0 
+248 0 0 7 258 647 506 0 10 /**
+ *
+ */ 1 4 copy 1 648  
+249 0 0 6 259 647 0 0 0 2 4 this 3 647  4 copy 1 648  
+250 0 0 4 261 608 0 0 47 /**
+ * Removes all the files from the list.
+ */ 1 4 this 3 647  
+251 0 0 6 262 626 0 0 58 /**
+ * Returns the number of files on the result list.
+ */ 1 4 this 3 648  
+252 0 0 6 263 629 0 0 51 /**
+ * Returns the nth file on the result list.
+ */ 2 4 this 3 648  1 n 1 626  
+253 0 0 7 264 628 478 0 0 2 4 this 3 648  1 n 1 626  
+254 0 0 6 265 626 0 0 136 /**
+ * Returns the num of filenames in the set.  This method is defined to make
+ * the Results object appear to be a list in Python.
+ */ 1 4 this 3 648  
+255 0 0 4 266 608 0 0 10 /**
+ *
+ */ 2 4 this 3 648  3 out 1 612  
+256 0 0 4 267 608 0 0 10 /**
+ *
+ */ 3 4 this 3 648  3 out 1 612  12 indent_level 1 596  
+257 0 0 7 306 652 544 0 0 1 6 param0 0 650  
+258 0 0 6 288 597 0 0 73 /**
+ * Returns true if the indicated environment variable is defined.
+ */ 1 3 var 1 619  
+259 0 0 6 289 619 0 0 125 /**
+ * Returns the definition of the indicated environment variable, or the empty
+ * string if the variable is undefined.
+ */ 1 3 var 1 619  
+260 0 0 4 290 608 0 0 72 /**
+ * Changes the definition of the indicated environment variable.
+ */ 2 3 var 1 619  5 value 1 619  
+261 0 0 4 291 608 0 0 269 /**
+ * Changes the apparent definition of the indicated environment variable by
+ * masking it within this class with a new value.  This does not change the
+ * actual environment variable, but future calls to get_environment_variable()
+ * will return this new value.
+ */ 2 3 var 1 619  5 value 1 619  
+262 0 0 4 292 608 0 0 140 /**
+ * Removes a value set by a previous call to shadow_environment_variable(),
+ * and lets the actual value of the variable show again.
+ */ 1 3 var 1 619  
+263 0 0 6 293 619 0 0 220 /**
+ * Reads the string, looking for environment variable names marked by a $.
+ * Expands all such variable names.  A repeated dollar sign ($$) is mapped to
+ * a single dollar sign.
+ *
+ * Returns the expanded string.
+ */ 1 3 str 1 619  
+264 0 0 6 294 626 0 0 106 /**
+ * Returns the number of command-line arguments available, not counting arg 0,
+ * the binary name.
+ */ 0 
+265 0 0 6 295 619 0 0 194 /**
+ * Returns the nth command-line argument.  The index n must be in the range [0
+ * .. get_num_args()).  The first parameter, n == 0, is the first actual
+ * parameter, not the binary name.
+ */ 1 1 n 1 626  
+266 0 0 6 296 619 0 0 107 /**
+ * Returns the name of the binary executable that started this program, if it
+ * can be determined.
+ */ 0 
+267 0 0 6 297 619 0 0 105 /**
+ * Returns the name of the libdtool DLL that is used in this program, if it
+ * can be determined.
+ */ 0 
+268 0 0 4 298 608 0 0 22 /**
+ * Do not use.
+ */ 1 4 name 1 619  
+269 0 0 4 299 608 0 0 22 /**
+ * Do not use.
+ */ 1 4 name 1 619  
+270 0 0 7 300 628 478 0 61 /**
+ * Returns the name of the current working directory.
+ */ 0 
+271 0 0 7 309 655 562 0 10 /**
+ *
+ */ 1 4 copy 1 653  
+272 0 0 7 309 655 562 0 10 /**
+ *
+ */ 1 7 pattern 1 619  
+273 0 0 6 310 655 0 0 0 2 4 this 3 655  4 copy 1 653  
+274 0 0 6 311 597 0 0 0 2 4 this 3 653  5 other 1 653  
+275 0 0 6 312 597 0 0 0 2 4 this 3 653  5 other 1 653  
+276 0 0 6 313 597 0 0 0 2 4 this 3 653  5 other 1 653  
+277 0 0 4 314 608 0 0 74 /**
+ * Changes the pattern string that the GlobPattern object matches.
+ */ 2 4 this 3 655  7 pattern 1 619  
+278 0 0 6 315 619 0 0 74 /**
+ * Returns the pattern string that the GlobPattern object matches.
+ */ 1 4 this 3 653  
+279 0 0 4 318 608 0 0 122 /**
+ * Sets whether the match is case sensitive (true) or case insensitive
+ * (false).  The default is case sensitive.
+ */ 2 4 this 3 655  14 case_sensitive 1 597  
+280 0 0 6 319 597 0 0 125 /**
+ * Returns whether the match is case sensitive (true) or case insensitive
+ * (false).  The default is case sensitive.
+ */ 1 4 this 3 653  
+281 0 0 4 321 608 0 0 72 /**
+ * Specifies a set of characters that are not matched by * or ?.
+ */ 2 4 this 3 655  13 nomatch_chars 1 619  
+282 0 0 6 322 619 0 0 72 /**
+ * Returns the set of characters that are not matched by * or ?.
+ */ 1 4 this 3 653  
+283 0 0 6 324 597 0 0 85 /**
+ * Returns true if the candidate string matches the pattern, false otherwise.
+ */ 2 4 this 3 653  9 candidate 1 619  
+284 0 0 6 325 597 0 0 273 /**
+ * Treats the GlobPattern as a filename pattern, and returns true if the given
+ * filename matches the pattern.  Unlike matches(), this will not match slash
+ * characters for single asterisk characters, and it will ignore path
+ * components that only contain a dot.
+ */ 2 4 this 3 653  9 candidate 1 628  
+285 0 0 4 326 608 0 0 10 /**
+ *
+ */ 2 4 this 3 653  3 out 1 612  
+286 0 0 6 327 597 0 0 124 /**
+ * Returns true if the pattern includes any special globbing characters, or
+ * false if it is just a literal string.
+ */ 1 4 this 3 653  
+287 0 0 6 328 619 0 0 265 /**
+ * Returns the initial part of the pattern before the first glob character.
+ * Since many glob patterns begin with a sequence of static characters and end
+ * with one or more glob characters, this can be used to optimized searches
+ * through sorted indices.
+ */ 1 4 this 3 653  
+288 0 0 6 329 588 0 0 0 2 4 this 3 653  3 cwd 1 629  
+289 0 0 6 329 596 0 0 547 /**
+ * Treats the GlobPattern as a filename pattern, and returns a list of any
+ * actual files that match the pattern.  This is the behavior of the standard
+ * Posix glob() function.  Any part of the filename may contain glob
+ * characters, including intermediate directory names.
+ *
+ * If cwd is specified, it is the directory that relative filenames are taken
+ * to be relative to; otherwise, the actual current working directory is
+ * assumed.
+ *
+ * The return value is the number of files matched, which are added to the
+ * results vector.
+ */ 3 4 this 3 653  7 results 1 630  3 cwd 1 629  
+290 0 0 7 332 656 567 0 10 /**
+ *
+ */ 0 
+291 0 0 6 333 597 0 0 198 /**
+ * Returns true if there is at least one line of text (or even a partial line)
+ * available in the LineStream object.  If this returns true, the line may
+ * then be retrieved via get_line().
+ */ 1 4 this 3 657  
+292 0 0 6 334 619 0 0 275 /**
+ * Extracts and returns the next line (or partial line) of text available in
+ * the LineStream object.  Once the line has been extracted, you may call
+ * has_newline() to determine whether or not there was an explicit newline
+ * character written following this line.
+ */ 1 4 this 3 656  
+293 0 0 6 335 597 0 0 206 /**
+ * Returns true if the line of text most recently returned by get_line() was
+ * written out with a terminating newline, or false if a newline character has
+ * not yet been written to the LineStream.
+ */ 1 4 this 3 657  
+91
+568 17 basic_ios< char > 0 141313 22 std::basic_ios< char > 22 std::basic_ios< char > 0 0 0 0 300 0 5 295 296 297 298 299 0 0 1 0 569 0 0 0 0 0
+
+569 8 ios_base 0 141313 13 std::ios_base 13 std::ios_base 0 0 0 0 294 0 0 0 0 0 0 3 570 571 572 144
+// We need to expose one method in each class to force it to publish.
+// But we'd like to expose some of these methods anyway, so no
+// problem.
+
+570 7 seekdir 0 794624 22 std::ios_base::seekdir 22 std::ios_base::seekdir 569 0 0 0 0 0 0 0 0 0 3 3 beg 18 std::ios_base::beg 0
+0 3 cur 18 std::ios_base::cur 0
+1 3 end 18 std::ios_base::end 0
+2 0 0
+
+571 8 openmode 0 794624 23 std::ios_base::openmode 23 std::ios_base::openmode 569 0 0 0 0 0 0 0 0 0 0 0 0
+
+572 7 iostate 0 794624 22 std::ios_base::iostate 22 std::ios_base::iostate 569 0 0 0 0 0 0 0 0 0 0 0 0
+
+573 7 fstream 0 141313 12 std::fstream 12 std::fstream 0 0 0 1 318 320 0 1 319 0 0 1 0 574 0 0 0 0 0
+
+574 8 iostream 0 141313 13 std::iostream 13 std::iostream 0 0 0 0 317 0 1 316 0 0 2 3 575 306 307 3 576 314 315 0 0 0
+
+575 7 istream 0 141313 12 std::istream 12 std::istream 0 0 0 0 305 0 3 302 303 304 0 0 1 5 568 301 0 0 0 0
+
+576 7 ostream 0 141313 12 std::ostream 12 std::ostream 0 0 0 0 313 0 4 309 310 311 312 0 0 1 5 568 308 0 0 0 0
+
+577 8 ifstream 0 141313 13 std::ifstream 13 std::ifstream 0 0 0 1 321 323 0 1 322 0 0 1 0 575 0 0 0 0 0
+
+578 3 ios 0 2105345 8 std::ios 8 std::ios 0 0 568 0 0 0 0 0 0 0 0 0 0
+
+579 8 ofstream 0 141313 13 std::ofstream 13 std::ofstream 0 0 0 1 324 326 0 1 325 0 0 1 0 576 0 0 0 0 0
+
+580 11 IFileStream 0 26625 11 IFileStream 11 IFileStream 0 0 0 1 327 328 0 2 329 330 0 0 1 0 575 0 0 0 0 303
+/**
+ * Implements a C++ stream object suitable for reading from files on disk.
+ * This is similar to ifstream, but it provides low-level support for Panda's
+ * simple-threading implementation (using this interface will block only the
+ * current thread, rather than the entire process, on I/O waits).
+ */
+
+581 11 OFileStream 0 26625 11 OFileStream 11 OFileStream 0 0 0 1 331 332 0 2 333 334 0 0 1 0 576 0 0 0 0 302
+/**
+ * Implements a C++ stream object suitable for writing to files on disk.  This
+ * is similar to ofstream, but it provides low-level support for Panda's
+ * simple-threading implementation (using this interface will block only the
+ * current thread, rather than the entire process, on I/O waits).
+ */
+
+582 10 FileStream 0 26625 10 FileStream 10 FileStream 0 0 0 1 335 336 0 2 337 338 0 0 1 0 574 0 0 0 0 324
+/**
+ * Implements a C++ stream object suitable for reading from and/or writing to
+ * files on disk.  This is similar to fstream, but it provides low-level
+ * support for Panda's simple-threading implementation (using this interface
+ * will block only the current thread, rather than the entire process, on I/O
+ * waits).
+ */
+
+583 9 pifstream 0 2105345 9 pifstream 9 pifstream 0 0 580 0 0 0 0 0 0 0 0 0 0
+
+584 9 pofstream 0 2105345 9 pofstream 9 pofstream 0 0 581 0 0 0 0 0 0 0 0 0 0
+
+585 8 pfstream 0 2105345 8 pfstream 8 pfstream 0 0 582 0 0 0 0 0 0 0 0 0 0
+
+586 11 TextEncoder 0 26625 11 TextEncoder 11 TextEncoder 0 0 0 1 339 340 2 659 660 36 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 0 0 0 0 1 587 399
+/**
+ * This class can be used to convert text between multiple representations,
+ * e.g.  UTF-8 to UTF-16.  You may use it as a static class object, passing
+ * the encoding each time, or you may create an instance and use that object,
+ * which will record the current encoding and retain the current string.
+ *
+ * This class is also a base class of TextNode, which inherits this
+ * functionality.
+ */
+
+587 8 Encoding 0 794624 21 TextEncoder::Encoding 21 TextEncoder::Encoding 586 0 0 0 0 0 0 0 0 0 4 9 E_iso8859 22 TextEncoder::E_iso8859 0
+0 6 E_utf8 19 TextEncoder::E_utf8 0
+1 9 E_utf16be 22 TextEncoder::E_utf16be 0
+2 9 E_unicode 22 TextEncoder::E_unicode 33
+// Deprecated alias for E_utf16be
+2 0 0
+
+588 10 PyObject * 0 8576 10 PyObject * 10 PyObject * 0 0 589 0 0 0 0 0 0 0 0 0 0
+
+589 8 PyObject 0 2105344 8 PyObject 8 PyObject 0 0 590 0 0 0 0 0 0 0 0 0 0
+
+590 7 _object 0 1024 7 _object 7 _object 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+591 8 Filename 0 141313 8 Filename 8 Filename 0 0 0 1 377 478 0 99 378 379 380 381 382 383 384 385 386 387 388 389 390 391 392 394 395 396 397 398 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459 460 461 462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477 0 1 393 0 0 1 592 550
+/**
+ * The name of a file, such as a texture file or an Egg file.  Stores the full
+ * pathname, and includes functions for extracting out the directory prefix
+ * part and the file extension and stuff.
+ *
+ * A Filename is also aware of the mapping between the Unix-like filename
+ * convention we use internally, and the local OS's specific filename
+ * convention, and it knows how to perform basic OS-specific I/O, like testing
+ * for file existence and searching a searchpath, as well as the best way to
+ * open an fstream for reading or writing.
+ */
+
+592 4 Type 0 794624 14 Filename::Type 14 Filename::Type 591 0 0 0 0 0 0 0 0 0 3 9 T_general 19 Filename::T_general 74
+// These type values must fit within the bits allocated for F_type, below.
+0 5 T_dso 15 Filename::T_dso 0
+1 12 T_executable 22 Filename::T_executable 0
+2 0 0
+
+593 11 PandaSystem 0 43009 11 PandaSystem 11 PandaSystem 0 0 0 0 0 12 661 662 663 664 665 666 667 668 669 670 671 672 25 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495 496 497 498 499 500 501 502 503 1 682 0 0 0 0 217
+/**
+ * This class is used as a namespace to group several global properties of
+ * Panda.  Application developers can use this class to query the runtime
+ * version or capabilities of the current Panda environment.
+ */
+
+594 6 string 0 2105344 11 std::string 11 std::string 0 0 595 0 0 0 0 0 0 0 0 0 0
+
+595 20 basic_string< char > 0 2048 25 std::basic_string< char > 25 std::basic_string< char > 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+596 3 int 0 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+597 4 bool 0 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+598 11 DSearchPath 0 26625 11 DSearchPath 11 DSearchPath 0 0 0 1 514 515 1 673 14 516 517 518 519 520 521 522 523 524 525 526 527 528 529 1 683 0 0 0 1 599 304
+/**
+ * This class stores a list of directories that can be searched, in order, to
+ * locate a particular file.  It is normally constructed by passing it a
+ * traditional searchpath-style string, e.g.  a list of directory names
+ * delimited by spaces or colons, but it can also be built up explicitly.
+ */
+
+599 7 Results 0 288769 20 DSearchPath::Results 20 DSearchPath::Results 598 0 0 1 504 506 0 8 505 507 508 509 510 511 512 513 0 0 0 0 0 0
+
+600 14 Filename const 0 8832 14 Filename const 14 Filename const 0 0 591 0 0 0 0 0 0 0 0 0 0
+
+601 20 ExecutionEnvironment 0 141313 20 ExecutionEnvironment 20 ExecutionEnvironment 0 0 0 1 543 544 5 674 675 676 677 678 13 530 531 532 533 534 535 536 537 538 539 540 541 542 0 0 0 0 0 232
+/**
+ * Encapsulates access to the environment variables and command-line arguments
+ * at the time of execution.  This is encapsulated to support accessing these
+ * things during static init time, which seems to be risky at best.
+ */
+
+602 11 GlobPattern 0 141313 11 GlobPattern 11 GlobPattern 0 0 0 1 545 562 3 679 680 681 16 546 547 548 549 550 551 552 553 554 555 556 557 558 559 560 561 0 0 0 0 0 538
+/**
+ * This class can be used to test for string matches against standard Unix-
+ * shell filename globbing conventions.  It serves as a portable standin for
+ * the Posix fnmatch() call.
+ *
+ * A GlobPattern is given a pattern string, which can contain operators like
+ * *, ?, and [].  Then it can be tested against any number of candidate
+ * strings; for each candidate, it will indicate whether the string matches
+ * the pattern or not.  It can be used, for example, to scan a directory for
+ * all files matching a particular pattern.
+ */
+
+603 12 string const 0 8832 17 std::string const 17 std::string const 0 0 594 0 0 0 0 0 0 0 0 0 0
+
+604 10 LineStream 0 141313 10 LineStream 10 LineStream 0 0 0 1 563 567 0 3 564 565 566 0 0 1 0 576 0 0 0 0 454
+/**
+ * This is a special ostream that writes to a memory buffer, like ostrstream.
+ * However, its contents can be continuously extracted as a sequence of lines
+ * of text.
+ *
+ * Unlike ostrstream, which can only be extracted from once (and then the
+ * buffer freezes and it can no longer be written to), the LineStream is not
+ * otherwise affected when a line of text is extracted.  More text can still
+ * be written to it and continuously extracted.
+ */
+
+605 25 basic_ios< char > const * 0 8576 30 std::basic_ios< char > const * 30 std::basic_ios< char > const * 0 0 606 0 0 0 0 0 0 0 0 0 0
+
+606 23 basic_ios< char > const 0 8832 28 std::basic_ios< char > const 28 std::basic_ios< char > const 0 0 568 0 0 0 0 0 0 0 0 0 0
+
+607 19 basic_ios< char > * 0 8576 24 std::basic_ios< char > * 24 std::basic_ios< char > * 0 0 568 0 0 0 0 0 0 0 0 0 0
+
+608 4 void 0 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+609 9 fstream * 0 8576 14 std::fstream * 14 std::fstream * 0 0 573 0 0 0 0 0 0 0 0 0 0
+
+610 10 iostream * 0 8576 15 std::iostream * 15 std::iostream * 0 0 574 0 0 0 0 0 0 0 0 0 0
+
+611 9 istream * 0 8576 14 std::istream * 14 std::istream * 0 0 575 0 0 0 0 0 0 0 0 0 0
+
+612 9 ostream * 0 8576 14 std::ostream * 14 std::ostream * 0 0 576 0 0 0 0 0 0 0 0 0 0
+
+613 9 streamoff 0 2105344 14 std::streamoff 14 std::streamoff 0 0 614 0 0 0 0 0 0 0 0 0 0
+
+614 13 long long int 0 8226 13 long long int 13 long long int 0 8 0 0 0 0 0 0 0 0 0 0 0
+
+615 4 char 0 8194 4 char 4 char 0 5 0 0 0 0 0 0 0 0 0 0 0
+
+616 10 ifstream * 0 8576 15 std::ifstream * 15 std::ifstream * 0 0 577 0 0 0 0 0 0 0 0 0 0
+
+617 10 ofstream * 0 8576 15 std::ofstream * 15 std::ofstream * 0 0 579 0 0 0 0 0 0 0 0 0 0
+
+618 13 IFileStream * 0 8576 13 IFileStream * 13 IFileStream * 0 0 580 0 0 0 0 0 0 0 0 0 0
+
+619 13 atomic string 0 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+620 13 OFileStream * 0 8576 13 OFileStream * 13 OFileStream * 0 0 581 0 0 0 0 0 0 0 0 0 0
+
+621 12 FileStream * 0 8576 12 FileStream * 12 FileStream * 0 0 582 0 0 0 0 0 0 0 0 0 0
+
+622 13 TextEncoder * 0 8576 13 TextEncoder * 13 TextEncoder * 0 0 586 0 0 0 0 0 0 0 0 0 0
+
+623 19 TextEncoder const * 0 8576 19 TextEncoder const * 19 TextEncoder const * 0 0 624 0 0 0 0 0 0 0 0 0 0
+
+624 17 TextEncoder const 0 8832 17 TextEncoder const 17 TextEncoder const 0 0 586 0 0 0 0 0 0 0 0 0 0
+
+625 8 char32_t 0 8198 8 char32_t 8 char32_t 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+626 6 size_t 0 2105344 11 std::size_t 11 std::size_t 0 0 627 0 0 0 0 0 0 0 0 0 0
+
+627 22 unsigned long long int 0 8230 22 unsigned long long int 22 unsigned long long int 0 8 0 0 0 0 0 0 0 0 0 0 0
+
+628 10 Filename * 0 8576 10 Filename * 10 Filename * 0 0 591 0 0 0 0 0 0 0 0 0 0
+
+629 16 Filename const * 0 8576 16 Filename const * 16 Filename const * 0 0 600 0 0 0 0 0 0 0 0 0 0
+
+630 15 vector_string * 0 8576 15 vector_string * 15 vector_string * 0 0 631 0 0 0 0 0 0 0 0 0 0
+
+631 13 vector_string 0 2105344 13 vector_string 13 vector_string 0 0 632 0 0 0 0 0 0 0 0 0 0
+
+632 17 pvector< string > 0 2048 22 pvector< std::string > 22 pvector< std::string > 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+633 6 time_t 0 2105344 6 time_t 6 time_t 0 0 634 0 0 0 0 0 0 0 0 0 0
+
+634 8 long int 0 8210 8 long int 8 long int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+635 10 streamsize 0 2105344 15 std::streamsize 15 std::streamsize 0 0 614 0 0 0 0 0 0 0 0 0 0
+
+636 19 DSearchPath const * 0 8576 19 DSearchPath const * 19 DSearchPath const * 0 0 637 0 0 0 0 0 0 0 0 0 0
+
+637 17 DSearchPath const 0 8832 17 DSearchPath const 17 DSearchPath const 0 0 598 0 0 0 0 0 0 0 0 0 0
+
+638 11 pifstream * 0 8576 11 pifstream * 11 pifstream * 0 0 583 0 0 0 0 0 0 0 0 0 0
+
+639 11 pofstream * 0 8576 11 pofstream * 11 pofstream * 0 0 584 0 0 0 0 0 0 0 0 0 0
+
+640 10 pfstream * 0 8576 10 pfstream * 10 pfstream * 0 0 585 0 0 0 0 0 0 0 0 0 0
+
+641 10 TypeHandle 0 16779264 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 732
+/**
+ * TypeHandle is the identifier used to differentiate C++ class types.  Any
+ * C++ classes that inherit from some base class, and must be differentiated
+ * at run time, should store a static TypeHandle object that can be queried
+ * through a static member function named get_class_type().  Most of the time,
+ * it is also desirable to inherit from TypedObject, which provides some
+ * virtual functions to return the TypeHandle for a particular instance.
+ *
+ * At its essence, a TypeHandle is simply a unique identifier that is assigned
+ * by the TypeRegistry.  The TypeRegistry stores a tree of TypeHandles, so
+ * that ancestry of a particular type may be queried, and the type name may be
+ * retrieved for run-time display.
+ */
+
+642 12 TypeHandle * 0 8576 12 TypeHandle * 12 TypeHandle * 0 0 641 0 0 0 0 0 0 0 0 0 0
+
+643 19 PandaSystem const * 0 8576 19 PandaSystem const * 19 PandaSystem const * 0 0 644 0 0 0 0 0 0 0 0 0 0
+
+644 17 PandaSystem const 0 8832 17 PandaSystem const 17 PandaSystem const 0 0 593 0 0 0 0 0 0 0 0 0 0
+
+645 13 PandaSystem * 0 8576 13 PandaSystem * 13 PandaSystem * 0 0 593 0 0 0 0 0 0 0 0 0 0
+
+646 13 DSearchPath * 0 8576 13 DSearchPath * 13 DSearchPath * 0 0 598 0 0 0 0 0 0 0 0 0 0
+
+647 9 Results * 0 8576 22 DSearchPath::Results * 22 DSearchPath::Results * 0 0 599 0 0 0 0 0 0 0 0 0 0
+
+648 15 Results const * 0 8576 28 DSearchPath::Results const * 28 DSearchPath::Results const * 0 0 649 0 0 0 0 0 0 0 0 0 0
+
+649 13 Results const 0 8832 26 DSearchPath::Results const 26 DSearchPath::Results const 0 0 599 0 0 0 0 0 0 0 0 0 0
+
+650 28 ExecutionEnvironment const * 0 8576 28 ExecutionEnvironment const * 28 ExecutionEnvironment const * 0 0 651 0 0 0 0 0 0 0 0 0 0
+
+651 26 ExecutionEnvironment const 0 8832 26 ExecutionEnvironment const 26 ExecutionEnvironment const 0 0 601 0 0 0 0 0 0 0 0 0 0
+
+652 22 ExecutionEnvironment * 0 8576 22 ExecutionEnvironment * 22 ExecutionEnvironment * 0 0 601 0 0 0 0 0 0 0 0 0 0
+
+653 19 GlobPattern const * 0 8576 19 GlobPattern const * 19 GlobPattern const * 0 0 654 0 0 0 0 0 0 0 0 0 0
+
+654 17 GlobPattern const 0 8832 17 GlobPattern const 17 GlobPattern const 0 0 602 0 0 0 0 0 0 0 0 0 0
+
+655 13 GlobPattern * 0 8576 13 GlobPattern * 13 GlobPattern * 0 0 602 0 0 0 0 0 0 0 0 0 0
+
+656 12 LineStream * 0 8576 12 LineStream * 12 LineStream * 0 0 604 0 0 0 0 0 0 0 0 0 0
+
+657 18 LineStream const * 0 8576 18 LineStream const * 18 LineStream const * 0 0 658 0 0 0 0 0 0 0 0 0 0
+
+658 16 LineStream const 0 8832 16 LineStream const 16 LineStream const 0 0 604 0 0 0 0 0 0 0 0 0 0
+
+0
+23
+659 16 default_encoding 0 6 587 344 343 0 0 0 0 0 0 29 TextEncoder::default_encoding 0
+
+660 4 text 0 6 588 350 345 0 0 0 0 0 0 17 TextEncoder::text 0
+
+661 14 version_string 0 2 594 479 0 0 0 0 0 0 0 27 PandaSystem::version_string 0
+
+662 13 major_version 0 2 596 483 0 0 0 0 0 0 0 26 PandaSystem::major_version 0
+
+663 13 minor_version 0 2 596 484 0 0 0 0 0 0 0 26 PandaSystem::minor_version 0
+
+664 16 sequence_version 0 2 596 485 0 0 0 0 0 0 0 29 PandaSystem::sequence_version 0
+
+665 16 official_version 0 2 597 486 0 0 0 0 0 0 0 29 PandaSystem::official_version 0
+
+666 16 memory_alignment 0 2 596 487 0 0 0 0 0 0 0 29 PandaSystem::memory_alignment 0
+
+667 11 distributor 0 2 594 488 0 0 0 0 0 0 0 24 PandaSystem::distributor 0
+
+668 8 compiler 0 2 594 489 0 0 0 0 0 0 0 21 PandaSystem::compiler 0
+
+669 10 build_date 0 2 594 490 0 0 0 0 0 0 0 23 PandaSystem::build_date 0
+
+670 10 git_commit 0 2 594 491 0 0 0 0 0 0 0 23 PandaSystem::git_commit 0
+
+671 8 platform 0 2 594 492 0 0 0 0 0 0 0 21 PandaSystem::platform 0
+
+672 7 systems 0 66 594 495 0 0 0 0 494 0 0 20 PandaSystem::systems 0
+
+673 11 directories 0 66 600 524 0 0 0 0 523 0 0 24 DSearchPath::directories 0
+
+674 21 environment_variables 0 142 594 531 532 530 0 0 0 0 0 43 ExecutionEnvironment::environment_variables 0
+
+675 4 args 0 66 594 537 0 0 0 0 536 0 0 26 ExecutionEnvironment::args 0
+
+676 11 binary_name 0 6 594 538 540 0 0 0 0 0 0 33 ExecutionEnvironment::binary_name 0
+
+677 10 dtool_name 0 6 594 539 541 0 0 0 0 0 0 32 ExecutionEnvironment::dtool_name 0
+
+678 3 cwd 0 2 591 542 0 0 0 0 0 0 0 25 ExecutionEnvironment::cwd 0
+
+679 7 pattern 0 6 603 551 550 0 0 0 0 0 0 20 GlobPattern::pattern 0
+
+680 14 case_sensitive 0 6 597 553 552 0 0 0 0 0 0 27 GlobPattern::case_sensitive 0
+
+681 13 nomatch_chars 0 6 603 555 554 0 0 0 0 0 0 26 GlobPattern::nomatch_chars 0
+
+2
+682 11 get_systems 0 494 495 24 PandaSystem::get_systems 0
+
+683 15 get_directories 0 523 524 28 DSearchPath::get_directories 0
+

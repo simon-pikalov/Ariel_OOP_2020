@@ -1,0 +1,121 @@
+1608632406
+3 3
+9 libp3vrpn 4 lPJY 12 panda3d.vrpn 
+6
+7 10 VrpnClient 0 4 13 22 VrpnClient::VrpnClient 0 1 1 10
+/**
+ *
+ */
+64
+explicit VrpnClient::VrpnClient(std::string const &server_name);
+
+8 15 get_server_name 0 4 13 27 VrpnClient::get_server_name 0 1 2 82
+/**
+ * Returns the name of the server as passed to the VrpnClient constructor.
+ */
+66
+inline std::string const &VrpnClient::get_server_name(void) const;
+
+9 8 is_valid 0 4 13 20 VrpnClient::is_valid 0 1 3 129
+/**
+ * Returns true if everything seems to be kosher with the server (even if
+ * there is no connection), or false otherwise.
+ */
+38
+bool VrpnClient::is_valid(void) const;
+
+10 12 is_connected 0 4 13 24 VrpnClient::is_connected 0 1 4 90
+/**
+ * Returns true if the connection is established successfully, false
+ * otherwise.
+ */
+42
+bool VrpnClient::is_connected(void) const;
+
+11 5 write 0 4 13 17 VrpnClient::write 0 1 5 102
+/**
+ * Writes a list of the active devices that the VrpnClient is currently
+ * polling each frame.
+ */
+70
+void VrpnClient::write(std::ostream &out, int indent_level = 0) const;
+
+12 14 get_class_type 0 4 13 26 VrpnClient::get_class_type 0 1 6 0
+51
+static TypeHandle VrpnClient::get_class_type(void);
+
+6
+1 0 0 7 3 16 0 0 10 /**
+ *
+ */ 1 11 server_name 1 15  
+2 0 0 6 4 15 0 0 82 /**
+ * Returns the name of the server as passed to the VrpnClient constructor.
+ */ 1 4 this 3 17  
+3 0 0 6 5 19 0 0 129 /**
+ * Returns true if everything seems to be kosher with the server (even if
+ * there is no connection), or false otherwise.
+ */ 1 4 this 3 17  
+4 0 0 6 6 19 0 0 90 /**
+ * Returns true if the connection is established successfully, false
+ * otherwise.
+ */ 1 4 this 3 17  
+5 0 0 4 7 23 0 0 102 /**
+ * Writes a list of the active devices that the VrpnClient is currently
+ * polling each frame.
+ */ 3 4 this 3 17  3 out 1 20  12 indent_level 1 22  
+6 0 0 7 8 25 0 0 0 0 
+13
+13 10 VrpnClient 0 75777 10 VrpnClient 10 VrpnClient 0 0 0 1 7 0 0 5 8 9 10 11 12 0 0 1 0 14 0 0 0 0 121
+/**
+ * A specific ClientBase that connects to a VRPN server and records
+ * information on the connected VRPN devices.
+ */
+
+14 10 ClientBase 0 2048 10 ClientBase 10 ClientBase 0 0 0 0 0 0 0 0 0 0 0 0 307
+/**
+ * An abstract base class for a family of client device interfaces--including
+ * trackers, buttons, dials, and other analog inputs.
+ *
+ * This provides a common interface to connect to such devices and extract
+ * their data; it is used by TrackerNode etc.  to put these devices in the
+ * data graph.
+ */
+
+15 13 atomic string 0 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+16 12 VrpnClient * 0 8576 12 VrpnClient * 12 VrpnClient * 0 0 13 0 0 0 0 0 0 0 0 0 0
+
+17 18 VrpnClient const * 0 8576 18 VrpnClient const * 18 VrpnClient const * 0 0 18 0 0 0 0 0 0 0 0 0 0
+
+18 16 VrpnClient const 0 8832 16 VrpnClient const 16 VrpnClient const 0 0 13 0 0 0 0 0 0 0 0 0 0
+
+19 4 bool 0 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+20 9 ostream * 0 8576 14 std::ostream * 14 std::ostream * 0 0 21 0 0 0 0 0 0 0 0 0 0
+
+21 7 ostream 0 2048 12 std::ostream 12 std::ostream 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+22 3 int 0 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+23 4 void 0 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+24 10 TypeHandle 0 16779264 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 732
+/**
+ * TypeHandle is the identifier used to differentiate C++ class types.  Any
+ * C++ classes that inherit from some base class, and must be differentiated
+ * at run time, should store a static TypeHandle object that can be queried
+ * through a static member function named get_class_type().  Most of the time,
+ * it is also desirable to inherit from TypedObject, which provides some
+ * virtual functions to return the TypeHandle for a particular instance.
+ *
+ * At its essence, a TypeHandle is simply a unique identifier that is assigned
+ * by the TypeRegistry.  The TypeRegistry stores a tree of TypeHandles, so
+ * that ancestry of a particular type may be queried, and the type name may be
+ * retrieved for run-time display.
+ */
+
+25 12 TypeHandle * 0 8576 12 TypeHandle * 12 TypeHandle * 0 0 24 0 0 0 0 0 0 0 0 0 0
+
+0
+0
+0

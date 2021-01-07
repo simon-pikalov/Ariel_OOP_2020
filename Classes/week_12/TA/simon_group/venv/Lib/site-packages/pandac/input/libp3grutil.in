@@ -1,0 +1,4334 @@
+1608998521
+3 3
+11 libp3grutil 4 sM0l 12 panda3d.core 
+237
+263 9 CardMaker 0 4 500 20 CardMaker::CardMaker 0 2 1 2 10
+/**
+ *
+ */
+120
+inline explicit CardMaker::CardMaker(std::string const &name);
+inline CardMaker::CardMaker(CardMaker const &) = default;
+
+264 10 ~CardMaker 0 4 500 21 CardMaker::~CardMaker 0 0 10
+/**
+ *
+ */
+35
+inline CardMaker::~CardMaker(void);
+
+265 5 reset 0 4 500 16 CardMaker::reset 0 1 3 63
+/**
+ * Resets all the parameters to their initial defaults.
+ */
+28
+void CardMaker::reset(void);
+
+266 12 set_uv_range 0 4 500 23 CardMaker::set_uv_range 0 5 4 5 6 7 8 1098
+/**
+ * Sets the range of UV's that will be applied to the vertices.  If
+ * set_has_uvs() is true (as it is by default), the vertices will be generated
+ * with the indicated range of UV's, which will be useful if a texture is
+ * applied.
+ */
+
+/**
+ * Sets the range of UV's that will be applied to the vertices.  If
+ * set_has_uvs() is true (as it is by default), the vertices will be generated
+ * with the indicated range of UV's, which will be useful if a texture is
+ * applied.
+ */
+
+/**
+ * Sets the range of UV's that will be applied to the vertices.  If
+ * set_has_uvs() is true (as it is by default), the vertices will be generated
+ * with the indicated range of UV's, which will be useful if a texture is
+ * applied.
+ */
+
+/**
+ * Sets the range of UV's that will be applied to the vertices.  If
+ * set_has_uvs() is true (as it is by default), the vertices will be generated
+ * with the indicated range of UV's, which will be useful if a texture is
+ * applied.
+ */
+
+/**
+ * Sets the range of UV's that will be applied to the vertices appropriately
+ * to show the non-pad region of the texture.
+ */
+440
+void CardMaker::set_uv_range(LTexCoord const &ll, LTexCoord const &ur);
+void CardMaker::set_uv_range(LTexCoord const &ll, LTexCoord const &lr, LTexCoord const &ur, LTexCoord const &ul);
+void CardMaker::set_uv_range(LTexCoord3 const &ll, LTexCoord3 const &lr, LTexCoord3 const &ur, LTexCoord3 const &ul);
+void CardMaker::set_uv_range(LVector4 const &x, LVector4 const &y, LVector4 const &z);
+void CardMaker::set_uv_range(Texture const *tex);
+
+267 17 set_uv_range_cube 0 4 500 28 CardMaker::set_uv_range_cube 0 1 9 108
+/**
+ * Sets the range of UV's that will be applied to the vertices appropriately
+ * for a cube-map face.
+ */
+44
+void CardMaker::set_uv_range_cube(int face);
+
+268 11 set_has_uvs 0 4 500 22 CardMaker::set_has_uvs 0 1 10 91
+/**
+ * Sets the flag indicating whether vertices will be generated with UV's or
+ * not.
+ */
+46
+inline void CardMaker::set_has_uvs(bool flag);
+
+269 14 set_has_3d_uvs 0 4 500 25 CardMaker::set_has_3d_uvs 0 1 11 211
+/**
+ * Sets the flag indicating whether vertices will be generated with
+ * 3-component UVW's (true) or 2-component UV's (the default, false).
+ * Normally, this will be implicitly set by setting the uv_range.
+ */
+49
+inline void CardMaker::set_has_3d_uvs(bool flag);
+
+270 9 set_frame 0 4 500 20 CardMaker::set_frame 0 3 12 13 14 115
+/**
+ * Sets the size of the card.
+ */
+
+/**
+ * Sets the size of the card.
+ */
+
+/**
+ * Sets the size of the card.
+ */
+275
+inline void CardMaker::set_frame(PN_stdfloat left, PN_stdfloat right, PN_stdfloat bottom, PN_stdfloat top);
+inline void CardMaker::set_frame(LVecBase4 const &frame);
+inline void CardMaker::set_frame(LVertex const &ll, LVertex const &lr, LVertex const &ur, LVertex const &ul);
+
+271 25 set_frame_fullscreen_quad 0 4 500 36 CardMaker::set_frame_fullscreen_quad 0 1 15 134
+/**
+ * Sets the card to (-1,1,-1,1), which is appropriate if you plan to parent it
+ * to render2d and use it as a fullscreen quad.
+ */
+55
+inline void CardMaker::set_frame_fullscreen_quad(void);
+
+272 9 set_color 0 4 500 20 CardMaker::set_color 0 2 16 17 78
+/**
+ * Sets the color of the card.
+ */
+
+/**
+ * Sets the color of the card.
+ */
+148
+inline void CardMaker::set_color(PN_stdfloat r, PN_stdfloat g, PN_stdfloat b, PN_stdfloat a);
+inline void CardMaker::set_color(LColor const &color);
+
+273 15 set_has_normals 0 4 500 26 CardMaker::set_has_normals 0 1 18 355
+/**
+ * Sets the flag indicating whether vertices will be generated with normals or
+ * not.  Normals are required if you intend to enable lighting on the card,
+ * but are just wasted space and bandwidth otherwise, so there is a (slight)
+ * optimization for disabling them.  If enabled, the normals will be generated
+ * perpendicular to the card's face.
+ */
+50
+inline void CardMaker::set_has_normals(bool flag);
+
+274 19 set_source_geometry 0 4 500 30 CardMaker::set_source_geometry 0 1 19 445
+/**
+ * Sets a node that will be copied (and scaled and translated) to generate the
+ * frame, instead of generating a new polygon.  The node may contain arbitrary
+ * geometry that describes a flat polygon contained within the indicated left,
+ * right, bottom, top frame.
+ *
+ * When generate() is called, the geometry in this node will be scaled and
+ * translated appropriately to give it the size and aspect ratio specified by
+ * set_frame().
+ */
+84
+inline void CardMaker::set_source_geometry(PandaNode *node, LVecBase4 const &frame);
+
+275 21 clear_source_geometry 0 4 500 32 CardMaker::clear_source_geometry 0 1 20 82
+/**
+ * Removes the node specified by an earlier call to set_source_geometry().
+ */
+51
+inline void CardMaker::clear_source_geometry(void);
+
+276 8 generate 0 4 500 19 CardMaker::generate 0 1 21 68
+/**
+ * Generates a GeomNode that renders the specified geometry.
+ */
+49
+PointerTo< PandaNode > CardMaker::generate(void);
+
+277 12 FisheyeMaker 0 4 502 26 FisheyeMaker::FisheyeMaker 0 2 22 23 10
+/**
+ *
+ */
+135
+inline explicit FisheyeMaker::FisheyeMaker(std::string const &name);
+inline FisheyeMaker::FisheyeMaker(FisheyeMaker const &) = default;
+
+278 13 ~FisheyeMaker 0 4 502 27 FisheyeMaker::~FisheyeMaker 0 0 10
+/**
+ *
+ */
+41
+inline FisheyeMaker::~FisheyeMaker(void);
+
+279 5 reset 0 4 502 19 FisheyeMaker::reset 0 1 24 63
+/**
+ * Resets all the parameters to their initial defaults.
+ */
+31
+void FisheyeMaker::reset(void);
+
+280 7 set_fov 0 4 502 21 FisheyeMaker::set_fov 0 1 25 146
+/**
+ * Specifies the field of view of the fisheye projection.  A sphere map will
+ * have a 360-degree field of view (and this is the default).
+ */
+44
+void FisheyeMaker::set_fov(PN_stdfloat fov);
+
+281 16 set_num_vertices 0 4 502 30 FisheyeMaker::set_num_vertices 0 1 26 303
+/**
+ * Specifies the approximate number of vertices to be used to generate the
+ * rose.  This is the approximate number of vertices that will be located
+ * within the rose's unit circle, not counting the inscribing square (if any).
+ * The actual number of vertices used may be +/- 25% of this value.
+ */
+61
+inline void FisheyeMaker::set_num_vertices(int num_vertices);
+
+282 20 set_square_inscribed 0 4 502 34 FisheyeMaker::set_square_inscribed 0 1 27 577
+/**
+ * Sets the flag that indicates whether the rose should be inscribed within a
+ * square.  When this is true, an additional square is generated to inscribed
+ * the circular rose, with the indicated "radius" (the sides of the square
+ * will be 2 * square_radius).  The texture coordinates of the square will
+ * uniformly map to the back pole of the cube map.
+ *
+ * This is mainly useful to provide a good uniform background color for a
+ * sphere map so that it does not have a sharp circular edge that might
+ * produce artifacts due to numerical imprecision when mapping.
+ */
+97
+inline void FisheyeMaker::set_square_inscribed(bool square_inscribed, PN_stdfloat square_radius);
+
+283 14 set_reflection 0 4 502 28 FisheyeMaker::set_reflection 0 1 28 327
+/**
+ * Sets the flag indicating whether the texture image should be mirrored
+ * (true) or normal (false).  When this is true, the 3-D texture coordinates
+ * will be reversed so that the image is appropriate for a reflection.  This
+ * is the best choice for generating a sphere map from a cube map.  The
+ * default is false.
+ */
+58
+inline void FisheyeMaker::set_reflection(bool reflection);
+
+284 8 generate 0 4 502 22 FisheyeMaker::generate 0 1 29 68
+/**
+ * Generates a GeomNode that renders the specified geometry.
+ */
+52
+PointerTo< PandaNode > FisheyeMaker::generate(void);
+
+285 14 FrameRateMeter 0 4 503 30 FrameRateMeter::FrameRateMeter 0 2 30 31 10
+/**
+ *
+ */
+138
+explicit FrameRateMeter::FrameRateMeter(std::string const &name);
+inline FrameRateMeter::FrameRateMeter(FrameRateMeter const &) = default;
+
+286 12 setup_window 0 4 503 28 FrameRateMeter::setup_window 0 1 32 112
+/**
+ * Sets up the frame rate meter to create a DisplayRegion to render itself
+ * into the indicated window.
+ */
+58
+void FrameRateMeter::setup_window(GraphicsOutput *window);
+
+287 12 clear_window 0 4 503 28 FrameRateMeter::clear_window 0 1 33 66
+/**
+ * Undoes the effect of a previous call to setup_window().
+ */
+40
+void FrameRateMeter::clear_window(void);
+
+288 10 get_window 0 4 503 26 FrameRateMeter::get_window 0 1 34 122
+/**
+ * Returns the GraphicsOutput that was passed to setup_window(), or NULL if
+ * setup_window() has not been called.
+ */
+62
+inline GraphicsOutput *FrameRateMeter::get_window(void) const;
+
+289 18 get_display_region 0 4 503 34 FrameRateMeter::get_display_region 0 1 35 168
+/**
+ * Returns the DisplayRegion that the meter has created to render itself into
+ * the window to setup_window(), or NULL if setup_window() has not been
+ * called.
+ */
+69
+inline DisplayRegion *FrameRateMeter::get_display_region(void) const;
+
+290 19 set_update_interval 0 4 503 35 FrameRateMeter::set_update_interval 0 1 36 255
+/**
+ * Specifies the number of seconds that should elapse between updates to the
+ * frame rate indication.  This should be reasonably slow (e.g.  0.2 to 1.0)
+ * so that the calculation of the frame rate text does not itself dominate the
+ * frame rate.
+ */
+72
+inline void FrameRateMeter::set_update_interval(double update_interval);
+
+291 19 get_update_interval 0 4 503 35 FrameRateMeter::get_update_interval 0 1 37 106
+/**
+ * Returns the number of seconds that will elapse between updates to the frame
+ * rate indication.
+ */
+62
+inline double FrameRateMeter::get_update_interval(void) const;
+
+292 16 set_text_pattern 0 4 503 32 FrameRateMeter::set_text_pattern 0 1 38 176
+/**
+ * Sets the sprintf() pattern that is used to format the text.  The string
+ * "%f" or some variant will be replaced with the current frame rate in frames
+ * per second.
+ */
+78
+inline void FrameRateMeter::set_text_pattern(std::string const &text_pattern);
+
+293 16 get_text_pattern 0 4 503 32 FrameRateMeter::get_text_pattern 0 1 39 73
+/**
+ * Returns the sprintf() pattern that is used to format the text.
+ */
+71
+inline std::string const &FrameRateMeter::get_text_pattern(void) const;
+
+294 16 set_clock_object 0 4 503 32 FrameRateMeter::set_clock_object 0 1 40 152
+/**
+ * Sets the clock that is used to determine the frame rate.  The default is
+ * the application's global clock (ClockObject::get_global_clock()).
+ */
+72
+inline void FrameRateMeter::set_clock_object(ClockObject *clock_object);
+
+295 16 get_clock_object 0 4 503 32 FrameRateMeter::get_clock_object 0 1 41 70
+/**
+ * Returns the clock that is used to determine the frame rate.
+ */
+65
+inline ClockObject *FrameRateMeter::get_clock_object(void) const;
+
+296 6 update 0 4 503 22 FrameRateMeter::update 0 1 42 186
+/**
+ * You can call this to explicitly force the FrameRateMeter to update itself
+ * with the latest frame rate information.  Normally, it is not necessary to
+ * call this explicitly.
+ */
+41
+inline void FrameRateMeter::update(void);
+
+297 14 get_class_type 0 4 503 30 FrameRateMeter::get_class_type 0 1 43 0
+55
+static TypeHandle FrameRateMeter::get_class_type(void);
+
+298 13 GeoMipTerrain 0 4 505 28 GeoMipTerrain::GeoMipTerrain 0 1 44 10
+/**
+ *
+ */
+70
+inline explicit GeoMipTerrain::GeoMipTerrain(std::string const &name);
+
+299 11 heightfield 0 4 505 26 GeoMipTerrain::heightfield 0 1 45 150
+/**
+ * Returns a reference to the heightfield (a PNMImage) contained inside
+ * GeoMipTerrain.  You can use the reference to alter the heightfield.
+ */
+50
+inline PNMImage &GeoMipTerrain::heightfield(void);
+
+300 15 set_heightfield 0 4 505 30 GeoMipTerrain::set_heightfield 0 2 46 47 466
+/**
+ * Loads the specified heightmap image file into the heightfield.  Returns
+ * true if succeeded, or false if an error has occured.  If the heightmap is
+ * not a power of two plus one, it is scaled up using a gaussian filter.
+ */
+
+/**
+ * Loads the specified heightmap image file into the heightfield.  Returns
+ * true if succeeded, or false if an error has occured.  If the heightmap is
+ * not a power of two plus one, it is scaled up using a gaussian filter.
+ */
+158
+bool GeoMipTerrain::set_heightfield(Filename const &filename, PNMFileType *type = nullptr);
+inline bool GeoMipTerrain::set_heightfield(PNMImage const &image);
+
+301 9 color_map 0 4 505 24 GeoMipTerrain::color_map 0 1 48 146
+/**
+ * Returns a reference to the color map (a PNMImage) contained inside
+ * GeoMipTerrain.  You can use the reference to alter the color map.
+ */
+48
+inline PNMImage &GeoMipTerrain::color_map(void);
+
+302 13 set_color_map 0 4 505 28 GeoMipTerrain::set_color_map 0 4 49 50 51 52 234
+/**
+ * Loads the specified image as color map.  The next time generate() is
+ * called, the terrain is painted with this color map using the vertex color
+ * column.  Returns a boolean indicating whether the operation has succeeded.
+ */
+292
+inline bool GeoMipTerrain::set_color_map(Filename const &filename, PNMFileType *type = nullptr);
+inline bool GeoMipTerrain::set_color_map(PNMImage const &image);
+inline bool GeoMipTerrain::set_color_map(Texture const *image);
+inline bool GeoMipTerrain::set_color_map(std::string const &path);
+
+303 13 has_color_map 0 4 505 28 GeoMipTerrain::has_color_map 0 1 53 52
+/**
+ * Returns whether a color map has been set.
+ */
+53
+inline bool GeoMipTerrain::has_color_map(void) const;
+
+304 15 clear_color_map 0 4 505 30 GeoMipTerrain::clear_color_map 0 1 54 32
+/**
+ * Clears the color map.
+ */
+49
+inline void GeoMipTerrain::clear_color_map(void);
+
+305 22 calc_ambient_occlusion 0 4 505 37 GeoMipTerrain::calc_ambient_occlusion 0 1 55 250
+/**
+ * Calculates an approximate for the ambient occlusion and stores it in the
+ * color map, so that it will be written to the vertex colors.  Any existing
+ * color map will be discarded.  You need to call this before generating the
+ * geometry.
+ */
+141
+void GeoMipTerrain::calc_ambient_occlusion(PN_stdfloat radius = 32, PN_stdfloat contrast = 2.0, PN_stdfloat brightness = 0.7500000000000001);
+
+306 13 get_elevation 0 4 505 28 GeoMipTerrain::get_elevation 0 1 56 410
+/**
+ * Fetches the elevation at (x, y), where the input coordinate is specified in
+ * pixels.  This ignores the current LOD level and instead provides an
+ * accurate number.  Linear blending is used for non-integral coordinates.
+ * Terrain scale is NOT taken into account!  To get accurate normals, please
+ * multiply this with the terrain Z scale!
+ *
+ * trueElev = terr.get_elevation(x,y) * terr.get_sz();
+ */
+56
+double GeoMipTerrain::get_elevation(double x, double y);
+
+307 10 get_normal 0 4 505 25 GeoMipTerrain::get_normal 0 2 57 58 829
+/**
+ * Fetches the terrain normal at (x,y), where the input coordinate is
+ * specified in pixels.  This ignores the current LOD level and instead
+ * provides an accurate number.  Terrain scale is NOT taken into account!  To
+ * get accurate normals, please divide it by the terrain scale and normalize
+ * it again!
+ */
+
+/**
+ * Fetches the terrain normal at (x, y), where the input coordinate is
+ * specified in pixels.  This ignores the current LOD level and instead
+ * provides an accurate number.  Terrain scale is NOT taken into account!  To
+ * get accurate normals, please divide it by the terrain scale and normalize
+ * it again, like this:
+ *
+ * LVector3 normal (terr.get_normal(x, y)); normal.set(normal.get_x() /
+ * root.get_sx(), normal.get_y() / root.get_sy(), normal.get_z() /
+ * root.get_sz()); normal.normalize();
+ */
+152
+LVector3 GeoMipTerrain::get_normal(int x, int y);
+inline LVector3 GeoMipTerrain::get_normal(unsigned short int mx, unsigned short int my, int x, int y);
+
+308 14 set_bruteforce 0 4 505 29 GeoMipTerrain::set_bruteforce 0 1 59 238
+/**
+ * Sets a boolean specifying whether the terrain will be rendered bruteforce.
+ * If the terrain is rendered bruteforce, there will be no Level of Detail,
+ * and the update() call will only update the terrain if it is marked dirty.
+ */
+51
+inline void GeoMipTerrain::set_bruteforce(bool bf);
+
+309 14 get_bruteforce 0 4 505 29 GeoMipTerrain::get_bruteforce 0 1 60 124
+/**
+ * Returns a boolean whether the terrain is rendered bruteforce or not.  See
+ * set_bruteforce for more information.
+ */
+48
+inline bool GeoMipTerrain::get_bruteforce(void);
+
+310 16 set_auto_flatten 0 4 505 31 GeoMipTerrain::set_auto_flatten 0 1 61 210
+/**
+ * The terrain can be automatically flattened (using flatten_light,
+ * flatten_medium, or flatten_strong) after each update.  This only affects
+ * future updates, it doesn't flatten the current terrain.
+ */
+54
+inline void GeoMipTerrain::set_auto_flatten(int mode);
+
+311 15 set_focal_point 0 4 505 30 GeoMipTerrain::set_focal_point 0 6 62 63 64 65 66 67 628
+// The focal point is the point at which the terrain will have the highest
+// quality (lowest level of detail). Parts farther away from the focal point
+// will have a lower quality (higher level of detail). The focal point is
+// not taken in respect if bruteforce is set true.
+
+/**
+ * Sets the focal point.  GeoMipTerrain generates high-resolution terrain
+ * around the focal point, and progressively lower and lower resolution
+ * terrain as you get farther away.  If a point is supplied and not a
+ * NodePath, make sure it's relative to the terrain.  Only the x and y
+ * coordinates of the focal point are taken in respect.
+ */
+377
+inline void GeoMipTerrain::set_focal_point(LPoint2d const &fp);
+inline void GeoMipTerrain::set_focal_point(LPoint2f const &fp);
+inline void GeoMipTerrain::set_focal_point(LPoint3d const &fp);
+inline void GeoMipTerrain::set_focal_point(LPoint3f const &fp);
+inline void GeoMipTerrain::set_focal_point(double x, double y);
+inline void GeoMipTerrain::set_focal_point(NodePath fnp);
+
+312 15 get_focal_point 0 4 505 30 GeoMipTerrain::get_focal_point 0 1 68 145
+/**
+ * Returns the focal point, as a NodePath.  If you have set it to be just a
+ * point, it will return an empty node at the focal position.
+ */
+59
+inline NodePath GeoMipTerrain::get_focal_point(void) const;
+
+313 8 get_root 0 4 505 23 GeoMipTerrain::get_root 0 1 69 258
+/**
+ * Returns the root of the terrain.  This is a single PandaNode to which all
+ * the rest of the terrain is parented.  The generate and update operations
+ * replace the nodes which are parented to this root, but they don't replace
+ * this root itself.
+ */
+52
+inline NodePath GeoMipTerrain::get_root(void) const;
+
+314 14 set_block_size 0 4 505 29 GeoMipTerrain::set_block_size 0 1 70 98
+/**
+ * Sets the block size.  If it is not a power of two, the closest power of two
+ * is used.
+ */
+68
+inline void GeoMipTerrain::set_block_size(unsigned short int newbs);
+
+315 14 get_block_size 0 4 505 29 GeoMipTerrain::get_block_size 0 1 71 31
+/**
+ * Gets the block size.
+ */
+62
+inline unsigned short int GeoMipTerrain::get_block_size(void);
+
+316 13 get_max_level 0 4 505 28 GeoMipTerrain::get_max_level 0 1 72 140
+/**
+ * Returns the highest level possible for this block size.  When a block is at
+ * this level, it will be the worst quality possible.
+ */
+61
+inline unsigned short int GeoMipTerrain::get_max_level(void);
+
+317 13 set_min_level 0 4 505 28 GeoMipTerrain::set_min_level 0 1 73 243
+/**
+ * Sets the minimum level of detail at which blocks may be generated by
+ * generate() or update(). The default value is 0, which is the highest
+ * quality.  This value is also taken in respect when generating the terrain
+ * bruteforce.
+ */
+70
+inline void GeoMipTerrain::set_min_level(unsigned short int minlevel);
+
+318 13 get_min_level 0 4 505 28 GeoMipTerrain::get_min_level 0 1 74 163
+/**
+ * Gets the minimum level of detail at which blocks may be generated by
+ * generate() or update(). The default value is 0, which is the highest
+ * quality.
+ */
+61
+inline unsigned short int GeoMipTerrain::get_min_level(void);
+
+319 8 is_dirty 0 4 505 23 GeoMipTerrain::is_dirty 0 1 75 298
+/**
+ * Returns a bool indicating whether the terrain is marked 'dirty', that means
+ * the terrain has to be regenerated on the next update() call, because for
+ * instance the heightfield has changed.  Once the terrain has been
+ * regenerated, the dirty flag automatically gets reset internally.
+ */
+42
+inline bool GeoMipTerrain::is_dirty(void);
+
+320 10 set_factor 0 4 505 25 GeoMipTerrain::set_factor 0 1 76 334
+/**
+ * DEPRECATED method.  Use set_near/far instead.  Sets the quality factor at
+ * which blocks must be generated.  The higher this level, the better quality
+ * the terrain will be, but more expensive to render.  A value of 0 makes the
+ * terrain the lowest quality possible, depending on blocksize.  The default
+ * value is 100.
+ */
+58
+inline void GeoMipTerrain::set_factor(PN_stdfloat factor);
+
+321 12 set_near_far 0 4 505 27 GeoMipTerrain::set_near_far 0 1 77 59
+/**
+ * Sets the near and far LOD distances in one call.
+ */
+77
+inline void GeoMipTerrain::set_near_far(double input_near, double input_far);
+
+322 8 set_near 0 4 505 23 GeoMipTerrain::set_near 0 1 78 152
+/**
+ * Sets the near LOD distance, at which the terrain will be rendered at
+ * highest quality.  This distance is in the terrain's coordinate space!
+ */
+55
+inline void GeoMipTerrain::set_near(double input_near);
+
+323 7 set_far 0 4 505 22 GeoMipTerrain::set_far 0 1 79 150
+/**
+ * Sets the far LOD distance, at which the terrain will be rendered at lowest
+ * quality.  This distance is in the terrain's coordinate space!
+ */
+53
+inline void GeoMipTerrain::set_far(double input_far);
+
+324 19 get_block_node_path 0 4 505 34 GeoMipTerrain::get_block_node_path 0 1 80 380
+/**
+ * Returns the NodePath of the specified block.  If auto-flatten is enabled
+ * and the node is getting removed during the flattening process, it will
+ * still return a NodePath with the appropriate terrain chunk, but it will be
+ * in a temporary scenegraph.  Please note that this returns a const object
+ * and you can not modify the node.  Modify the heightfield instead.
+ */
+103
+inline NodePath const GeoMipTerrain::get_block_node_path(unsigned short int mx, unsigned short int my);
+
+325 18 get_block_from_pos 0 4 505 33 GeoMipTerrain::get_block_from_pos 0 1 81 479
+/**
+ * Gets the coordinates of the block at the specified position.  This position
+ * must be relative to the terrain, not to render.  Returns an array
+ * containing two values: the block x and the block y coords.  If the
+ * positions are out of range, the closest block is taken.  Note that the
+ * VecBase returned does not represent a vector, position, or rotation, but it
+ * contains the block index of the block which you can use in
+ * GeoMipTerrain::get_block_node_path.
+ */
+71
+inline LVecBase2 GeoMipTerrain::get_block_from_pos(double x, double y);
+
+326 20 set_border_stitching 0 4 505 35 GeoMipTerrain::set_border_stitching 0 1 82 360
+/**
+ * If this value is true, the LOD level at the borders of the terrain will be
+ * 0. This is useful if you have multiple terrains attached and you want to
+ * stitch them together, to fix seams.  This setting also has effect when
+ * bruteforce is enabled, although in that case you are probably better off
+ * with setting the minlevels to the same value.
+ */
+64
+inline void GeoMipTerrain::set_border_stitching(bool stitching);
+
+327 20 get_border_stitching 0 4 505 35 GeoMipTerrain::get_border_stitching 0 1 83 106
+/**
+ * Returns the current stitching setting.  False by default, unless
+ * set_stitching has been set.
+ */
+54
+inline bool GeoMipTerrain::get_border_stitching(void);
+
+328 7 get_far 0 4 505 22 GeoMipTerrain::get_far 0 1 84 71
+/**
+ * Returns the far LOD distance in the terrain coordinate space
+ */
+43
+inline double GeoMipTerrain::get_far(void);
+
+329 8 get_near 0 4 505 23 GeoMipTerrain::get_near 0 1 85 72
+/**
+ * Returns the near LOD distance in the terrain coordinate space
+ */
+44
+inline double GeoMipTerrain::get_near(void);
+
+330 16 get_flatten_mode 0 4 505 31 GeoMipTerrain::get_flatten_mode 0 1 86 110
+/**
+ * Returns the automatic-flatten mode (e.g., off, flatten_light,
+ * flatten_medium, or flatten_strong)
+ */
+49
+inline int GeoMipTerrain::get_flatten_mode(void);
+
+331 16 make_slope_image 0 4 505 31 GeoMipTerrain::make_slope_image 0 1 87 520
+/**
+ * Returns a new grayscale image containing the slope angles.  A white pixel
+ * value means a vertical slope, while a black pixel will mean that the
+ * terrain is entirely flat at that pixel.  You can translate it to degrees by
+ * mapping the greyscale values from 0 to 90 degrees.  The resulting image
+ * will have the same size as the heightfield image.  The scale will be taken
+ * into respect -- meaning, if you change the terrain scale, the slope image
+ * will need to be regenerated in order to be correct.
+ */
+47
+PNMImage GeoMipTerrain::make_slope_image(void);
+
+332 8 generate 0 4 505 23 GeoMipTerrain::generate 0 1 88 191
+/**
+ * (Re)generates the entire terrain, erasing the current.  This call un-
+ * flattens the terrain, so make sure you have set auto-flatten if you want to
+ * keep your terrain flattened.
+ */
+35
+void GeoMipTerrain::generate(void);
+
+333 6 update 0 4 505 21 GeoMipTerrain::update 0 1 89 447
+/**
+ * Loops through all of the terrain blocks, and checks whether they need to be
+ * updated.  If that is indeed the case, it regenerates the mipmap.  Returns a
+ * true when the terrain has changed.  Returns false when the terrain isn't
+ * updated at all.  If there is no terrain yet, it generates the entire
+ * terrain.  This call un-flattens the terrain, so make sure you have set
+ * auto-flatten if you want to keep your terrain flattened.
+ */
+33
+bool GeoMipTerrain::update(void);
+
+334 14 get_class_type 0 4 505 29 GeoMipTerrain::get_class_type 0 1 90 0
+54
+static TypeHandle GeoMipTerrain::get_class_type(void);
+
+335 21 HeightfieldTesselator 0 4 508 44 HeightfieldTesselator::HeightfieldTesselator 0 2 91 92 10
+/**
+ *
+ */
+180
+inline explicit HeightfieldTesselator::HeightfieldTesselator(std::string const &name);
+inline HeightfieldTesselator::HeightfieldTesselator(HeightfieldTesselator const &) = default;
+
+336 22 ~HeightfieldTesselator 0 4 508 45 HeightfieldTesselator::~HeightfieldTesselator 0 0 10
+/**
+ *
+ */
+59
+inline HeightfieldTesselator::~HeightfieldTesselator(void);
+
+337 11 heightfield 0 4 508 34 HeightfieldTesselator::heightfield 0 1 93 162
+/**
+ * Returns a reference to the heightfield (a PNMImage) contained inside the
+ * HeightfieldTesselator.  You can use the reference to alter the heightfield.
+ */
+58
+inline PNMImage &HeightfieldTesselator::heightfield(void);
+
+338 15 set_heightfield 0 4 508 38 HeightfieldTesselator::set_heightfield 0 1 94 73
+/**
+ * Loads the specified greyscale image file into the heightfield.
+ */
+106
+inline bool HeightfieldTesselator::set_heightfield(Filename const &filename, PNMFileType *type = nullptr);
+
+339 14 set_poly_count 0 4 508 37 HeightfieldTesselator::set_poly_count 0 1 95 131
+/**
+ * Sets the polygon-count target.  The tesselator usually manages to come
+ * within about 20% of the target, plus or minus.
+ */
+57
+inline void HeightfieldTesselator::set_poly_count(int n);
+
+340 21 set_visibility_radius 0 4 508 44 HeightfieldTesselator::set_visibility_radius 0 1 96 354
+/**
+ * Sets the visibility radius.  Polygons that are completely outside the
+ * radius (relative to the focal point) are cropped away.  The cropping is
+ * imperfect (all approximations are conservative), so this should be used in
+ * conjunction with a far clipping plane, fog, or some other visibility
+ * limiting mechanism.  The units are in pixels.
+ */
+64
+inline void HeightfieldTesselator::set_visibility_radius(int r);
+
+341 15 set_focal_point 0 4 508 38 HeightfieldTesselator::set_focal_point 0 1 97 216
+/**
+ * Sets the focal point.  The tesselator generates high-resolution terrain
+ * around the focal point, and progressively lower and lower resolution
+ * terrain as you get farther away.  The units are in pixels.
+ */
+65
+inline void HeightfieldTesselator::set_focal_point(int x, int y);
+
+342 20 set_horizontal_scale 0 4 508 43 HeightfieldTesselator::set_horizontal_scale 0 1 98 135
+/**
+ * Sets the horizontal scale.  The default scale is 1.0, meaning that each
+ * pixel in the heightfield is 1x1 panda units wide.
+ */
+66
+inline void HeightfieldTesselator::set_horizontal_scale(double h);
+
+343 18 set_vertical_scale 0 4 508 41 HeightfieldTesselator::set_vertical_scale 0 1 99 162
+/**
+ * Sets the vertical scale.  The default scale is 255.0, meaning that each as
+ * the gray value ranges from (0-1), the elevation ranges from (0-255) feet.
+ */
+64
+inline void HeightfieldTesselator::set_vertical_scale(double v);
+
+344 17 set_max_triangles 0 4 508 40 HeightfieldTesselator::set_max_triangles 0 1 100 43
+/**
+ * Sets the max triangles per geom.
+ */
+60
+inline void HeightfieldTesselator::set_max_triangles(int n);
+
+345 13 get_elevation 0 4 508 36 HeightfieldTesselator::get_elevation 0 1 101 239
+/**
+ * Fetches the elevation at (x,y), where the input coordinate is specified in
+ * pixels.  This ignores the current tesselation level and instead provides an
+ * accurate number.  Linear blending is used for non-integral coordinates.
+ */
+64
+double HeightfieldTesselator::get_elevation(double x, double y);
+
+346 8 generate 0 4 508 31 HeightfieldTesselator::generate 0 1 102 112
+/**
+ * Generates a tree of nodes that represents the heightfield.  This can be
+ * reparented into the scene.
+ */
+47
+NodePath HeightfieldTesselator::generate(void);
+
+347 8 LineSegs 0 4 509 18 LineSegs::LineSegs 0 2 103 104 352
+/**
+ * Constructs a LineSegs object, which can be used to create any number of
+ * disconnected lines or points of various thicknesses and colors through the
+ * visible scene.  After creating the object, call move_to() and draw_to()
+ * repeatedly to describe the path, then call create() to create a GeomNode
+ * which will render the described path.
+ */
+118
+explicit LineSegs::LineSegs(std::string const &name = "lines");
+inline LineSegs::LineSegs(LineSegs const &) = default;
+
+348 9 ~LineSegs 0 4 509 19 LineSegs::~LineSegs 0 0 8
+/**
+
+ */
+26
+LineSegs::~LineSegs(void);
+
+349 5 reset 0 4 509 15 LineSegs::reset 0 1 105 79
+/**
+ * Removes any lines in progress and resets to the initial empty state.
+ */
+27
+void LineSegs::reset(void);
+
+350 9 set_color 0 4 509 19 LineSegs::set_color 0 2 106 107 252
+/**
+ * Establishes the color that will be assigned to all vertices created by
+ * future calls to move_to() and draw_to().
+ */
+
+/**
+ * Establishes the color that will be assigned to all vertices created by
+ * future calls to move_to() and draw_to().
+ */
+152
+inline void LineSegs::set_color(PN_stdfloat r, PN_stdfloat g, PN_stdfloat b, PN_stdfloat a = 1.0);
+inline void LineSegs::set_color(LColor const &color);
+
+351 13 set_thickness 0 4 509 23 LineSegs::set_thickness 0 1 108 151
+/**
+ * Establishes the line thickness or point size in pixels that will be
+ * assigned to all lines and points created by future calls to create().
+ */
+55
+inline void LineSegs::set_thickness(PN_stdfloat thick);
+
+352 7 move_to 0 4 509 17 LineSegs::move_to 0 2 109 110 436
+/**
+ * Moves the pen to the given point without drawing a line.  When followed by
+ * draw_to(), this marks the first point of a line segment; when followed by
+ * move_to() or create(), this creates a single point.
+ */
+
+/**
+ * Moves the pen to the given point without drawing a line.  When followed by
+ * draw_to(), this marks the first point of a line segment; when followed by
+ * move_to() or create(), this creates a single point.
+ */
+119
+inline void LineSegs::move_to(PN_stdfloat x, PN_stdfloat y, PN_stdfloat z);
+void LineSegs::move_to(LVecBase3 const &v);
+
+353 7 draw_to 0 4 509 17 LineSegs::draw_to 0 2 111 112 462
+/**
+ * Draws a line segment from the pen's last position (the last call to move_to
+ * or draw_to) to the indicated point.  move_to() and draw_to() only update
+ * tables; the actual drawing is performed when create() is called.
+ */
+
+/**
+ * Draws a line segment from the pen's last position (the last call to move_to
+ * or draw_to) to the indicated point.  move_to() and draw_to() only update
+ * tables; the actual drawing is performed when create() is called.
+ */
+119
+inline void LineSegs::draw_to(PN_stdfloat x, PN_stdfloat y, PN_stdfloat z);
+void LineSegs::draw_to(LVecBase3 const &v);
+
+354 20 get_current_position 0 4 509 30 LineSegs::get_current_position 0 1 113 119
+/**
+ * Returns the pen's current position.  The next call to draw_to() will draw a
+ * line segment from this point.
+ */
+52
+LVertex const &LineSegs::get_current_position(void);
+
+355 8 is_empty 0 4 509 18 LineSegs::is_empty 0 1 114 126
+/**
+ * Returns true if move_to() or draw_to() have not been called since the last
+ * reset() or create(), false otherwise.
+ */
+30
+bool LineSegs::is_empty(void);
+
+356 6 create 0 4 509 16 LineSegs::create 0 2 115 116 833
+/**
+ * Creates a new GeomNode that will render the series of line segments and
+ * points described via calls to move_to() and draw_to().  The lines and
+ * points are created with the color and thickness established by calls to
+ * set_color() and set_thickness().
+ *
+ * If dynamic is true, the line segments will be created with the dynamic Geom
+ * setting, optimizing them for runtime vertex animation.
+ */
+
+/**
+ * Appends to an existing GeomNode a new Geom that will render the series of
+ * line segments and points described via calls to move_to() and draw_to().
+ * The lines and points are created with the color and thickness established
+ * by calls to set_color() and set_thickness().
+ *
+ * If dynamic is true, the line segments will be created with the dynamic Geom
+ * setting, optimizing them for runtime vertex animation.
+ */
+126
+inline GeomNode *LineSegs::create(bool dynamic = false);
+GeomNode *LineSegs::create(GeomNode *previous, bool dynamic = false);
+
+357 16 get_num_vertices 0 4 509 26 LineSegs::get_num_vertices 0 1 117 423
+// Functions to move the line vertices after they have been created.
+
+// Functions to move the line vertices after they have been created.
+
+// Functions to move the line vertices after they have been created.
+
+/**
+ * Returns the total number of line segment and point vertices generated by
+ * the last call to create().  The positions of these vertices may be read and
+ * adjusted through get_vertex() and set_vertex().
+ */
+50
+inline int LineSegs::get_num_vertices(void) const;
+
+358 10 get_vertex 0 4 509 20 LineSegs::get_vertex 0 1 118 248
+/**
+ * Returns the nth point or vertex of the line segment sequence generated by
+ * the last call to create().  The first move_to() generates vertex 0;
+ * subsequent move_to() and draw_to() calls generate consecutively higher
+ * vertex numbers.
+ */
+42
+LVertex LineSegs::get_vertex(int n) const;
+
+359 10 set_vertex 0 4 509 20 LineSegs::set_vertex 0 2 119 120 488
+/**
+ * Moves the nth point or vertex of the line segment sequence generated by the
+ * last call to create().  The first move_to() generates vertex 0; subsequent
+ * move_to() and draw_to() calls generate consecutively higher vertex numbers.
+ */
+
+/**
+ * Moves the nth point or vertex of the line segment sequence generated by the
+ * last call to create().  The first move_to() generates vertex 0; subsequent
+ * move_to() and draw_to() calls generate consecutively higher vertex numbers.
+ */
+145
+void LineSegs::set_vertex(int n, LVertex const &vert);
+inline void LineSegs::set_vertex(int vertex, PN_stdfloat x, PN_stdfloat y, PN_stdfloat z);
+
+360 16 get_vertex_color 0 4 509 26 LineSegs::get_vertex_color 0 1 121 56
+/**
+ * Returns the color of the nth point or vertex.
+ */
+52
+LColor LineSegs::get_vertex_color(int vertex) const;
+
+361 16 set_vertex_color 0 4 509 26 LineSegs::set_vertex_color 0 2 122 123 166
+/**
+ * Changes the vertex color of the nth point or vertex.  See set_vertex().
+ */
+
+/**
+ * Changes the vertex color of the nth point or vertex.  See set_vertex().
+ */
+179
+void LineSegs::set_vertex_color(int vertex, LColor const &c);
+inline void LineSegs::set_vertex_color(int vertex, PN_stdfloat r, PN_stdfloat g, PN_stdfloat b, PN_stdfloat a = 1.0);
+
+362 10 MeshDrawer 0 4 510 22 MeshDrawer::MeshDrawer 0 1 124 51
+/**
+ * Creates the MeshDrawer low level system.
+ */
+36
+inline MeshDrawer::MeshDrawer(void);
+
+363 10 set_budget 0 4 510 22 MeshDrawer::set_budget 0 1 125 142
+/**
+ * Sets the total triangle budget of the drawer.  This will not be exceeded.
+ * Don't set some thing too large because it will be slow
+ */
+47
+inline void MeshDrawer::set_budget(int budget);
+
+364 10 get_budget 0 4 510 22 MeshDrawer::get_budget 0 1 126 55
+/**
+ * Gets the total triangle budget of the drawer
+ */
+40
+inline int MeshDrawer::get_budget(void);
+
+365 8 get_root 0 4 510 20 MeshDrawer::get_root 0 1 127 170
+/**
+ * Returns the root NodePath.  You should use this node to reparent mesh
+ * drawer onto the scene might also want to disable depth draw or enable
+ * transparency.
+ */
+43
+inline NodePath MeshDrawer::get_root(void);
+
+366 5 begin 0 4 510 17 MeshDrawer::begin 0 1 128 131
+/**
+ * Pass the current camera node and the root node.  Passing the camera is
+ * required to generate bill boards that face it.
+ */
+57
+void MeshDrawer::begin(NodePath camera, NodePath render);
+
+367 3 tri 0 4 510 15 MeshDrawer::tri 0 1 129 54
+/**
+ * Draws a triangle with the given parameters.
+ */
+211
+inline void MeshDrawer::tri(LVector3 const &v1, LVector4 const &c1, LVector2 const &uv1, LVector3 const &v2, LVector4 const &c2, LVector2 const &uv2, LVector3 const &v3, LVector4 const &c3, LVector2 const &uv3);
+
+368 8 particle 0 4 510 20 MeshDrawer::particle 0 1 130 146
+/**
+ * Draws a particle that is sort of like a bill board but has an extra
+ * rotation component.  Frame contains u,v,u-size,v-size quadruple.
+ */
+133
+void MeshDrawer::particle(LVector3 const &pos, LVector4 const &frame, PN_stdfloat size, LVector4 const &color, PN_stdfloat rotation);
+
+369 16 blended_particle 0 4 510 28 MeshDrawer::blended_particle 0 1 131 152
+/**
+ * Works just like particle but accepts 2 frames and a blend (from 0 to 1)
+ * component between them Frame contains u,v,u-size,v-size quadruple.
+ */
+185
+void MeshDrawer::blended_particle(LVector3 const &pos, LVector4 const &frame1, LVector4 const &frame2, PN_stdfloat blend, PN_stdfloat size, LVector4 const &color, PN_stdfloat rotation);
+
+370 9 billboard 0 4 510 21 MeshDrawer::billboard 0 1 132 141
+/**
+ * Draws a billboard - particle with no rotation.  Billboards always face the
+ * camera.  Frame contains u,v,u-size,v-size quadruple.
+ */
+112
+void MeshDrawer::billboard(LVector3 const &pos, LVector4 const &frame, PN_stdfloat size, LVector4 const &color);
+
+371 7 segment 0 4 510 19 MeshDrawer::segment 0 1 133 129
+/**
+ * Draws a segment a line with a thickness.  That has billboarding effect.
+ * Frame contains u,v,u-size,v-size quadruple.
+ */
+139
+void MeshDrawer::segment(LVector3 const &start, LVector3 const &stop, LVector4 const &frame, PN_stdfloat thickness, LVector4 const &color);
+
+372 13 cross_segment 0 4 510 25 MeshDrawer::cross_segment 0 1 134 229
+/**
+ * Draws a segment a line with a thickness.  This segment does not use the
+ * bill boarding behavior and instead draws 2 planes in a cross.  Stars at
+ * start and ends at stop.  Frame contains u,v,u-size,v-size quadruple.
+ */
+145
+void MeshDrawer::cross_segment(LVector3 const &start, LVector3 const &stop, LVector4 const &frame, PN_stdfloat thickness, LVector4 const &color);
+
+373 14 uneven_segment 0 4 510 26 MeshDrawer::uneven_segment 0 1 135 167
+/**
+ * Draws a segment a line with different thickness and color on both sides.
+ * Stars at start and ends at stop.  Frame contains u,v,u-size,v-size
+ * quadruple.
+ */
+214
+void MeshDrawer::uneven_segment(LVector3 const &start, LVector3 const &stop, LVector4 const &frame, PN_stdfloat thickness_start, LVector4 const &color_start, PN_stdfloat thickness_stop, LVector4 const &color_stop);
+
+374 12 link_segment 0 4 510 24 MeshDrawer::link_segment 0 1 136 156
+/**
+ * Stars or continues linked segment.  Control position, frame, thickness and
+ * color with parameters.  Frame contains u,v,u-size,v-size quadruple.
+ */
+120
+void MeshDrawer::link_segment(LVector3 const &pos, LVector4 const &frame, PN_stdfloat thickness, LVector4 const &color);
+
+375 16 link_segment_end 0 4 510 28 MeshDrawer::link_segment_end 0 1 137 172
+/**
+ * Finish drawing linked segments, needs at least two calls to link_segment
+ * before it can end the linked segment.  Frame contains u,v,u-size,v-size
+ * quadruple.
+ */
+80
+void MeshDrawer::link_segment_end(LVector4 const &frame, LVector4 const &color);
+
+376 9 explosion 0 4 510 21 MeshDrawer::explosion 0 1 138 110
+/**
+ * Draws number of particles in a sphere like emitter.  Frame contains
+ * u,v,u-size,v-size quadruple.
+ */
+156
+void MeshDrawer::explosion(LVector3 const &pos, LVector4 const &frame, PN_stdfloat size, LVector4 const &color, int seed, int number, PN_stdfloat distance);
+
+377 6 stream 0 4 510 18 MeshDrawer::stream 0 1 139 137
+/**
+ * Draws a number of particles in a big line with a shift dictated by the
+ * offset.  Frame contains u,v,u-size,v-size quadruple.
+ */
+165
+void MeshDrawer::stream(LVector3 const &start, LVector3 const &stop, LVector4 const &frame, PN_stdfloat size, LVector4 const &color, int number, PN_stdfloat offset);
+
+378 8 geometry 0 4 510 20 MeshDrawer::geometry 0 1 140 272
+/**
+ * Draws the geometry that is inside this node path into the MeshDrawer
+ * object.  This performs a similar functions as RigidBodyCombiner but for
+ * very dynamic situations that share the same texture like physcal chunks of
+ * explosions.  It can be a little slow
+ */
+41
+void MeshDrawer::geometry(NodePath node);
+
+379 3 end 0 4 510 15 MeshDrawer::end 0 1 141 70
+/**
+ * Finish the drawing and clearing off the remaining vertexes.
+ */
+27
+void MeshDrawer::end(void);
+
+380 14 get_class_type 0 4 510 26 MeshDrawer::get_class_type 0 1 142 0
+51
+static TypeHandle MeshDrawer::get_class_type(void);
+
+381 12 MeshDrawer2D 0 4 511 26 MeshDrawer2D::MeshDrawer2D 0 1 143 53
+/**
+ * Creates the MeshDrawer2D low level system.
+ */
+40
+inline MeshDrawer2D::MeshDrawer2D(void);
+
+382 10 set_budget 0 4 511 24 MeshDrawer2D::set_budget 0 1 144 56
+/**
+ * Sets the total triangle budget of the drawer.
+ */
+49
+inline void MeshDrawer2D::set_budget(int budget);
+
+383 10 get_budget 0 4 511 24 MeshDrawer2D::get_budget 0 1 145 56
+/**
+ * Gets the total triangle budget of the drawer.
+ */
+42
+inline int MeshDrawer2D::get_budget(void);
+
+384 8 get_root 0 4 511 22 MeshDrawer2D::get_root 0 1 146 37
+/**
+ * Returns the root NodePath.
+ */
+45
+inline NodePath MeshDrawer2D::get_root(void);
+
+385 8 quad_raw 0 4 511 22 MeshDrawer2D::quad_raw 0 1 147 65
+/**
+ * Draws a 2D rectangle.  Ignores the clipping rectangle.
+ */
+279
+inline void MeshDrawer2D::quad_raw(LVector3 const &v1, LVector4 const &c1, LVector2 const &uv1, LVector3 const &v2, LVector4 const &c2, LVector2 const &uv2, LVector3 const &v3, LVector4 const &c3, LVector2 const &uv3, LVector3 const &v4, LVector4 const &c4, LVector2 const &uv4);
+
+386 13 rectangle_raw 0 4 511 27 MeshDrawer2D::rectangle_raw 0 1 148 0
+185
+inline void MeshDrawer2D::rectangle_raw(PN_stdfloat x, PN_stdfloat y, PN_stdfloat w, PN_stdfloat h, PN_stdfloat u, PN_stdfloat v, PN_stdfloat us, PN_stdfloat vs, LVector4 const &color);
+
+387 8 set_clip 0 4 511 22 MeshDrawer2D::set_clip 0 1 149 39
+/**
+ * Sets the clipping rectangle.
+ */
+95
+inline void MeshDrawer2D::set_clip(PN_stdfloat x, PN_stdfloat y, PN_stdfloat w, PN_stdfloat h);
+
+388 9 rectangle 0 4 511 23 MeshDrawer2D::rectangle 0 1 150 53
+/**
+ * Draws a 2D rectangle which can be clipped.
+ */
+181
+inline void MeshDrawer2D::rectangle(PN_stdfloat x, PN_stdfloat y, PN_stdfloat w, PN_stdfloat h, PN_stdfloat u, PN_stdfloat v, PN_stdfloat us, PN_stdfloat vs, LVector4 const &color);
+
+389 16 rectangle_border 0 4 511 30 MeshDrawer2D::rectangle_border 0 1 151 96
+/**
+ * Draws a 2d rectangle, with borders and corders, taken from the surrounding
+ * texture
+ */
+305
+void MeshDrawer2D::rectangle_border(PN_stdfloat x, PN_stdfloat y, PN_stdfloat w, PN_stdfloat h, PN_stdfloat r, PN_stdfloat t, PN_stdfloat l, PN_stdfloat b, PN_stdfloat tr, PN_stdfloat tt, PN_stdfloat tl, PN_stdfloat tb, PN_stdfloat u, PN_stdfloat v, PN_stdfloat us, PN_stdfloat vs, LVector4 const &color);
+
+390 22 rectangle_border_tiled 0 4 511 36 MeshDrawer2D::rectangle_border_tiled 0 1 152 96
+/**
+ * Draws a 2d rectangle, with borders and corders, taken from the surrounding
+ * texture
+ */
+311
+void MeshDrawer2D::rectangle_border_tiled(PN_stdfloat x, PN_stdfloat y, PN_stdfloat w, PN_stdfloat h, PN_stdfloat r, PN_stdfloat t, PN_stdfloat l, PN_stdfloat b, PN_stdfloat tr, PN_stdfloat tt, PN_stdfloat tl, PN_stdfloat tb, PN_stdfloat u, PN_stdfloat v, PN_stdfloat us, PN_stdfloat vs, LVector4 const &color);
+
+391 15 rectangle_tiled 0 4 511 29 MeshDrawer2D::rectangle_tiled 0 1 153 65
+/**
+ * Draws a tiled rectangle, size of tiles is in us and vs
+ */
+180
+void MeshDrawer2D::rectangle_tiled(PN_stdfloat x, PN_stdfloat y, PN_stdfloat w, PN_stdfloat h, PN_stdfloat u, PN_stdfloat v, PN_stdfloat us, PN_stdfloat vs, LVector4 const &color);
+
+392 5 begin 0 4 511 19 MeshDrawer2D::begin 0 1 154 82
+/**
+ * Opens up the geom for drawing, don't forget to call MeshDrawer2D::end()
+ */
+31
+void MeshDrawer2D::begin(void);
+
+393 3 end 0 4 511 17 MeshDrawer2D::end 0 1 155 70
+/**
+ * Finish the drawing and clearing off the remaining vertexes.
+ */
+29
+void MeshDrawer2D::end(void);
+
+394 14 get_class_type 0 4 511 28 MeshDrawer2D::get_class_type 0 1 156 0
+53
+static TypeHandle MeshDrawer2D::get_class_type(void);
+
+395 12 MovieTexture 0 4 512 26 MovieTexture::MovieTexture 0 2 157 158 159
+/**
+ * Creates a blank movie texture.  Movies must be added using do_read_one or
+ * do_load_one.
+ */
+
+/**
+ * Creates a texture playing the specified movie.
+ */
+117
+explicit MovieTexture::MovieTexture(std::string const &name);
+explicit MovieTexture::MovieTexture(MovieVideo *video);
+
+396 16 get_video_length 0 4 512 30 MovieTexture::get_video_length 0 1 159 43
+/**
+ * Returns the length of the video.
+ */
+57
+inline double MovieTexture::get_video_length(void) const;
+
+397 15 get_video_width 0 4 512 29 MovieTexture::get_video_width 0 1 160 200
+/**
+ * Returns the width in texels of the source video stream.  This is not
+ * necessarily the width of the actual texture, since the texture may have
+ * been expanded to raise it to a power of 2.
+ */
+53
+inline int MovieTexture::get_video_width(void) const;
+
+398 16 get_video_height 0 4 512 30 MovieTexture::get_video_height 0 1 161 202
+/**
+ * Returns the height in texels of the source video stream.  This is not
+ * necessarily the height of the actual texture, since the texture may have
+ * been expanded to raise it to a power of 2.
+ */
+54
+inline int MovieTexture::get_video_height(void) const;
+
+399 16 get_color_cursor 0 4 512 30 MovieTexture::get_color_cursor 0 1 162 136
+/**
+ * Returns the MovieVideoCursor that is feeding the color channels for the
+ * indicated page, where 0 <= page < get_num_pages().
+ */
+66
+inline MovieVideoCursor *MovieTexture::get_color_cursor(int page);
+
+400 16 get_alpha_cursor 0 4 512 30 MovieTexture::get_alpha_cursor 0 1 163 135
+/**
+ * Returns the MovieVideoCursor that is feeding the alpha channel for the
+ * indicated page, where 0 <= page < get_num_pages().
+ */
+66
+inline MovieVideoCursor *MovieTexture::get_alpha_cursor(int page);
+
+401 7 restart 0 4 512 21 MovieTexture::restart 0 1 164 159
+/**
+ * Start playing the movie from where it was last paused.  Has no effect if
+ * the movie is not paused, or if the movie's cursor is already at the end.
+ */
+33
+void MovieTexture::restart(void);
+
+402 4 stop 0 4 512 18 MovieTexture::stop 0 1 165 145
+/**
+ * Stops a currently playing or looping movie right where it is.  The movie's
+ * cursor remains frozen at the point where it was stopped.
+ */
+30
+void MovieTexture::stop(void);
+
+403 4 play 0 4 512 18 MovieTexture::play 0 1 166 46
+/**
+ * Plays the movie from the beginning.
+ */
+30
+void MovieTexture::play(void);
+
+404 8 set_time 0 4 512 22 MovieTexture::set_time 0 1 167 35
+/**
+ * Sets the movie's cursor.
+ */
+38
+void MovieTexture::set_time(double t);
+
+405 8 get_time 0 4 512 22 MovieTexture::get_time 0 1 168 277
+/**
+ * Returns the current value of the movie's cursor.  If the movie's loop count
+ * is greater than one, then its length is effectively multiplied for the
+ * purposes of this function.  In other words, the return value will be in the
+ * range 0.0 to (length * loopcount).
+ */
+42
+double MovieTexture::get_time(void) const;
+
+406 8 set_loop 0 4 512 22 MovieTexture::set_loop 0 1 169 111
+/**
+ * If true, sets the movie's loop count to 1 billion.  If false, sets the
+ * movie's loop count to one.
+ */
+41
+void MovieTexture::set_loop(bool enable);
+
+407 8 get_loop 0 4 512 22 MovieTexture::get_loop 0 1 170 70
+/**
+ * Returns true if the movie's loop count is not equal to one.
+ */
+40
+bool MovieTexture::get_loop(void) const;
+
+408 14 set_loop_count 0 4 512 28 MovieTexture::set_loop_count 0 1 171 60
+/**
+ * Sets the movie's loop count to the desired value.
+ */
+45
+void MovieTexture::set_loop_count(int count);
+
+409 14 get_loop_count 0 4 512 28 MovieTexture::get_loop_count 0 1 172 42
+/**
+ * Returns the movie's loop count.
+ */
+45
+int MovieTexture::get_loop_count(void) const;
+
+410 13 set_play_rate 0 4 512 27 MovieTexture::set_play_rate 0 1 173 168
+/**
+ * Sets the movie's play-rate.  This is the speed at which the movie's cursor
+ * advances.  The default is to advance 1.0 movie-seconds per real-time
+ * second.
+ */
+51
+void MovieTexture::set_play_rate(double play_rate);
+
+411 13 get_play_rate 0 4 512 27 MovieTexture::get_play_rate 0 1 174 38
+/**
+ * Gets the movie's play-rate.
+ */
+47
+double MovieTexture::get_play_rate(void) const;
+
+412 10 is_playing 0 4 512 24 MovieTexture::is_playing 0 1 175 59
+/**
+ * Returns true if the movie's cursor is advancing.
+ */
+42
+bool MovieTexture::is_playing(void) const;
+
+413 14 synchronize_to 0 4 512 28 MovieTexture::synchronize_to 0 1 176 127
+/**
+ * Synchronize this texture to a sound.  Typically, you would load the texture
+ * and the sound from the same AVI file.
+ */
+53
+void MovieTexture::synchronize_to(AudioSound *sound);
+
+414 13 unsynchronize 0 4 512 27 MovieTexture::unsynchronize 0 1 177 43
+/**
+ * Stop synchronizing with a sound.
+ */
+39
+void MovieTexture::unsynchronize(void);
+
+415 14 get_class_type 0 4 512 28 MovieTexture::get_class_type 0 1 178 0
+53
+static TypeHandle MovieTexture::get_class_type(void);
+
+416 15 MultitexReducer 0 4 517 32 MultitexReducer::MultitexReducer 0 2 179 180 0
+115
+MultitexReducer::MultitexReducer(void);
+inline MultitexReducer::MultitexReducer(MultitexReducer const &) = default;
+
+417 16 ~MultitexReducer 0 4 517 33 MultitexReducer::~MultitexReducer 0 0 0
+40
+MultitexReducer::~MultitexReducer(void);
+
+418 5 clear 0 4 517 22 MultitexReducer::clear 0 1 181 0
+34
+void MultitexReducer::clear(void);
+
+419 4 scan 0 4 517 21 MultitexReducer::scan 0 3 182 183 184 1318
+/**
+ * Starts scanning the hierarchy beginning at the indicated node.  Any
+ * GeomNodes discovered in the hierarchy with multitexture will be added to
+ * internal structures in the MultitexReducer so that a future call to
+ * flatten() will operate on all of these at once.
+ *
+ * This version of this method does not accumulate state from the parents of
+ * the indicated node; thus, only multitexture effects that have been applied
+ * at node and below will be considered.
+ */
+
+/**
+ * Starts scanning the hierarchy beginning at the indicated node.  Any
+ * GeomNodes discovered in the hierarchy with multitexture will be added to
+ * internal structures in the MultitexReducer so that a future call to
+ * flatten() will operate on all of these at once.
+ *
+ * The second parameter represents the NodePath from which to accumulate the
+ * state that is considered for the multitexture.  Pass an empty NodePath to
+ * accumulate all the state from the root of the graph, or you may specify
+ * some other node here in order to not consider nodes above that as
+ * contributing to the state to be flattened.  This is particularly useful if
+ * you have some texture stage which is applied globally to a scene (for
+ * instance, a caustics effect), which you don't want to be considered for
+ * flattening by the MultitexReducer.
+ */
+245
+inline void MultitexReducer::scan(NodePath const &node);
+inline void MultitexReducer::scan(NodePath const &node, NodePath const &state_from);
+void MultitexReducer::scan(PandaNode *node, RenderState const *state, TransformState const *transform);
+
+420 10 set_target 0 4 517 27 MultitexReducer::set_target 0 1 185 0
+54
+void MultitexReducer::set_target(TextureStage *stage);
+
+421 12 set_use_geom 0 4 517 29 MultitexReducer::set_use_geom 0 1 186 0
+50
+void MultitexReducer::set_use_geom(bool use_geom);
+
+422 17 set_allow_tex_mat 0 4 517 34 MultitexReducer::set_allow_tex_mat 0 1 187 0
+60
+void MultitexReducer::set_allow_tex_mat(bool allow_tex_mat);
+
+423 7 flatten 0 4 517 24 MultitexReducer::flatten 0 1 188 0
+54
+void MultitexReducer::flatten(GraphicsOutput *window);
+
+424 19 NodeVertexTransform 0 4 518 40 NodeVertexTransform::NodeVertexTransform 0 1 189 10
+/**
+ *
+ */
+103
+NodeVertexTransform::NodeVertexTransform(PandaNode const *node, VertexTransform const *prev = nullptr);
+
+425 8 get_node 0 4 518 29 NodeVertexTransform::get_node 0 1 190 70
+/**
+ * Returns the PandaNode whose transform supplies this object.
+ */
+66
+inline PandaNode const *NodeVertexTransform::get_node(void) const;
+
+426 8 get_prev 0 4 518 29 NodeVertexTransform::get_prev 0 1 191 120
+/**
+ * Returns the VertexTransform object whose matrix will be composed with the
+ * result of this node's transform.
+ */
+72
+inline VertexTransform const *NodeVertexTransform::get_prev(void) const;
+
+427 14 get_class_type 0 4 518 35 NodeVertexTransform::get_class_type 0 1 192 0
+60
+static TypeHandle NodeVertexTransform::get_class_type(void);
+
+428 20 ~NodeVertexTransform 0 4 518 41 NodeVertexTransform::~NodeVertexTransform 0 0 0
+48
+NodeVertexTransform::~NodeVertexTransform(void);
+
+429 17 ShaderTerrainMesh 0 4 525 36 ShaderTerrainMesh::ShaderTerrainMesh 0 1 193 287
+/**
+ * @brief Constructs a new Terrain Mesh
+ * @details This constructs a new terrain mesh. By default, no transform is set
+ *   on the mesh, causing it to range over the unit box from (0, 0, 0) to
+ *   (1, 1, 1). Usually you want to set a custom transform with NodePath::set_scale()
+ */
+43
+ShaderTerrainMesh::ShaderTerrainMesh(void);
+
+430 15 set_heightfield 0 4 525 34 ShaderTerrainMesh::set_heightfield 0 1 194 339
+/**
+ * @brief Sets the heightfield texture
+ * @details This sets the heightfield texture. It should be 16bit
+ *   single channel, and have a power-of-two resolution greater than 32.
+ *   Common sizes are 2048x2048 or 4096x4096.
+ *
+ *   You should call generate() after setting the heightfield.
+ *
+ * @param filename Heightfield texture
+ */
+69
+inline void ShaderTerrainMesh::set_heightfield(Texture *heightfield);
+
+431 15 get_heightfield 0 4 525 34 ShaderTerrainMesh::get_heightfield 0 1 195 172
+/**
+ * @brief Returns the heightfield
+ * @details This returns the terrain heightfield, previously set with
+ *   set_heightfield()
+ *
+ * @return Path to the heightfield
+ */
+63
+inline Texture *ShaderTerrainMesh::get_heightfield(void) const;
+
+432 14 set_chunk_size 0 4 525 33 ShaderTerrainMesh::set_chunk_size 0 1 196 785
+/**
+ * @brief Sets the chunk size
+ * @details This sets the chunk size of the terrain. A chunk is basically the
+ *   smallest unit in LOD. If the chunk size is too small, the terrain will
+ *   perform bad, since there will be way too many chunks. If the chunk size
+ *   is too big, you will not get proper LOD, and might also get bad performance.
+ *
+ *   For terrains of the size 4096x4096 or 8192x8192, a chunk size of 32 seems
+ *   to produce good results. For smaller resolutions, you should try out a
+ *   size of 16 or even 8 for very small terrains.
+ *
+ *   The amount of chunks generated for the last level equals to
+ *   (heightfield_size / chunk_size) ** 2. The chunk size has to be a power
+ *   of two.
+ *
+ * @param chunk_size Size of the chunks, has to be a power of two
+ */
+70
+inline void ShaderTerrainMesh::set_chunk_size(std::size_t chunk_size);
+
+433 14 get_chunk_size 0 4 525 33 ShaderTerrainMesh::get_chunk_size 0 1 197 140
+/**
+ * @brief Returns the chunk size
+ * @details This returns the chunk size, previously set with set_chunk_size()
+ * @return Chunk size
+ */
+65
+inline std::size_t ShaderTerrainMesh::get_chunk_size(void) const;
+
+434 20 set_generate_patches 0 4 525 39 ShaderTerrainMesh::set_generate_patches 0 1 198 618
+/**
+ * @brief Sets whether to generate patches
+ * @details If this option is set to true, GeomPatches will be used instead of
+ *   GeomTriangles. This is required when the terrain is used with tesselation
+ *   shaders, since patches are required for tesselation, whereas triangles
+ *   are required for regular rendering.
+ *
+ *   If this option is set to true while not using a tesselation shader, the
+ *   terrain will not get rendered, or even produce errors. The same applies
+ *   when this is option is not set, but the terrain is used with tesselation
+ *   shaders.
+ *
+ * @param generate_patches [description]
+ */
+75
+inline void ShaderTerrainMesh::set_generate_patches(bool generate_patches);
+
+435 20 get_generate_patches 0 4 525 39 ShaderTerrainMesh::get_generate_patches 0 1 199 199
+/**
+ * @brief Returns whether to generate patches
+ * @details This returns whether patches are generated, previously set with
+ *   set_generate_patches()
+ *
+ * @return Whether to generate patches
+ */
+64
+inline bool ShaderTerrainMesh::get_generate_patches(void) const;
+
+436 18 set_update_enabled 0 4 525 37 ShaderTerrainMesh::set_update_enabled 0 1 200 336
+/**
+ * @brief Sets whether to enable terrain updates
+ * @details This flag controls whether the terrain should be updated. If this value
+ *   is set to false, no updating of the terrain will happen. This can be useful
+ *   to debug the culling algorithm used by the terrain.
+ *
+ * @param update_enabled Whether to update the terrain
+ */
+71
+inline void ShaderTerrainMesh::set_update_enabled(bool update_enabled);
+
+437 18 get_update_enabled 0 4 525 37 ShaderTerrainMesh::get_update_enabled 0 1 201 219
+/**
+ * @brief Returns whether the terrain is getting updated
+ * @details This returns whether the terrain is getting updates, previously set with
+ *   set_update_enabled()
+ *
+ * @return Whether to update the terrain
+ */
+62
+inline bool ShaderTerrainMesh::get_update_enabled(void) const;
+
+438 25 set_target_triangle_width 0 4 525 44 ShaderTerrainMesh::set_target_triangle_width 0 1 202 469
+/**
+ * @brief Sets the desired triangle width
+ * @details This sets the desired width a triangle should have in pixels.
+ *   A value of 10.0 for example will make the terrain tesselate everything
+ *   in a way that each triangle edge roughly is 10 pixels wide.
+ *   Of course this will not always accurately match, however you can use this
+ *   setting to control the LOD algorithm of the terrain.
+ *
+ * @param target_triangle_width Desired triangle width in pixels
+ */
+92
+inline void ShaderTerrainMesh::set_target_triangle_width(PN_stdfloat target_triangle_width);
+
+439 25 get_target_triangle_width 0 4 525 44 ShaderTerrainMesh::get_target_triangle_width 0 1 203 211
+/**
+ * @brief Returns the target triangle width
+ * @details This returns the target triangle width, previously set with
+ *   ShaderTerrainMesh::set_target_triangle_width()
+ *
+ * @return Target triangle width
+ */
+76
+inline PN_stdfloat ShaderTerrainMesh::get_target_triangle_width(void) const;
+
+440 11 uv_to_world 0 4 525 30 ShaderTerrainMesh::uv_to_world 0 2 204 205 436
+/**
+ * @see ShaderTerrainMesh::uv_to_world(LTexCoord)
+ */
+
+/**
+ * @brief Transforms a texture coordinate to world space
+ * @details This transforms a texture coordinatefrom uv-space (0 to 1) to world
+ *   space. This takes the terrains transform into account, and also samples the
+ *   heightmap. This method should be called after generate().
+ *
+ * @param coord Coordinate in uv-space from 0, 0 to 1, 1
+ * @return World-Space point
+ */
+152
+LPoint3 ShaderTerrainMesh::uv_to_world(LTexCoord const &coord) const;
+inline LPoint3 ShaderTerrainMesh::uv_to_world(PN_stdfloat u, PN_stdfloat v) const;
+
+441 8 generate 0 4 525 27 ShaderTerrainMesh::generate 0 1 206 442
+/**
+ * @brief Generates the terrain mesh
+ * @details This generates the terrain mesh, initializing all chunks of the
+ *   internal used quadtree. At this point, a heightfield and a chunk size should
+ *   have been set, otherwise an error is thrown.
+ *
+ *   If anything goes wrong, like a missing heightfield, then an error is printed
+ *   and false is returned.
+ *
+ * @return true if the terrain was initialized, false if an error occured
+ */
+39
+bool ShaderTerrainMesh::generate(void);
+
+442 14 get_class_type 0 4 525 33 ShaderTerrainMesh::get_class_type 0 1 207 0
+58
+static TypeHandle ShaderTerrainMesh::get_class_type(void);
+
+443 18 ~ShaderTerrainMesh 0 4 525 37 ShaderTerrainMesh::~ShaderTerrainMesh 0 0 0
+44
+ShaderTerrainMesh::~ShaderTerrainMesh(void);
+
+444 23 SceneGraphAnalyzerMeter 0 4 531 48 SceneGraphAnalyzerMeter::SceneGraphAnalyzerMeter 0 2 208 209 10
+/**
+ *
+ */
+200
+explicit SceneGraphAnalyzerMeter::SceneGraphAnalyzerMeter(std::string const &name, PandaNode *node);
+inline SceneGraphAnalyzerMeter::SceneGraphAnalyzerMeter(SceneGraphAnalyzerMeter const &) = default;
+
+445 12 setup_window 0 4 531 37 SceneGraphAnalyzerMeter::setup_window 0 1 210 112
+/**
+ * Sets up the frame rate meter to create a DisplayRegion to render itself
+ * into the indicated window.
+ */
+67
+void SceneGraphAnalyzerMeter::setup_window(GraphicsOutput *window);
+
+446 12 clear_window 0 4 531 37 SceneGraphAnalyzerMeter::clear_window 0 1 211 66
+/**
+ * Undoes the effect of a previous call to setup_window().
+ */
+49
+void SceneGraphAnalyzerMeter::clear_window(void);
+
+447 10 get_window 0 4 531 35 SceneGraphAnalyzerMeter::get_window 0 1 212 122
+/**
+ * Returns the GraphicsOutput that was passed to setup_window(), or NULL if
+ * setup_window() has not been called.
+ */
+71
+inline GraphicsOutput *SceneGraphAnalyzerMeter::get_window(void) const;
+
+448 18 get_display_region 0 4 531 43 SceneGraphAnalyzerMeter::get_display_region 0 1 213 168
+/**
+ * Returns the DisplayRegion that the meter has created to render itself into
+ * the window to setup_window(), or NULL if setup_window() has not been
+ * called.
+ */
+78
+inline DisplayRegion *SceneGraphAnalyzerMeter::get_display_region(void) const;
+
+449 19 set_update_interval 0 4 531 44 SceneGraphAnalyzerMeter::set_update_interval 0 1 214 244
+/**
+ * Specifies the number of seconds that should elapse between updates to the
+ * meter.  This should be reasonably slow (e.g.  0.5 to 2.0) so that the
+ * calculation of the scene graph analysis does not itself dominate the frame
+ * rate.
+ */
+81
+inline void SceneGraphAnalyzerMeter::set_update_interval(double update_interval);
+
+450 19 get_update_interval 0 4 531 44 SceneGraphAnalyzerMeter::get_update_interval 0 1 215 106
+/**
+ * Returns the number of seconds that will elapse between updates to the frame
+ * rate indication.
+ */
+71
+inline double SceneGraphAnalyzerMeter::get_update_interval(void) const;
+
+451 8 set_node 0 4 531 33 SceneGraphAnalyzerMeter::set_node 0 1 216 40
+/**
+ * Sets the node to be analyzed.
+ */
+63
+inline void SceneGraphAnalyzerMeter::set_node(PandaNode *node);
+
+452 8 get_node 0 4 531 33 SceneGraphAnalyzerMeter::get_node 0 1 217 43
+/**
+ * Returns the node to be analyzed.
+ */
+64
+inline PandaNode *SceneGraphAnalyzerMeter::get_node(void) const;
+
+453 6 update 0 4 531 31 SceneGraphAnalyzerMeter::update 0 1 218 205
+/**
+ * You can call this to explicitly force the SceneGraphAnalyzerMeter to update
+ * itself with the latest scene graph analysis information.  Normally, it is
+ * not necessary to call this explicitly.
+ */
+50
+inline void SceneGraphAnalyzerMeter::update(void);
+
+454 14 get_class_type 0 4 531 39 SceneGraphAnalyzerMeter::get_class_type 0 1 219 0
+64
+static TypeHandle SceneGraphAnalyzerMeter::get_class_type(void);
+
+455 17 RigidBodyCombiner 0 4 532 36 RigidBodyCombiner::RigidBodyCombiner 0 1 220 22
+/**
+ *
+ */
+
+/**
+ *
+ */
+71
+explicit RigidBodyCombiner::RigidBodyCombiner(std::string const &name);
+
+456 7 collect 0 4 532 26 RigidBodyCombiner::collect 0 1 221 879
+/**
+ * Walks through the entire subgraph of nodes rooted at this node, accumulates
+ * all of the RenderAttribs and Geoms below this node, flattening them into
+ * just one Geom (or as few as possible, if there are multiple different
+ * states).
+ *
+ * Nodes that have transforms on them at the time of collect(), or any
+ * ModelNodes with the preserve_transform flag, will be identified as "moving"
+ * nodes, and their transforms will be monitored as they change in future
+ * frames and each new transform directly applied to the vertices.
+ *
+ * This call must be made after adding any nodes to or removing any nodes from
+ * the subgraph rooted at this node.  It should not be made too often, as it
+ * is a relatively expensive call.  If you need to hide children of this node,
+ * consider scaling them to zero (or very near zero), or moving them behind
+ * the camera, instead.
+ */
+38
+void RigidBodyCombiner::collect(void);
+
+457 18 get_internal_scene 0 4 532 37 RigidBodyCombiner::get_internal_scene 0 1 222 319
+/**
+ * Returns a special NodePath that represents the internal node of this
+ * object.  This is the node that is actually sent to the graphics card for
+ * rendering; it contains the collection of the children of this node into as
+ * few Geoms as possible.
+ *
+ * This node is filled up by the last call to collect().
+ */
+53
+NodePath RigidBodyCombiner::get_internal_scene(void);
+
+458 14 get_class_type 0 4 532 33 RigidBodyCombiner::get_class_type 0 1 223 0
+58
+static TypeHandle RigidBodyCombiner::get_class_type(void);
+
+459 18 ~RigidBodyCombiner 0 4 532 37 RigidBodyCombiner::~RigidBodyCombiner 0 0 0
+44
+RigidBodyCombiner::~RigidBodyCombiner(void);
+
+460 23 upcast_to_CullTraverser 0 12 534 51 PipeOcclusionCullTraverser::upcast_to_CullTraverser 0 1 232 55
+upcast from PipeOcclusionCullTraverser to CullTraverser
+73
+CullTraverser *PipeOcclusionCullTraverser::upcast_to_CullTraverser(void);
+
+461 38 downcast_to_PipeOcclusionCullTraverser 0 12 535 53 CullTraverser::downcast_to_PipeOcclusionCullTraverser 0 0 57
+downcast from CullTraverser to PipeOcclusionCullTraverser
+88
+PipeOcclusionCullTraverser *CullTraverser::downcast_to_PipeOcclusionCullTraverser(void);
+
+462 21 upcast_to_CullHandler 0 12 534 49 PipeOcclusionCullTraverser::upcast_to_CullHandler 0 1 233 53
+upcast from PipeOcclusionCullTraverser to CullHandler
+69
+CullHandler *PipeOcclusionCullTraverser::upcast_to_CullHandler(void);
+
+463 38 downcast_to_PipeOcclusionCullTraverser 0 12 536 51 CullHandler::downcast_to_PipeOcclusionCullTraverser 0 0 55
+downcast from CullHandler to PipeOcclusionCullTraverser
+86
+PipeOcclusionCullTraverser *CullHandler::downcast_to_PipeOcclusionCullTraverser(void);
+
+464 26 PipeOcclusionCullTraverser 0 4 534 54 PipeOcclusionCullTraverser::PipeOcclusionCullTraverser 0 1 224 10
+/**
+ *
+ */
+86
+explicit PipeOcclusionCullTraverser::PipeOcclusionCullTraverser(GraphicsOutput *host);
+
+465 9 set_scene 0 6 534 37 PipeOcclusionCullTraverser::set_scene 0 1 225 10
+/**
+ *
+ */
+135
+virtual void PipeOcclusionCullTraverser::set_scene(SceneSetup *scene_setup, GraphicsStateGuardianBase *gsg, bool dr_incomplete_render);
+
+466 12 end_traverse 0 6 534 40 PipeOcclusionCullTraverser::end_traverse 0 1 226 141
+/**
+ * Should be called when the traverser has finished traversing its scene, this
+ * gives it a chance to do any necessary finalization.
+ */
+60
+virtual void PipeOcclusionCullTraverser::end_traverse(void);
+
+467 10 get_buffer 0 4 534 38 PipeOcclusionCullTraverser::get_buffer 0 1 227 10
+/**
+ *
+ */
+74
+inline GraphicsOutput *PipeOcclusionCullTraverser::get_buffer(void) const;
+
+468 11 get_texture 0 4 534 39 PipeOcclusionCullTraverser::get_texture 0 1 228 96
+/**
+ * Returns a Texture that can be used to visualize the efforts of the
+ * occlusion cull.
+ */
+55
+Texture *PipeOcclusionCullTraverser::get_texture(void);
+
+469 18 set_occlusion_mask 0 4 534 46 PipeOcclusionCullTraverser::set_occlusion_mask 0 1 229 245
+/**
+ * Specifies the DrawMask that should be set on occlusion polygons for this
+ * scene.  This identifies the polygons that are to be treated as occluders.
+ * Polygons that do not have this draw mask set will not be considered
+ * occluders.
+ */
+91
+inline void PipeOcclusionCullTraverser::set_occlusion_mask(DrawMask const &occlusion_mask);
+
+470 18 get_occlusion_mask 0 4 534 46 PipeOcclusionCullTraverser::get_occlusion_mask 0 1 230 82
+/**
+ * Returns the DrawMask for occlusion polygons.  See set_occlusion_mask().
+ */
+82
+inline DrawMask const &PipeOcclusionCullTraverser::get_occlusion_mask(void) const;
+
+471 14 get_class_type 0 4 534 42 PipeOcclusionCullTraverser::get_class_type 0 1 231 0
+67
+static TypeHandle PipeOcclusionCullTraverser::get_class_type(void);
+
+472 27 ~PipeOcclusionCullTraverser 0 4 534 55 PipeOcclusionCullTraverser::~PipeOcclusionCullTraverser 0 0 0
+62
+PipeOcclusionCullTraverser::~PipeOcclusionCullTraverser(void);
+
+473 9 PfmVizzer 0 4 537 20 PfmVizzer::PfmVizzer 0 2 234 235 256
+/**
+ * The PfmVizzer constructor receives a reference to a PfmFile which it will
+ * operate on.  It does not keep ownership of this reference; it is your
+ * responsibility to ensure the PfmFile does not destruct during the lifetime
+ * of the PfmVizzer.
+ */
+102
+explicit PfmVizzer::PfmVizzer(PfmFile &pfm);
+inline PfmVizzer::PfmVizzer(PfmVizzer const &) = default;
+
+474 10 ~PfmVizzer 0 4 537 21 PfmVizzer::~PfmVizzer 0 0 0
+35
+inline PfmVizzer::~PfmVizzer(void);
+
+475 7 get_pfm 0 4 537 18 PfmVizzer::get_pfm 0 2 236 237 158
+/**
+ * Returns the reference to the PfmFile manipulated by this PfmVizzer.
+ */
+
+/**
+ * Returns the reference to the PfmFile manipulated by this PfmVizzer.
+ */
+95
+inline PfmFile &PfmVizzer::get_pfm(void);
+inline PfmFile const &PfmVizzer::get_pfm(void) const;
+
+476 7 project 0 4 537 18 PfmVizzer::project 0 1 238 335
+/**
+ * Adjusts each (x, y, z) point of the Pfm file by projecting it through the
+ * indicated lens, converting each point to a (u, v, w) texture coordinate.
+ * The resulting file can be generated to a mesh (with set_vis_inverse(true)
+ * and generate_vis_mesh()) that will apply the lens distortion to an
+ * arbitrary texture image.
+ */
+79
+void PfmVizzer::project(Lens const *lens, PfmFile const *undist_lut = nullptr);
+
+477 7 extrude 0 4 537 18 PfmVizzer::extrude 0 1 239 397
+/**
+ * Converts each (u, v, depth) point of the Pfm file to an (x, y, z) point, by
+ * reversing project().  If the original file is only a 1-d file, assumes that
+ * it is a depth map with implicit (u, v) coordinates.
+ *
+ * This method is only valid for a linear lens (e.g.  a PerspectiveLens or
+ * OrthographicLens).  Non-linear lenses don't necessarily compute a sensible
+ * depth coordinate.
+ */
+42
+void PfmVizzer::extrude(Lens const *lens);
+
+478 15 set_vis_inverse 0 4 537 26 PfmVizzer::set_vis_inverse 0 1 240 435
+/**
+ * Sets the vis_inverse flag.  When this flag is true, vis meshes and point
+ * clouds are generated with the 3-d depth value in the texture coordinates,
+ * and the 2-d index value in the vertex position.  When it is false, meshes
+ * are generated normally, with the 3-d depth value in the vertex position and
+ * the 2-d index value in the texture coordinates.
+ *
+ * This may be used in lieu of the lower-level add_vis_column().
+ */
+57
+inline void PfmVizzer::set_vis_inverse(bool vis_inverse);
+
+479 15 get_vis_inverse 0 4 537 26 PfmVizzer::get_vis_inverse 0 1 241 64
+/**
+ * Returns the vis_inverse flag.  See set_vis_inverse().
+ */
+51
+inline bool PfmVizzer::get_vis_inverse(void) const;
+
+480 22 set_flat_texcoord_name 0 4 537 33 PfmVizzer::set_flat_texcoord_name 0 1 242 473
+/**
+ * If the flat_texcoord_name is specified, it is the name of an additional
+ * vertex column that will be created for the "flat" texture coordinates, i.e.
+ * the original 0..1 values that correspond to the 2-D index position of each
+ * point in the original pfm file.
+ *
+ * These are the same values that will be assigned to the default texture
+ * coordinates if the vis_inverse flag is *not* true.
+ *
+ * This may be used in lieu of the lower-level add_vis_column().
+ */
+80
+inline void PfmVizzer::set_flat_texcoord_name(InternalName *flat_texcoord_name);
+
+481 24 clear_flat_texcoord_name 0 4 537 35 PfmVizzer::clear_flat_texcoord_name 0 1 243 177
+/**
+ * Resets the flat_texcoord_name to empty, so that additional texture
+ * coordinates are not created.
+ *
+ * This may be used in lieu of the lower-level add_vis_column().
+ */
+54
+inline void PfmVizzer::clear_flat_texcoord_name(void);
+
+482 22 get_flat_texcoord_name 0 4 537 33 PfmVizzer::get_flat_texcoord_name 0 1 244 73
+/**
+ * Returns the flat_texcoord_name.  See set_flat_texcoord_name().
+ */
+67
+inline InternalName *PfmVizzer::get_flat_texcoord_name(void) const;
+
+483 10 set_vis_2d 0 4 537 21 PfmVizzer::set_vis_2d 0 1 245 291
+/**
+ * Sets the vis_2d flag.  When this flag is true, only the first two (x, y)
+ * value of each depth point is considered meaningful; the z component is
+ * ignored.  This is only relevant for generating visualizations.
+ *
+ * This may be used in lieu of the lower-level add_vis_column().
+ */
+47
+inline void PfmVizzer::set_vis_2d(bool vis_2d);
+
+484 10 get_vis_2d 0 4 537 21 PfmVizzer::get_vis_2d 0 1 246 54
+/**
+ * Returns the vis_2d flag.  See set_vis_2d().
+ */
+46
+inline bool PfmVizzer::get_vis_2d(void) const;
+
+485 20 set_keep_beyond_lens 0 4 537 31 PfmVizzer::set_keep_beyond_lens 0 1 247 234
+/**
+ * Sets the keep_beyond_lens flag.  When this flag is true, points that fall
+ * outside of the normal lens range in project() or in add_vis_column() will
+ * be retained anyway; when it is false, these points will be discarded.
+ */
+67
+inline void PfmVizzer::set_keep_beyond_lens(bool keep_beyond_lens);
+
+486 20 get_keep_beyond_lens 0 4 537 31 PfmVizzer::get_keep_beyond_lens 0 1 248 74
+/**
+ * Returns the keep_beyond_lens flag.  See set_keep_beyond_lens().
+ */
+56
+inline bool PfmVizzer::get_keep_beyond_lens(void) const;
+
+487 13 set_vis_blend 0 4 537 24 PfmVizzer::set_vis_blend 0 1 249 457
+/**
+ * Specifies a blending map--a grayscale image--that will be applied to the
+ * vertex color during generate_vis_mesh() and generate_vis_points().  The
+ * image size must exactly match the mesh size of the PfmVizzer.
+ *
+ * Ownership of the pointer is not kept by the PfmVizzer; it is your
+ * responsibility to ensure it does not destruct during the lifetime of the
+ * PfmVizzer (or at least not before your subsequent call to
+ * generate_vis_mesh()).
+ */
+64
+inline void PfmVizzer::set_vis_blend(PNMImage const *vis_blend);
+
+488 15 clear_vis_blend 0 4 537 26 PfmVizzer::clear_vis_blend 0 1 250 75
+/**
+ * Removes the blending map set by a prior call to set_vis_blend().
+ */
+45
+inline void PfmVizzer::clear_vis_blend(void);
+
+489 13 get_vis_blend 0 4 537 24 PfmVizzer::get_vis_blend 0 1 251 133
+/**
+ * Returns the blending map set by the most recent call to set_vis_blend(), or
+ * NULL if there is no blending map in effect.
+ */
+60
+inline PNMImage const *PfmVizzer::get_vis_blend(void) const;
+
+490 11 set_aux_pfm 0 4 537 22 PfmVizzer::set_aux_pfm 0 1 252 429
+/**
+ * Assigns an auxiliary PfmFile to this PfmVizzer.  This file will be queried
+ * by column types CT_aux_vertex1/2/3, but has no other meaning to the vizzer.
+ * This size of this PfmFile should exactly match the base PfmFile.  No
+ * reference count is held and no copy is made; the caller is responsible for
+ * ensuring that the auxiliary PfmFile will persist throughout the lifetime of
+ * the PfmVizzer it is assigned to.
+ */
+55
+inline void PfmVizzer::set_aux_pfm(PfmFile const *pfm);
+
+491 13 clear_aux_pfm 0 4 537 24 PfmVizzer::clear_aux_pfm 0 1 253 61
+/**
+ * Removes the auxiliary PfmFile from this PfmVizzer.
+ */
+43
+inline void PfmVizzer::clear_aux_pfm(void);
+
+492 11 get_aux_pfm 0 4 537 22 PfmVizzer::get_aux_pfm 0 1 254 181
+/**
+ * Returns the reference to the auxiliary PfmFile queried by this PfmVizzer.
+ * This contains the values that will be reflected in CT_aux_vertex3 etc.  See
+ * set_aux_pfm().
+ */
+57
+inline PfmFile const *PfmVizzer::get_aux_pfm(void) const;
+
+493 17 clear_vis_columns 0 4 537 28 PfmVizzer::clear_vis_columns 0 1 255 124
+/**
+ * Removes all of the previously-added vis columns in preparation for building
+ * a new list.  See add_vis_column().
+ */
+40
+void PfmVizzer::clear_vis_columns(void);
+
+494 14 add_vis_column 0 4 537 25 PfmVizzer::add_vis_column 0 1 256 852
+/**
+ * Adds a new vis column specification to the list of vertex data columns that
+ * will be generated at the next call to generate_vis_points() or
+ * generate_vis_mesh().  This advanced interface supercedes the higher-level
+ * set_vis_inverse(), set_flat_texcoord_name(), and set_vis_2d().
+ *
+ * If you use this advanced interface, you must specify explicitly the
+ * complete list of data columns to be created in the resulting
+ * GeomVertexData, by calling add_vis_column() each time.  For each column,
+ * you specify the source of the column in the PFMFile, the target column and
+ * name in the GeomVertexData, and an optional transform matrix and/or lens to
+ * transform and project the point before generating it.
+ */
+
+/**
+ * The private implementation of the public add_vis_column(), this adds the
+ * column to the indicated specific vector.
+ */
+219
+void PfmVizzer::add_vis_column(PfmVizzer::ColumnType source, PfmVizzer::ColumnType target, InternalName *name, TransformState const *transform = nullptr, Lens const *lens = nullptr, PfmFile const *undist_lut = nullptr);
+
+495 19 generate_vis_points 0 4 537 30 PfmVizzer::generate_vis_points 0 1 257 181
+/**
+ * Creates a point cloud with the points of the pfm as 3-d coordinates in
+ * space, and texture coordinates ranging from 0 .. 1 based on the position
+ * within the pfm grid.
+ */
+52
+NodePath PfmVizzer::generate_vis_points(void) const;
+
+496 17 generate_vis_mesh 0 4 537 28 PfmVizzer::generate_vis_mesh 0 1 258 183
+/**
+ * Creates a triangle mesh with the points of the pfm as 3-d coordinates in
+ * space, and texture coordinates ranging from 0 .. 1 based on the position
+ * within the pfm grid.
+ */
+94
+NodePath PfmVizzer::generate_vis_mesh(PfmVizzer::MeshFace face = ::PfmVizzer::MF_front) const;
+
+497 23 calc_max_u_displacement 0 4 537 34 PfmVizzer::calc_max_u_displacement 0 1 259 206
+/**
+ * Computes the maximum amount of shift, in pixels either left or right, of
+ * any pixel in the distortion map.  This can be passed to
+ * make_displacement(); see that function for more information.
+ */
+54
+double PfmVizzer::calc_max_u_displacement(void) const;
+
+498 23 calc_max_v_displacement 0 4 537 34 PfmVizzer::calc_max_v_displacement 0 1 260 203
+/**
+ * Computes the maximum amount of shift, in pixels either up or down, of any
+ * pixel in the distortion map.  This can be passed to make_displacement();
+ * see that function for more information.
+ */
+54
+double PfmVizzer::calc_max_v_displacement(void) const;
+
+499 17 make_displacement 0 4 537 28 PfmVizzer::make_displacement 0 2 261 262 1889
+/**
+ * Assuming the underlying PfmFile is a 2-d distortion mesh, with the U and V
+ * in the first two components and the third component unused, this computes
+ * an AfterEffects-style displacement map that represents the same distortion.
+ * The indicated PNMImage will be filled in with a displacement map image,
+ * with horizontal shift in the red channel and vertical shift in the green
+ * channel, where a fully bright (or fully black) pixel indicates a shift of
+ * max_u or max_v pixels.
+ *
+ * Use calc_max_u_displacement() and calc_max_v_displacement() to compute
+ * suitable values for max_u and max_v.
+ *
+ * This generates an integer 16-bit displacement image.  It is a good idea,
+ * though not necessarily essential, to check "Preserve RGB" in the interpret
+ * footage section for each displacement image.  Set for_32bit true if this is
+ * meant to be used in a 32-bit project file, and false if it is meant to be
+ * used in a 16-bit project file.
+ */
+
+/**
+ * Assuming the underlying PfmFile is a 2-d distortion mesh, with the U and V
+ * in the first two components and the third component unused, this computes
+ * an AfterEffects-style displacement map that represents the same distortion.
+ * The indicated PNMImage will be filled in with a displacement map image,
+ * with horizontal shift in the red channel and vertical shift in the green
+ * channel, where a fully bright (or fully black) pixel indicates a shift of
+ * max_u or max_v pixels.
+ *
+ * Use calc_max_u_displacement() and calc_max_v_displacement() to compute
+ * suitable values for max_u and max_v.
+ *
+ * This generates a 32-bit floating-point displacement image.  It is essential
+ * to check "Preserve RGB" in the interpret footage section for each
+ * displacement image.  Set for_32bit true if this is meant to be used in a
+ * 32-bit project file, and false if it is meant to be used in a 16-bit
+ * project file.
+ */
+204
+void PfmVizzer::make_displacement(PNMImage &result, double max_u, double max_v, bool for_32bit) const;
+void PfmVizzer::make_displacement(PfmFile &result, double max_u, double max_v, bool for_32bit) const;
+
+262
+1 0 0 7 3 542 264 0 0 1 6 param0 0 540  
+2 0 0 7 3 542 264 0 10 /**
+ *
+ */ 1 4 name 1 543  
+3 0 0 4 5 544 0 0 63 /**
+ * Resets all the parameters to their initial defaults.
+ */ 1 4 this 3 542  
+4 0 0 4 6 544 0 0 240 /**
+ * Sets the range of UV's that will be applied to the vertices.  If
+ * set_has_uvs() is true (as it is by default), the vertices will be generated
+ * with the indicated range of UV's, which will be useful if a texture is
+ * applied.
+ */ 3 4 this 3 542  2 ll 1 545  2 ur 1 545  
+5 0 0 4 6 544 0 0 240 /**
+ * Sets the range of UV's that will be applied to the vertices.  If
+ * set_has_uvs() is true (as it is by default), the vertices will be generated
+ * with the indicated range of UV's, which will be useful if a texture is
+ * applied.
+ */ 5 4 this 3 542  2 ll 1 545  2 lr 1 545  2 ur 1 545  2 ul 1 545  
+6 0 0 4 6 544 0 0 240 /**
+ * Sets the range of UV's that will be applied to the vertices.  If
+ * set_has_uvs() is true (as it is by default), the vertices will be generated
+ * with the indicated range of UV's, which will be useful if a texture is
+ * applied.
+ */ 5 4 this 3 542  2 ll 1 550  2 lr 1 550  2 ur 1 550  2 ul 1 550  
+7 0 0 4 6 544 0 0 240 /**
+ * Sets the range of UV's that will be applied to the vertices.  If
+ * set_has_uvs() is true (as it is by default), the vertices will be generated
+ * with the indicated range of UV's, which will be useful if a texture is
+ * applied.
+ */ 4 4 this 3 542  1 x 1 555  1 y 1 555  1 z 1 555  
+8 0 0 4 6 544 0 0 130 /**
+ * Sets the range of UV's that will be applied to the vertices appropriately
+ * to show the non-pad region of the texture.
+ */ 2 4 this 3 542  3 tex 1 559  
+9 0 0 4 7 544 0 0 108 /**
+ * Sets the range of UV's that will be applied to the vertices appropriately
+ * for a cube-map face.
+ */ 2 4 this 3 542  4 face 1 515  
+10 0 0 4 8 544 0 0 91 /**
+ * Sets the flag indicating whether vertices will be generated with UV's or
+ * not.
+ */ 2 4 this 3 542  4 flag 1 516  
+11 0 0 4 9 544 0 0 211 /**
+ * Sets the flag indicating whether vertices will be generated with
+ * 3-component UVW's (true) or 2-component UV's (the default, false).
+ * Normally, this will be implicitly set by setting the uv_range.
+ */ 2 4 this 3 542  4 flag 1 516  
+12 0 0 4 10 544 0 0 37 /**
+ * Sets the size of the card.
+ */ 2 4 this 3 542  5 frame 1 561  
+13 0 0 4 10 544 0 0 37 /**
+ * Sets the size of the card.
+ */ 5 4 this 3 542  2 ll 1 565  2 lr 1 565  2 ur 1 565  2 ul 1 565  
+14 0 0 4 10 544 0 0 37 /**
+ * Sets the size of the card.
+ */ 5 4 this 3 542  4 left 1 529  5 right 1 529  6 bottom 1 529  3 top 1 529  
+15 0 0 4 11 544 0 0 134 /**
+ * Sets the card to (-1,1,-1,1), which is appropriate if you plan to parent it
+ * to render2d and use it as a fullscreen quad.
+ */ 1 4 this 3 542  
+16 0 0 4 12 544 0 0 0 2 4 this 3 542  5 color 1 569  
+17 0 0 4 12 544 0 0 38 /**
+ * Sets the color of the card.
+ */ 5 4 this 3 542  1 r 1 529  1 g 1 529  1 b 1 529  1 a 1 529  
+18 0 0 4 13 544 0 0 355 /**
+ * Sets the flag indicating whether vertices will be generated with normals or
+ * not.  Normals are required if you intend to enable lighting on the card,
+ * but are just wasted space and bandwidth otherwise, so there is a (slight)
+ * optimization for disabling them.  If enabled, the normals will be generated
+ * perpendicular to the card's face.
+ */ 2 4 this 3 542  4 flag 1 516  
+19 0 0 4 14 544 0 0 445 /**
+ * Sets a node that will be copied (and scaled and translated) to generate the
+ * frame, instead of generating a new polygon.  The node may contain arbitrary
+ * geometry that describes a flat polygon contained within the indicated left,
+ * right, bottom, top frame.
+ *
+ * When generate() is called, the geometry in this node will be scaled and
+ * translated appropriately to give it the size and aspect ratio specified by
+ * set_frame().
+ */ 3 4 this 3 542  4 node 1 573  5 frame 1 561  
+20 0 0 4 15 544 0 0 82 /**
+ * Removes the node specified by an earlier call to set_source_geometry().
+ */ 1 4 this 3 542  
+21 0 0 7 16 573 0 0 68 /**
+ * Generates a GeomNode that renders the specified geometry.
+ */ 1 4 this 3 542  
+22 0 0 7 18 576 278 0 0 1 6 param0 0 574  
+23 0 0 7 18 576 278 0 10 /**
+ *
+ */ 1 4 name 1 543  
+24 0 0 4 20 544 0 0 63 /**
+ * Resets all the parameters to their initial defaults.
+ */ 1 4 this 3 576  
+25 0 0 4 21 544 0 0 146 /**
+ * Specifies the field of view of the fisheye projection.  A sphere map will
+ * have a 360-degree field of view (and this is the default).
+ */ 2 4 this 3 576  3 fov 1 529  
+26 0 0 4 22 544 0 0 303 /**
+ * Specifies the approximate number of vertices to be used to generate the
+ * rose.  This is the approximate number of vertices that will be located
+ * within the rose's unit circle, not counting the inscribing square (if any).
+ * The actual number of vertices used may be +/- 25% of this value.
+ */ 2 4 this 3 576  12 num_vertices 1 515  
+27 0 0 4 23 544 0 0 577 /**
+ * Sets the flag that indicates whether the rose should be inscribed within a
+ * square.  When this is true, an additional square is generated to inscribed
+ * the circular rose, with the indicated "radius" (the sides of the square
+ * will be 2 * square_radius).  The texture coordinates of the square will
+ * uniformly map to the back pole of the cube map.
+ *
+ * This is mainly useful to provide a good uniform background color for a
+ * sphere map so that it does not have a sharp circular edge that might
+ * produce artifacts due to numerical imprecision when mapping.
+ */ 3 4 this 3 576  16 square_inscribed 1 516  13 square_radius 1 529  
+28 0 0 4 24 544 0 0 327 /**
+ * Sets the flag indicating whether the texture image should be mirrored
+ * (true) or normal (false).  When this is true, the 3-D texture coordinates
+ * will be reversed so that the image is appropriate for a reflection.  This
+ * is the best choice for generating a sphere map from a cube map.  The
+ * default is false.
+ */ 2 4 this 3 576  10 reflection 1 516  
+29 0 0 7 25 573 0 0 68 /**
+ * Generates a GeomNode that renders the specified geometry.
+ */ 1 4 this 3 576  
+30 0 0 7 28 579 0 0 0 1 6 param0 0 577  
+31 0 0 7 28 579 0 0 10 /**
+ *
+ */ 1 4 name 1 543  
+32 0 0 4 29 544 0 0 112 /**
+ * Sets up the frame rate meter to create a DisplayRegion to render itself
+ * into the indicated window.
+ */ 2 4 this 3 579  6 window 1 580  
+33 0 0 4 30 544 0 0 66 /**
+ * Undoes the effect of a previous call to setup_window().
+ */ 1 4 this 3 579  
+34 0 0 7 31 580 0 0 122 /**
+ * Returns the GraphicsOutput that was passed to setup_window(), or NULL if
+ * setup_window() has not been called.
+ */ 1 4 this 3 577  
+35 0 0 7 32 583 0 0 168 /**
+ * Returns the DisplayRegion that the meter has created to render itself into
+ * the window to setup_window(), or NULL if setup_window() has not been
+ * called.
+ */ 1 4 this 3 577  
+36 0 0 4 33 544 0 0 255 /**
+ * Specifies the number of seconds that should elapse between updates to the
+ * frame rate indication.  This should be reasonably slow (e.g.  0.2 to 1.0)
+ * so that the calculation of the frame rate text does not itself dominate the
+ * frame rate.
+ */ 2 4 this 3 579  15 update_interval 1 514  
+37 0 0 6 34 514 0 0 106 /**
+ * Returns the number of seconds that will elapse between updates to the frame
+ * rate indication.
+ */ 1 4 this 3 577  
+38 0 0 4 35 544 0 0 176 /**
+ * Sets the sprintf() pattern that is used to format the text.  The string
+ * "%f" or some variant will be replaced with the current frame rate in frames
+ * per second.
+ */ 2 4 this 3 579  12 text_pattern 1 543  
+39 0 0 6 36 543 0 0 73 /**
+ * Returns the sprintf() pattern that is used to format the text.
+ */ 1 4 this 3 577  
+40 0 0 4 37 544 0 0 152 /**
+ * Sets the clock that is used to determine the frame rate.  The default is
+ * the application's global clock (ClockObject::get_global_clock()).
+ */ 2 4 this 3 579  12 clock_object 1 584  
+41 0 0 7 38 584 0 0 70 /**
+ * Returns the clock that is used to determine the frame rate.
+ */ 1 4 this 3 577  
+42 0 0 4 39 544 0 0 186 /**
+ * You can call this to explicitly force the FrameRateMeter to update itself
+ * with the latest frame rate information.  Normally, it is not necessary to
+ * call this explicitly.
+ */ 1 4 this 3 579  
+43 0 0 7 40 587 0 0 0 0 
+44 0 0 7 43 588 0 0 10 /**
+ *
+ */ 1 4 name 1 543  
+45 0 0 6 44 589 0 0 150 /**
+ * Returns a reference to the heightfield (a PNMImage) contained inside
+ * GeoMipTerrain.  You can use the reference to alter the heightfield.
+ */ 1 4 this 3 588  
+46 0 0 6 45 516 0 0 232 /**
+ * Loads the specified heightmap image file into the heightfield.  Returns
+ * true if succeeded, or false if an error has occured.  If the heightmap is
+ * not a power of two plus one, it is scaled up using a gaussian filter.
+ */ 3 4 this 3 588  8 filename 1 591  4 type 1 594  
+47 0 0 6 45 516 0 0 232 /**
+ * Loads the specified heightmap image file into the heightfield.  Returns
+ * true if succeeded, or false if an error has occured.  If the heightmap is
+ * not a power of two plus one, it is scaled up using a gaussian filter.
+ */ 2 4 this 3 588  5 image 1 596  
+48 0 0 6 46 589 0 0 146 /**
+ * Returns a reference to the color map (a PNMImage) contained inside
+ * GeoMipTerrain.  You can use the reference to alter the color map.
+ */ 1 4 this 3 588  
+49 0 0 6 47 516 0 0 234 /**
+ * Loads the specified image as color map.  The next time generate() is
+ * called, the terrain is painted with this color map using the vertex color
+ * column.  Returns a boolean indicating whether the operation has succeeded.
+ */ 3 4 this 3 588  8 filename 1 591  4 type 1 594  
+50 0 0 6 47 516 0 0 0 2 4 this 3 588  5 image 1 596  
+51 0 0 6 47 516 0 0 0 2 4 this 3 588  5 image 1 559  
+52 0 0 6 47 516 0 0 0 2 4 this 3 588  4 path 1 543  
+53 0 0 6 48 516 0 0 52 /**
+ * Returns whether a color map has been set.
+ */ 1 4 this 3 598  
+54 0 0 4 49 544 0 0 32 /**
+ * Clears the color map.
+ */ 1 4 this 3 588  
+55 0 0 4 50 544 0 0 250 /**
+ * Calculates an approximate for the ambient occlusion and stores it in the
+ * color map, so that it will be written to the vertex colors.  Any existing
+ * color map will be discarded.  You need to call this before generating the
+ * geometry.
+ */ 4 4 this 3 588  6 radius 1 529  8 contrast 1 529  10 brightness 1 529  
+56 0 0 6 51 514 0 0 410 /**
+ * Fetches the elevation at (x, y), where the input coordinate is specified in
+ * pixels.  This ignores the current LOD level and instead provides an
+ * accurate number.  Linear blending is used for non-integral coordinates.
+ * Terrain scale is NOT taken into account!  To get accurate normals, please
+ * multiply this with the terrain Z scale!
+ *
+ * trueElev = terr.get_elevation(x,y) * terr.get_sz();
+ */ 3 4 this 3 588  1 x 1 514  1 y 1 514  
+57 0 0 7 52 602 0 0 510 /**
+ * Fetches the terrain normal at (x, y), where the input coordinate is
+ * specified in pixels.  This ignores the current LOD level and instead
+ * provides an accurate number.  Terrain scale is NOT taken into account!  To
+ * get accurate normals, please divide it by the terrain scale and normalize
+ * it again, like this:
+ *
+ * LVector3 normal (terr.get_normal(x, y)); normal.set(normal.get_x() /
+ * root.get_sx(), normal.get_y() / root.get_sy(), normal.get_z() /
+ * root.get_sz()); normal.normalize();
+ */ 3 4 this 3 588  1 x 1 515  1 y 1 515  
+58 0 0 7 52 602 0 0 317 /**
+ * Fetches the terrain normal at (x,y), where the input coordinate is
+ * specified in pixels.  This ignores the current LOD level and instead
+ * provides an accurate number.  Terrain scale is NOT taken into account!  To
+ * get accurate normals, please divide it by the terrain scale and normalize
+ * it again!
+ */ 5 4 this 3 588  2 mx 1 603  2 my 1 603  1 x 1 515  1 y 1 515  
+59 0 0 4 53 544 0 0 238 /**
+ * Sets a boolean specifying whether the terrain will be rendered bruteforce.
+ * If the terrain is rendered bruteforce, there will be no Level of Detail,
+ * and the update() call will only update the terrain if it is marked dirty.
+ */ 2 4 this 3 588  2 bf 1 516  
+60 0 0 6 54 516 0 0 124 /**
+ * Returns a boolean whether the terrain is rendered bruteforce or not.  See
+ * set_bruteforce for more information.
+ */ 1 4 this 3 588  
+61 0 0 4 56 544 0 0 210 /**
+ * The terrain can be automatically flattened (using flatten_light,
+ * flatten_medium, or flatten_strong) after each update.  This only affects
+ * future updates, it doesn't flatten the current terrain.
+ */ 2 4 this 3 588  4 mode 1 515  
+62 0 0 4 57 544 0 0 276 // The focal point is the point at which the terrain will have the highest
+// quality (lowest level of detail). Parts farther away from the focal point
+// will have a lower quality (higher level of detail). The focal point is
+// not taken in respect if bruteforce is set true. 2 4 this 3 588  2 fp 1 604  
+63 0 0 4 57 544 0 0 0 2 4 this 3 588  2 fp 1 607  
+64 0 0 4 57 544 0 0 0 2 4 this 3 588  2 fp 1 609  
+65 0 0 4 57 544 0 0 0 2 4 this 3 588  2 fp 1 612  
+66 0 0 4 57 544 0 0 0 2 4 this 3 588  3 fnp 1 614  
+67 0 0 4 57 544 0 0 350 /**
+ * Sets the focal point.  GeoMipTerrain generates high-resolution terrain
+ * around the focal point, and progressively lower and lower resolution
+ * terrain as you get farther away.  If a point is supplied and not a
+ * NodePath, make sure it's relative to the terrain.  Only the x and y
+ * coordinates of the focal point are taken in respect.
+ */ 3 4 this 3 588  1 x 1 514  1 y 1 514  
+68 0 0 7 58 614 0 0 145 /**
+ * Returns the focal point, as a NodePath.  If you have set it to be just a
+ * point, it will return an empty node at the focal position.
+ */ 1 4 this 3 598  
+69 0 0 7 59 614 0 0 258 /**
+ * Returns the root of the terrain.  This is a single PandaNode to which all
+ * the rest of the terrain is parented.  The generate and update operations
+ * replace the nodes which are parented to this root, but they don't replace
+ * this root itself.
+ */ 1 4 this 3 598  
+70 0 0 4 60 544 0 0 98 /**
+ * Sets the block size.  If it is not a power of two, the closest power of two
+ * is used.
+ */ 2 4 this 3 588  5 newbs 1 603  
+71 0 0 6 61 603 0 0 31 /**
+ * Gets the block size.
+ */ 1 4 this 3 588  
+72 0 0 6 62 603 0 0 140 /**
+ * Returns the highest level possible for this block size.  When a block is at
+ * this level, it will be the worst quality possible.
+ */ 1 4 this 3 588  
+73 0 0 4 63 544 0 0 243 /**
+ * Sets the minimum level of detail at which blocks may be generated by
+ * generate() or update(). The default value is 0, which is the highest
+ * quality.  This value is also taken in respect when generating the terrain
+ * bruteforce.
+ */ 2 4 this 3 588  8 minlevel 1 603  
+74 0 0 6 64 603 0 0 163 /**
+ * Gets the minimum level of detail at which blocks may be generated by
+ * generate() or update(). The default value is 0, which is the highest
+ * quality.
+ */ 1 4 this 3 588  
+75 0 0 6 65 516 0 0 298 /**
+ * Returns a bool indicating whether the terrain is marked 'dirty', that means
+ * the terrain has to be regenerated on the next update() call, because for
+ * instance the heightfield has changed.  Once the terrain has been
+ * regenerated, the dirty flag automatically gets reset internally.
+ */ 1 4 this 3 588  
+76 0 0 4 66 544 0 0 334 /**
+ * DEPRECATED method.  Use set_near/far instead.  Sets the quality factor at
+ * which blocks must be generated.  The higher this level, the better quality
+ * the terrain will be, but more expensive to render.  A value of 0 makes the
+ * terrain the lowest quality possible, depending on blocksize.  The default
+ * value is 100.
+ */ 2 4 this 3 588  6 factor 1 529  
+77 0 0 4 67 544 0 0 59 /**
+ * Sets the near and far LOD distances in one call.
+ */ 3 4 this 3 588  10 input_near 1 514  9 input_far 1 514  
+78 0 0 4 68 544 0 0 152 /**
+ * Sets the near LOD distance, at which the terrain will be rendered at
+ * highest quality.  This distance is in the terrain's coordinate space!
+ */ 2 4 this 3 588  10 input_near 1 514  
+79 0 0 4 69 544 0 0 150 /**
+ * Sets the far LOD distance, at which the terrain will be rendered at lowest
+ * quality.  This distance is in the terrain's coordinate space!
+ */ 2 4 this 3 588  9 input_far 1 514  
+80 0 0 7 70 616 0 0 380 /**
+ * Returns the NodePath of the specified block.  If auto-flatten is enabled
+ * and the node is getting removed during the flattening process, it will
+ * still return a NodePath with the appropriate terrain chunk, but it will be
+ * in a temporary scenegraph.  Please note that this returns a const object
+ * and you can not modify the node.  Modify the heightfield instead.
+ */ 3 4 this 3 588  2 mx 1 603  2 my 1 603  
+81 0 0 7 71 619 0 0 479 /**
+ * Gets the coordinates of the block at the specified position.  This position
+ * must be relative to the terrain, not to render.  Returns an array
+ * containing two values: the block x and the block y coords.  If the
+ * positions are out of range, the closest block is taken.  Note that the
+ * VecBase returned does not represent a vector, position, or rotation, but it
+ * contains the block index of the block which you can use in
+ * GeoMipTerrain::get_block_node_path.
+ */ 3 4 this 3 588  1 x 1 514  1 y 1 514  
+82 0 0 4 72 544 0 0 360 /**
+ * If this value is true, the LOD level at the borders of the terrain will be
+ * 0. This is useful if you have multiple terrains attached and you want to
+ * stitch them together, to fix seams.  This setting also has effect when
+ * bruteforce is enabled, although in that case you are probably better off
+ * with setting the minlevels to the same value.
+ */ 2 4 this 3 588  9 stitching 1 516  
+83 0 0 6 73 516 0 0 106 /**
+ * Returns the current stitching setting.  False by default, unless
+ * set_stitching has been set.
+ */ 1 4 this 3 588  
+84 0 0 6 74 514 0 0 71 /**
+ * Returns the far LOD distance in the terrain coordinate space
+ */ 1 4 this 3 588  
+85 0 0 6 75 514 0 0 72 /**
+ * Returns the near LOD distance in the terrain coordinate space
+ */ 1 4 this 3 588  
+86 0 0 6 76 515 0 0 110 /**
+ * Returns the automatic-flatten mode (e.g., off, flatten_light,
+ * flatten_medium, or flatten_strong)
+ */ 1 4 this 3 588  
+87 0 0 7 77 589 0 0 520 /**
+ * Returns a new grayscale image containing the slope angles.  A white pixel
+ * value means a vertical slope, while a black pixel will mean that the
+ * terrain is entirely flat at that pixel.  You can translate it to degrees by
+ * mapping the greyscale values from 0 to 90 degrees.  The resulting image
+ * will have the same size as the heightfield image.  The scale will be taken
+ * into respect -- meaning, if you change the terrain scale, the slope image
+ * will need to be regenerated in order to be correct.
+ */ 1 4 this 3 588  
+88 0 0 4 78 544 0 0 191 /**
+ * (Re)generates the entire terrain, erasing the current.  This call un-
+ * flattens the terrain, so make sure you have set auto-flatten if you want to
+ * keep your terrain flattened.
+ */ 1 4 this 3 588  
+89 0 0 6 79 516 0 0 447 /**
+ * Loops through all of the terrain blocks, and checks whether they need to be
+ * updated.  If that is indeed the case, it regenerates the mipmap.  Returns a
+ * true when the terrain has changed.  Returns false when the terrain isn't
+ * updated at all.  If there is no terrain yet, it generates the entire
+ * terrain.  This call un-flattens the terrain, so make sure you have set
+ * auto-flatten if you want to keep your terrain flattened.
+ */ 1 4 this 3 588  
+90 0 0 7 80 587 0 0 0 0 
+91 0 0 7 82 622 336 0 0 1 6 param0 0 620  
+92 0 0 7 82 622 336 0 10 /**
+ *
+ */ 1 4 name 1 543  
+93 0 0 6 84 589 0 0 162 /**
+ * Returns a reference to the heightfield (a PNMImage) contained inside the
+ * HeightfieldTesselator.  You can use the reference to alter the heightfield.
+ */ 1 4 this 3 622  
+94 0 0 6 85 516 0 0 73 /**
+ * Loads the specified greyscale image file into the heightfield.
+ */ 3 4 this 3 622  8 filename 1 591  4 type 1 594  
+95 0 0 4 86 544 0 0 131 /**
+ * Sets the polygon-count target.  The tesselator usually manages to come
+ * within about 20% of the target, plus or minus.
+ */ 2 4 this 3 622  1 n 1 515  
+96 0 0 4 87 544 0 0 354 /**
+ * Sets the visibility radius.  Polygons that are completely outside the
+ * radius (relative to the focal point) are cropped away.  The cropping is
+ * imperfect (all approximations are conservative), so this should be used in
+ * conjunction with a far clipping plane, fog, or some other visibility
+ * limiting mechanism.  The units are in pixels.
+ */ 2 4 this 3 622  1 r 1 515  
+97 0 0 4 88 544 0 0 216 /**
+ * Sets the focal point.  The tesselator generates high-resolution terrain
+ * around the focal point, and progressively lower and lower resolution
+ * terrain as you get farther away.  The units are in pixels.
+ */ 3 4 this 3 622  1 x 1 515  1 y 1 515  
+98 0 0 4 89 544 0 0 135 /**
+ * Sets the horizontal scale.  The default scale is 1.0, meaning that each
+ * pixel in the heightfield is 1x1 panda units wide.
+ */ 2 4 this 3 622  1 h 1 514  
+99 0 0 4 90 544 0 0 162 /**
+ * Sets the vertical scale.  The default scale is 255.0, meaning that each as
+ * the gray value ranges from (0-1), the elevation ranges from (0-255) feet.
+ */ 2 4 this 3 622  1 v 1 514  
+100 0 0 4 91 544 0 0 43 /**
+ * Sets the max triangles per geom.
+ */ 2 4 this 3 622  1 n 1 515  
+101 0 0 6 92 514 0 0 239 /**
+ * Fetches the elevation at (x,y), where the input coordinate is specified in
+ * pixels.  This ignores the current tesselation level and instead provides an
+ * accurate number.  Linear blending is used for non-integral coordinates.
+ */ 3 4 this 3 622  1 x 1 514  1 y 1 514  
+102 0 0 7 93 614 0 0 112 /**
+ * Generates a tree of nodes that represents the heightfield.  This can be
+ * reparented into the scene.
+ */ 1 4 this 3 622  
+103 0 0 7 95 625 348 0 0 1 6 param0 0 623  
+104 0 0 7 95 625 348 0 352 /**
+ * Constructs a LineSegs object, which can be used to create any number of
+ * disconnected lines or points of various thicknesses and colors through the
+ * visible scene.  After creating the object, call move_to() and draw_to()
+ * repeatedly to describe the path, then call create() to create a GeomNode
+ * which will render the described path.
+ */ 1 4 name 1 543  
+105 0 0 4 97 544 0 0 79 /**
+ * Removes any lines in progress and resets to the initial empty state.
+ */ 1 4 this 3 625  
+106 0 0 4 98 544 0 0 125 /**
+ * Establishes the color that will be assigned to all vertices created by
+ * future calls to move_to() and draw_to().
+ */ 2 4 this 3 625  5 color 1 569  
+107 0 0 4 98 544 0 0 125 /**
+ * Establishes the color that will be assigned to all vertices created by
+ * future calls to move_to() and draw_to().
+ */ 5 4 this 3 625  1 r 1 529  1 g 1 529  1 b 1 529  1 a 1 529  
+108 0 0 4 99 544 0 0 151 /**
+ * Establishes the line thickness or point size in pixels that will be
+ * assigned to all lines and points created by future calls to create().
+ */ 2 4 this 3 625  5 thick 1 529  
+109 0 0 4 100 544 0 0 217 /**
+ * Moves the pen to the given point without drawing a line.  When followed by
+ * draw_to(), this marks the first point of a line segment; when followed by
+ * move_to() or create(), this creates a single point.
+ */ 2 4 this 3 625  1 v 1 626  
+110 0 0 4 100 544 0 0 217 /**
+ * Moves the pen to the given point without drawing a line.  When followed by
+ * draw_to(), this marks the first point of a line segment; when followed by
+ * move_to() or create(), this creates a single point.
+ */ 4 4 this 3 625  1 x 1 529  1 y 1 529  1 z 1 529  
+111 0 0 4 101 544 0 0 230 /**
+ * Draws a line segment from the pen's last position (the last call to move_to
+ * or draw_to) to the indicated point.  move_to() and draw_to() only update
+ * tables; the actual drawing is performed when create() is called.
+ */ 2 4 this 3 625  1 v 1 626  
+112 0 0 4 101 544 0 0 230 /**
+ * Draws a line segment from the pen's last position (the last call to move_to
+ * or draw_to) to the indicated point.  move_to() and draw_to() only update
+ * tables; the actual drawing is performed when create() is called.
+ */ 4 4 this 3 625  1 x 1 529  1 y 1 529  1 z 1 529  
+113 0 0 6 102 565 0 0 119 /**
+ * Returns the pen's current position.  The next call to draw_to() will draw a
+ * line segment from this point.
+ */ 1 4 this 3 625  
+114 0 0 6 103 516 0 0 126 /**
+ * Returns true if move_to() or draw_to() have not been called since the last
+ * reset() or create(), false otherwise.
+ */ 1 4 this 3 625  
+115 0 0 7 104 631 0 0 425 /**
+ * Appends to an existing GeomNode a new Geom that will render the series of
+ * line segments and points described via calls to move_to() and draw_to().
+ * The lines and points are created with the color and thickness established
+ * by calls to set_color() and set_thickness().
+ *
+ * If dynamic is true, the line segments will be created with the dynamic Geom
+ * setting, optimizing them for runtime vertex animation.
+ */ 3 4 this 3 625  8 previous 1 631  7 dynamic 1 516  
+116 0 0 7 104 631 0 0 406 /**
+ * Creates a new GeomNode that will render the series of line segments and
+ * points described via calls to move_to() and draw_to().  The lines and
+ * points are created with the color and thickness established by calls to
+ * set_color() and set_thickness().
+ *
+ * If dynamic is true, the line segments will be created with the dynamic Geom
+ * setting, optimizing them for runtime vertex animation.
+ */ 2 4 this 3 625  7 dynamic 1 516  
+117 0 0 6 105 515 0 0 213 /**
+ * Returns the total number of line segment and point vertices generated by
+ * the last call to create().  The positions of these vertices may be read and
+ * adjusted through get_vertex() and set_vertex().
+ */ 1 4 this 3 623  
+118 0 0 7 106 632 0 0 248 /**
+ * Returns the nth point or vertex of the line segment sequence generated by
+ * the last call to create().  The first move_to() generates vertex 0;
+ * subsequent move_to() and draw_to() calls generate consecutively higher
+ * vertex numbers.
+ */ 2 4 this 3 623  1 n 1 515  
+119 0 0 4 108 544 0 0 243 /**
+ * Moves the nth point or vertex of the line segment sequence generated by the
+ * last call to create().  The first move_to() generates vertex 0; subsequent
+ * move_to() and draw_to() calls generate consecutively higher vertex numbers.
+ */ 3 4 this 3 625  1 n 1 515  4 vert 1 565  
+120 0 0 4 108 544 0 0 243 /**
+ * Moves the nth point or vertex of the line segment sequence generated by the
+ * last call to create().  The first move_to() generates vertex 0; subsequent
+ * move_to() and draw_to() calls generate consecutively higher vertex numbers.
+ */ 5 4 this 3 625  6 vertex 1 515  1 x 1 529  1 y 1 529  1 z 1 529  
+121 0 0 7 109 633 0 0 56 /**
+ * Returns the color of the nth point or vertex.
+ */ 2 4 this 3 623  6 vertex 1 515  
+122 0 0 4 111 544 0 0 82 /**
+ * Changes the vertex color of the nth point or vertex.  See set_vertex().
+ */ 3 4 this 3 625  6 vertex 1 515  1 c 1 569  
+123 0 0 4 111 544 0 0 82 /**
+ * Changes the vertex color of the nth point or vertex.  See set_vertex().
+ */ 6 4 this 3 625  6 vertex 1 515  1 r 1 529  1 g 1 529  1 b 1 529  1 a 1 529  
+124 0 0 7 113 634 0 0 51 /**
+ * Creates the MeshDrawer low level system.
+ */ 0 
+125 0 0 4 114 544 0 0 142 /**
+ * Sets the total triangle budget of the drawer.  This will not be exceeded.
+ * Don't set some thing too large because it will be slow
+ */ 2 4 this 3 634  6 budget 1 515  
+126 0 0 6 115 515 0 0 55 /**
+ * Gets the total triangle budget of the drawer
+ */ 1 4 this 3 634  
+127 0 0 7 116 614 0 0 170 /**
+ * Returns the root NodePath.  You should use this node to reparent mesh
+ * drawer onto the scene might also want to disable depth draw or enable
+ * transparency.
+ */ 1 4 this 3 634  
+128 0 0 4 117 544 0 0 131 /**
+ * Pass the current camera node and the root node.  Passing the camera is
+ * required to generate bill boards that face it.
+ */ 3 4 this 3 634  6 camera 1 614  6 render 1 614  
+129 0 0 4 118 544 0 0 54 /**
+ * Draws a triangle with the given parameters.
+ */ 10 4 this 3 634  2 v1 1 635  2 c1 1 555  3 uv1 1 637  2 v2 1 635  2 c2 1 555  3 uv2 1 637  2 v3 1 635  2 c3 1 555  3 uv3 1 637  
+130 0 0 4 119 544 0 0 146 /**
+ * Draws a particle that is sort of like a bill board but has an extra
+ * rotation component.  Frame contains u,v,u-size,v-size quadruple.
+ */ 6 4 this 3 634  3 pos 1 635  5 frame 1 555  4 size 1 529  5 color 1 555  8 rotation 1 529  
+131 0 0 4 120 544 0 0 152 /**
+ * Works just like particle but accepts 2 frames and a blend (from 0 to 1)
+ * component between them Frame contains u,v,u-size,v-size quadruple.
+ */ 8 4 this 3 634  3 pos 1 635  6 frame1 1 555  6 frame2 1 555  5 blend 1 529  4 size 1 529  5 color 1 555  8 rotation 1 529  
+132 0 0 4 121 544 0 0 141 /**
+ * Draws a billboard - particle with no rotation.  Billboards always face the
+ * camera.  Frame contains u,v,u-size,v-size quadruple.
+ */ 5 4 this 3 634  3 pos 1 635  5 frame 1 555  4 size 1 529  5 color 1 555  
+133 0 0 4 122 544 0 0 129 /**
+ * Draws a segment a line with a thickness.  That has billboarding effect.
+ * Frame contains u,v,u-size,v-size quadruple.
+ */ 6 4 this 3 634  5 start 1 635  4 stop 1 635  5 frame 1 555  9 thickness 1 529  5 color 1 555  
+134 0 0 4 123 544 0 0 229 /**
+ * Draws a segment a line with a thickness.  This segment does not use the
+ * bill boarding behavior and instead draws 2 planes in a cross.  Stars at
+ * start and ends at stop.  Frame contains u,v,u-size,v-size quadruple.
+ */ 6 4 this 3 634  5 start 1 635  4 stop 1 635  5 frame 1 555  9 thickness 1 529  5 color 1 555  
+135 0 0 4 124 544 0 0 167 /**
+ * Draws a segment a line with different thickness and color on both sides.
+ * Stars at start and ends at stop.  Frame contains u,v,u-size,v-size
+ * quadruple.
+ */ 8 4 this 3 634  5 start 1 635  4 stop 1 635  5 frame 1 555  15 thickness_start 1 529  11 color_start 1 555  14 thickness_stop 1 529  10 color_stop 1 555  
+136 0 0 4 125 544 0 0 156 /**
+ * Stars or continues linked segment.  Control position, frame, thickness and
+ * color with parameters.  Frame contains u,v,u-size,v-size quadruple.
+ */ 5 4 this 3 634  3 pos 1 635  5 frame 1 555  9 thickness 1 529  5 color 1 555  
+137 0 0 4 126 544 0 0 172 /**
+ * Finish drawing linked segments, needs at least two calls to link_segment
+ * before it can end the linked segment.  Frame contains u,v,u-size,v-size
+ * quadruple.
+ */ 3 4 this 3 634  5 frame 1 555  5 color 1 555  
+138 0 0 4 127 544 0 0 110 /**
+ * Draws number of particles in a sphere like emitter.  Frame contains
+ * u,v,u-size,v-size quadruple.
+ */ 8 4 this 3 634  3 pos 1 635  5 frame 1 555  4 size 1 529  5 color 1 555  4 seed 1 515  6 number 1 515  8 distance 1 529  
+139 0 0 4 128 544 0 0 137 /**
+ * Draws a number of particles in a big line with a shift dictated by the
+ * offset.  Frame contains u,v,u-size,v-size quadruple.
+ */ 8 4 this 3 634  5 start 1 635  4 stop 1 635  5 frame 1 555  4 size 1 529  5 color 1 555  6 number 1 515  6 offset 1 529  
+140 0 0 4 129 544 0 0 272 /**
+ * Draws the geometry that is inside this node path into the MeshDrawer
+ * object.  This performs a similar functions as RigidBodyCombiner but for
+ * very dynamic situations that share the same texture like physcal chunks of
+ * explosions.  It can be a little slow
+ */ 2 4 this 3 634  4 node 1 614  
+141 0 0 4 130 544 0 0 70 /**
+ * Finish the drawing and clearing off the remaining vertexes.
+ */ 1 4 this 3 634  
+142 0 0 7 131 587 0 0 0 0 
+143 0 0 7 133 641 0 0 53 /**
+ * Creates the MeshDrawer2D low level system.
+ */ 0 
+144 0 0 4 134 544 0 0 56 /**
+ * Sets the total triangle budget of the drawer.
+ */ 2 4 this 3 641  6 budget 1 515  
+145 0 0 6 135 515 0 0 56 /**
+ * Gets the total triangle budget of the drawer.
+ */ 1 4 this 3 641  
+146 0 0 7 136 614 0 0 37 /**
+ * Returns the root NodePath.
+ */ 1 4 this 3 641  
+147 0 0 4 137 544 0 0 65 /**
+ * Draws a 2D rectangle.  Ignores the clipping rectangle.
+ */ 13 4 this 3 641  2 v1 1 635  2 c1 1 555  3 uv1 1 637  2 v2 1 635  2 c2 1 555  3 uv2 1 637  2 v3 1 635  2 c3 1 555  3 uv3 1 637  2 v4 1 635  2 c4 1 555  3 uv4 1 637  
+148 0 0 4 138 544 0 0 0 10 4 this 3 641  1 x 1 529  1 y 1 529  1 w 1 529  1 h 1 529  1 u 1 529  1 v 1 529  2 us 1 529  2 vs 1 529  5 color 1 555  
+149 0 0 4 139 544 0 0 39 /**
+ * Sets the clipping rectangle.
+ */ 5 4 this 3 641  1 x 1 529  1 y 1 529  1 w 1 529  1 h 1 529  
+150 0 0 4 140 544 0 0 53 /**
+ * Draws a 2D rectangle which can be clipped.
+ */ 10 4 this 3 641  1 x 1 529  1 y 1 529  1 w 1 529  1 h 1 529  1 u 1 529  1 v 1 529  2 us 1 529  2 vs 1 529  5 color 1 555  
+151 0 0 4 141 544 0 0 96 /**
+ * Draws a 2d rectangle, with borders and corders, taken from the surrounding
+ * texture
+ */ 18 4 this 3 641  1 x 1 529  1 y 1 529  1 w 1 529  1 h 1 529  1 r 1 529  1 t 1 529  1 l 1 529  1 b 1 529  2 tr 1 529  2 tt 1 529  2 tl 1 529  2 tb 1 529  1 u 1 529  1 v 1 529  2 us 1 529  2 vs 1 529  5 color 1 555  
+152 0 0 4 142 544 0 0 96 /**
+ * Draws a 2d rectangle, with borders and corders, taken from the surrounding
+ * texture
+ */ 18 4 this 3 641  1 x 1 529  1 y 1 529  1 w 1 529  1 h 1 529  1 r 1 529  1 t 1 529  1 l 1 529  1 b 1 529  2 tr 1 529  2 tt 1 529  2 tl 1 529  2 tb 1 529  1 u 1 529  1 v 1 529  2 us 1 529  2 vs 1 529  5 color 1 555  
+153 0 0 4 143 544 0 0 65 /**
+ * Draws a tiled rectangle, size of tiles is in us and vs
+ */ 10 4 this 3 641  1 x 1 529  1 y 1 529  1 w 1 529  1 h 1 529  1 u 1 529  1 v 1 529  2 us 1 529  2 vs 1 529  5 color 1 555  
+154 0 0 4 144 544 0 0 82 /**
+ * Opens up the geom for drawing, don't forget to call MeshDrawer2D::end()
+ */ 1 4 this 3 641  
+155 0 0 4 145 544 0 0 70 /**
+ * Finish the drawing and clearing off the remaining vertexes.
+ */ 1 4 this 3 641  
+156 0 0 7 146 587 0 0 0 0 
+157 0 0 7 149 644 0 0 57 /**
+ * Creates a texture playing the specified movie.
+ */ 1 5 video 1 642  
+158 0 0 7 149 644 0 0 100 /**
+ * Creates a blank movie texture.  Movies must be added using do_read_one or
+ * do_load_one.
+ */ 1 4 name 1 543  
+159 0 0 6 150 514 0 0 43 /**
+ * Returns the length of the video.
+ */ 1 4 this 3 645  
+160 0 0 6 151 515 0 0 200 /**
+ * Returns the width in texels of the source video stream.  This is not
+ * necessarily the width of the actual texture, since the texture may have
+ * been expanded to raise it to a power of 2.
+ */ 1 4 this 3 645  
+161 0 0 6 152 515 0 0 202 /**
+ * Returns the height in texels of the source video stream.  This is not
+ * necessarily the height of the actual texture, since the texture may have
+ * been expanded to raise it to a power of 2.
+ */ 1 4 this 3 645  
+162 0 0 7 153 648 0 0 136 /**
+ * Returns the MovieVideoCursor that is feeding the color channels for the
+ * indicated page, where 0 <= page < get_num_pages().
+ */ 2 4 this 3 644  4 page 1 515  
+163 0 0 7 154 648 0 0 135 /**
+ * Returns the MovieVideoCursor that is feeding the alpha channel for the
+ * indicated page, where 0 <= page < get_num_pages().
+ */ 2 4 this 3 644  4 page 1 515  
+164 0 0 4 155 544 0 0 159 /**
+ * Start playing the movie from where it was last paused.  Has no effect if
+ * the movie is not paused, or if the movie's cursor is already at the end.
+ */ 1 4 this 3 644  
+165 0 0 4 156 544 0 0 145 /**
+ * Stops a currently playing or looping movie right where it is.  The movie's
+ * cursor remains frozen at the point where it was stopped.
+ */ 1 4 this 3 644  
+166 0 0 4 157 544 0 0 46 /**
+ * Plays the movie from the beginning.
+ */ 1 4 this 3 644  
+167 0 0 4 158 544 0 0 35 /**
+ * Sets the movie's cursor.
+ */ 2 4 this 3 644  1 t 1 514  
+168 0 0 6 159 514 0 0 277 /**
+ * Returns the current value of the movie's cursor.  If the movie's loop count
+ * is greater than one, then its length is effectively multiplied for the
+ * purposes of this function.  In other words, the return value will be in the
+ * range 0.0 to (length * loopcount).
+ */ 1 4 this 3 645  
+169 0 0 4 160 544 0 0 111 /**
+ * If true, sets the movie's loop count to 1 billion.  If false, sets the
+ * movie's loop count to one.
+ */ 2 4 this 3 644  6 enable 1 516  
+170 0 0 6 161 516 0 0 70 /**
+ * Returns true if the movie's loop count is not equal to one.
+ */ 1 4 this 3 645  
+171 0 0 4 162 544 0 0 60 /**
+ * Sets the movie's loop count to the desired value.
+ */ 2 4 this 3 644  5 count 1 515  
+172 0 0 6 163 515 0 0 42 /**
+ * Returns the movie's loop count.
+ */ 1 4 this 3 645  
+173 0 0 4 164 544 0 0 168 /**
+ * Sets the movie's play-rate.  This is the speed at which the movie's cursor
+ * advances.  The default is to advance 1.0 movie-seconds per real-time
+ * second.
+ */ 2 4 this 3 644  9 play_rate 1 514  
+174 0 0 6 165 514 0 0 38 /**
+ * Gets the movie's play-rate.
+ */ 1 4 this 3 645  
+175 0 0 6 166 516 0 0 59 /**
+ * Returns true if the movie's cursor is advancing.
+ */ 1 4 this 3 645  
+176 0 0 4 167 544 0 0 127 /**
+ * Synchronize this texture to a sound.  Typically, you would load the texture
+ * and the sound from the same AVI file.
+ */ 2 4 this 3 644  5 sound 1 649  
+177 0 0 4 168 544 0 0 43 /**
+ * Stop synchronizing with a sound.
+ */ 1 4 this 3 644  
+178 0 0 7 180 587 0 0 0 0 
+179 0 0 7 182 651 417 0 0 0 
+180 0 0 7 182 651 417 0 0 1 6 param0 0 652  
+181 0 0 4 184 544 0 0 0 1 4 this 3 651  
+182 0 0 4 185 544 0 0 475 /**
+ * Starts scanning the hierarchy beginning at the indicated node.  Any
+ * GeomNodes discovered in the hierarchy with multitexture will be added to
+ * internal structures in the MultitexReducer so that a future call to
+ * flatten() will operate on all of these at once.
+ *
+ * This version of this method does not accumulate state from the parents of
+ * the indicated node; thus, only multitexture effects that have been applied
+ * at node and below will be considered.
+ */ 2 4 this 3 651  4 node 1 616  
+183 0 0 4 185 544 0 0 841 /**
+ * Starts scanning the hierarchy beginning at the indicated node.  Any
+ * GeomNodes discovered in the hierarchy with multitexture will be added to
+ * internal structures in the MultitexReducer so that a future call to
+ * flatten() will operate on all of these at once.
+ *
+ * The second parameter represents the NodePath from which to accumulate the
+ * state that is considered for the multitexture.  Pass an empty NodePath to
+ * accumulate all the state from the root of the graph, or you may specify
+ * some other node here in order to not consider nodes above that as
+ * contributing to the state to be flattened.  This is particularly useful if
+ * you have some texture stage which is applied globally to a scene (for
+ * instance, a caustics effect), which you don't want to be considered for
+ * flattening by the MultitexReducer.
+ */ 3 4 this 3 651  4 node 1 616  10 state_from 1 616  
+184 0 0 4 185 544 0 0 0 4 4 this 3 651  4 node 1 573  5 state 1 654  9 transform 1 657  
+185 0 0 4 186 544 0 0 0 2 4 this 3 651  5 stage 1 660  
+186 0 0 4 187 544 0 0 0 2 4 this 3 651  8 use_geom 1 516  
+187 0 0 4 188 544 0 0 0 2 4 this 3 651  13 allow_tex_mat 1 516  
+188 0 0 4 189 544 0 0 0 2 4 this 3 651  6 window 1 580  
+189 0 0 7 192 662 428 0 10 /**
+ *
+ */ 2 4 node 1 520  4 prev 1 523  
+190 0 0 7 193 520 0 0 70 /**
+ * Returns the PandaNode whose transform supplies this object.
+ */ 1 4 this 3 663  
+191 0 0 7 194 523 0 0 120 /**
+ * Returns the VertexTransform object whose matrix will be composed with the
+ * result of this node's transform.
+ */ 1 4 this 3 663  
+192 0 0 7 202 587 0 0 0 0 
+193 0 0 7 205 665 443 0 287 /**
+ * @brief Constructs a new Terrain Mesh
+ * @details This constructs a new terrain mesh. By default, no transform is set
+ *   on the mesh, causing it to range over the unit box from (0, 0, 0) to
+ *   (1, 1, 1). Usually you want to set a custom transform with NodePath::set_scale()
+ */ 0 
+194 0 0 4 206 544 0 0 339 /**
+ * @brief Sets the heightfield texture
+ * @details This sets the heightfield texture. It should be 16bit
+ *   single channel, and have a power-of-two resolution greater than 32.
+ *   Common sizes are 2048x2048 or 4096x4096.
+ *
+ *   You should call generate() after setting the heightfield.
+ *
+ * @param filename Heightfield texture
+ */ 2 4 this 3 665  11 heightfield 1 526  
+195 0 0 7 207 526 0 0 172 /**
+ * @brief Returns the heightfield
+ * @details This returns the terrain heightfield, previously set with
+ *   set_heightfield()
+ *
+ * @return Path to the heightfield
+ */ 1 4 this 3 666  
+196 0 0 4 210 544 0 0 785 /**
+ * @brief Sets the chunk size
+ * @details This sets the chunk size of the terrain. A chunk is basically the
+ *   smallest unit in LOD. If the chunk size is too small, the terrain will
+ *   perform bad, since there will be way too many chunks. If the chunk size
+ *   is too big, you will not get proper LOD, and might also get bad performance.
+ *
+ *   For terrains of the size 4096x4096 or 8192x8192, a chunk size of 32 seems
+ *   to produce good results. For smaller resolutions, you should try out a
+ *   size of 16 or even 8 for very small terrains.
+ *
+ *   The amount of chunks generated for the last level equals to
+ *   (heightfield_size / chunk_size) ** 2. The chunk size has to be a power
+ *   of two.
+ *
+ * @param chunk_size Size of the chunks, has to be a power of two
+ */ 2 4 this 3 665  10 chunk_size 1 527  
+197 0 0 6 211 527 0 0 140 /**
+ * @brief Returns the chunk size
+ * @details This returns the chunk size, previously set with set_chunk_size()
+ * @return Chunk size
+ */ 1 4 this 3 666  
+198 0 0 4 215 544 0 0 618 /**
+ * @brief Sets whether to generate patches
+ * @details If this option is set to true, GeomPatches will be used instead of
+ *   GeomTriangles. This is required when the terrain is used with tesselation
+ *   shaders, since patches are required for tesselation, whereas triangles
+ *   are required for regular rendering.
+ *
+ *   If this option is set to true while not using a tesselation shader, the
+ *   terrain will not get rendered, or even produce errors. The same applies
+ *   when this is option is not set, but the terrain is used with tesselation
+ *   shaders.
+ *
+ * @param generate_patches [description]
+ */ 2 4 this 3 665  16 generate_patches 1 516  
+199 0 0 6 216 516 0 0 199 /**
+ * @brief Returns whether to generate patches
+ * @details This returns whether patches are generated, previously set with
+ *   set_generate_patches()
+ *
+ * @return Whether to generate patches
+ */ 1 4 this 3 666  
+200 0 0 4 218 544 0 0 336 /**
+ * @brief Sets whether to enable terrain updates
+ * @details This flag controls whether the terrain should be updated. If this value
+ *   is set to false, no updating of the terrain will happen. This can be useful
+ *   to debug the culling algorithm used by the terrain.
+ *
+ * @param update_enabled Whether to update the terrain
+ */ 2 4 this 3 665  14 update_enabled 1 516  
+201 0 0 6 219 516 0 0 219 /**
+ * @brief Returns whether the terrain is getting updated
+ * @details This returns whether the terrain is getting updates, previously set with
+ *   set_update_enabled()
+ *
+ * @return Whether to update the terrain
+ */ 1 4 this 3 666  
+202 0 0 4 221 544 0 0 469 /**
+ * @brief Sets the desired triangle width
+ * @details This sets the desired width a triangle should have in pixels.
+ *   A value of 10.0 for example will make the terrain tesselate everything
+ *   in a way that each triangle edge roughly is 10 pixels wide.
+ *   Of course this will not always accurately match, however you can use this
+ *   setting to control the LOD algorithm of the terrain.
+ *
+ * @param target_triangle_width Desired triangle width in pixels
+ */ 2 4 this 3 665  21 target_triangle_width 1 529  
+203 0 0 6 222 529 0 0 211 /**
+ * @brief Returns the target triangle width
+ * @details This returns the target triangle width, previously set with
+ *   ShaderTerrainMesh::set_target_triangle_width()
+ *
+ * @return Target triangle width
+ */ 1 4 this 3 666  
+204 0 0 7 226 669 0 0 377 /**
+ * @brief Transforms a texture coordinate to world space
+ * @details This transforms a texture coordinatefrom uv-space (0 to 1) to world
+ *   space. This takes the terrains transform into account, and also samples the
+ *   heightmap. This method should be called after generate().
+ *
+ * @param coord Coordinate in uv-space from 0, 0 to 1, 1
+ * @return World-Space point
+ */ 2 4 this 3 666  5 coord 1 545  
+205 0 0 7 226 669 0 0 57 /**
+ * @see ShaderTerrainMesh::uv_to_world(LTexCoord)
+ */ 3 4 this 3 666  1 u 1 529  1 v 1 529  
+206 0 0 6 227 516 0 0 442 /**
+ * @brief Generates the terrain mesh
+ * @details This generates the terrain mesh, initializing all chunks of the
+ *   internal used quadtree. At this point, a heightfield and a chunk size should
+ *   have been set, otherwise an error is thrown.
+ *
+ *   If anything goes wrong, like a missing heightfield, then an error is printed
+ *   and false is returned.
+ *
+ * @return true if the terrain was initialized, false if an error occured
+ */ 1 4 this 3 665  
+207 0 0 7 228 587 0 0 0 0 
+208 0 0 7 231 672 0 0 0 1 6 param0 0 670  
+209 0 0 7 231 672 0 0 10 /**
+ *
+ */ 2 4 name 1 543  4 node 1 573  
+210 0 0 4 232 544 0 0 112 /**
+ * Sets up the frame rate meter to create a DisplayRegion to render itself
+ * into the indicated window.
+ */ 2 4 this 3 672  6 window 1 580  
+211 0 0 4 233 544 0 0 66 /**
+ * Undoes the effect of a previous call to setup_window().
+ */ 1 4 this 3 672  
+212 0 0 7 234 580 0 0 122 /**
+ * Returns the GraphicsOutput that was passed to setup_window(), or NULL if
+ * setup_window() has not been called.
+ */ 1 4 this 3 670  
+213 0 0 7 235 583 0 0 168 /**
+ * Returns the DisplayRegion that the meter has created to render itself into
+ * the window to setup_window(), or NULL if setup_window() has not been
+ * called.
+ */ 1 4 this 3 670  
+214 0 0 4 236 544 0 0 244 /**
+ * Specifies the number of seconds that should elapse between updates to the
+ * meter.  This should be reasonably slow (e.g.  0.5 to 2.0) so that the
+ * calculation of the scene graph analysis does not itself dominate the frame
+ * rate.
+ */ 2 4 this 3 672  15 update_interval 1 514  
+215 0 0 6 237 514 0 0 106 /**
+ * Returns the number of seconds that will elapse between updates to the frame
+ * rate indication.
+ */ 1 4 this 3 670  
+216 0 0 4 238 544 0 0 40 /**
+ * Sets the node to be analyzed.
+ */ 2 4 this 3 672  4 node 1 573  
+217 0 0 7 239 573 0 0 43 /**
+ * Returns the node to be analyzed.
+ */ 1 4 this 3 670  
+218 0 0 4 240 544 0 0 205 /**
+ * You can call this to explicitly force the SceneGraphAnalyzerMeter to update
+ * itself with the latest scene graph analysis information.  Normally, it is
+ * not necessary to call this explicitly.
+ */ 1 4 this 3 672  
+219 0 0 7 241 587 0 0 0 0 
+220 0 0 7 243 673 459 0 10 /**
+ *
+ */ 1 4 name 1 543  
+221 0 0 4 244 544 0 0 879 /**
+ * Walks through the entire subgraph of nodes rooted at this node, accumulates
+ * all of the RenderAttribs and Geoms below this node, flattening them into
+ * just one Geom (or as few as possible, if there are multiple different
+ * states).
+ *
+ * Nodes that have transforms on them at the time of collect(), or any
+ * ModelNodes with the preserve_transform flag, will be identified as "moving"
+ * nodes, and their transforms will be monitored as they change in future
+ * frames and each new transform directly applied to the vertices.
+ *
+ * This call must be made after adding any nodes to or removing any nodes from
+ * the subgraph rooted at this node.  It should not be made too often, as it
+ * is a relatively expensive call.  If you need to hide children of this node,
+ * consider scaling them to zero (or very near zero), or moving them behind
+ * the camera, instead.
+ */ 1 4 this 3 673  
+222 0 0 7 245 614 0 0 319 /**
+ * Returns a special NodePath that represents the internal node of this
+ * object.  This is the node that is actually sent to the graphics card for
+ * rendering; it contains the collection of the children of this node into as
+ * few Geoms as possible.
+ *
+ * This node is filled up by the last call to collect().
+ */ 1 4 this 3 673  
+223 0 0 7 248 587 0 0 0 0 
+224 0 0 7 257 674 472 0 10 /**
+ *
+ */ 1 4 host 1 580  
+225 0 0 4 258 544 0 0 10 /**
+ *
+ */ 4 4 this 3 674  11 scene_setup 1 675  3 gsg 1 677  20 dr_incomplete_render 1 516  
+226 0 0 4 259 544 0 0 141 /**
+ * Should be called when the traverser has finished traversing its scene, this
+ * gives it a chance to do any necessary finalization.
+ */ 1 4 this 3 674  
+227 0 0 7 260 580 0 0 10 /**
+ *
+ */ 1 4 this 3 679  
+228 0 0 7 261 526 0 0 96 /**
+ * Returns a Texture that can be used to visualize the efforts of the
+ * occlusion cull.
+ */ 1 4 this 3 674  
+229 0 0 4 262 544 0 0 245 /**
+ * Specifies the DrawMask that should be set on occlusion polygons for this
+ * scene.  This identifies the polygons that are to be treated as occluders.
+ * Polygons that do not have this draw mask set will not be considered
+ * occluders.
+ */ 2 4 this 3 674  14 occlusion_mask 1 681  
+230 0 0 6 263 681 0 0 82 /**
+ * Returns the DrawMask for occlusion polygons.  See set_occlusion_mask().
+ */ 1 4 this 3 679  
+231 0 0 7 264 587 0 0 0 0 
+232 0 0 7 252 686 0 0 0 1 4 this 3 674  
+233 0 0 6 255 687 0 0 0 1 4 this 3 674  
+234 0 0 7 267 690 474 0 256 /**
+ * The PfmVizzer constructor receives a reference to a PfmFile which it will
+ * operate on.  It does not keep ownership of this reference; it is your
+ * responsibility to ensure the PfmFile does not destruct during the lifetime
+ * of the PfmVizzer.
+ */ 1 3 pfm 1 688  
+235 0 0 7 267 690 474 0 0 1 6 param0 0 691  
+236 0 0 6 269 688 0 0 78 /**
+ * Returns the reference to the PfmFile manipulated by this PfmVizzer.
+ */ 1 4 this 3 690  
+237 0 0 6 269 693 0 0 78 /**
+ * Returns the reference to the PfmFile manipulated by this PfmVizzer.
+ */ 1 4 this 3 691  
+238 0 0 4 270 544 0 0 335 /**
+ * Adjusts each (x, y, z) point of the Pfm file by projecting it through the
+ * indicated lens, converting each point to a (u, v, w) texture coordinate.
+ * The resulting file can be generated to a mesh (with set_vis_inverse(true)
+ * and generate_vis_mesh()) that will apply the lens distortion to an
+ * arbitrary texture image.
+ */ 3 4 this 3 690  4 lens 1 695  10 undist_lut 1 693  
+239 0 0 4 271 544 0 0 397 /**
+ * Converts each (u, v, depth) point of the Pfm file to an (x, y, z) point, by
+ * reversing project().  If the original file is only a 1-d file, assumes that
+ * it is a depth map with implicit (u, v) coordinates.
+ *
+ * This method is only valid for a linear lens (e.g.  a PerspectiveLens or
+ * OrthographicLens).  Non-linear lenses don't necessarily compute a sensible
+ * depth coordinate.
+ */ 2 4 this 3 690  4 lens 1 695  
+240 0 0 4 272 544 0 0 435 /**
+ * Sets the vis_inverse flag.  When this flag is true, vis meshes and point
+ * clouds are generated with the 3-d depth value in the texture coordinates,
+ * and the 2-d index value in the vertex position.  When it is false, meshes
+ * are generated normally, with the 3-d depth value in the vertex position and
+ * the 2-d index value in the texture coordinates.
+ *
+ * This may be used in lieu of the lower-level add_vis_column().
+ */ 2 4 this 3 690  11 vis_inverse 1 516  
+241 0 0 6 273 516 0 0 64 /**
+ * Returns the vis_inverse flag.  See set_vis_inverse().
+ */ 1 4 this 3 691  
+242 0 0 4 274 544 0 0 473 /**
+ * If the flat_texcoord_name is specified, it is the name of an additional
+ * vertex column that will be created for the "flat" texture coordinates, i.e.
+ * the original 0..1 values that correspond to the 2-D index position of each
+ * point in the original pfm file.
+ *
+ * These are the same values that will be assigned to the default texture
+ * coordinates if the vis_inverse flag is *not* true.
+ *
+ * This may be used in lieu of the lower-level add_vis_column().
+ */ 2 4 this 3 690  18 flat_texcoord_name 1 698  
+243 0 0 4 275 544 0 0 177 /**
+ * Resets the flat_texcoord_name to empty, so that additional texture
+ * coordinates are not created.
+ *
+ * This may be used in lieu of the lower-level add_vis_column().
+ */ 1 4 this 3 690  
+244 0 0 7 276 698 0 0 73 /**
+ * Returns the flat_texcoord_name.  See set_flat_texcoord_name().
+ */ 1 4 this 3 691  
+245 0 0 4 277 544 0 0 291 /**
+ * Sets the vis_2d flag.  When this flag is true, only the first two (x, y)
+ * value of each depth point is considered meaningful; the z component is
+ * ignored.  This is only relevant for generating visualizations.
+ *
+ * This may be used in lieu of the lower-level add_vis_column().
+ */ 2 4 this 3 690  6 vis_2d 1 516  
+246 0 0 6 278 516 0 0 54 /**
+ * Returns the vis_2d flag.  See set_vis_2d().
+ */ 1 4 this 3 691  
+247 0 0 4 279 544 0 0 234 /**
+ * Sets the keep_beyond_lens flag.  When this flag is true, points that fall
+ * outside of the normal lens range in project() or in add_vis_column() will
+ * be retained anyway; when it is false, these points will be discarded.
+ */ 2 4 this 3 690  16 keep_beyond_lens 1 516  
+248 0 0 6 280 516 0 0 74 /**
+ * Returns the keep_beyond_lens flag.  See set_keep_beyond_lens().
+ */ 1 4 this 3 691  
+249 0 0 4 281 544 0 0 457 /**
+ * Specifies a blending map--a grayscale image--that will be applied to the
+ * vertex color during generate_vis_mesh() and generate_vis_points().  The
+ * image size must exactly match the mesh size of the PfmVizzer.
+ *
+ * Ownership of the pointer is not kept by the PfmVizzer; it is your
+ * responsibility to ensure it does not destruct during the lifetime of the
+ * PfmVizzer (or at least not before your subsequent call to
+ * generate_vis_mesh()).
+ */ 2 4 this 3 690  9 vis_blend 1 596  
+250 0 0 4 282 544 0 0 75 /**
+ * Removes the blending map set by a prior call to set_vis_blend().
+ */ 1 4 this 3 690  
+251 0 0 6 283 596 0 0 133 /**
+ * Returns the blending map set by the most recent call to set_vis_blend(), or
+ * NULL if there is no blending map in effect.
+ */ 1 4 this 3 691  
+252 0 0 4 284 544 0 0 429 /**
+ * Assigns an auxiliary PfmFile to this PfmVizzer.  This file will be queried
+ * by column types CT_aux_vertex1/2/3, but has no other meaning to the vizzer.
+ * This size of this PfmFile should exactly match the base PfmFile.  No
+ * reference count is held and no copy is made; the caller is responsible for
+ * ensuring that the auxiliary PfmFile will persist throughout the lifetime of
+ * the PfmVizzer it is assigned to.
+ */ 2 4 this 3 690  3 pfm 1 693  
+253 0 0 4 285 544 0 0 61 /**
+ * Removes the auxiliary PfmFile from this PfmVizzer.
+ */ 1 4 this 3 690  
+254 0 0 6 286 693 0 0 181 /**
+ * Returns the reference to the auxiliary PfmFile queried by this PfmVizzer.
+ * This contains the values that will be reflected in CT_aux_vertex3 etc.  See
+ * set_aux_pfm().
+ */ 1 4 this 3 691  
+255 0 0 4 288 544 0 0 124 /**
+ * Removes all of the previously-added vis columns in preparation for building
+ * a new list.  See add_vis_column().
+ */ 1 4 this 3 690  
+256 0 0 4 289 544 0 0 723 /**
+ * Adds a new vis column specification to the list of vertex data columns that
+ * will be generated at the next call to generate_vis_points() or
+ * generate_vis_mesh().  This advanced interface supercedes the higher-level
+ * set_vis_inverse(), set_flat_texcoord_name(), and set_vis_2d().
+ *
+ * If you use this advanced interface, you must specify explicitly the
+ * complete list of data columns to be created in the resulting
+ * GeomVertexData, by calling add_vis_column() each time.  For each column,
+ * you specify the source of the column in the PFMFile, the target column and
+ * name in the GeomVertexData, and an optional transform matrix and/or lens to
+ * transform and project the point before generating it.
+ */ 7 4 this 3 690  6 source 1 538  6 target 1 538  4 name 1 698  9 transform 1 657  4 lens 1 695  10 undist_lut 1 693  
+257 0 0 7 290 614 0 0 181 /**
+ * Creates a point cloud with the points of the pfm as 3-d coordinates in
+ * space, and texture coordinates ranging from 0 .. 1 based on the position
+ * within the pfm grid.
+ */ 1 4 this 3 691  
+258 0 0 7 292 614 0 0 183 /**
+ * Creates a triangle mesh with the points of the pfm as 3-d coordinates in
+ * space, and texture coordinates ranging from 0 .. 1 based on the position
+ * within the pfm grid.
+ */ 2 4 this 3 691  4 face 1 539  
+259 0 0 6 293 514 0 0 206 /**
+ * Computes the maximum amount of shift, in pixels either left or right, of
+ * any pixel in the distortion map.  This can be passed to
+ * make_displacement(); see that function for more information.
+ */ 1 4 this 3 691  
+260 0 0 6 294 514 0 0 203 /**
+ * Computes the maximum amount of shift, in pixels either up or down, of any
+ * pixel in the distortion map.  This can be passed to make_displacement();
+ * see that function for more information.
+ */ 1 4 this 3 691  
+261 0 0 4 295 544 0 0 959 /**
+ * Assuming the underlying PfmFile is a 2-d distortion mesh, with the U and V
+ * in the first two components and the third component unused, this computes
+ * an AfterEffects-style displacement map that represents the same distortion.
+ * The indicated PNMImage will be filled in with a displacement map image,
+ * with horizontal shift in the red channel and vertical shift in the green
+ * channel, where a fully bright (or fully black) pixel indicates a shift of
+ * max_u or max_v pixels.
+ *
+ * Use calc_max_u_displacement() and calc_max_v_displacement() to compute
+ * suitable values for max_u and max_v.
+ *
+ * This generates an integer 16-bit displacement image.  It is a good idea,
+ * though not necessarily essential, to check "Preserve RGB" in the interpret
+ * footage section for each displacement image.  Set for_32bit true if this is
+ * meant to be used in a 32-bit project file, and false if it is meant to be
+ * used in a 16-bit project file.
+ */ 5 4 this 3 691  6 result 1 589  5 max_u 1 514  5 max_v 1 514  9 for_32bit 1 516  
+262 0 0 4 295 544 0 0 928 /**
+ * Assuming the underlying PfmFile is a 2-d distortion mesh, with the U and V
+ * in the first two components and the third component unused, this computes
+ * an AfterEffects-style displacement map that represents the same distortion.
+ * The indicated PNMImage will be filled in with a displacement map image,
+ * with horizontal shift in the red channel and vertical shift in the green
+ * channel, where a fully bright (or fully black) pixel indicates a shift of
+ * max_u or max_v pixels.
+ *
+ * Use calc_max_u_displacement() and calc_max_v_displacement() to compute
+ * suitable values for max_u and max_v.
+ *
+ * This generates a 32-bit floating-point displacement image.  It is essential
+ * to check "Preserve RGB" in the interpret footage section for each
+ * displacement image.  Set for_32bit true if this is meant to be used in a
+ * 32-bit project file, and false if it is meant to be used in a 16-bit
+ * project file.
+ */ 5 4 this 3 691  6 result 1 688  5 max_u 1 514  5 max_v 1 514  9 for_32bit 1 516  
+200
+500 9 CardMaker 0 26625 9 CardMaker 9 CardMaker 0 0 0 1 263 264 0 12 265 266 267 268 269 270 271 272 273 274 275 276 0 0 1 0 501 0 0 0 0 149
+/**
+ * This class generates 2-d "cards", that is, rectangular polygons,
+ * particularly useful for showing textures etc.  in the 2-d scene graph.
+ */
+
+501 7 Namable 0 2048 7 Namable 7 Namable 0 0 0 0 0 0 0 0 0 0 0 0 125
+/**
+ * A base class for all things which can have a name.  The name is either
+ * empty or nonempty, but it is never NULL.
+ */
+
+502 12 FisheyeMaker 0 26625 12 FisheyeMaker 12 FisheyeMaker 0 0 0 1 277 278 0 6 279 280 281 282 283 284 0 0 1 0 501 0 0 0 0 448
+/**
+ * This class is similar to CardMaker, but instead of generating ordinary
+ * cards, it generates a circular rose that represents the projection of a 3-D
+ * scene through a fisheye lens.  The texture coordinates of the rose are
+ * defined so that each 2-D vertex has a 3-D UVW that reflects the
+ * corresponding position in 3-D space of that particular vertex.
+ *
+ * This class is particularly suited for converting cube maps to sphere maps.
+ */
+
+503 14 FrameRateMeter 0 75777 14 FrameRateMeter 14 FrameRateMeter 0 0 0 1 285 0 0 12 286 287 288 289 290 291 292 293 294 295 296 297 0 0 1 0 504 0 0 0 0 393
+/**
+ * This is a special TextNode that automatically updates itself with the
+ * current frame rate.  It can be placed anywhere in the world where you'd
+ * like to see the frame rate.
+ *
+ * It also has a special mode in which it may be attached directly to a
+ * channel or window.  If this is done, it creates a DisplayRegion for itself
+ * and renders itself in the upper-right-hand corner.
+ */
+
+504 8 TextNode 0 2048 8 TextNode 8 TextNode 0 0 0 0 0 0 0 0 0 0 0 0 917
+/**
+ * The primary interface to this module.  This class does basic text assembly;
+ * given a string of text and a TextFont object, it creates a piece of
+ * geometry that may be placed in the 3-d or 2-d world to represent the
+ * indicated text.
+ *
+ * The TextNode may be used in one of two ways.  Naively, it may simply be
+ * parented directly into the scene graph and rendered as if it were a
+ * GeomNode; in this mode, the actual polygon geometry that renders the text
+ * is not directly visible or accessible, but remains hidden within the
+ * TextNode.
+ *
+ * The second way TextNode may be used is as a text generator.  To use it in
+ * this way, do not parent the TextNode to the scene graph; instead, set the
+ * properties of the text and call generate() to return an ordinary node,
+ * containing ordinary geometry, which you may use however you like.  Each
+ * time you call generate() a new node is returned.
+ */
+
+505 13 GeoMipTerrain 0 75777 13 GeoMipTerrain 13 GeoMipTerrain 0 0 0 1 298 0 0 36 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 0 0 1 0 506 0 0 0 1 507 421
+/**
+ * GeoMipTerrain, meaning Panda3D GeoMipMapping, can convert a heightfield
+ * image into a 3D terrain, consisting of several GeomNodes.  It uses the
+ * GeoMipMapping algorithm, or Geometrical MipMapping, based on the LOD (Level
+ * of Detail) algorithm.  For more information about the GeoMipMapping
+ * algoritm, see this paper, written by Willem H. de Boer:
+ * https://flipcode.com/articles/article_geomipmaps.pdf
+ */
+
+506 11 TypedObject 0 2048 11 TypedObject 11 TypedObject 0 0 0 0 0 0 0 0 0 0 0 0 2508
+/**
+ * This is an abstract class that all classes which use TypeHandle, and also
+ * provide virtual functions to support polymorphism, should inherit from.
+ * Each derived class should define get_type(), which should return the
+ * specific type of the derived class.  Inheriting from this automatically
+ * provides support for is_of_type() and is_exact_type().
+ *
+ * All classes that inherit directly or indirectly from TypedObject should
+ * redefine get_type() and force_init_type(), as shown below.  Some classes
+ * that do not inherit from TypedObject may still declare TypeHandles for
+ * themselves by defining methods called get_class_type() and init_type().
+ * Classes such as these may serve as base classes, but the dynamic type
+ * identification system will be limited.  Classes that do not inherit from
+ * TypedObject need not define the virtual functions get_type() and
+ * force_init_type() (or any other virtual functions).
+ *
+ * There is a specific layout for defining the overrides from this class.
+ * Keeping the definitions formatted just like these examples will allow
+ * someone in the future to use a sed (or similar) script to make global
+ * changes, if necessary.  Avoid rearranging the braces or the order of the
+ * functions unless you're ready to change them in every file all at once.
+ *
+ * What follows are some examples that can be used in new classes that you
+ * create.
+ *
+ * @par In the class definition (.h file):
+ * @code
+ * public:
+ *   static TypeHandle get_class_type() {
+ *     return _type_handle;
+ *   }
+ *   static void init_type() {
+ *     <<<BaseClassOne>>>::init_type();
+ *     <<<BaseClassTwo>>>::init_type();
+ *     <<<BaseClassN>>>::init_type();
+ *     register_type(_type_handle, "<<<ThisClassStringName>>>",
+ *                   <<<BaseClassOne>>>::get_class_type(),
+ *                   <<<BaseClassTwo>>>::get_class_type(),
+ *                   <<<BaseClassN>>>::get_class_type());
+ *   }
+ *   virtual TypeHandle get_type() const {
+ *     return get_class_type();
+ *   }
+ *   virtual TypeHandle force_init_type() {init_type(); return get_class_type();}
+ *
+ * private:
+ *   static TypeHandle _type_handle;
+ * @endcode
+ *
+ * @par In the class .cxx file:
+ * @code
+ * TypeHandle <<<ThisClassStringName>>>::_type_handle;
+ * @endcode
+ *
+ * @par In the class config_<<<PackageName>>>.cxx file:
+ * @code
+ * ConfigureFn(config_<<<PackageName>>>) {
+ *   <<<ClassOne>>>::init_type();
+ *   <<<ClassTwo>>>::init_type();
+ *   <<<ClassN>>>::init_type();
+ * }
+ * @endcode
+ */
+
+507 15 AutoFlattenMode 0 794624 30 GeoMipTerrain::AutoFlattenMode 30 GeoMipTerrain::AutoFlattenMode 505 0 0 0 0 0 0 0 0 0 4 7 AFM_off 22 GeoMipTerrain::AFM_off 42
+// FM_off: don't ever flatten the terrain.
+0 9 AFM_light 24 GeoMipTerrain::AFM_light 58
+// FM_light: the terrain is flattened using flatten_light.
+1 10 AFM_medium 25 GeoMipTerrain::AFM_medium 60
+// FM_medium: the terrain is flattened using flatten_medium.
+2 10 AFM_strong 25 GeoMipTerrain::AFM_strong 60
+// FM_strong: the terrain is flattened using flatten_strong.
+3 0 108
+// The flatten mode specifies whether the terrain nodes are flattened
+// together after each terrain update.
+
+508 21 HeightfieldTesselator 0 26625 21 HeightfieldTesselator 21 HeightfieldTesselator 0 0 0 1 335 336 0 10 337 338 339 340 341 342 343 344 345 346 0 0 1 0 501 0 0 0 0 0
+
+509 8 LineSegs 0 26625 8 LineSegs 8 LineSegs 0 0 0 1 347 348 0 13 349 350 351 352 353 354 355 356 357 358 359 360 361 2 716 717 0 1 0 501 0 0 0 0 264
+/**
+ * Encapsulates creation of a series of connected or disconnected line
+ * segments or points, for drawing paths or rays.  This class doesn't attempt
+ * to be the smartest it could possibly be; it's intended primarily as a
+ * visualization and editing tool.
+ */
+
+510 10 MeshDrawer 0 75777 10 MeshDrawer 10 MeshDrawer 0 0 0 1 362 0 0 18 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 0 0 1 0 506 0 0 0 0 642
+/**
+ * Mesh drawer creates a single geom object that can be shaped with different
+ * draw commands.  This is an efficient way to render bunch of billboards,
+ * particles, fast changing triangles.  Its implemented by recycling same geom
+ * over and over again.  Max budget specifies how many triangles are allowed.
+ * Some uses of this class can be : particle system, radar icons, health bars,
+ * 2d icons, 2d ui, bullets, missile trails.  Any that can be drawn with
+ * triangles can be drawn with this class.  At the low level this uses the
+ * GeomVertexRewriter's.  The internal geom consists of vertex, normal, uv and
+ * color channels.
+ */
+
+511 12 MeshDrawer2D 0 75777 12 MeshDrawer2D 12 MeshDrawer2D 0 0 0 1 381 0 0 13 382 383 384 385 386 387 388 389 390 391 392 393 394 0 0 1 0 506 0 0 0 0 160
+/**
+ * This class allows the drawing of 2D objects - mainly based on quads and
+ * rectangles.  It allows clipping and several high level UI theme functions.
+ */
+
+512 12 MovieTexture 0 75777 12 MovieTexture 12 MovieTexture 0 0 0 1 395 0 8 700 701 702 703 704 705 706 707 20 396 397 398 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 0 0 1 0 513 0 0 0 0 91
+/**
+ * A texture that fetches video frames from an underlying object of class
+ * Movie.
+ */
+
+513 7 Texture 0 2048 7 Texture 7 Texture 0 0 0 0 0 0 0 0 0 0 0 0 688
+/**
+ * Represents a texture object, which is typically a single 2-d image but may
+ * also represent a 1-d or 3-d texture image, or the six 2-d faces of a cube
+ * map texture.
+ *
+ * A texture's image data might be stored in system RAM (see get_ram_image())
+ * or its image may be represented in texture memory on one or more
+ * GraphicsStateGuardians (see prepare()), or both.  The typical usage pattern
+ * is that a texture is loaded from an image file on disk, which copies its
+ * image data into system RAM; then the first time the texture is rendered its
+ * image data is copied to texture memory (actually, to the graphics API), and
+ * the system RAM image is automatically freed.
+ */
+
+514 6 double 0 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0 0
+
+515 3 int 0 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+516 4 bool 0 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+517 15 MultitexReducer 0 26625 15 MultitexReducer 15 MultitexReducer 0 0 0 1 416 417 0 6 418 419 420 421 422 423 0 0 0 0 0 623
+/**
+ * This object presents an interface for generating new texture images that
+ * represent the combined images from one or more individual textures,
+ * reproducing certain kinds of multitexture effects without depending on
+ * multitexture support in the hardware.
+ *
+ * This also flattens out texture matrices and removes extra texture
+ * coordinates from the Geoms.  It is thus not a complete substitute for true
+ * multitexturing, because it does not lend itself well to dynamic animation
+ * of the textures once they have been flattened.  It is, however, useful for
+ * "baking in" a particular multitexture effect.
+ */
+
+518 19 NodeVertexTransform 0 141313 19 NodeVertexTransform 19 NodeVertexTransform 0 0 0 1 424 428 2 708 709 3 425 426 427 0 0 1 0 519 0 0 0 0 265
+/**
+ * This VertexTransform gets its matrix from the Transform stored on a node.
+ * It can also compose its node's transform with another VertexTransform,
+ * allowing you to build up a chain of NodeVertexTransforms that represent a
+ * list of composed matrices.
+ */
+
+519 15 VertexTransform 0 2048 15 VertexTransform 15 VertexTransform 0 0 0 0 0 0 0 0 0 0 0 0 305
+/**
+ * This is an abstract base class that holds a pointer to some transform,
+ * computed in some arbitrary way, that is to be applied to vertices during
+ * rendering.  This is used to implement soft-skinned and animated vertices.
+ * Derived classes will define how the transform is actually computed.
+ */
+
+520 17 PandaNode const * 0 8576 17 PandaNode const * 17 PandaNode const * 0 0 521 0 0 0 0 0 0 0 0 0 0
+
+521 15 PandaNode const 0 8832 15 PandaNode const 15 PandaNode const 0 0 522 0 0 0 0 0 0 0 0 0 0
+
+522 9 PandaNode 0 2048 9 PandaNode 9 PandaNode 0 0 0 0 0 0 0 0 0 0 0 0 175
+/**
+ * A basic node of the scene graph or data graph.  This is the base class of
+ * all specialized nodes, and also serves as a generic node with no special
+ * properties.
+ */
+
+523 23 VertexTransform const * 0 8576 23 VertexTransform const * 23 VertexTransform const * 0 0 524 0 0 0 0 0 0 0 0 0 0
+
+524 21 VertexTransform const 0 8832 21 VertexTransform const 21 VertexTransform const 0 0 519 0 0 0 0 0 0 0 0 0 0
+
+525 17 ShaderTerrainMesh 0 141313 17 ShaderTerrainMesh 17 ShaderTerrainMesh 0 0 0 1 429 443 5 710 711 712 713 714 13 430 431 432 433 434 435 436 437 438 439 440 441 442 0 0 1 0 522 0 0 0 0 813
+/**
+ * @brief Terrain Renderer class utilizing the GPU
+ * @details This class provides functionality to render heightfields of large
+ *   sizes utilizing the GPU. Internally a quadtree is used to generate the LODs.
+ *   The final terrain is then rendered using instancing on the GPU. This makes
+ *   it possible to use very large heightfields (8192+) with very reasonable
+ *   performance. The terrain provides options to control the LOD using a
+ *   target triangle width, see ShaderTerrainMesh::set_target_triangle_width().
+ *
+ *   Because the Terrain is rendered entirely on the GPU, it needs a special
+ *   vertex shader. There is a default vertex shader available, which you can
+ *   use in your own shaders. IMPORTANT: If you don't set an appropriate shader
+ *   on the terrain, nothing will be visible.
+ */
+
+526 9 Texture * 0 8576 9 Texture * 9 Texture * 0 0 513 0 0 0 0 0 0 0 0 0 0
+
+527 6 size_t 0 2105344 11 std::size_t 11 std::size_t 0 0 528 0 0 0 0 0 0 0 0 0 0
+
+528 22 unsigned long long int 0 8230 22 unsigned long long int 22 unsigned long long int 0 8 0 0 0 0 0 0 0 0 0 0 0
+
+529 11 PN_stdfloat 0 2105344 11 PN_stdfloat 11 PN_stdfloat 0 0 530 0 0 0 0 0 0 0 0 0 0
+
+530 5 float 0 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0 0
+
+531 23 SceneGraphAnalyzerMeter 0 75777 23 SceneGraphAnalyzerMeter 23 SceneGraphAnalyzerMeter 0 0 0 1 444 0 0 10 445 446 447 448 449 450 451 452 453 454 0 0 1 0 504 0 0 0 0 432
+/**
+ * This is a special TextNode that automatically updates itself with output
+ * from a SceneGraphAnalyzer instance.  It can be placed anywhere in the world
+ * where you'd like to see the output from SceneGraphAnalyzer.
+ *
+ * It also has a special mode in which it may be attached directly to a
+ * channel or window.  If this is done, it creates a DisplayRegion for itself
+ * and renders itself in the upper-right-hand corner.
+ */
+
+532 17 RigidBodyCombiner 0 141313 17 RigidBodyCombiner 17 RigidBodyCombiner 0 0 0 1 455 459 1 715 3 456 457 458 0 0 1 0 522 0 0 0 0 887
+/**
+ * This is a special node that combines multiple independently-moving rigid
+ * nodes into one Geom internally (or as few Geoms as possible), for the
+ * purposes of improving rendering performance.
+ *
+ * To use it, parent a number of moving objects to this node and call
+ * collect().  A child node is identified as "moving" if (a) it has a non-
+ * identity transform initially, or (b) it is a ModelNode with the
+ * preserve_transform flag set.  Any other nodes will be considered static,
+ * and later transforms applied to them will not be identified.
+ *
+ * You should call collect() only at startup or if you change the set of
+ * children; it is a relatively expensive call.
+ *
+ * Once you call collect(), you may change the transforms on the child nodes
+ * freely without having to call collect() again.
+ *
+ * RenderEffects such as Billboards are not supported below this node.
+ */
+
+533 8 NodePath 0 2048 8 NodePath 8 NodePath 0 0 0 0 0 0 0 0 0 0 0 0 762
+/**
+ * NodePath is the fundamental system for disambiguating instances, and also
+ * provides a higher-level interface for manipulating the scene graph.
+ *
+ * A NodePath is a list of connected nodes from the root of the graph to any
+ * sub-node.  Each NodePath therefore uniquely describes one instance of a
+ * node.
+ *
+ * NodePaths themselves are lightweight objects that may easily be copied and
+ * passed by value.  Their data is stored as a series of NodePathComponents
+ * that are stored on the nodes.  Holding a NodePath will keep a reference
+ * count to all the nodes in the path.  However, if any node in the path is
+ * removed or reparented (perhaps through a different NodePath), the NodePath
+ * will automatically be updated to reflect the changes.
+ */
+
+534 26 PipeOcclusionCullTraverser 0 141313 26 PipeOcclusionCullTraverser 26 PipeOcclusionCullTraverser 0 0 0 1 464 472 0 7 465 466 467 468 469 470 471 0 0 2 3 535 460 461 3 536 462 463 0 0 616
+/**
+ * This specialization of CullTraverser uses the graphics pipe itself to
+ * perform occlusion culling.  As such, it's likely to be inefficient (since
+ * it interferes with the pipe's normal mode of rendering), and is mainly
+ * useful to test other, CPU-based occlusion algorithms.
+ *
+ * This cannot be used in a multithreaded pipeline environment where cull and
+ * draw are operating simultaneously.
+ *
+ * It can't be defined in the cull subdirectory, because it needs access to
+ * GraphicsPipe and DisplayRegion and other classes in display.  So we put it
+ * in grutil instead, for lack of any better ideas.
+ */
+
+535 13 CullTraverser 0 2048 13 CullTraverser 13 CullTraverser 0 0 0 0 0 0 0 0 0 0 0 0 279
+/**
+ * This object performs a depth-first traversal of the scene graph, with
+ * optional view-frustum culling, collecting CullState and searching for
+ * GeomNodes.  Each renderable Geom encountered is passed along with its
+ * associated RenderState to the CullHandler object.
+ */
+
+536 11 CullHandler 0 2048 11 CullHandler 11 CullHandler 0 0 0 0 0 0 0 0 0 0 0 0 225
+/**
+ * This defines the abstract interface for an object that receives Geoms
+ * identified by the CullTraverser.  By itself, it's not a particularly useful
+ * class; to use it, derive from it and redefine record_object().
+ */
+
+537 9 PfmVizzer 0 26625 9 PfmVizzer 9 PfmVizzer 0 0 0 1 473 474 0 25 475 476 477 478 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495 496 497 498 499 0 0 0 0 2 538 539 84
+/**
+ * This class aids in the visualization and manipulation of PfmFile objects.
+ */
+
+538 10 ColumnType 0 794624 21 PfmVizzer::ColumnType 21 PfmVizzer::ColumnType 537 0 0 0 0 0 0 0 0 0 10 12 CT_texcoord2 23 PfmVizzer::CT_texcoord2 0
+0 12 CT_texcoord3 23 PfmVizzer::CT_texcoord3 0
+1 10 CT_vertex1 21 PfmVizzer::CT_vertex1 0
+2 10 CT_vertex2 21 PfmVizzer::CT_vertex2 0
+3 10 CT_vertex3 21 PfmVizzer::CT_vertex3 0
+4 10 CT_normal3 21 PfmVizzer::CT_normal3 0
+5 9 CT_blend1 20 PfmVizzer::CT_blend1 0
+6 14 CT_aux_vertex1 25 PfmVizzer::CT_aux_vertex1 0
+7 14 CT_aux_vertex2 25 PfmVizzer::CT_aux_vertex2 0
+8 14 CT_aux_vertex3 25 PfmVizzer::CT_aux_vertex3 0
+9 0 0
+
+539 8 MeshFace 0 794624 19 PfmVizzer::MeshFace 19 PfmVizzer::MeshFace 537 0 0 0 0 0 0 0 0 0 3 8 MF_front 19 PfmVizzer::MF_front 0
+1 7 MF_back 18 PfmVizzer::MF_back 0
+2 7 MF_both 18 PfmVizzer::MF_both 0
+3 0 0
+
+540 17 CardMaker const * 0 8576 17 CardMaker const * 17 CardMaker const * 0 0 541 0 0 0 0 0 0 0 0 0 0
+
+541 15 CardMaker const 0 8832 15 CardMaker const 15 CardMaker const 0 0 500 0 0 0 0 0 0 0 0 0 0
+
+542 11 CardMaker * 0 8576 11 CardMaker * 11 CardMaker * 0 0 500 0 0 0 0 0 0 0 0 0 0
+
+543 13 atomic string 0 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+544 4 void 0 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+545 17 LTexCoord const * 0 8576 17 LTexCoord const * 17 LTexCoord const * 0 0 546 0 0 0 0 0 0 0 0 0 0
+
+546 15 LTexCoord const 0 8832 15 LTexCoord const 15 LTexCoord const 0 0 547 0 0 0 0 0 0 0 0 0 0
+
+547 9 LTexCoord 0 2105344 9 LTexCoord 9 LTexCoord 0 0 548 0 0 0 0 0 0 0 0 0 0
+
+548 10 LTexCoordf 0 2105344 10 LTexCoordf 10 LTexCoordf 0 0 549 0 0 0 0 0 0 0 0 0 0
+
+549 8 LPoint2f 0 2048 8 LPoint2f 8 LPoint2f 0 0 0 0 0 0 0 0 0 0 0 0 50
+/**
+ * This is a two-component point in space.
+ */
+
+550 18 LTexCoord3 const * 0 8576 18 LTexCoord3 const * 18 LTexCoord3 const * 0 0 551 0 0 0 0 0 0 0 0 0 0
+
+551 16 LTexCoord3 const 0 8832 16 LTexCoord3 const 16 LTexCoord3 const 0 0 552 0 0 0 0 0 0 0 0 0 0
+
+552 10 LTexCoord3 0 2105344 10 LTexCoord3 10 LTexCoord3 0 0 553 0 0 0 0 0 0 0 0 0 0
+
+553 11 LTexCoord3f 0 2105344 11 LTexCoord3f 11 LTexCoord3f 0 0 554 0 0 0 0 0 0 0 0 0 0
+
+554 8 LPoint3f 0 2048 8 LPoint3f 8 LPoint3f 0 0 0 0 0 0 0 0 0 0 0 0 337
+/**
+ * This is a three-component point in space (as opposed to a three-component
+ * vector, which represents a direction and a distance).  Some of the methods
+ * are slightly different between LPoint3 and LVector3; in particular,
+ * subtraction of two points yields a vector, while addition of a vector and a
+ * point yields a point.
+ */
+
+555 16 LVector4 const * 0 8576 16 LVector4 const * 16 LVector4 const * 0 0 556 0 0 0 0 0 0 0 0 0 0
+
+556 14 LVector4 const 0 8832 14 LVector4 const 14 LVector4 const 0 0 557 0 0 0 0 0 0 0 0 0 0
+
+557 8 LVector4 0 2105344 8 LVector4 8 LVector4 0 0 558 0 0 0 0 0 0 0 0 0 0
+
+558 9 LVector4f 0 2048 9 LVector4f 9 LVector4f 0 0 0 0 0 0 0 0 0 0 0 0 52
+/**
+ * This is a four-component vector distance.
+ */
+
+559 15 Texture const * 0 8576 15 Texture const * 15 Texture const * 0 0 560 0 0 0 0 0 0 0 0 0 0
+
+560 13 Texture const 0 8832 13 Texture const 13 Texture const 0 0 513 0 0 0 0 0 0 0 0 0 0
+
+561 17 LVecBase4 const * 0 8576 17 LVecBase4 const * 17 LVecBase4 const * 0 0 562 0 0 0 0 0 0 0 0 0 0
+
+562 15 LVecBase4 const 0 8832 15 LVecBase4 const 15 LVecBase4 const 0 0 563 0 0 0 0 0 0 0 0 0 0
+
+563 9 LVecBase4 0 2105344 9 LVecBase4 9 LVecBase4 0 0 564 0 0 0 0 0 0 0 0 0 0
+
+564 10 LVecBase4f 0 2048 10 LVecBase4f 10 LVecBase4f 0 0 0 0 0 0 0 0 0 0 0 0 77
+/**
+ * This is the base class for all three-component vectors and points.
+ */
+
+565 15 LVertex const * 0 8576 15 LVertex const * 15 LVertex const * 0 0 566 0 0 0 0 0 0 0 0 0 0
+
+566 13 LVertex const 0 8832 13 LVertex const 13 LVertex const 0 0 567 0 0 0 0 0 0 0 0 0 0
+
+567 7 LVertex 0 2105344 7 LVertex 7 LVertex 0 0 568 0 0 0 0 0 0 0 0 0 0
+
+568 8 LVertexf 0 2105344 8 LVertexf 8 LVertexf 0 0 554 0 0 0 0 0 0 0 0 0 0
+
+569 14 LColor const * 0 8576 14 LColor const * 14 LColor const * 0 0 570 0 0 0 0 0 0 0 0 0 0
+
+570 12 LColor const 0 8832 12 LColor const 12 LColor const 0 0 571 0 0 0 0 0 0 0 0 0 0
+
+571 6 LColor 0 2105344 6 LColor 6 LColor 0 0 572 0 0 0 0 0 0 0 0 0 0
+
+572 7 LColorf 0 2105344 7 LColorf 7 LColorf 0 0 564 0 0 0 0 0 0 0 0 0 0
+
+573 11 PandaNode * 0 8576 11 PandaNode * 11 PandaNode * 0 0 522 0 0 0 0 0 0 0 0 0 0
+
+574 20 FisheyeMaker const * 0 8576 20 FisheyeMaker const * 20 FisheyeMaker const * 0 0 575 0 0 0 0 0 0 0 0 0 0
+
+575 18 FisheyeMaker const 0 8832 18 FisheyeMaker const 18 FisheyeMaker const 0 0 502 0 0 0 0 0 0 0 0 0 0
+
+576 14 FisheyeMaker * 0 8576 14 FisheyeMaker * 14 FisheyeMaker * 0 0 502 0 0 0 0 0 0 0 0 0 0
+
+577 22 FrameRateMeter const * 0 8576 22 FrameRateMeter const * 22 FrameRateMeter const * 0 0 578 0 0 0 0 0 0 0 0 0 0
+
+578 20 FrameRateMeter const 0 8832 20 FrameRateMeter const 20 FrameRateMeter const 0 0 503 0 0 0 0 0 0 0 0 0 0
+
+579 16 FrameRateMeter * 0 8576 16 FrameRateMeter * 16 FrameRateMeter * 0 0 503 0 0 0 0 0 0 0 0 0 0
+
+580 16 GraphicsOutput * 0 8576 16 GraphicsOutput * 16 GraphicsOutput * 0 0 581 0 0 0 0 0 0 0 0 0 0
+
+581 14 GraphicsOutput 0 2048 14 GraphicsOutput 14 GraphicsOutput 0 0 0 0 0 0 0 0 0 0 0 0 727
+/**
+ * This is a base class for the various different classes that represent the
+ * result of a frame of rendering.  The most common kind of GraphicsOutput is
+ * a GraphicsWindow, which is a real-time window on the desktop, but another
+ * example is GraphicsBuffer, which is an offscreen buffer.
+ *
+ * The actual rendering, and anything associated with the graphics context
+ * itself, is managed by the associated GraphicsStateGuardian (which might
+ * output to multiple GraphicsOutput objects).
+ *
+ * GraphicsOutputs are not actually writable to bam files, of course, but they
+ * may be passed as event parameters, so they inherit from
+ * TypedWritableReferenceCount instead of TypedReferenceCount for that
+ * convenience.
+ */
+
+582 13 DisplayRegion 0 2048 13 DisplayRegion 13 DisplayRegion 0 0 0 0 0 0 0 0 0 0 0 0 399
+/**
+ * A rectangular subregion within a window for rendering into.  Typically,
+ * there is one DisplayRegion that covers the whole window, but you may also
+ * create smaller DisplayRegions for having different regions within the
+ * window that represent different scenes.  You may also stack up
+ * DisplayRegions like panes of glass, usually for layering 2-d interfaces on
+ * top of a 3-d scene.
+ */
+
+583 15 DisplayRegion * 0 8576 15 DisplayRegion * 15 DisplayRegion * 0 0 582 0 0 0 0 0 0 0 0 0 0
+
+584 13 ClockObject * 0 8576 13 ClockObject * 13 ClockObject * 0 0 585 0 0 0 0 0 0 0 0 0 0
+
+585 11 ClockObject 0 2048 11 ClockObject 11 ClockObject 0 0 0 0 0 0 0 0 0 0 0 0 1000
+/**
+ * A ClockObject keeps track of elapsed real time and discrete time.  In
+ * normal mode, get_frame_time() returns the time as of the last time tick()
+ * was called.  This is the "discrete" time, and is usually used to get the
+ * time as of, for instance, the beginning of the current frame.
+ *
+ * In other modes, as set by set_mode() or the clock-mode config variable,
+ * get_frame_time() may return other values to simulate different timing
+ * effects, for instance to perform non-real-time animation.  See set_mode().
+ *
+ * In all modes, get_real_time() always returns the elapsed real time in
+ * seconds since the ClockObject was constructed, or since it was last reset.
+ *
+ * You can create your own ClockObject whenever you want to have your own
+ * local timer.  There is also a default, global ClockObject intended to
+ * represent global time for the application; this is normally set up to tick
+ * every frame so that its get_frame_time() will return the time for the
+ * current frame.
+ */
+
+586 10 TypeHandle 0 16779264 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 732
+/**
+ * TypeHandle is the identifier used to differentiate C++ class types.  Any
+ * C++ classes that inherit from some base class, and must be differentiated
+ * at run time, should store a static TypeHandle object that can be queried
+ * through a static member function named get_class_type().  Most of the time,
+ * it is also desirable to inherit from TypedObject, which provides some
+ * virtual functions to return the TypeHandle for a particular instance.
+ *
+ * At its essence, a TypeHandle is simply a unique identifier that is assigned
+ * by the TypeRegistry.  The TypeRegistry stores a tree of TypeHandles, so
+ * that ancestry of a particular type may be queried, and the type name may be
+ * retrieved for run-time display.
+ */
+
+587 12 TypeHandle * 0 8576 12 TypeHandle * 12 TypeHandle * 0 0 586 0 0 0 0 0 0 0 0 0 0
+
+588 15 GeoMipTerrain * 0 8576 15 GeoMipTerrain * 15 GeoMipTerrain * 0 0 505 0 0 0 0 0 0 0 0 0 0
+
+589 10 PNMImage * 0 8576 10 PNMImage * 10 PNMImage * 0 0 590 0 0 0 0 0 0 0 0 0 0
+
+590 8 PNMImage 0 2048 8 PNMImage 8 PNMImage 0 0 0 0 0 0 0 0 0 0 0 0 1516
+/**
+ * The name of this class derives from the fact that we originally implemented
+ * it as a layer on top of the "pnm library", based on netpbm, which was built
+ * to implement pbm, pgm, and pbm files, and is the underlying support of a
+ * number of public-domain image file converters.  Nowadays we are no longer
+ * derived directly from the pnm library, mainly to allow support of C++
+ * iostreams instead of the C stdio FILE interface.
+ *
+ * Conceptually, a PNMImage is a two-dimensional array of xels, which are the
+ * PNM-defined generic pixel type.  Each xel may have a red, green, and blue
+ * component, or (if the image is grayscale) a gray component.  The image may
+ * be read in, the individual xels manipulated, and written out again, or a
+ * black image may be constructed from scratch.
+ *
+ * A PNMImage has a color space and a maxval, the combination of which defines
+ * how a floating-point linear color value is encoded as an integer value in
+ * memory.  The functions ending in _val operate on encoded colors, whereas
+ * the regular ones work with linear floating-point values.  All operations
+ * are color space correct unless otherwise specified.
+ *
+ * The image is of size XSize() by YSize() xels, numbered from top to bottom,
+ * left to right, beginning at zero.
+ *
+ * Files can be specified by filename, or by an iostream pointer.  The
+ * filename "-" refers to stdin or stdout.
+ *
+ * This class is not inherently thread-safe; use it from a single thread or
+ * protect access using a mutex.
+ */
+
+591 16 Filename const * 0 8576 16 Filename const * 16 Filename const * 0 0 592 0 0 0 0 0 0 0 0 0 0
+
+592 14 Filename const 0 8832 14 Filename const 14 Filename const 0 0 593 0 0 0 0 0 0 0 0 0 0
+
+593 8 Filename 0 2048 8 Filename 8 Filename 0 0 0 0 0 0 0 0 0 0 0 0 550
+/**
+ * The name of a file, such as a texture file or an Egg file.  Stores the full
+ * pathname, and includes functions for extracting out the directory prefix
+ * part and the file extension and stuff.
+ *
+ * A Filename is also aware of the mapping between the Unix-like filename
+ * convention we use internally, and the local OS's specific filename
+ * convention, and it knows how to perform basic OS-specific I/O, like testing
+ * for file existence and searching a searchpath, as well as the best way to
+ * open an fstream for reading or writing.
+ */
+
+594 13 PNMFileType * 0 8576 13 PNMFileType * 13 PNMFileType * 0 0 595 0 0 0 0 0 0 0 0 0 0
+
+595 11 PNMFileType 0 2048 11 PNMFileType 11 PNMFileType 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+596 16 PNMImage const * 0 8576 16 PNMImage const * 16 PNMImage const * 0 0 597 0 0 0 0 0 0 0 0 0 0
+
+597 14 PNMImage const 0 8832 14 PNMImage const 14 PNMImage const 0 0 590 0 0 0 0 0 0 0 0 0 0
+
+598 21 GeoMipTerrain const * 0 8576 21 GeoMipTerrain const * 21 GeoMipTerrain const * 0 0 599 0 0 0 0 0 0 0 0 0 0
+
+599 19 GeoMipTerrain const 0 8832 19 GeoMipTerrain const 19 GeoMipTerrain const 0 0 505 0 0 0 0 0 0 0 0 0 0
+
+600 8 LVector3 0 2105344 8 LVector3 8 LVector3 0 0 601 0 0 0 0 0 0 0 0 0 0
+
+601 9 LVector3f 0 2048 9 LVector3f 9 LVector3f 0 0 0 0 0 0 0 0 0 0 0 0 338
+/**
+ * This is a three-component vector distance (as opposed to a three-component
+ * point, which represents a particular point in space).  Some of the methods
+ * are slightly different between LPoint3 and LVector3; in particular,
+ * subtraction of two points yields a vector, while addition of a vector and a
+ * point yields a point.
+ */
+
+602 10 LVector3 * 0 8576 10 LVector3 * 10 LVector3 * 0 0 600 0 0 0 0 0 0 0 0 0 0
+
+603 18 unsigned short int 0 8262 18 unsigned short int 18 unsigned short int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+604 16 LPoint2d const * 0 8576 16 LPoint2d const * 16 LPoint2d const * 0 0 605 0 0 0 0 0 0 0 0 0 0
+
+605 14 LPoint2d const 0 8832 14 LPoint2d const 14 LPoint2d const 0 0 606 0 0 0 0 0 0 0 0 0 0
+
+606 8 LPoint2d 0 2048 8 LPoint2d 8 LPoint2d 0 0 0 0 0 0 0 0 0 0 0 0 50
+/**
+ * This is a two-component point in space.
+ */
+
+607 16 LPoint2f const * 0 8576 16 LPoint2f const * 16 LPoint2f const * 0 0 608 0 0 0 0 0 0 0 0 0 0
+
+608 14 LPoint2f const 0 8832 14 LPoint2f const 14 LPoint2f const 0 0 549 0 0 0 0 0 0 0 0 0 0
+
+609 16 LPoint3d const * 0 8576 16 LPoint3d const * 16 LPoint3d const * 0 0 610 0 0 0 0 0 0 0 0 0 0
+
+610 14 LPoint3d const 0 8832 14 LPoint3d const 14 LPoint3d const 0 0 611 0 0 0 0 0 0 0 0 0 0
+
+611 8 LPoint3d 0 2048 8 LPoint3d 8 LPoint3d 0 0 0 0 0 0 0 0 0 0 0 0 337
+/**
+ * This is a three-component point in space (as opposed to a three-component
+ * vector, which represents a direction and a distance).  Some of the methods
+ * are slightly different between LPoint3 and LVector3; in particular,
+ * subtraction of two points yields a vector, while addition of a vector and a
+ * point yields a point.
+ */
+
+612 16 LPoint3f const * 0 8576 16 LPoint3f const * 16 LPoint3f const * 0 0 613 0 0 0 0 0 0 0 0 0 0
+
+613 14 LPoint3f const 0 8832 14 LPoint3f const 14 LPoint3f const 0 0 554 0 0 0 0 0 0 0 0 0 0
+
+614 10 NodePath * 0 8576 10 NodePath * 10 NodePath * 0 0 533 0 0 0 0 0 0 0 0 0 0
+
+615 14 NodePath const 0 8832 14 NodePath const 14 NodePath const 0 0 533 0 0 0 0 0 0 0 0 0 0
+
+616 16 NodePath const * 0 8576 16 NodePath const * 16 NodePath const * 0 0 615 0 0 0 0 0 0 0 0 0 0
+
+617 9 LVecBase2 0 2105344 9 LVecBase2 9 LVecBase2 0 0 618 0 0 0 0 0 0 0 0 0 0
+
+618 10 LVecBase2f 0 2048 10 LVecBase2f 10 LVecBase2f 0 0 0 0 0 0 0 0 0 0 0 0 75
+/**
+ * This is the base class for all two-component vectors and points.
+ */
+
+619 11 LVecBase2 * 0 8576 11 LVecBase2 * 11 LVecBase2 * 0 0 617 0 0 0 0 0 0 0 0 0 0
+
+620 29 HeightfieldTesselator const * 0 8576 29 HeightfieldTesselator const * 29 HeightfieldTesselator const * 0 0 621 0 0 0 0 0 0 0 0 0 0
+
+621 27 HeightfieldTesselator const 0 8832 27 HeightfieldTesselator const 27 HeightfieldTesselator const 0 0 508 0 0 0 0 0 0 0 0 0 0
+
+622 23 HeightfieldTesselator * 0 8576 23 HeightfieldTesselator * 23 HeightfieldTesselator * 0 0 508 0 0 0 0 0 0 0 0 0 0
+
+623 16 LineSegs const * 0 8576 16 LineSegs const * 16 LineSegs const * 0 0 624 0 0 0 0 0 0 0 0 0 0
+
+624 14 LineSegs const 0 8832 14 LineSegs const 14 LineSegs const 0 0 509 0 0 0 0 0 0 0 0 0 0
+
+625 10 LineSegs * 0 8576 10 LineSegs * 10 LineSegs * 0 0 509 0 0 0 0 0 0 0 0 0 0
+
+626 17 LVecBase3 const * 0 8576 17 LVecBase3 const * 17 LVecBase3 const * 0 0 627 0 0 0 0 0 0 0 0 0 0
+
+627 15 LVecBase3 const 0 8832 15 LVecBase3 const 15 LVecBase3 const 0 0 628 0 0 0 0 0 0 0 0 0 0
+
+628 9 LVecBase3 0 2105344 9 LVecBase3 9 LVecBase3 0 0 629 0 0 0 0 0 0 0 0 0 0
+
+629 10 LVecBase3f 0 2048 10 LVecBase3f 10 LVecBase3f 0 0 0 0 0 0 0 0 0 0 0 0 77
+/**
+ * This is the base class for all three-component vectors and points.
+ */
+
+630 8 GeomNode 0 2048 8 GeomNode 8 GeomNode 0 0 0 0 0 0 0 0 0 0 0 0 208
+/**
+ * A node that holds Geom objects, renderable pieces of geometry.  This is the
+ * primary kind of leaf node in the scene graph; almost all visible objects
+ * will be contained in a GeomNode somewhere.
+ */
+
+631 10 GeomNode * 0 8576 10 GeomNode * 10 GeomNode * 0 0 630 0 0 0 0 0 0 0 0 0 0
+
+632 9 LVertex * 0 8576 9 LVertex * 9 LVertex * 0 0 567 0 0 0 0 0 0 0 0 0 0
+
+633 8 LColor * 0 8576 8 LColor * 8 LColor * 0 0 571 0 0 0 0 0 0 0 0 0 0
+
+634 12 MeshDrawer * 0 8576 12 MeshDrawer * 12 MeshDrawer * 0 0 510 0 0 0 0 0 0 0 0 0 0
+
+635 16 LVector3 const * 0 8576 16 LVector3 const * 16 LVector3 const * 0 0 636 0 0 0 0 0 0 0 0 0 0
+
+636 14 LVector3 const 0 8832 14 LVector3 const 14 LVector3 const 0 0 600 0 0 0 0 0 0 0 0 0 0
+
+637 16 LVector2 const * 0 8576 16 LVector2 const * 16 LVector2 const * 0 0 638 0 0 0 0 0 0 0 0 0 0
+
+638 14 LVector2 const 0 8832 14 LVector2 const 14 LVector2 const 0 0 639 0 0 0 0 0 0 0 0 0 0
+
+639 8 LVector2 0 2105344 8 LVector2 8 LVector2 0 0 640 0 0 0 0 0 0 0 0 0 0
+
+640 9 LVector2f 0 2048 9 LVector2f 9 LVector2f 0 0 0 0 0 0 0 0 0 0 0 0 49
+/**
+ * This is a two-component vector offset.
+ */
+
+641 14 MeshDrawer2D * 0 8576 14 MeshDrawer2D * 14 MeshDrawer2D * 0 0 511 0 0 0 0 0 0 0 0 0 0
+
+642 12 MovieVideo * 0 8576 12 MovieVideo * 12 MovieVideo * 0 0 643 0 0 0 0 0 0 0 0 0 0
+
+643 10 MovieVideo 0 2048 10 MovieVideo 10 MovieVideo 0 0 0 0 0 0 0 0 0 0 0 0 400
+/**
+ * A MovieVideo is actually any source that provides a sequence of video
+ * frames.  That could include an AVI file, a digital camera, or an internet
+ * TV station.
+ *
+ * The difference between a MovieVideo and a MovieVideoCursor is like the
+ * difference between a filename and a file handle.  The MovieVideo just
+ * indicates a particular movie.  The MovieVideoCursor is what allows access.
+ */
+
+644 14 MovieTexture * 0 8576 14 MovieTexture * 14 MovieTexture * 0 0 512 0 0 0 0 0 0 0 0 0 0
+
+645 20 MovieTexture const * 0 8576 20 MovieTexture const * 20 MovieTexture const * 0 0 646 0 0 0 0 0 0 0 0 0 0
+
+646 18 MovieTexture const 0 8832 18 MovieTexture const 18 MovieTexture const 0 0 512 0 0 0 0 0 0 0 0 0 0
+
+647 16 MovieVideoCursor 0 2048 16 MovieVideoCursor 16 MovieVideoCursor 0 0 0 0 0 0 0 0 0 0 0 0 504
+/**
+ * A MovieVideo is actually any source that provides a sequence of video
+ * frames.  That could include an AVI file, a digital camera, or an internet
+ * TV station.  A MovieVideoCursor is a handle that lets you read data
+ * sequentially from a MovieVideo.
+ *
+ * Thread safety: each individual MovieVideoCursor must be owned and accessed
+ * by a single thread.  It is OK for two different threads to open the same
+ * file at the same time, as long as they use separate MovieVideoCursor
+ * objects.
+ */
+
+648 18 MovieVideoCursor * 0 8576 18 MovieVideoCursor * 18 MovieVideoCursor * 0 0 647 0 0 0 0 0 0 0 0 0 0
+
+649 12 AudioSound * 0 8576 12 AudioSound * 12 AudioSound * 0 0 650 0 0 0 0 0 0 0 0 0 0
+
+650 10 AudioSound 0 2048 10 AudioSound 10 AudioSound 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+651 17 MultitexReducer * 0 8576 17 MultitexReducer * 17 MultitexReducer * 0 0 517 0 0 0 0 0 0 0 0 0 0
+
+652 23 MultitexReducer const * 0 8576 23 MultitexReducer const * 23 MultitexReducer const * 0 0 653 0 0 0 0 0 0 0 0 0 0
+
+653 21 MultitexReducer const 0 8832 21 MultitexReducer const 21 MultitexReducer const 0 0 517 0 0 0 0 0 0 0 0 0 0
+
+654 19 RenderState const * 0 8576 19 RenderState const * 19 RenderState const * 0 0 655 0 0 0 0 0 0 0 0 0 0
+
+655 17 RenderState const 0 8832 17 RenderState const 17 RenderState const 0 0 656 0 0 0 0 0 0 0 0 0 0
+
+656 11 RenderState 0 2048 11 RenderState 11 RenderState 0 0 0 0 0 0 0 0 0 0 0 0 340
+/**
+ * This represents a unique collection of RenderAttrib objects that correspond
+ * to a particular renderable state.
+ *
+ * You should not attempt to create or modify a RenderState object directly.
+ * Instead, call one of the make() functions to create one for you.  And
+ * instead of modifying a RenderState object, create a new one.
+ */
+
+657 22 TransformState const * 0 8576 22 TransformState const * 22 TransformState const * 0 0 658 0 0 0 0 0 0 0 0 0 0
+
+658 20 TransformState const 0 8832 20 TransformState const 20 TransformState const 0 0 659 0 0 0 0 0 0 0 0 0 0
+
+659 14 TransformState 0 16779264 14 TransformState 14 TransformState 0 0 0 0 0 0 0 0 0 0 0 0 734
+/**
+ * Indicates a coordinate-system transform on vertices.  TransformStates are
+ * the primary means for storing transformations on the scene graph.
+ *
+ * Transforms may be specified in one of two ways: componentwise, with a pos-
+ * hpr-scale, or with an arbitrary transform matrix.  If you specify a
+ * transform componentwise, it will remember its original components.
+ *
+ * TransformState objects are managed very much like RenderState objects.
+ * They are immutable and reference-counted automatically.
+ *
+ * You should not attempt to create or modify a TransformState object
+ * directly.  Instead, call one of the make() functions to create one for you.
+ * And instead of modifying a TransformState object, create a new one.
+ */
+
+660 14 TextureStage * 0 8576 14 TextureStage * 14 TextureStage * 0 0 661 0 0 0 0 0 0 0 0 0 0
+
+661 12 TextureStage 0 2048 12 TextureStage 12 TextureStage 0 0 0 0 0 0 0 0 0 0 0 0 336
+/**
+ * Defines the properties of a named stage of the multitexture pipeline.  The
+ * TextureAttrib will associated a number of these stages with Texture
+ * objects, and the GSG will render geometry by sorting all of the currently
+ * active TextureStages in order and then issuing the appropriate rendering
+ * calls to activate them.
+ */
+
+662 21 NodeVertexTransform * 0 8576 21 NodeVertexTransform * 21 NodeVertexTransform * 0 0 518 0 0 0 0 0 0 0 0 0 0
+
+663 27 NodeVertexTransform const * 0 8576 27 NodeVertexTransform const * 27 NodeVertexTransform const * 0 0 664 0 0 0 0 0 0 0 0 0 0
+
+664 25 NodeVertexTransform const 0 8832 25 NodeVertexTransform const 25 NodeVertexTransform const 0 0 518 0 0 0 0 0 0 0 0 0 0
+
+665 19 ShaderTerrainMesh * 0 8576 19 ShaderTerrainMesh * 19 ShaderTerrainMesh * 0 0 525 0 0 0 0 0 0 0 0 0 0
+
+666 25 ShaderTerrainMesh const * 0 8576 25 ShaderTerrainMesh const * 25 ShaderTerrainMesh const * 0 0 667 0 0 0 0 0 0 0 0 0 0
+
+667 23 ShaderTerrainMesh const 0 8832 23 ShaderTerrainMesh const 23 ShaderTerrainMesh const 0 0 525 0 0 0 0 0 0 0 0 0 0
+
+668 7 LPoint3 0 2105344 7 LPoint3 7 LPoint3 0 0 554 0 0 0 0 0 0 0 0 0 0
+
+669 9 LPoint3 * 0 8576 9 LPoint3 * 9 LPoint3 * 0 0 668 0 0 0 0 0 0 0 0 0 0
+
+670 31 SceneGraphAnalyzerMeter const * 0 8576 31 SceneGraphAnalyzerMeter const * 31 SceneGraphAnalyzerMeter const * 0 0 671 0 0 0 0 0 0 0 0 0 0
+
+671 29 SceneGraphAnalyzerMeter const 0 8832 29 SceneGraphAnalyzerMeter const 29 SceneGraphAnalyzerMeter const 0 0 531 0 0 0 0 0 0 0 0 0 0
+
+672 25 SceneGraphAnalyzerMeter * 0 8576 25 SceneGraphAnalyzerMeter * 25 SceneGraphAnalyzerMeter * 0 0 531 0 0 0 0 0 0 0 0 0 0
+
+673 19 RigidBodyCombiner * 0 8576 19 RigidBodyCombiner * 19 RigidBodyCombiner * 0 0 532 0 0 0 0 0 0 0 0 0 0
+
+674 28 PipeOcclusionCullTraverser * 0 8576 28 PipeOcclusionCullTraverser * 28 PipeOcclusionCullTraverser * 0 0 534 0 0 0 0 0 0 0 0 0 0
+
+675 12 SceneSetup * 0 8576 12 SceneSetup * 12 SceneSetup * 0 0 676 0 0 0 0 0 0 0 0 0 0
+
+676 10 SceneSetup 0 2048 10 SceneSetup 10 SceneSetup 0 0 0 0 0 0 0 0 0 0 0 0 128
+/**
+ * This object holds the camera position, etc., and other general setup
+ * information for rendering a particular scene.
+ */
+
+677 27 GraphicsStateGuardianBase * 0 8576 27 GraphicsStateGuardianBase * 27 GraphicsStateGuardianBase * 0 0 678 0 0 0 0 0 0 0 0 0 0
+
+678 25 GraphicsStateGuardianBase 0 2048 25 GraphicsStateGuardianBase 25 GraphicsStateGuardianBase 0 0 0 0 0 0 0 0 0 0 0 0 607
+/**
+ * This is a base class for the GraphicsStateGuardian class, which is itself a
+ * base class for the various GSG's for different platforms.  This class
+ * contains all the function prototypes to support the double-dispatch of GSG
+ * to geoms, transitions, etc.  It lives in a separate class in its own
+ * package so we can avoid circular build dependency problems.
+ *
+ * GraphicsStateGuardians are not actually writable to bam files, of course,
+ * but they may be passed as event parameters, so they inherit from
+ * TypedWritableReferenceCount instead of TypedReferenceCount for that
+ * convenience.
+ */
+
+679 34 PipeOcclusionCullTraverser const * 0 8576 34 PipeOcclusionCullTraverser const * 34 PipeOcclusionCullTraverser const * 0 0 680 0 0 0 0 0 0 0 0 0 0
+
+680 32 PipeOcclusionCullTraverser const 0 8832 32 PipeOcclusionCullTraverser const 32 PipeOcclusionCullTraverser const 0 0 534 0 0 0 0 0 0 0 0 0 0
+
+681 16 DrawMask const * 0 8576 16 DrawMask const * 16 DrawMask const * 0 0 682 0 0 0 0 0 0 0 0 0 0
+
+682 14 DrawMask const 0 8832 14 DrawMask const 14 DrawMask const 0 0 683 0 0 0 0 0 0 0 0 0 0
+
+683 8 DrawMask 0 2105344 8 DrawMask 8 DrawMask 0 0 684 0 0 0 0 0 0 0 0 0 0
+
+684 9 BitMask32 0 2105344 9 BitMask32 9 BitMask32 0 0 685 0 0 0 0 0 0 0 0 0 0
+
+685 23 BitMask< uint32_t, 32 > 0 2048 23 BitMask< uint32_t, 32 > 23 BitMask< uint32_t, 32 > 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+686 15 CullTraverser * 0 8576 15 CullTraverser * 15 CullTraverser * 0 0 535 0 0 0 0 0 0 0 0 0 0
+
+687 13 CullHandler * 0 8576 13 CullHandler * 13 CullHandler * 0 0 536 0 0 0 0 0 0 0 0 0 0
+
+688 9 PfmFile * 0 8576 9 PfmFile * 9 PfmFile * 0 0 689 0 0 0 0 0 0 0 0 0 0
+
+689 7 PfmFile 0 2048 7 PfmFile 7 PfmFile 0 0 0 0 0 0 0 0 0 0 0 0 155
+/**
+ * Defines a pfm file, a 2-d table of floating-point numbers, either
+ * 3-component or 1-component, or with a special extension, 2- or 4-component.
+ */
+
+690 11 PfmVizzer * 0 8576 11 PfmVizzer * 11 PfmVizzer * 0 0 537 0 0 0 0 0 0 0 0 0 0
+
+691 17 PfmVizzer const * 0 8576 17 PfmVizzer const * 17 PfmVizzer const * 0 0 692 0 0 0 0 0 0 0 0 0 0
+
+692 15 PfmVizzer const 0 8832 15 PfmVizzer const 15 PfmVizzer const 0 0 537 0 0 0 0 0 0 0 0 0 0
+
+693 15 PfmFile const * 0 8576 15 PfmFile const * 15 PfmFile const * 0 0 694 0 0 0 0 0 0 0 0 0 0
+
+694 13 PfmFile const 0 8832 13 PfmFile const 13 PfmFile const 0 0 689 0 0 0 0 0 0 0 0 0 0
+
+695 12 Lens const * 0 8576 12 Lens const * 12 Lens const * 0 0 696 0 0 0 0 0 0 0 0 0 0
+
+696 10 Lens const 0 8832 10 Lens const 10 Lens const 0 0 697 0 0 0 0 0 0 0 0 0 0
+
+697 4 Lens 0 2048 4 Lens 4 Lens 0 0 0 0 0 0 0 0 0 0 0 0 398
+/**
+ * A base class for any number of different kinds of lenses, linear and
+ * otherwise.  Presently, this includes perspective and orthographic lenses.
+ *
+ * A Lens object is the main part of a Camera node, which defines the
+ * fundamental interface to point-of-view for rendering.  Lenses are also used
+ * in other contexts, however; for instance, a Spotlight is also defined using
+ * a lens.
+ */
+
+698 14 InternalName * 0 8576 14 InternalName * 14 InternalName * 0 0 699 0 0 0 0 0 0 0 0 0 0
+
+699 12 InternalName 0 16779264 12 InternalName 12 InternalName 0 0 0 0 0 0 0 0 0 0 0 0 514
+/**
+ * Encodes a string name in a hash table, mapping it to a pointer.  This is
+ * used to tokenify names so they may be used efficiently in low-level Panda
+ * structures, for instance to differentiate the multiple sets of texture
+ * coordinates that might be stored on a Geom.
+ *
+ * InternalNames are hierarchical, with the '.' used by convention as a
+ * separator character.  You can construct a single InternalName as a
+ * composition of one or more other names, or by giving it a source string
+ * directly.
+ */
+
+0
+16
+700 12 video_length 0 2 514 396 0 0 0 0 0 0 0 26 MovieTexture::video_length 0
+
+701 11 video_width 0 2 515 397 0 0 0 0 0 0 0 25 MovieTexture::video_width 0
+
+702 12 video_height 0 2 515 398 0 0 0 0 0 0 0 26 MovieTexture::video_height 0
+
+703 4 time 0 6 514 405 404 0 0 0 0 0 0 18 MovieTexture::time 0
+
+704 4 loop 0 6 516 407 406 0 0 0 0 0 0 18 MovieTexture::loop 0
+
+705 10 loop_count 0 6 515 409 408 0 0 0 0 0 0 24 MovieTexture::loop_count 0
+
+706 9 play_rate 0 6 514 411 410 0 0 0 0 0 0 23 MovieTexture::play_rate 0
+
+707 7 playing 0 2 516 412 0 0 0 0 0 0 0 21 MovieTexture::playing 0
+
+708 4 node 0 2 520 425 0 0 0 0 0 0 0 25 NodeVertexTransform::node 0
+
+709 4 prev 0 2 523 426 0 0 0 0 0 0 0 25 NodeVertexTransform::prev 0
+
+710 11 heightfield 0 6 526 431 430 0 0 0 0 0 0 30 ShaderTerrainMesh::heightfield 0
+
+711 10 chunk_size 0 6 527 433 432 0 0 0 0 0 0 29 ShaderTerrainMesh::chunk_size 0
+
+712 16 generate_patches 0 6 516 435 434 0 0 0 0 0 0 35 ShaderTerrainMesh::generate_patches 0
+
+713 14 update_enabled 0 6 516 437 436 0 0 0 0 0 0 33 ShaderTerrainMesh::update_enabled 0
+
+714 21 target_triangle_width 0 6 529 439 438 0 0 0 0 0 0 40 ShaderTerrainMesh::target_triangle_width 0
+
+715 14 internal_scene 0 2 533 457 0 0 0 0 0 0 0 33 RigidBodyCombiner::internal_scene 0
+
+2
+716 12 get_vertices 0 357 358 22 LineSegs::get_vertices 0
+
+717 17 get_vertex_colors 0 357 360 27 LineSegs::get_vertex_colors 0
+
