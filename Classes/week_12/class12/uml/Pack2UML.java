@@ -61,8 +61,9 @@ public class Pack2UML {
         }
         Method[] mm = c.getMethods();
         for(Method m: mm) {
-            isObj = super_name.contains("Object");
-            if(!isObj) {
+            isObj = m.toString().contains("Object");
+            boolean isSup = m.toString().contains(super_name);
+            if(!isObj && !isSup) {
                 String sm1 = m.getName()+"()";
                 ans += sm1 + "\n";
             }
