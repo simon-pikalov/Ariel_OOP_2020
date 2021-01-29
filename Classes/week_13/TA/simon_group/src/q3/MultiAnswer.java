@@ -3,18 +3,27 @@ package q3;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MultiAnswer {
-    Long value;
-    final static Object lock = new Object(); // the object that the lock ig going to be made on
+    private Long value;
+    private final AtomicBoolean isFinished;
 
     public MultiAnswer() {
-        this.value = (long) -1; //  -1 mean that the value is not answered
+        isFinished = new AtomicBoolean(false);// false mean that the value is not answered
+        this.value = (long) -1;
+    }
+
+
+    private synchronized void setValue(long value) {
+        if (isFinished.get()) return;
+        this.value = value;
+        isFinished.set(true);
     }
 
     long m1(List<String> a) {
         try {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -23,29 +32,28 @@ public class MultiAnswer {
 
     long m2(List<String> a) {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println();
         return a.size();
     }
 
     long m12(List<String> a) {
+        isFinished.set(false);
         //Anonymous thread 1
         Runnable taskM1 = new Runnable() {
             @Override
             public void run() {
-                long tempAns = m1(a);
-                synchronized (lock) {
-                    if (value == -1) {
-                        value = tempAns;
-                        lock.notify();
+                long tempAns = m1(a); // run m1
+                synchronized (a) {
+                    if (!isFinished.get()) { // if not finished
+                        setValue(tempAns);
+                        a.notify();
                         System.out.println("m1 ans is " + value);
                     } else {
-                        System.out.println("m1 : value is already not -1 , nothing to be done");
+                        System.out.println("m1 : isFinished is true, nothing to be done");
                     }
-
                 }
             }
         };
@@ -54,14 +62,14 @@ public class MultiAnswer {
         Runnable taskM2 = new Runnable() {
             @Override
             public void run() {
-                long tempAns = m2(a);
-                synchronized (lock) {
-                    if (value == -1) {
-                        value = tempAns;
-                        lock.notify();
+                long tempAns = m2(a); // run m2
+                synchronized (a) {
+                    if (!isFinished.get()) { // if not finished
+                        setValue(tempAns);
+                        a.notify();
                         System.out.println("m2 ans is " + value);
                     } else {
-                        System.out.println("m2 :value is already not -1 , nothing to be done");
+                        System.out.println("m2 : isFinished is true, nothing to be done");
                     }
                 }
 
@@ -70,14 +78,13 @@ public class MultiAnswer {
 
         Thread t1 = new Thread(taskM1);
         Thread t2 = new Thread(taskM2);
-
         t2.start();
         t1.start();
-        synchronized (lock) {
+        synchronized (a) {
             System.out.println("starting wait");
-            while (value == -1) {
+            while (!isFinished.get()) {
                 try {
-                    lock.wait();
+                    a.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
